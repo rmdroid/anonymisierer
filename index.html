@@ -25,6 +25,7 @@
   <meta name="twitter:description" content="Sensible Texte lokal anonymisieren, bevor sie in KI-Chatbots, E-Mails oder andere Systeme wandern.">
   <meta name="twitter:image" content="https://ki-anonymisierer.de/b1.png">
   <link rel="icon" type="image/png" href="app-icon-master.png">
+  <script defer src="https://cv.rm-on.de/script.js" data-website-id="e43f01c8-6df2-4fc7-837a-ad0cf4dca91d"></script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -973,7 +974,7 @@
       bottom: 1rem;
       z-index: 80;
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: minmax(0, 1fr) auto;
       gap: 0.8rem;
       align-items: center;
       padding: 0.85rem 0.95rem;
@@ -1001,6 +1002,13 @@
       line-height: 1.45;
     }
     .cookie-ack {
+      appearance: none;
+      -webkit-appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      width: max-content;
       min-height: 44px;
       padding: 0.55rem 0.9rem;
       border-radius: 999px;
@@ -1009,6 +1017,8 @@
       color: var(--ink);
       cursor: pointer;
       white-space: nowrap;
+      position: relative;
+      z-index: 1;
     }
     .cookie-ack:hover,
     .cookie-ack:focus-visible {
@@ -1503,7 +1513,7 @@
   </footer>
 
   <div class="cookie-notice" id="cookieNotice" role="region" aria-label="Cookie Hinweis" aria-hidden="false">
-    <p class="cookie-text">Datenschutzhinweis: Diese Website verwendet keine Cookies. Externe Dienste werden nur für Google Fonts und bei aktiver Eingabe im Formular „Updates / Newsletter“ genutzt.</p>
+    <p class="cookie-text">Datenschutzhinweis: Diese Website verwendet keine Cookies. Externe Dienste werden für Google Fonts, anonymisierte Reichweitenmessung mit Umami und bei aktiver Eingabe im Formular „Updates / Newsletter“ genutzt.</p>
     <button type="button" class="cookie-ack" id="cookieAck">Hinweis bestätigen</button>
   </div>
 
@@ -1679,7 +1689,7 @@
 <html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;padding:1.1rem 1rem 1.4rem;font-family:system-ui,sans-serif;color:#1f2738;line-height:1.55;background:#fff}h1{margin:0 0 .75rem;font-size:1.4rem;line-height:1.2}h2{margin:1rem 0 .35rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:#4f5a70}p{margin:.3rem 0;font-size:.94rem}a{color:#253b68;text-decoration:underline}</style></head><body><h1>Impressum gemäß § 5 TMG &amp; § 55 RStV</h1><h2>Angaben gemäß § 5 TMG</h2><p><strong>Robert Meyer</strong><br>Robert Meyer c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin<br>Deutschland</p><h2>Kontakt</h2><p>E-Mail: rm@kostenmanager.net<br>Kontaktformular: <a href="https://mein.online-impressum.de/robert-meyer/" target="_blank" rel="noopener noreferrer">https://mein.online-impressum.de/robert-meyer/</a></p><h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2><p><strong>Robert Meyer</strong><br>Robert Meyer c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin</p><h2>Plattform der EU-Kommission zur Online-Streitbeilegung</h2><p><a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a></p><h2>Verbraucherstreitbeilegung</h2><p>Ich bin nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p></body></html>`);
 
     bindModal(datenschutzModal, openDatenschutz, closeDatenschutz, datenschutzFrame, `<!doctype html>
-<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;padding:1.1rem 1rem 1.4rem;font-family:system-ui,sans-serif;color:#1f2738;line-height:1.55;background:#fff}h1{margin:0 0 .75rem;font-size:1.4rem;line-height:1.2}h2{margin:1rem 0 .35rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:#4f5a70}p{margin:.3rem 0;font-size:.94rem}a{color:#253b68;text-decoration:underline}</style></head><body><h1>Datenschutzerklärung</h1><h2>1. Datenschutz auf einen Blick</h2><p><strong>Allgemeine Hinweise</strong></p><p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Diese Website wurde unter Beachtung der Datenschutz-Grundverordnung (DSGVO) entwickelt.</p><h2>2. Datenerfassung auf dieser Website</h2><p>Diese Website verwendet keine Cookies. Es werden keine Nutzerkonten geführt und keine Marketing-Cookies gesetzt. Wenn Sie das Formular „Updates / Newsletter“ nutzen, werden die von Ihnen eingegebenen Daten über einen externen Webhook-Dienst an Robert Meyer zur Bearbeitung des Anliegens übermittelt.</p><h2>3. Externe Dienste</h2><p>Für die Darstellung der Website werden Google Fonts geladen. Wenn Sie das Update-Formular absenden, werden die eingegebenen Daten an einen externen Webhook-Endpunkt übermittelt. Für diese externen Dienste gelten ergänzend die Datenschutzbestimmungen der jeweiligen Anbieter.</p><h2>4. Verantwortliche Stelle</h2><p>Robert Meyer – Robert Meyer<br>c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin<br>Deutschland</p></body></html>`);
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;padding:1.1rem 1rem 1.4rem;font-family:system-ui,sans-serif;color:#1f2738;line-height:1.55;background:#fff}h1{margin:0 0 .75rem;font-size:1.4rem;line-height:1.2}h2{margin:1rem 0 .35rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:#4f5a70}p{margin:.3rem 0;font-size:.94rem}a{color:#253b68;text-decoration:underline}</style></head><body><h1>Datenschutzerklärung</h1><h2>1. Datenschutz auf einen Blick</h2><p><strong>Allgemeine Hinweise</strong></p><p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Diese Website wurde unter Beachtung der Datenschutz-Grundverordnung (DSGVO) entwickelt.</p><h2>2. Datenerfassung auf dieser Website</h2><p>Diese Website verwendet keine Cookies. Es werden keine Nutzerkonten geführt und keine Marketing-Cookies gesetzt. Wenn Sie das Formular „Updates / Newsletter“ nutzen, werden die von Ihnen eingegebenen Daten über einen externen Webhook-Dienst an Robert Meyer zur Bearbeitung des Anliegens übermittelt.</p><h2>3. Externe Dienste</h2><p>Für die Darstellung der Website werden Google Fonts geladen. Zur anonymisierten Reichweitenmessung wird Umami eingesetzt. Wenn Sie das Update-Formular absenden, werden die eingegebenen Daten an einen externen Webhook-Endpunkt übermittelt. Für diese externen Dienste gelten ergänzend die Datenschutzbestimmungen der jeweiligen Anbieter.</p><h2>4. Verantwortliche Stelle</h2><p>Robert Meyer – Robert Meyer<br>c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin<br>Deutschland</p></body></html>`);
 
     function openUpdatesModal() {
       if (!updatesModal) return;
