@@ -973,8 +973,9 @@
       right: 1rem;
       bottom: 1rem;
       z-index: 80;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
       gap: 0.8rem;
       align-items: center;
       padding: 0.85rem 0.95rem;
@@ -987,7 +988,6 @@
       visibility: visible;
       pointer-events: auto;
       transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
-      backdrop-filter: blur(12px);
     }
     .cookie-notice.is-hidden {
       transform: translateY(12px);
@@ -1000,6 +1000,7 @@
       color: var(--muted-strong);
       font-size: 0.87rem;
       line-height: 1.45;
+      flex: 1 1 520px;
     }
     .cookie-ack {
       appearance: none;
@@ -1019,6 +1020,7 @@
       white-space: nowrap;
       position: relative;
       z-index: 1;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.06);
     }
     .cookie-ack:hover,
     .cookie-ack:focus-visible {
@@ -1140,7 +1142,7 @@
       .shot-visual img { max-height: 44vh; }
       .to-top { right: 0.8rem; bottom: 0.8rem; }
       .updates-actions { align-items: stretch; }
-      .cookie-notice { grid-template-columns: 1fr; }
+      .cookie-notice { align-items: stretch; }
     }
   </style>
 </head>
@@ -1513,7 +1515,7 @@
   </footer>
 
   <div class="cookie-notice" id="cookieNotice" role="region" aria-label="Cookie Hinweis" aria-hidden="false">
-    <p class="cookie-text">Datenschutzhinweis: Diese Website verwendet keine Cookies. Externe Dienste werden für Google Fonts, anonymisierte Reichweitenmessung mit Umami und bei aktiver Eingabe im Formular „Updates / Newsletter“ genutzt.</p>
+    <p class="cookie-text">Datenschutzhinweis: Diese Website verwendet keine Cookies. Personenbezogene Daten aus Formularen werden ausschließlich direkt an Robert Meyer zur Bearbeitung Ihres Anliegens übermittelt.</p>
     <button type="button" class="cookie-ack" id="cookieAck">Hinweis bestätigen</button>
   </div>
 
