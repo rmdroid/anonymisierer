@@ -665,6 +665,62 @@
       line-height: 0.94;
       letter-spacing: -0.07em;
     }
+    .price-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      margin: 1rem 0 0.35rem;
+    }
+    .price-row .price {
+      margin: 0;
+    }
+    .price-note-toggle {
+      position: relative;
+      margin-top: 0.35rem;
+      width: 22px;
+      height: 22px;
+      border: 1px solid rgba(255,255,255,0.32);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(248,250,252,0.92);
+      font-size: 0.78rem;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: help;
+    }
+    .price-note-toggle::after {
+      content: attr(data-note);
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 0.7rem);
+      transform: translateX(-50%) translateY(6px);
+      width: min(320px, 72vw);
+      padding: 0.72rem 0.82rem;
+      border-radius: 14px;
+      background: rgba(7, 12, 24, 0.96);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 18px 44px rgba(2, 6, 23, 0.34);
+      color: rgba(248,250,252,0.86);
+      font-size: 0.73rem;
+      line-height: 1.45;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
+      z-index: 12;
+    }
+    .price-note-toggle:hover::after,
+    .price-note-toggle:focus-visible::after {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    .price-note-toggle:focus-visible {
+      outline: 2px solid rgba(255,255,255,0.72);
+      outline-offset: 2px;
+    }
     .pricing-kicker {
       display: inline-flex;
       align-items: center;
@@ -690,6 +746,39 @@
       color: var(--ink);
     }
     .pricing-card.primary .feature-list li { color: #f8fafc; }
+    .store-buy {
+      width: 190px;
+      min-height: 52px;
+      padding: 0 1.18rem;
+      border: 1px solid rgba(255,255,255,0.64);
+      box-shadow: 0 18px 35px rgba(37, 99, 235, 0.22);
+      font-size: 1.02rem;
+      font-weight: 700;
+    }
+    .store-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 190px;
+      min-height: 52px;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,0.64);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.02);
+      overflow: hidden;
+    }
+    .store-badge img {
+      display: block;
+      height: 52px;
+      width: auto;
+    }
+    .pricing-note {
+      margin-top: 0.85rem;
+      font-size: 0.74rem;
+      line-height: 1.45;
+      color: rgba(248,250,252,0.62);
+      max-width: 44ch;
+    }
     .feature-list li::before {
       content: "";
       width: 8px;
@@ -1412,7 +1501,10 @@
           <div class="pricing-body">
             <span class="eyebrow" style="color:rgba(248,250,252,0.72);">Direktvertrieb für macOS</span>
             <h3 style="margin-top:0.9rem; font-size:2.05rem;">Eine App. Ein Zweck. Kein Overhead.</h3>
-            <div class="price">9,99 €</div>
+            <div class="price-row">
+              <div class="price">9,99 €</div>
+              <button class="price-note-toggle" type="button" aria-label="Preishinweis anzeigen" data-note="Der angezeigte Preis liegt bei 9,99 €. Je nach Steuerland, Zahlungsart und Währungsumrechnung kann die endgültige Belastung technisch leicht abweichen.">?</button>
+            </div>
             <p>Einmalkauf. Kein Abo. Lokale Text-Anonymisierung für sensible Inhalte vor KI-Nutzung, E-Mail, Abstimmung oder Weitergabe.</p>
             <div class="pricing-kicker">Copy &amp; Paste wird zu Copy &amp; Anonymisieren &amp; Paste</div>
             <ul class="feature-list">
@@ -1423,8 +1515,10 @@
               <li>Für macOS signiert</li>
             </ul>
             <div class="hero-actions" style="margin-top:1.5rem;">
-              <a class="button lemonsqueezy-button" href="https://ki-fachbuecher.lemonsqueezy.com/checkout/buy/e8c17f14-daf8-4dd8-a0bf-7b8970f471d8?embed=1">Direkt kaufen</a>
-              <span class="button-static">Demnächst im Apple App Store</span>
+              <a class="button store-buy lemonsqueezy-button" href="https://ki-fachbuecher.lemonsqueezy.com/checkout/buy/e8c17f14-daf8-4dd8-a0bf-7b8970f471d8?embed=1">Direkt kaufen</a>
+              <span class="button-static store-badge" aria-label="Demnächst im App Store">
+                <img src="apple.svg" alt="Demnächst im App Store" loading="lazy" decoding="async">
+              </span>
             </div>
           </div>
         </article>
