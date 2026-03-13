@@ -11,6 +11,8 @@
   <meta name="theme-color" content="#0b1020">
   <link rel="canonical" href="https://ki-anonymisierer.de/">
   <link rel="alternate" hreflang="de-DE" href="https://ki-anonymisierer.de/">
+  <link rel="alternate" hreflang="en" href="https://ki-anonymisierer.de/eng/">
+  <link rel="alternate" hreflang="x-default" href="https://ki-anonymisierer.de/">
   <meta name="application-name" content="KI-Anonymisierer">
   <meta name="apple-mobile-web-app-title" content="KI-Anonymisierer">
   <meta property="og:type" content="website">
@@ -223,6 +225,12 @@
     }
     .nav-links a:hover,
     .nav-links a:focus-visible { color: var(--ink); outline: none; }
+    .nav-side {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex: 0 0 auto;
+    }
     .nav-cta {
       display: inline-flex;
       align-items: center;
@@ -235,6 +243,39 @@
       font-size: 0.92rem;
       box-shadow: var(--shadow-md);
       flex: 0 0 auto;
+    }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.26rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      box-shadow: 0 8px 20px rgba(11, 16, 32, 0.05);
+    }
+    .lang-switch a,
+    .lang-switch span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 36px;
+      min-height: 32px;
+      padding: 0 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+    .lang-switch .active {
+      background: var(--dark);
+      color: #fff;
+    }
+    .lang-switch a:hover,
+    .lang-switch a:focus-visible {
+      color: var(--ink);
+      outline: none;
     }
     .hero {
       position: relative;
@@ -1218,6 +1259,7 @@
       :root { --nav-h: 68px; }
       .site-nav .container { min-height: var(--nav-h); }
       .nav-links { display: none; }
+      .nav-side { margin-left: auto; }
       .nav-cta { display: none; }
       .hero-copy h1 { max-width: 9ch; }
       .workflow-grid,
@@ -1249,7 +1291,13 @@
         <a href="#screens">Screens</a>
         <a href="#preis">Preis</a>
       </nav>
-      <a class="nav-cta" href="#preis">Jetzt für macOS</a>
+      <div class="nav-side">
+        <a class="nav-cta" href="#preis">Jetzt für macOS</a>
+        <div class="lang-switch" aria-label="Sprachauswahl">
+          <span class="active" aria-current="page">DE</span>
+          <a href="/eng/">EN</a>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -1603,6 +1651,7 @@
       <nav class="footer-nav" aria-label="Rechtliches">
         <a href="#" id="openImpressum">Impressum</a>
         <a href="#" id="openDatenschutz">Datenschutz</a>
+        <a href="/eng/">English</a>
         <button class="footer-nav-button" id="openUpdates" type="button">Updates / Newsletter</button>
       </nav>
     </div>
