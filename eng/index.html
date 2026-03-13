@@ -1,0 +1,2140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>KI-Anonymizer for macOS · Copy. Anonymize. Paste.</title>
+  <meta name="description" content="KI-Anonymizer anonymizes sensitive text locally on your Mac. Ideal before copy and paste into AI chatbots, email, documents, or review workflows.">
+  <meta name="keywords" content="AI anonymizer, macOS privacy app, anonymize text locally, AI chatbot privacy, clipboard anonymizer, Apple Intelligence, local text redaction, Mac utility">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="author" content="Robert Meyer">
+  <meta name="theme-color" content="#0b1020">
+  <link rel="canonical" href="https://ki-anonymisierer.de/eng/">
+  <link rel="alternate" hreflang="de-DE" href="https://ki-anonymisierer.de/">
+  <link rel="alternate" hreflang="en" href="https://ki-anonymisierer.de/eng/">
+  <link rel="alternate" hreflang="x-default" href="https://ki-anonymisierer.de/">
+  <meta name="application-name" content="KI-Anonymizer for macOS">
+  <meta name="apple-mobile-web-app-title" content="KI-Anonymizer">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="KI-Anonymizer for macOS · Copy. Anonymize. Paste.">
+  <meta property="og:description" content="Local text anonymization for macOS. Clean up sensitive content before AI use, email, sharing, or documentation.">
+  <meta property="og:image" content="https://ki-anonymisierer.de/eng/b1.png">
+  <meta property="og:url" content="https://ki-anonymisierer.de/eng/">
+  <meta property="og:site_name" content="KI-Anonymizer for macOS">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KI-Anonymizer for macOS · Copy. Anonymize. Paste.">
+  <meta name="twitter:description" content="Anonymize sensitive text locally on your Mac before it is pasted into AI chatbots, email, or other systems.">
+  <meta name="twitter:image" content="https://ki-anonymisierer.de/eng/b1.png">
+  <link rel="icon" type="image/png" href="app-icon-master.png">
+  <script defer src="https://cv.rm-on.de/script.js" data-website-id="e43f01c8-6df2-4fc7-837a-ad0cf4dca91d"></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "KI-Anonymizer for macOS",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "macOS",
+      "description": "Local macOS app for anonymizing sensitive text before it is pasted into AI chatbots, email, documents, or other tools.",
+      "image": "https://ki-anonymisierer.de/app-icon-master.png",
+      "url": "https://ki-anonymisierer.de/eng/",
+      "offers": {
+        "@type": "Offer",
+        "price": "9.99",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      },
+      "brand": {
+        "@type": "Brand",
+        "name": "KI-Anonymizer for macOS"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Robert Meyer"
+      },
+      "featureList": [
+        "Local text anonymization on your Mac",
+        "Global clipboard shortcut",
+        "Rule-based detection for names, addresses, contact details, and identifiers",
+        "Optional on-device Apple NaturalLanguage and Apple Intelligence support"
+      ]
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does KI-Anonymizer do on a Mac?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "KI-Anonymizer anonymizes sensitive text locally on your Mac before it is pasted into AI chatbots, email, documents, or other tools."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the app work locally or through the cloud?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The app works locally on the device. The anonymization step itself never leaves the Mac."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does Apple Intelligence add?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If Apple Intelligence is available locally, it adds an optional semantic layer for additional person or place references that rigid patterns or classic language detection may miss."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which upgrades are planned for KI-Anonymizer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Planned upgrades include rule packs for common use cases, a transparent review mode, reusable templates and team rules, and a local release report."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why was the app created?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The app was created after repeatedly seeing sensitive data copied into chatbots and other tools too quickly in real-world AI workshops, consulting sessions, and training."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the app also available for other platforms?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. There is also a browser-based web app that can be used without an active internet connection. It does not include global shortcuts or Apple Intelligence."
+          }
+        }
+      ]
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f2f6fb;
+      --surface: rgba(255,255,255,0.78);
+      --surface-strong: #ffffff;
+      --surface-dark: rgba(10, 15, 29, 0.92);
+      --ink: #0f172a;
+      --muted: #52607a;
+      --muted-strong: #334155;
+      --line: rgba(15, 23, 42, 0.08);
+      --line-strong: rgba(15, 23, 42, 0.16);
+      --blue: #2563eb;
+      --blue-deep: #1d4ed8;
+      --blue-soft: rgba(37, 99, 235, 0.14);
+      --cyan: #0ea5a4;
+      --green: #10b981;
+      --dark: #0b1020;
+      --dark-2: #111827;
+      --shadow-xl: 0 34px 90px rgba(11, 16, 32, 0.14);
+      --shadow-lg: 0 20px 50px rgba(11, 16, 32, 0.10);
+      --shadow-md: 0 12px 28px rgba(11, 16, 32, 0.08);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --max: 1240px;
+      --space: clamp(3rem, 8vw, 7rem);
+      --nav-h: 78px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 520px at 0% -10%, rgba(37, 99, 235, 0.10), transparent 70%),
+        radial-gradient(780px 420px at 100% 0%, rgba(14, 165, 164, 0.08), transparent 72%),
+        linear-gradient(180deg, #f8fbff 0%, #eef3f8 100%);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+      line-height: 1.55;
+      padding-top: var(--nav-h);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; }
+    button, input { font: inherit; }
+    .container { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+    .section { padding: var(--space) 0; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.35;
+    }
+    .site-nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 40;
+      backdrop-filter: blur(20px);
+      background: rgba(242,246,251,0.84);
+      border-bottom: 1px solid rgba(15,23,42,0.05);
+    }
+    .site-nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: var(--nav-h);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      flex: 0 0 auto;
+    }
+    .brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 24px rgba(37,99,235,0.16);
+    }
+    .nav-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: 0.94rem;
+      flex-wrap: wrap;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible { color: var(--ink); outline: none; }
+    .nav-side {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex: 0 0 auto;
+    }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0.72rem 1rem;
+      border-radius: 999px;
+      background: var(--dark);
+      color: #fff;
+      font-size: 0.92rem;
+      box-shadow: var(--shadow-md);
+      flex: 0 0 auto;
+    }
+    .hero {
+      position: relative;
+      padding: 3.6rem 0 1.6rem;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(360px, 0.94fr);
+      gap: 2rem;
+      align-items: start;
+    }
+    .hero-copy h1 {
+      margin: 1.2rem 0 0;
+      font-size: clamp(3.2rem, 7vw, 6.3rem);
+      line-height: 0.9;
+      letter-spacing: -0.065em;
+      max-width: 8ch;
+    }
+    .hero-copy h1 span {
+      display: block;
+      color: var(--blue);
+    }
+    .hero-lead {
+      margin: 1.45rem 0 0;
+      font-size: clamp(1.08rem, 2vw, 1.28rem);
+      color: var(--muted);
+      max-width: 54ch;
+      line-height: 1.5;
+    }
+    .hero-sublead {
+      margin: 1rem 0 0;
+      max-width: 60ch;
+      color: var(--muted-strong);
+      font-size: 1rem;
+      line-height: 1.62;
+    }
+    .hero-tags,
+    .signal-list,
+    .workflow-tags,
+    .pricing-tags { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+    .hero-tags,
+    .hero-proof { margin-top: 1.4rem; }
+    .tag,
+    .keycap,
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-height: 36px;
+      padding: 0.48rem 0.8rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.74);
+      color: var(--ink);
+      font-size: 0.82rem;
+      box-shadow: 0 6px 16px rgba(11, 16, 32, 0.05);
+    }
+    .keycap {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      background: var(--dark);
+      color: #f8fafc;
+      border-color: rgba(255,255,255,0.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 1.7rem;
+    }
+    .button,
+    .button-secondary,
+    .button-static {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: 52px;
+      padding: 0.92rem 1.2rem;
+      border-radius: 16px;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+    .button {
+      background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+      color: #fff;
+      box-shadow: 0 18px 35px rgba(37, 99, 235, 0.24);
+    }
+    .button-secondary,
+    .button-static {
+      background: rgba(255,255,255,0.82);
+      border: 1px solid var(--line-strong);
+      color: var(--ink);
+    }
+    .button-static {
+      color: var(--muted);
+      cursor: default;
+    }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.26rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      box-shadow: 0 8px 20px rgba(11, 16, 32, 0.05);
+    }
+    .lang-switch a,
+    .lang-switch span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 36px;
+      min-height: 32px;
+      padding: 0 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+    .lang-switch .active {
+      background: var(--dark);
+      color: #fff;
+    }
+    .lang-switch a:hover,
+    .lang-switch a:focus-visible {
+      color: var(--ink);
+      outline: none;
+    }
+    .button:hover,
+    .button-secondary:hover,
+    .button:focus-visible,
+    .button-secondary:focus-visible {
+      transform: translateY(-1px);
+      outline: none;
+    }
+    .hero-note {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .hero-side {
+      position: relative;
+      padding: 1.5rem;
+      border-radius: 34px;
+      background: linear-gradient(180deg, rgba(11,16,32,0.96), rgba(17,24,39,0.94));
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      min-height: 700px;
+      display: grid;
+      place-items: center;
+    }
+    .hero-side::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(37,99,235,0.14), transparent 28%),
+        radial-gradient(420px 220px at 10% 0%, rgba(37,99,235,0.18), transparent 70%);
+      pointer-events: none;
+    }
+    .brand-stage,
+    .brand-stage::before,
+    .brand-stage::after,
+    .brand-badge,
+    .brand-badge img {
+      position: relative;
+    }
+    .brand-stage {
+      z-index: 1;
+      width: min(100%, 470px);
+      aspect-ratio: 1 / 1;
+      border-radius: 32px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(240px 240px at 50% 28%, rgba(37,99,235,0.24), transparent 72%),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 26px 70px rgba(0,0,0,0.22);
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+    .brand-stage::before,
+    .brand-stage::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      inset: 14% 14%;
+      pointer-events: none;
+    }
+    .brand-stage::after {
+      inset: 5% 5%;
+      opacity: 0.6;
+    }
+    .brand-badge {
+      z-index: 1;
+      display: grid;
+      gap: 1rem;
+      justify-items: center;
+      text-align: center;
+    }
+    .brand-badge img {
+      width: clamp(170px, 30vw, 260px);
+      height: auto;
+      border-radius: 28px;
+      box-shadow: 0 28px 60px rgba(0,0,0,0.28);
+    }
+    .brand-badge strong {
+      display: block;
+      color: #f8fafc;
+      font-size: clamp(1.55rem, 3vw, 2.15rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      max-width: 10ch;
+    }
+    .brand-keyline {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.65rem;
+      margin-top: 0.2rem;
+    }
+    .hero-proof {
+      display: grid;
+      gap: 0.75rem;
+      max-width: 62ch;
+    }
+    .proof-row {
+      display: grid;
+      grid-template-columns: 168px 1fr;
+      gap: 1rem;
+      align-items: start;
+      padding: 0.95rem 1rem;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-md);
+    }
+    .proof-label {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.8rem;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .proof-copy {
+      color: var(--muted-strong);
+      font-size: 0.94rem;
+      line-height: 1.55;
+    }
+    .dark-band {
+      background: linear-gradient(180deg, var(--dark) 0%, #10192e 100%);
+      color: #f8fafc;
+      position: relative;
+      overflow: hidden;
+    }
+    .dark-band::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(780px 360px at 100% 0%, rgba(37,99,235,0.16), transparent 70%);
+      pointer-events: none;
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: 1.2rem;
+      align-items: end;
+      margin-bottom: 2.15rem;
+    }
+    .section-head h2 {
+      margin: 0.8rem 0 0;
+      font-size: clamp(2rem, 4vw, 3.7rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+    .section-head p { margin: 0; color: inherit; opacity: 0.84; }
+    .problem-grid,
+    .gallery-grid,
+    .pricing-grid,
+    .ai-grid,
+    .footer-grid,
+    .workflow-grid,
+    .detection-grid {
+      display: grid;
+      gap: 1.2rem;
+    }
+    .problem-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pricing-grid { grid-template-columns: 1.18fr 0.82fr; align-items: stretch; }
+    .ai-grid { grid-template-columns: 0.9fr 1.1fr; align-items: stretch; }
+    .workflow-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .detection-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 1.5rem; }
+    .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; }
+    .card,
+    .pricing-card,
+    .legal-card,
+    .workflow-card,
+    .shot-card {
+      border-radius: 28px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .dark-band .card,
+    .dark-band .workflow-card,
+    .dark-band .legal-card {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.08);
+      box-shadow: none;
+    }
+    .card-body,
+    .workflow-body,
+    .pricing-body,
+    .legal-body { padding: 1.5rem; }
+    .card h3,
+    .pricing-card h3,
+    .workflow-card h3,
+    .legal-card h3 {
+      margin: 0 0 0.55rem;
+      font-size: 1.25rem;
+      line-height: 1.15;
+    }
+    .card p,
+    .workflow-card p,
+    .legal-card p,
+    .pricing-card p { margin: 0; color: var(--muted); }
+    .dark-band p { color: rgba(248,250,252,0.76); }
+    .split-example {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .code-panel {
+      border-radius: 20px;
+      background: rgba(8, 12, 22, 0.82);
+      color: #e5edf9;
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 1rem;
+      min-height: 240px;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.94rem;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+    .highlight { color: #93c5fd; }
+    .step-no {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .dark-band .step-no {
+      background: rgba(37,99,235,0.18);
+      color: #93c5fd;
+    }
+    .ai-stack {
+      display: grid;
+      gap: 0.9rem;
+    }
+    .stack-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 1rem;
+      align-items: start;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .stack-row:last-child { border-bottom: none; }
+    .stack-label {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.82rem;
+      color: #93c5fd;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .shot-card {
+      background: rgba(255,255,255,0.86);
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+    .shot-card:hover,
+    .shot-card:focus-within {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 42px rgba(11,16,32,0.12);
+      border-color: rgba(37,99,235,0.22);
+    }
+    .shot-trigger {
+      display: block;
+      width: 100%;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+    }
+    .shot-thumb {
+      position: relative;
+      aspect-ratio: 0.96 / 1;
+      overflow: hidden;
+      background: #10172a;
+      border-bottom: 1px solid rgba(15,23,42,0.06);
+    }
+    .shot-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+    .shot-meta {
+      padding: 1rem 1rem 1.08rem;
+      display: grid;
+      gap: 0.4rem;
+    }
+    .shot-meta h3 { margin: 0; font-size: 0.98rem; line-height: 1.15; }
+    .shot-meta p { margin: 0; font-size: 0.9rem; color: var(--muted); }
+    .shot-link {
+      margin-top: 0.25rem;
+      font-size: 0.83rem;
+      color: var(--blue);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+    }
+    .detection-item {
+      padding: 1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-md);
+      min-height: 132px;
+    }
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
+    }
+    .pricing-card.primary {
+      background: linear-gradient(180deg, #0d1427, #10192e);
+      color: #f8fafc;
+      border-color: rgba(255,255,255,0.08);
+    }
+    .pricing-card.primary p,
+    .pricing-card.primary li,
+    .pricing-card.primary .tiny { color: rgba(248,250,252,0.8); }
+    .pricing-card.primary .pricing-body {
+      padding: 1.75rem;
+    }
+    .price {
+      margin: 1rem 0 0.35rem;
+      font-size: clamp(3rem, 6vw, 4.5rem);
+      line-height: 0.94;
+      letter-spacing: -0.07em;
+    }
+    .price-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      margin: 1rem 0 0.35rem;
+    }
+    .price-row .price {
+      margin: 0;
+    }
+    .price-note-toggle {
+      position: relative;
+      margin-top: 0.35rem;
+      width: 22px;
+      height: 22px;
+      border: 1px solid rgba(255,255,255,0.32);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(248,250,252,0.92);
+      font-size: 0.78rem;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: help;
+    }
+    .price-note-toggle::after {
+      content: attr(data-note);
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 0.7rem);
+      transform: translateX(-50%) translateY(6px);
+      width: min(320px, 72vw);
+      padding: 0.72rem 0.82rem;
+      border-radius: 14px;
+      background: rgba(7, 12, 24, 0.96);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 18px 44px rgba(2, 6, 23, 0.34);
+      color: rgba(248,250,252,0.86);
+      font-size: 0.73rem;
+      line-height: 1.45;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
+      z-index: 12;
+    }
+    .price-note-toggle:hover::after,
+    .price-note-toggle:focus-visible::after {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    .price-note-toggle:focus-visible {
+      outline: 2px solid rgba(255,255,255,0.72);
+      outline-offset: 2px;
+    }
+    .pricing-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: 1.1rem;
+      padding: 0.5rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(248,250,252,0.88);
+      font-size: 0.84rem;
+    }
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.2rem 0 0;
+      display: grid;
+      gap: 0.8rem;
+    }
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      color: var(--ink);
+    }
+    .pricing-card.primary .feature-list li { color: #f8fafc; }
+    .store-buy {
+      width: 190px;
+      min-height: 52px;
+      padding: 0 1.18rem;
+      border: 1px solid rgba(255,255,255,0.64);
+      box-shadow: 0 18px 35px rgba(37, 99, 235, 0.22);
+      font-size: 1.02rem;
+      font-weight: 700;
+    }
+    .store-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 190px;
+      min-height: 52px;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,0.64);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.02);
+      overflow: hidden;
+    }
+    .store-badge img {
+      display: block;
+      height: 52px;
+      width: auto;
+    }
+    .pricing-note {
+      margin-top: 0.85rem;
+      font-size: 0.74rem;
+      line-height: 1.45;
+      color: rgba(248,250,252,0.62);
+      max-width: 44ch;
+    }
+    .feature-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--blue);
+      margin-top: 0.45rem;
+      flex: 0 0 auto;
+    }
+    .legal-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.84));
+    }
+    .legal-callout {
+      font-size: 1.08rem;
+      line-height: 1.35;
+      color: var(--ink);
+      margin-top: 0.4rem;
+    }
+    .footer {
+      padding: 2rem 0 2.8rem;
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,0.58);
+      backdrop-filter: blur(12px);
+    }
+    .footer-grid {
+      grid-template-columns: 1fr auto;
+      align-items: start;
+    }
+    .footer-block { display: grid; gap: 0.25rem; }
+    .footer-title { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+    .footer-nav {
+      display: inline-flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      flex-wrap: wrap;
+      color: var(--muted);
+      align-items: center;
+    }
+    .footer-nav a:hover,
+    .footer-nav a:focus-visible,
+    .footer-link:hover,
+    .footer-link:focus-visible { color: var(--ink); outline: none; }
+    .footer-link { color: var(--ink); }
+    .footer-nav-button {
+      appearance: none;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+    }
+    .footer-nav-button:hover,
+    .footer-nav-button:focus-visible {
+      color: var(--ink);
+      outline: none;
+    }
+    .tiny {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+    .legal-modal,
+    .shot-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      padding: 1rem;
+      background: rgba(3,7,18,0.68);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+    .legal-modal.open,
+    .shot-modal.open { display: grid; }
+    .legal-dialog,
+    .shot-dialog {
+      width: min(920px, 100%);
+      border-radius: 24px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.32);
+    }
+    .legal-dialog { height: min(82vh, 760px); }
+    .shot-dialog { max-height: min(86vh, 920px); }
+    .updates-dialog {
+      width: min(620px, 100%);
+      border-radius: 24px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.32);
+    }
+    .legal-head,
+    .shot-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.1rem;
+      border-bottom: 1px solid #e5e7eb;
+      background: #fff;
+    }
+    .legal-head h3,
+    .shot-head h3 { margin: 0; font-size: 1rem; }
+    .legal-close,
+    .shot-close,
+    .updates-close {
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 999px;
+      background: #eef2f7;
+      cursor: pointer;
+      font: inherit;
+      font-size: 1.3rem;
+    }
+    .legal-frame { width: 100%; height: calc(100% - 62px); border: 0; }
+    .shot-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 0;
+      min-height: 560px;
+    }
+    .shot-visual {
+      background: #0b1020;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .shot-visual img {
+      width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 18px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.26);
+    }
+    .shot-panel {
+      padding: 1.2rem 1.2rem 1.35rem;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 1rem;
+      background: linear-gradient(180deg, #ffffff, #f8fafc);
+    }
+    .shot-tabs {
+      display: inline-flex;
+      gap: 0.55rem;
+      padding: 0.35rem;
+      background: #edf2f8;
+      border-radius: 999px;
+      width: fit-content;
+    }
+    .shot-tab {
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      padding: 0.5rem 0.85rem;
+      cursor: pointer;
+      font-size: 0.88rem;
+    }
+    .shot-tab.active {
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 3px 10px rgba(15,23,42,0.08);
+    }
+    .shot-copy h4 {
+      margin: 0 0 0.55rem;
+      font-size: 1.3rem;
+      line-height: 1.1;
+    }
+    .shot-copy p { margin: 0; color: var(--muted); }
+    .shot-explain,
+    .shot-plain {
+      display: none;
+      align-content: start;
+      gap: 0.8rem;
+    }
+    .shot-explain.active,
+    .shot-plain.active { display: grid; }
+    .shot-bullets {
+      display: grid;
+      gap: 0.7rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .shot-bullets li {
+      display: grid;
+      grid-template-columns: 10px 1fr;
+      gap: 0.7rem;
+      color: var(--muted-strong);
+    }
+    .shot-bullets li::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--blue);
+      margin-top: 0.45rem;
+    }
+    .to-top {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 60;
+      width: 52px;
+      height: 52px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--dark);
+      color: #fff;
+      box-shadow: 0 20px 40px rgba(11,16,32,0.22);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+    }
+    .to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .updates-body {
+      padding: 1.35rem;
+      display: grid;
+      gap: 1rem;
+      background: linear-gradient(180deg, #ffffff, #f8fafc);
+    }
+    .updates-copy h4 {
+      margin: 0;
+      font-size: 1.45rem;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+    .updates-copy p {
+      margin: 0.65rem 0 0;
+      color: var(--muted);
+    }
+    .updates-form {
+      display: grid;
+      gap: 0.9rem;
+    }
+    .updates-row {
+      display: grid;
+      gap: 0.4rem;
+    }
+    .updates-row label {
+      font-size: 0.86rem;
+      color: var(--muted-strong);
+    }
+    .updates-row input {
+      min-height: 52px;
+      padding: 0.85rem 0.95rem;
+      border-radius: 14px;
+      border: 1px solid #d7e0ec;
+      background: #fff;
+      color: var(--ink);
+    }
+    .updates-row input:focus {
+      outline: 2px solid rgba(37,99,235,0.18);
+      border-color: rgba(37,99,235,0.34);
+    }
+    .updates-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .updates-status {
+      min-height: 1.4rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .updates-status.is-success { color: #047857; }
+    .updates-status.is-error { color: #b91c1c; }
+    .cookie-notice {
+      position: fixed;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 80;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.8rem;
+      align-items: center;
+      padding: 0.85rem 0.95rem;
+      border-radius: 16px;
+      border: 1px solid rgba(15,23,42,0.14);
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 16px 36px rgba(11,16,32,0.18);
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+    }
+    .cookie-notice.is-hidden {
+      transform: translateY(12px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .cookie-text {
+      margin: 0;
+      color: var(--muted-strong);
+      font-size: 0.87rem;
+      line-height: 1.45;
+      flex: 1 1 520px;
+    }
+    .cookie-ack {
+      appearance: none;
+      -webkit-appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      width: max-content;
+      min-height: 44px;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      background: rgba(255,255,255,0.92);
+      color: var(--ink);
+      cursor: pointer;
+      white-space: nowrap;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.06);
+    }
+    .cookie-ack:hover,
+    .cookie-ack:focus-visible {
+      border-color: rgba(37,99,235,0.22);
+      color: var(--ink);
+      outline: none;
+    }
+    .faq-list {
+      display: grid;
+      gap: 0.95rem;
+    }
+    .faq-item {
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.84);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.15rem 1.2rem;
+      font-size: 1.06rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+";
+      flex: 0 0 auto;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line-strong);
+      color: var(--blue);
+      font-size: 1.35rem;
+      line-height: 1;
+      font-weight: 500;
+    }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-answer {
+      padding: 0 1.2rem 1.2rem;
+      color: var(--muted-strong);
+    }
+    .faq-answer p {
+      margin: 0;
+      line-height: 1.62;
+    }
+    .faq-answer p + p {
+      margin-top: 0.8rem;
+    }
+    .faq-inline-link {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.16em;
+      cursor: pointer;
+    }
+    .faq-inline-link:hover,
+    .faq-inline-link:focus-visible {
+      color: inherit;
+      outline: none;
+    }
+    .faq-answer ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.7rem;
+    }
+    .faq-answer li {
+      display: grid;
+      grid-template-columns: 10px 1fr;
+      gap: 0.7rem;
+      line-height: 1.6;
+    }
+    .faq-answer li::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--blue);
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 1180px) {
+      .hero-grid,
+      .section-head,
+      .pricing-grid,
+      .ai-grid,
+      .footer-grid,
+      .problem-grid,
+      .shot-body { grid-template-columns: 1fr; }
+      .hero-side { min-height: auto; }
+      .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .detection-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .footer-nav { justify-content: flex-start; }
+    }
+    @media (max-width: 760px) {
+      :root { --nav-h: 68px; }
+      .site-nav .container { min-height: var(--nav-h); }
+      .nav-links { display: none; }
+      .nav-side { margin-left: auto; }
+      .nav-cta { display: none; }
+      .hero-copy h1 { max-width: 9ch; }
+      .workflow-grid,
+      .gallery-grid,
+      .split-example,
+      .detection-grid { grid-template-columns: 1fr; }
+      .proof-row { grid-template-columns: 1fr; gap: 0.45rem; }
+      .stack-row { grid-template-columns: 1fr; gap: 0.45rem; }
+      .hero-actions { display: grid; grid-template-columns: 1fr; }
+      .shot-body { min-height: auto; }
+      .shot-visual img { max-height: 44vh; }
+      .to-top { right: 0.8rem; bottom: 0.8rem; }
+      .updates-actions { align-items: stretch; }
+      .cookie-notice { align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-nav">
+    <div class="container">
+      <a class="brand" href="#top" aria-label="KI-Anonymizer home">
+        <img src="app-icon-master.png" alt="KI-Anonymizer app icon" width="80" height="80" loading="eager" decoding="async">
+        <span>KI-Anonymizer</span>
+      </a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#workflow">Workflow</a>
+        <a href="#detection">Detection</a>
+        <a href="#apple-intelligence">Apple Intelligence</a>
+        <a href="#screens">Screens</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+      <div class="nav-side">
+        <a class="nav-cta" href="#pricing">Get it for macOS</a>
+        <div class="lang-switch" aria-label="Language switcher">
+          <a href="/">DE</a>
+          <span class="active" aria-current="page">EN</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Local macOS app for sensitive text</span>
+          <h1>Copy.<span>Anonymize.</span>Paste.</h1>
+          <p class="hero-lead">The real value is not the editor. It is the shortcut. KI-Anonymizer cleans up the text already sitting in your clipboard before it is pasted into AI chatbots, email, documents, or other tools.</p>
+          <p class="hero-sublead">AI chat workflows are exactly where sensitive information is still copied too quickly and checked too late. That is where the app fits: on-device, fast, no cloud, no account, no extra process. It protects the same moment in which copy and paste can otherwise turn into a privacy problem.</p>
+          <div class="hero-tags">
+            <span class="tag">On your Mac</span>
+            <span class="tag">Global shortcut</span>
+            <span class="tag">Signed for macOS</span>
+            <span class="tag">No subscription</span>
+          </div>
+          <div class="hero-actions">
+            <a class="button" href="#pricing">Buy direct for EUR 9.99</a>
+            <a class="button-secondary" href="#screens">See the app</a>
+          </div>
+          <div class="hero-proof" aria-label="Core use cases of KI-Anonymizer">
+            <div class="proof-row">
+              <div class="proof-label">Before the prompt</div>
+              <div class="proof-copy">If a text is about to be pasted into ChatGPT, Claude, Gemini, or another AI chatbot, the app anonymizes exactly what is currently sitting in your clipboard.</div>
+            </div>
+            <div class="proof-row">
+              <div class="proof-label">Before sending</div>
+              <div class="proof-copy">The same extra step makes sense before email, review cycles, documentation, internal sharing, or sending text to third parties. Not only for AI. But especially there.</div>
+            </div>
+            <div class="proof-row">
+              <div class="proof-label">In the same rhythm</div>
+              <div class="proof-copy">The app fits into the flow you already use: shortcut copy, shortcut anonymize, shortcut paste. That is exactly where its real value shows up.</div>
+            </div>
+          </div>
+          <p class="hero-note">For Mac users who want to clean up sensitive text locally before AI use, review, sharing, or email.</p>
+        </div>
+        <aside class="hero-side" aria-label="Product preview">
+          <div class="brand-stage">
+            <div class="brand-badge">
+              <img src="app-icon-master.png" alt="KI-Anonymizer app icon" width="1024" height="1024" loading="eager" decoding="async">
+              <strong>KI-Anonymizer for macOS</strong>
+              <div class="brand-keyline">
+                <span class="keycap">⌘C</span>
+                <span class="keycap">⌘⇧A</span>
+                <span class="keycap">⌘V</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section dark-band">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">The real problem</span>
+            <h2>Sensitive data is often already sitting in the clipboard.</h2>
+          </div>
+          <p>Not later in the archive. Not only at the moment of sending. Right in the instant text gets copied into chatbots, email, tickets, or review threads. Names, addresses, phone numbers, and identifiers often move faster than anyone checks them.</p>
+        </div>
+        <div class="problem-grid">
+          <article class="card">
+            <div class="card-body">
+              <h3>Before AI chatbots</h3>
+              <p>Prompts are assembled fast, but sensitive details are often left untouched. KI-Anonymizer sits right before that step and reduces the risk of carrying personal data into the prompt.</p>
+              <div class="signal-list" style="margin-top:1rem;">
+                <span class="keycap">⌘C</span>
+                <span class="keycap">⌘⇧A</span>
+                <span class="keycap">⌘V</span>
+              </div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <h3>Not only for chatbots</h3>
+              <p>The same workflow also makes sense for email, approvals, documentation, internal reviews, or sharing text externally. The product is positioned around AI, but it is useful in any copy-and-paste moment.</p>
+              <div class="signal-list" style="margin-top:1rem;">
+                <span class="tag">Email</span>
+                <span class="tag">Dokumente</span>
+                <span class="tag">Tickets</span>
+                <span class="tag">Abstimmung</span>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="split-example">
+          <div class="code-panel">Dear <span class="highlight">Ms. Emily Carter</span>, born on <span class="highlight">March 14, 1987</span>, living at <span class="highlight">2450 Market Street</span>, <span class="highlight">Springfield, IL 62704</span>, <span class="highlight">Reference number 48-7732/26</span> ...</div>
+          <div class="code-panel">Dear <span class="highlight">[Person 1]</span>, born on <span class="highlight">[Date 1]</span>, living at <span class="highlight">[Address 1]</span>, <span class="highlight">[Address 2]</span>, <span class="highlight">[Identifier 1]</span> ...</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="workflow">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Workflow</span>
+            <h2>Built for the fastest path, not for extra clicks.</h2>
+          </div>
+          <p>The editor is the visual control layer. The actual product core is the global shortcut. It turns an ordinary copy-and-paste routine into a safer intermediate step without forcing users into a new process.</p>
+        </div>
+        <div class="workflow-grid">
+          <article class="workflow-card">
+            <div class="workflow-body">
+              <div class="step-no">01</div>
+              <h3>Copy the text</h3>
+              <p>You copy a sensitive passage from email, a document, the browser, a note, or a draft prompt for an AI chat.</p>
+            </div>
+          </article>
+          <article class="workflow-card">
+            <div class="workflow-body">
+              <div class="step-no">02</div>
+              <h3>Trigger the shortcut</h3>
+              <p>With one global shortcut, the app anonymizes the clipboard locally on your Mac. No cloud, no account, no detour.</p>
+              <div class="workflow-tags" style="margin-top:1rem;">
+                <span class="keycap">⌘</span>
+                <span class="keycap">⇧</span>
+                <span class="keycap">A</span>
+              </div>
+            </div>
+          </article>
+          <article class="workflow-card">
+            <div class="workflow-body">
+              <div class="step-no">03</div>
+              <h3>Paste and verify</h3>
+              <p>You paste the anonymized text where it is needed. If necessary, you verify the result in the editor before using it.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="detection">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Detection</span>
+            <h2>Strong on rules. Extended by language. Executed locally.</h2>
+          </div>
+          <p>The app detects classic personal data in a structured, local way. Fixed patterns such as IBANs, dates, and email addresses are handled differently from names and places. That layered approach is exactly what makes the tool reliable.</p>
+        </div>
+        <div class="detection-grid">
+          <article class="detection-item"><div class="dot" style="background:#fde047"></div><h3>People</h3><p>Personal names, common name contexts, and consistent placeholder mapping across repeated mentions.</p></article>
+          <article class="detection-item"><div class="dot" style="background:#60a5fa"></div><h3>Addresses</h3><p>Street lines, house numbers, ZIP codes, and location references are grouped as address information.</p></article>
+          <article class="detection-item"><div class="dot" style="background:#34d399"></div><h3>Contact details</h3><p>Email addresses plus phone and fax numbers in common formats.</p></article>
+          <article class="detection-item"><div class="dot" style="background:#fb923c"></div><h3>Identifiers</h3><p>IBANs, case references, social insurance numbers, and similar formal identifiers.</p></article>
+          <article class="detection-item"><div class="dot" style="background:#c084fc"></div><h3>Dates</h3><p>Numeric and written date formats for local pre-anonymization.</p></article>
+          <article class="detection-item"><div class="dot" style="background:#2563eb"></div><h3>Custom rules</h3><p>Terms or fixed phrases can always be anonymized even when no standard pattern applies.</p></article>
+          <article class="detection-item"><div class="dot" style="background:#0ea5a4"></div><h3>Exclusions</h3><p>Specific terms can intentionally be kept out of anonymization when they should stay visible.</p></article>
+          <article class="detection-item"><div class="dot" style="background:#111827"></div><h3>Human review</h3><p>The app supports the workflow. Final responsibility still stays with the person reviewing the output.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark-band" id="apple-intelligence">
+      <div class="container ai-grid">
+        <div>
+          <span class="eyebrow">Apple Intelligence</span>
+          <h2 style="margin:1rem 0 0; font-size:clamp(2rem,4vw,3.7rem); line-height:0.98; letter-spacing:-0.055em;">What Apple Intelligence adds when it is available locally.</h2>
+          <p style="margin:1rem 0 0; max-width:58ch; color:rgba(248,250,252,0.78);">KI-Anonymizer works fully without Apple Intelligence. When Apple&apos;s local system models are available on the device, the app can use them as a third detection layer: not for rigid patterns, but for additional person and place references that fixed rules or classic language detection may miss.</p>
+        </div>
+        <article class="workflow-card">
+          <div class="workflow-body ai-stack">
+            <div class="stack-row">
+              <div class="stack-label">Regex</div>
+              <div>
+                <h3>Sees fixed patterns</h3>
+                <p>Ideal for email addresses, dates, phone numbers, IBANs, case references, and other clearly structured patterns.</p>
+              </div>
+            </div>
+            <div class="stack-row">
+              <div class="stack-label">NaturalLanguage</div>
+              <div>
+                <h3>Sees classic names and places</h3>
+                <p>Locally detects typical person and place entities through Apple NaturalLanguage.</p>
+              </div>
+            </div>
+            <div class="stack-row">
+              <div class="stack-label">Apple Intelligence</div>
+              <div>
+                <h3>Sees semantic extra hits</h3>
+                <p>Can add local person or place references that do not fit neatly into rigid patterns. It does not replace the other layers. It only fills likely gaps.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="screens">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Inside the app</span>
+            <h2>The editor is the control view. The shortcut is the product.</h2>
+          </div>
+          <p>The screenshots stay intentionally compact. They show the real app rather than a marketing mockup: editor, settings, and the legal notice. Each view can be enlarged and explained in more detail.</p>
+        </div>
+        <div class="gallery-grid">
+          <article class="shot-card">
+            <button class="shot-trigger" data-shot="editor" aria-label="Open editor screenshot">
+              <div class="shot-thumb"><img src="e_editor.png" alt="Editor view of KI-Anonymizer" width="2048" height="1536" loading="lazy" decoding="async"></div>
+              <div class="shot-meta">
+                <h3>Editor with before-and-after review</h3>
+                <p>The visible control view for longer text passages.</p>
+                <span class="shot-link">Click for full view</span>
+              </div>
+            </button>
+          </article>
+          <article class="shot-card">
+            <button class="shot-trigger" data-shot="settingsTop" aria-label="Open upper settings screenshot">
+              <div class="shot-thumb"><img src="e_einstellungen_oben.png" alt="Upper settings area of KI-Anonymizer" width="1278" height="1534" loading="lazy" decoding="async"></div>
+              <div class="shot-meta">
+                <h3>Control shortcut and detection in one place</h3>
+                <p>Shortcut, categories, and local behavior in one focused settings view.</p>
+                <span class="shot-link">Click for full view</span>
+              </div>
+            </button>
+          </article>
+          <article class="shot-card">
+            <button class="shot-trigger" data-shot="settingsBottom" aria-label="Open lower settings screenshot">
+              <div class="shot-thumb"><img src="e_einstellungen_unten.png" alt="Lower settings area of KI-Anonymizer" width="1278" height="1534" loading="lazy" decoding="async"></div>
+              <div class="shot-meta">
+                <h3>Custom rules and exclusions</h3>
+                <p>So the app can adapt to real terms, processes, and edge cases.</p>
+                <span class="shot-link">Click for full view</span>
+              </div>
+            </button>
+          </article>
+          <article class="shot-card">
+            <button class="shot-trigger" data-shot="notice" aria-label="Open legal notice screenshot">
+              <div class="shot-thumb"><img src="e_wichtiger_hinweis.png" alt="Legal notice window of KI-Anonymizer" width="1918" height="1424" loading="lazy" decoding="async"></div>
+              <div class="shot-meta">
+                <h3>Transparent legal notice</h3>
+                <p>The app helps. Human review still remains necessary.</p>
+                <span class="shot-link">Click for full view</span>
+              </div>
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="container pricing-grid">
+        <article class="pricing-card primary">
+          <div class="pricing-body">
+            <span class="eyebrow" style="color:rgba(248,250,252,0.72);">Direct purchase for macOS</span>
+            <h3 style="margin-top:0.9rem; font-size:2.05rem;">One app. One job. No overhead.</h3>
+            <div class="price-row">
+              <div class="price">9,99 €</div>
+              <button class="price-note-toggle" type="button" aria-label="Show pricing note" data-note="The displayed price is EUR 9.99. Depending on tax country, payment method, and currency conversion, the final charge may differ slightly for technical reasons.">?</button>
+            </div>
+            <p>One-time purchase. No subscription. Local text anonymization for sensitive content before AI use, email, review, or sharing.</p>
+            <div class="pricing-kicker">Copy &amp; Paste becomes Copy &amp; Anonymize &amp; Paste</div>
+            <ul class="feature-list">
+              <li>Menu bar app with a global shortcut</li>
+              <li>Local detection with no cloud processing</li>
+              <li>Editor for visible review</li>
+              <li>Custom rules, exclusions, and local stats</li>
+              <li>Signed for macOS</li>
+            </ul>
+            <div class="hero-actions" style="margin-top:1.5rem;">
+              <a class="button store-buy lemonsqueezy-button" href="https://ki-fachbuecher.lemonsqueezy.com/checkout/buy/76a8cd83-9858-4888-b082-b2a51296de9f?embed=1">Buy KI-Anonymizer for macOS</a>
+              <span class="button-static store-badge" aria-label="Coming soon on the App Store">
+                <img src="e_apple.svg" alt="Coming soon on the App Store" loading="lazy" decoding="async">
+              </span>
+            </div>
+          </div>
+        </article>
+        <aside class="legal-card">
+          <div class="legal-body">
+            <span class="eyebrow">Important note</span>
+            <div class="legal-callout">The app works locally and carefully. It still does not replace human review.</div>
+            <ul class="feature-list" style="margin-top:1.1rem;">
+              <li>Rule-based detection can still be incomplete in individual cases</li>
+              <li>Apple NaturalLanguage and optional Apple Intelligence only add support</li>
+              <li>The result should always be reviewed before sharing or publishing</li>
+              <li>The app does not replace legal or privacy assessment</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Questions &amp; answers</span>
+            <h2>The key questions before buying.</h2>
+          </div>
+          <p>These answers cover the questions that almost always come up around a local Mac app for anonymization: AI chatbots, local processing, and the additional value of Apple Intelligence.</p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item" open>
+<summary>Is the app only for AI chatbots?</summary>
+            <div class="faq-answer">
+              <p>No. The most common trigger is copy and paste into AI chatbots. The same local step also makes sense before email, approvals, documentation, internal reviews, or sharing text with third parties.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+<summary>Does my text leave the Mac?</summary>
+            <div class="faq-answer">
+              <p>The anonymization step itself runs locally on the device. The app is designed to clean up sensitive content before it gets pasted into other systems in the first place.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+<summary>What does Apple Intelligence add?</summary>
+            <div class="faq-answer">
+              <p>If Apple Intelligence is available locally, it adds semantic extra hits. Hard patterns like IBANs or email addresses stay rule-based; Apple Intelligence only helps where people or places are described in a less rigid way.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+<summary>Which upgrades are planned?</summary>
+            <div class="faq-answer">
+              <ul>
+                <li><span>Rule packs for common use cases such as administration, consulting, education, or HR.</span></li>
+                <li><span>A transparent review mode with a clearer hit list and a sharper control view.</span></li>
+                <li><span>Templates and team rules for saving, exporting, and reusing rule sets.</span></li>
+                <li><span>A local release report with timestamp and a summary of replacements.</span></li>
+              </ul>
+            </div>
+          </details>
+          <details class="faq-item">
+<summary>Why was the app created?</summary>
+            <div class="faq-answer">
+              <p>As an AI consultant, author, and instructor, I kept seeing the same mistake in practice: content was moved into chatbots, email, or other tools too quickly and without removing sensitive data first. KI-Anonymizer was built for exactly that problem: a small, fast tool at the copy-and-paste moment itself.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+<summary>Is the app also available for other platforms?</summary>
+            <div class="faq-answer">
+              <p>Yes. There is also a browser-based web app that can be used offline in the browser. It does not include the global shortcuts or the Apple Intelligence enhancement of the macOS version.</p>
+              <p><a class="faq-inline-link" id="openPlatformRequest" href="#">Send an inquiry</a></p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-block">
+        <div style="font-weight:700;">KI-Anonymizer</div>
+        <div class="tiny">© 2026 Robert Meyer</div>
+      </div>
+      <nav class="footer-nav" aria-label="Legal">
+        <a href="/">Deutsch</a>
+        <a href="#" id="openImpressum">Legal notice</a>
+        <a href="#" id="openDatenschutz">Privacy</a>
+        <button class="footer-nav-button" id="openUpdates" type="button">Updates / Newsletter</button>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="cookie-notice" id="cookieNotice" role="region" aria-label="Privacy notice" aria-hidden="false">
+    <p class="cookie-text">Privacy note: This website does not use cookies. Personal data submitted through forms is sent directly to Robert Meyer to handle your request.</p>
+    <button type="button" class="cookie-ack" id="cookieAck">Acknowledge</button>
+  </div>
+
+  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+  <div class="legal-modal" id="impressumModal" aria-hidden="true">
+    <div class="legal-dialog" role="dialog" aria-modal="true" aria-labelledby="impressumTitle">
+      <div class="legal-head">
+        <h3 id="impressumTitle">Legal notice</h3>
+        <button class="legal-close" id="closeImpressum" aria-label="Close legal notice">×</button>
+      </div>
+      <iframe class="legal-frame" id="impressumFrame" title="Legal notice"></iframe>
+    </div>
+  </div>
+
+  <div class="legal-modal" id="datenschutzModal" aria-hidden="true">
+    <div class="legal-dialog" role="dialog" aria-modal="true" aria-labelledby="datenschutzTitle">
+      <div class="legal-head">
+        <h3 id="datenschutzTitle">Privacy</h3>
+        <button class="legal-close" id="closeDatenschutz" aria-label="Close privacy notice">×</button>
+      </div>
+      <iframe class="legal-frame" id="datenschutzFrame" title="Privacy"></iframe>
+    </div>
+  </div>
+
+  <div class="shot-modal" id="shotModal" aria-hidden="true">
+    <div class="shot-dialog" role="dialog" aria-modal="true" aria-labelledby="shotTitle">
+      <div class="shot-head">
+        <h3 id="shotTitle">App view</h3>
+        <button class="shot-close" id="closeShot" aria-label="Close view">×</button>
+      </div>
+      <div class="shot-body">
+        <div class="shot-visual">
+          <img id="shotImage" src="" alt="">
+        </div>
+        <div class="shot-panel">
+          <div class="shot-tabs" role="tablist" aria-label="Screenshot or explanation">
+            <button class="shot-tab active" id="tabPlain" type="button">Screenshot</button>
+            <button class="shot-tab" id="tabExplain" type="button">Explanation</button>
+          </div>
+          <div class="shot-copy">
+            <h4 id="shotCopyTitle"></h4>
+            <p id="shotCopyLead"></p>
+          </div>
+          <div class="shot-plain active" id="shotPlain">
+            <ul class="shot-bullets" id="shotPlainBullets"></ul>
+          </div>
+          <div class="shot-explain" id="shotExplain">
+            <ul class="shot-bullets" id="shotExplainBullets"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legal-modal" id="updatesModal" aria-hidden="true">
+    <div class="updates-dialog" role="dialog" aria-modal="true" aria-labelledby="updatesTitle">
+      <div class="legal-head">
+        <h3 id="updatesTitle">Updates / Newsletter</h3>
+        <button class="updates-close" id="closeUpdates" aria-label="Close updates dialog">×</button>
+      </div>
+      <div class="updates-body">
+        <div class="updates-copy">
+          <h4>Product updates without the noise.</h4>
+          <p>If there is a new release, a visible improvement, or the App Store launch goes live, we send a short email. No mass marketing, only product-related updates.</p>
+        </div>
+        <form class="updates-form" id="updatesForm" novalidate>
+          <div class="updates-row">
+<label for="updatesName">Name (optional)</label>
+            <input id="updatesName" name="name" type="text" autocomplete="name">
+          </div>
+          <div class="updates-row">
+<label for="updatesEmail">Email</label>
+            <input id="updatesEmail" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="updates-actions">
+<button class="button" id="updatesSubmit" type="submit">Request updates</button>
+            <div class="updates-status" id="updatesStatus" aria-live="polite"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="legal-modal" id="platformModal" aria-hidden="true">
+    <div class="updates-dialog" role="dialog" aria-modal="true" aria-labelledby="platformTitle">
+      <div class="legal-head">
+        <h3 id="platformTitle">Request other platforms</h3>
+        <button class="updates-close" id="closePlatformRequest" aria-label="Close request dialog">×</button>
+      </div>
+      <div class="updates-body">
+        <div class="updates-copy">
+          <h4>Interested in another platform?</h4>
+          <p>If you are interested in a version outside macOS or in the browser web app, you can send a short inquiry here.</p>
+        </div>
+        <form class="updates-form" id="platformForm" novalidate>
+          <div class="updates-row">
+            <label for="platformName">Name (optional)</label>
+            <input id="platformName" name="name" type="text" autocomplete="name">
+          </div>
+          <div class="updates-row">
+<label for="platformEmail">Email</label>
+            <input id="platformEmail" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="updates-row">
+            <label for="platformTarget">Requested platform (optional)</label>
+            <input id="platformTarget" name="platform" type="text" placeholder="e.g. Windows, web app, team version">
+          </div>
+          <div class="updates-actions">
+<button class="button" id="platformSubmit" type="submit">Send inquiry</button>
+            <div class="updates-status" id="platformStatus" aria-live="polite"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
+  <script>
+    const endpoint = 'https://n8n.top-beraternetzwerk.de/webhook/termine';
+    const impressumModal = document.getElementById('impressumModal');
+    const datenschutzModal = document.getElementById('datenschutzModal');
+    const updatesModal = document.getElementById('updatesModal');
+    const platformModal = document.getElementById('platformModal');
+    const openImpressum = document.getElementById('openImpressum');
+    const openDatenschutz = document.getElementById('openDatenschutz');
+    const openUpdates = document.getElementById('openUpdates');
+    const openPlatformRequest = document.getElementById('openPlatformRequest');
+    const closeImpressum = document.getElementById('closeImpressum');
+    const closeDatenschutz = document.getElementById('closeDatenschutz');
+    const closeUpdates = document.getElementById('closeUpdates');
+    const closePlatformRequest = document.getElementById('closePlatformRequest');
+    const impressumFrame = document.getElementById('impressumFrame');
+    const datenschutzFrame = document.getElementById('datenschutzFrame');
+    const updatesForm = document.getElementById('updatesForm');
+    const updatesName = document.getElementById('updatesName');
+    const updatesEmail = document.getElementById('updatesEmail');
+    const updatesSubmit = document.getElementById('updatesSubmit');
+    const updatesStatus = document.getElementById('updatesStatus');
+    const platformForm = document.getElementById('platformForm');
+    const platformName = document.getElementById('platformName');
+    const platformEmail = document.getElementById('platformEmail');
+    const platformTarget = document.getElementById('platformTarget');
+    const platformSubmit = document.getElementById('platformSubmit');
+    const platformStatus = document.getElementById('platformStatus');
+    const cookieNotice = document.getElementById('cookieNotice');
+    const cookieAck = document.getElementById('cookieAck');
+    const toTop = document.getElementById('toTop');
+
+    function bindModal(modal, opener, closer, frame, doc) {
+      if (!modal || !opener || !closer || !frame) return;
+      frame.srcdoc = doc;
+      const open = (ev) => {
+        ev?.preventDefault();
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      };
+      const close = () => {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      };
+      opener.addEventListener('click', open);
+      closer.addEventListener('click', close);
+      modal.addEventListener('click', (ev) => { if (ev.target === modal) close(); });
+      document.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Escape' && modal.classList.contains('open')) close();
+      });
+    }
+
+    bindModal(impressumModal, openImpressum, closeImpressum, impressumFrame, `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;padding:1.1rem 1rem 1.4rem;font-family:system-ui,sans-serif;color:#1f2738;line-height:1.55;background:#fff}h1{margin:0 0 .75rem;font-size:1.4rem;line-height:1.2}h2{margin:1rem 0 .35rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:#4f5a70}p{margin:.3rem 0;font-size:.94rem}a{color:#253b68;text-decoration:underline}</style></head><body><h1>Legal notice according to Section 5 TMG &amp; Section 55 RStV</h1><h2>Information according to Section 5 TMG</h2><p><strong>Robert Meyer</strong><br>Robert Meyer c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin<br>Germany</p><h2>Contact</h2><p>Email: rm@kostenmanager.net<br>Contact form: <a href="https://mein.online-impressum.de/robert-meyer/" target="_blank" rel="noopener noreferrer">https://mein.online-impressum.de/robert-meyer/</a></p><h2>Responsible for content according to Section 55 para. 2 RStV</h2><p><strong>Robert Meyer</strong><br>Robert Meyer c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin</p><h2>EU Commission platform for online dispute resolution</h2><p><a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a></p><h2>Consumer dispute resolution</h2><p>I am not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.</p></body></html>`);
+
+    bindModal(datenschutzModal, openDatenschutz, closeDatenschutz, datenschutzFrame, `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;padding:1.1rem 1rem 1.4rem;font-family:system-ui,sans-serif;color:#1f2738;line-height:1.55;background:#fff}h1{margin:0 0 .75rem;font-size:1.4rem;line-height:1.2}h2{margin:1rem 0 .35rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:#4f5a70}p{margin:.3rem 0;font-size:.94rem}a{color:#253b68;text-decoration:underline}</style></head><body><h1>Privacy policy</h1><h2>1. Privacy at a glance</h2><p><strong>General information</strong></p><p>The following notes provide a simple overview of what happens to your personal data when you visit this website. This website was built with GDPR requirements in mind.</p><h2>2. Data collection on this website</h2><p>This website does not use cookies. No user accounts are created and no marketing cookies are set. If you use the Updates / Newsletter form, the data you enter is transmitted to Robert Meyer through an external webhook service in order to process your request.</p><h2>3. External services</h2><p>Google Fonts is used to render the website. Umami is used for privacy-friendly reach measurement. If you submit the update form, the entered data is sent to an external webhook endpoint. The privacy policies of the respective providers apply in addition.</p><h2>4. Data controller</h2><p>Robert Meyer – Robert Meyer<br>c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin<br>Germany</p></body></html>`);
+
+    function openUpdatesModal() {
+      if (!updatesModal) return;
+      if (updatesStatus) {
+        updatesStatus.textContent = '';
+        updatesStatus.className = 'updates-status';
+      }
+      updatesModal.classList.add('open');
+      updatesModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeUpdatesModal() {
+      if (!updatesModal) return;
+      updatesModal.classList.remove('open');
+      updatesModal.setAttribute('aria-hidden', 'true');
+      if (updatesForm) updatesForm.reset();
+      if (updatesStatus) {
+        updatesStatus.textContent = '';
+        updatesStatus.className = 'updates-status';
+      }
+      document.body.style.overflow = '';
+    }
+
+    async function postPayload(payload) {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!response.ok) throw new Error('request_failed');
+    }
+
+    if (openUpdates && closeUpdates && updatesModal) {
+      openUpdates.addEventListener('click', openUpdatesModal);
+      closeUpdates.addEventListener('click', closeUpdatesModal);
+      updatesModal.addEventListener('click', (ev) => {
+        if (ev.target === updatesModal) closeUpdatesModal();
+      });
+    }
+
+    function openPlatformModal() {
+      if (!platformModal) return;
+      if (platformStatus) {
+        platformStatus.textContent = '';
+        platformStatus.className = 'updates-status';
+      }
+      platformModal.classList.add('open');
+      platformModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePlatformModal() {
+      if (!platformModal) return;
+      platformModal.classList.remove('open');
+      platformModal.setAttribute('aria-hidden', 'true');
+      if (platformForm) platformForm.reset();
+      if (platformStatus) {
+        platformStatus.textContent = '';
+        platformStatus.className = 'updates-status';
+      }
+      document.body.style.overflow = '';
+    }
+
+    if (openPlatformRequest && closePlatformRequest && platformModal) {
+      openPlatformRequest.addEventListener('click', openPlatformModal);
+      closePlatformRequest.addEventListener('click', closePlatformModal);
+      platformModal.addEventListener('click', (ev) => {
+        if (ev.target === platformModal) closePlatformModal();
+      });
+    }
+
+    if (updatesForm && updatesEmail && updatesSubmit && updatesStatus) {
+      updatesForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const name = updatesName ? updatesName.value.trim() : '';
+        const email = updatesEmail.value.trim();
+        if (!email || !updatesEmail.checkValidity()) {
+          updatesStatus.textContent = 'Please enter a valid email address.';
+          updatesStatus.className = 'updates-status is-error';
+          updatesEmail.focus();
+          return;
+        }
+        updatesSubmit.disabled = true;
+        updatesStatus.textContent = 'Submitting ...';
+        updatesStatus.className = 'updates-status';
+        try {
+          const effectiveName = name || email;
+          await postPayload({
+            name: effectiveName,
+            email,
+            message: 'KI-Anonymizer updates / newsletter\n' + 'Name: ' + effectiveName + '\n' + 'Email: ' + email + '\nSource: KI-Anonymizer landing page\nPage: ' + window.location.href,
+            source: 'ki-anonymizer-landingpage-updates',
+            page: window.location.href,
+            interest: 'KI-Anonymizer updates / newsletter'
+          });
+          updatesForm.reset();
+          updatesStatus.textContent = 'Thank you. Your details have been submitted.';
+          updatesStatus.className = 'updates-status is-success';
+        } catch (_) {
+          updatesStatus.textContent = 'Submission failed just now. Please try again later.';
+          updatesStatus.className = 'updates-status is-error';
+        } finally {
+          updatesSubmit.disabled = false;
+        }
+      });
+    }
+
+    if (platformForm && platformEmail && platformSubmit && platformStatus) {
+      platformForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const name = platformName ? platformName.value.trim() : '';
+        const email = platformEmail.value.trim();
+        const target = platformTarget ? platformTarget.value.trim() : '';
+        if (!email || !platformEmail.checkValidity()) {
+          platformStatus.textContent = 'Please enter a valid email address.';
+          platformStatus.className = 'updates-status is-error';
+          platformEmail.focus();
+          return;
+        }
+        platformSubmit.disabled = true;
+        platformStatus.textContent = 'Submitting ...';
+        platformStatus.className = 'updates-status';
+        try {
+          const effectiveName = name || email;
+          await postPayload({
+            name: effectiveName,
+            email,
+            platform: target,
+            message: 'Request for additional KI-Anonymizer platforms\n' + 'Name: ' + effectiveName + '\n' + 'Email: ' + email + '\n' + 'Platform: ' + (target || 'Not specified') + '\nSource: KI-Anonymizer landing page\nPage: ' + window.location.href,
+            source: 'ki-anonymizer-landingpage-platform-request',
+            page: window.location.href,
+            interest: 'Request for additional KI-Anonymizer platforms'
+          });
+          platformForm.reset();
+          platformStatus.textContent = 'Thank you. Your request has been submitted.';
+          platformStatus.className = 'updates-status is-success';
+        } catch (_) {
+          platformStatus.textContent = 'Submission failed just now. Please try again later.';
+          platformStatus.className = 'updates-status is-error';
+        } finally {
+          platformSubmit.disabled = false;
+        }
+      });
+    }
+
+    function installCookieNotice() {
+      if (!cookieNotice || !cookieAck) return;
+      const key = 'ki-anonymisierer-cookie-hinweis';
+      const hide = () => {
+        cookieNotice.classList.add('is-hidden');
+        cookieNotice.setAttribute('aria-hidden', 'true');
+      };
+      const show = () => {
+        cookieNotice.classList.remove('is-hidden');
+        cookieNotice.setAttribute('aria-hidden', 'false');
+      };
+      if (localStorage.getItem(key) === '1') hide();
+      else show();
+      cookieAck.addEventListener('click', () => {
+        localStorage.setItem(key, '1');
+        hide();
+      });
+    }
+
+    const shotData = {
+      editor: {
+        title: 'Editor with before-and-after review',
+        lead: 'The extra control view for cases where the result should be checked visually before it is pasted elsewhere.',
+        image: 'e_editor.png',
+        alt: 'Editor view of KI-Anonymizer',
+        plain: [
+          'Original text on the left, anonymized output on the right.',
+          'The editor stays intentionally quiet instead of turning into a cluttered dashboard.',
+          'Manual visual review stays available for longer passages at any time.'
+        ],
+        explain: [
+          'The editor is not the primary workflow. It is the visual safety layer.',
+          'It matters when the shortcut is fast enough but the output should still be checked before it is reused or shared.',
+          'That keeps the main shortcut workflow fast without removing visible control when needed.'
+        ]
+      },
+      settingsTop: {
+        title: 'Control shortcut and detection in one place',
+        lead: 'The upper settings define the actual product core: shortcut, local behavior, and active detection.',
+        image: 'e_einstellungen_oben.png',
+        alt: 'Upper settings area of KI-Anonymizer',
+        plain: [
+          'The global shortcut can be changed.',
+          'Detection categories can be enabled or disabled individually.',
+          'Die lokale Ausrichtung der App bleibt sichtbar und nachvollziehbar.'
+        ],
+        explain: [
+          'The app should not feel like a black box. Users immediately see which categories are active.',
+          'In sensitive workflows, being able to selectively turn categories on or off matters.',
+          'The shortcut stays customizable so the app can fit into existing Mac workflows.'
+        ]
+      },
+      settingsBottom: {
+        title: 'Custom rules and exclusions',
+        lead: 'The lower half of the settings turns general detection into an adjustable tool for real terms and real processes.',
+        image: 'e_einstellungen_unten.png',
+        alt: 'Lower settings area of KI-Anonymizer',
+        plain: [
+          'Specific terms can always be anonymized.',
+          'Other terms can intentionally be excluded from anonymization.',
+          'The guidance around local processing remains visible in the same place.'
+        ],
+        explain: [
+          'Not every sensitive term fits a standard pattern. That is exactly why custom rules exist.',
+          'Exclusions prevent important fixed terms from being replaced unnecessarily.',
+          'So wird aus einem allgemeinen Produkt ein Werkzeug, das sich an echte Arbeitsumgebungen anpasst.'
+        ]
+      },
+      notice: {
+        title: 'Transparent legal notice',
+        lead: 'The app states its limit openly: it supports the clean-up step, but it does not replace human review.',
+        image: 'e_wichtiger_hinweis.png',
+        alt: 'Legal notice window of KI-Anonymizer',
+        plain: [
+          'The notice is directly accessible inside the app.',
+          'The local working model is stated clearly.',
+          'The need for human review is stated explicitly.'
+        ],
+        explain: [
+          'For this product, trust matters more than artificial safety language.',
+          'That is why the app does not suggest that anonymization is always complete or legally final.',
+          'The notice creates clarity and protects users from false expectations.'
+        ]
+      }
+    };
+
+    const shotModal = document.getElementById('shotModal');
+    const closeShot = document.getElementById('closeShot');
+    const shotTitle = document.getElementById('shotTitle');
+    const shotImage = document.getElementById('shotImage');
+    const shotCopyTitle = document.getElementById('shotCopyTitle');
+    const shotCopyLead = document.getElementById('shotCopyLead');
+    const shotPlain = document.getElementById('shotPlain');
+    const shotExplain = document.getElementById('shotExplain');
+    const shotPlainBullets = document.getElementById('shotPlainBullets');
+    const shotExplainBullets = document.getElementById('shotExplainBullets');
+    const tabPlain = document.getElementById('tabPlain');
+    const tabExplain = document.getElementById('tabExplain');
+
+    function fillBullets(target, items) {
+      target.innerHTML = items.map((item) => `<li><span>${item}</span></li>`).join('');
+    }
+
+    function activateShotTab(kind) {
+      const plainActive = kind === 'plain';
+      shotPlain.classList.toggle('active', plainActive);
+      shotExplain.classList.toggle('active', !plainActive);
+      tabPlain.classList.toggle('active', plainActive);
+      tabExplain.classList.toggle('active', !plainActive);
+    }
+
+    function openShot(key) {
+      const shot = shotData[key];
+      if (!shot) return;
+      shotTitle.textContent = shot.title;
+      shotCopyTitle.textContent = shot.title;
+      shotCopyLead.textContent = shot.lead;
+      shotImage.src = shot.image;
+      shotImage.alt = shot.alt;
+      fillBullets(shotPlainBullets, shot.plain);
+      fillBullets(shotExplainBullets, shot.explain);
+      activateShotTab('plain');
+      shotModal.classList.add('open');
+      shotModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeShotModal() {
+      shotModal.classList.remove('open');
+      shotModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.shot-trigger').forEach((button) => {
+      button.addEventListener('click', () => openShot(button.dataset.shot));
+    });
+    closeShot.addEventListener('click', closeShotModal);
+    shotModal.addEventListener('click', (ev) => { if (ev.target === shotModal) closeShotModal(); });
+    tabPlain.addEventListener('click', () => activateShotTab('plain'));
+    tabExplain.addEventListener('click', () => activateShotTab('explain'));
+
+    document.addEventListener('keydown', (ev) => {
+      if (ev.key === 'Escape' && shotModal.classList.contains('open')) closeShotModal();
+      if (ev.key === 'Escape' && updatesModal && updatesModal.classList.contains('open')) closeUpdatesModal();
+      if (ev.key === 'Escape' && platformModal && platformModal.classList.contains('open')) closePlatformModal();
+    });
+
+    function toggleToTop() {
+      toTop.classList.toggle('visible', window.scrollY > 640);
+    }
+    window.addEventListener('scroll', toggleToTop, { passive: true });
+    toggleToTop();
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    installCookieNotice();
+  </script>
+</body>
+</html>
