@@ -6,6 +6,9 @@
   <title>Support und Datenschutz · KI-Anonymisierer</title>
   <meta name="description" content="Support- und Datenschutz-Seite für KI-Anonymisierer mit Kontakt, FAQ, App-Datenschutz und Impressum.">
   <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://ki-anonymisierer.de/support.html">
+  <link rel="alternate" hreflang="de" href="https://ki-anonymisierer.de/support.html">
+  <link rel="alternate" hreflang="en" href="https://ki-anonymisierer.de/support_eng.html">
   <style>
     :root {
       --bg: #f4f7fb;
@@ -54,6 +57,39 @@
 
     .hero {
       padding: 1.4rem 0 1.8rem;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-bottom: 1rem;
+      padding: 0.26rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.82);
+      box-shadow: var(--shadow);
+    }
+
+    .lang-switch a,
+    .lang-switch span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 40px;
+      min-height: 32px;
+      padding: 0 0.8rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      color: var(--muted);
+    }
+
+    .lang-switch .active {
+      background: var(--ink);
+      color: #fff;
     }
 
     .eyebrow {
@@ -203,6 +239,10 @@
 <body>
   <main class="wrap">
     <section class="hero">
+      <div class="lang-switch" aria-label="Sprachauswahl">
+        <span class="active" aria-current="page">DE</span>
+        <a href="support_eng.html">EN</a>
+      </div>
       <span class="eyebrow">Support und Datenschutz</span>
       <h1>KI-Anonymisierer</h1>
       <p class="lead">Hilfe, Kontakt und rechtliche Hinweise für KI-Anonymisierer. Die App anonymisiert sensible Texte lokal auf dem Mac, ersetzt aber keine menschliche Endkontrolle.</p>
@@ -285,7 +325,7 @@
     </section>
 
     <footer>
-      © 2026 Robert Meyer · Support-Seite für KI-Anonymisierer
+      © 2026 Robert Meyer · Support-Seite für KI-Anonymisierer · <a href="support_eng.html">English version</a>
     </footer>
   </main>
 </body>
