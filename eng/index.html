@@ -874,11 +874,45 @@
       border-radius: 16px;
       background: rgba(255,255,255,0.02);
       overflow: hidden;
+      cursor: pointer;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+    .store-badge:hover,
+    .store-badge:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.82);
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0 14px 28px rgba(2, 6, 23, 0.22);
+      outline: none;
     }
     .store-badge img {
       display: block;
       height: 52px;
       width: auto;
+    }
+    .direct-option {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.14);
+    }
+    .direct-option p {
+      color: rgba(248,250,252,0.7);
+      font-size: 0.92rem;
+    }
+    .direct-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 0.5rem;
+      color: rgba(255,255,255,0.92);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.35);
+      padding-bottom: 0.12rem;
+    }
+    .direct-link:hover,
+    .direct-link:focus-visible {
+      border-color: rgba(255,255,255,0.72);
     }
     .pricing-note {
       margin-top: 0.85rem;
@@ -1636,7 +1670,7 @@
         <article class="pricing-card primary">
           <div class="pricing-body">
             <span class="eyebrow" style="color:rgba(248,250,252,0.72);">For macOS 14 and later</span>
-            <h3 style="margin-top:0.9rem; font-size:2.05rem;">One app. One job. No overhead.</h3>
+            <h3 style="margin-top:0.9rem; font-size:2.05rem;">Now available on the Mac App Store.</h3>
             <div class="price-row">
               <div class="price">9,99 €</div>
               <button class="price-note-toggle" type="button" aria-label="Show pricing note" data-note="The displayed price is EUR 9.99. Depending on tax country, payment method, and currency conversion, the final charge may differ slightly for technical reasons.">?</button>
@@ -1651,10 +1685,13 @@
               <li>Signed for macOS</li>
             </ul>
             <div class="hero-actions" style="margin-top:1.5rem;">
-              <a class="button store-buy lemonsqueezy-button" href="https://ki-fachbuecher.lemonsqueezy.com/checkout/buy/76a8cd83-9858-4888-b082-b2a51296de9f?embed=1">Buy KI-Anonymizer for macOS</a>
               <a class="button-static store-badge" href="https://apps.apple.com/de/app/ki-anonymisierer/id6760411603?mt=12" aria-label="View on the App Store" target="_blank" rel="noopener noreferrer">
                 <img src="e_apple.svg" alt="View on the App Store" loading="lazy" decoding="async">
               </a>
+            </div>
+            <div class="direct-option">
+              <p>Alternatively, the app is still available as a direct purchase.</p>
+              <a class="direct-link lemonsqueezy-button" href="https://ki-fachbuecher.lemonsqueezy.com/checkout/buy/76a8cd83-9858-4888-b082-b2a51296de9f?embed=1">Direct purchase outside the App Store</a>
             </div>
           </div>
         </article>
