@@ -127,890 +127,1454 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f2f6fb;
-      --surface: rgba(255,255,255,0.78);
-      --surface-strong: #ffffff;
-      --surface-dark: rgba(10, 15, 29, 0.92);
-      --ink: #0f172a;
-      --muted: #52607a;
-      --muted-strong: #334155;
-      --line: rgba(15, 23, 42, 0.08);
-      --line-strong: rgba(15, 23, 42, 0.16);
-      --blue: #2563eb;
-      --blue-deep: #1d4ed8;
-      --blue-soft: rgba(37, 99, 235, 0.14);
-      --cyan: #0ea5a4;
-      --green: #10b981;
-      --dark: #0b1020;
-      --dark-2: #111827;
-      --shadow-xl: 0 34px 90px rgba(11, 16, 32, 0.14);
-      --shadow-lg: 0 20px 50px rgba(11, 16, 32, 0.10);
-      --shadow-md: 0 12px 28px rgba(11, 16, 32, 0.08);
-      --radius-xl: 32px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
-      --radius-sm: 12px;
-      --max: 1240px;
-      --space: clamp(3rem, 8vw, 7rem);
-      --nav-h: 78px;
+      --bg: #06101c;
+      --bg-2: #0b1830;
+      --surface: rgba(11, 24, 48, 0.64);
+      --surface-2: rgba(12, 24, 42, 0.86);
+      --surface-3: rgba(245, 248, 255, 0.06);
+      --surface-light: rgba(255, 255, 255, 0.9);
+      --card-light: #f5f8ff;
+      --ink: #f3f7ff;
+      --ink-dark: #07111f;
+      --muted: rgba(226, 235, 255, 0.72);
+      --muted-dark: #44536b;
+      --line: rgba(175, 203, 255, 0.15);
+      --line-strong: rgba(175, 203, 255, 0.28);
+      --blue: #5da2ff;
+      --blue-2: #2f6bff;
+      --cyan: #71f0df;
+      --gold: #ffcf70;
+      --rose: #ff8cb1;
+      --shadow-xl: 0 40px 120px rgba(0, 0, 0, 0.42);
+      --shadow-lg: 0 22px 52px rgba(0, 0, 0, 0.28);
+      --shadow-md: 0 14px 30px rgba(0, 0, 0, 0.18);
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+      --nav-h: 82px;
+      --max: 1280px;
+      --space: clamp(4rem, 9vw, 8rem);
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; overflow-x: clip; }
     body {
       margin: 0;
-      font-family: "Space Grotesk", system-ui, sans-serif;
       color: var(--ink);
+      font-family: "IBM Plex Sans", system-ui, sans-serif;
       background:
-        radial-gradient(900px 520px at 0% -10%, rgba(37, 99, 235, 0.10), transparent 70%),
-        radial-gradient(780px 420px at 100% 0%, rgba(14, 165, 164, 0.08), transparent 72%),
-        linear-gradient(180deg, #f8fbff 0%, #eef3f8 100%);
+        radial-gradient(circle at 12% 12%, rgba(93, 162, 255, 0.22), transparent 28%),
+        radial-gradient(circle at 88% 8%, rgba(113, 240, 223, 0.14), transparent 26%),
+        radial-gradient(circle at 50% 100%, rgba(47, 107, 255, 0.12), transparent 34%),
+        linear-gradient(180deg, #040b15 0%, #07111f 38%, #091528 100%);
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      line-height: 1.58;
       overflow-x: hidden;
-      line-height: 1.55;
       padding-top: var(--nav-h);
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 120px 120px;
+      mask-image: radial-gradient(circle at 50% 24%, #000 35%, transparent 82%);
+      opacity: 0.45;
     }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; height: auto; }
     button, input { font: inherit; }
     .container { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
-    .section { padding: var(--space) 0; }
+    .section { padding: var(--space) 0; position: relative; }
+    .light-section {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(93, 162, 255, 0.14), transparent 32%),
+        linear-gradient(180deg, #eef4ff 0%, #f8fbff 100%);
+      color: var(--ink-dark);
+    }
+    .band {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+        linear-gradient(180deg, #081525 0%, #0a1830 100%);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.7rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 0.74rem;
-      color: var(--muted);
+      letter-spacing: 0.18em;
+      color: rgba(226, 235, 255, 0.68);
     }
+    .light-section .eyebrow { color: #53637d; }
     .eyebrow::before {
       content: "";
-      width: 28px;
+      width: 32px;
       height: 1px;
       background: currentColor;
-      opacity: 0.35;
+      opacity: 0.45;
     }
+    .display {
+      margin: 0;
+      font-family: "Sora", system-ui, sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      line-height: 0.94;
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.85fr);
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: 2.6rem;
+    }
+    .section-head h2 {
+      margin: 1rem 0 0;
+      font-family: "Sora", system-ui, sans-serif;
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 0.97;
+      letter-spacing: -0.055em;
+    }
+    .section-head p {
+      margin: 0;
+      max-width: 56ch;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+    .light-section .section-head p { color: var(--muted-dark); }
+
     .site-nav {
       position: fixed;
       inset: 0 0 auto 0;
-      z-index: 40;
-      backdrop-filter: blur(20px);
-      background: rgba(242,246,251,0.84);
-      border-bottom: 1px solid rgba(15,23,42,0.05);
+      z-index: 60;
+      backdrop-filter: blur(24px);
+      background: rgba(4, 11, 21, 0.64);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .site-nav .container {
+      min-height: var(--nav-h);
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      min-height: var(--nav-h);
     }
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 0.9rem;
+      gap: 0.95rem;
       font-weight: 700;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
       flex: 0 0 auto;
     }
     .brand img {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      box-shadow: 0 10px 24px rgba(37,99,235,0.16);
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      box-shadow: 0 14px 34px rgba(47, 107, 255, 0.28);
     }
     .nav-links {
       display: inline-flex;
       align-items: center;
-      gap: 1rem;
-      color: var(--muted);
-      font-size: 0.94rem;
+      gap: 1.15rem;
       flex-wrap: wrap;
+      color: rgba(226, 235, 255, 0.74);
+      font-size: 0.95rem;
     }
     .nav-links a:hover,
-    .nav-links a:focus-visible { color: var(--ink); outline: none; }
+    .nav-links a:focus-visible,
+    .lang-switch a:hover,
+    .lang-switch a:focus-visible,
+    .footer-nav a:hover,
+    .footer-nav a:focus-visible,
+    .footer-nav-button:hover,
+    .footer-nav-button:focus-visible {
+      color: #fff;
+      outline: none;
+    }
     .nav-side {
       display: inline-flex;
       align-items: center;
-      gap: 0.85rem;
+      gap: 0.9rem;
       flex: 0 0 auto;
     }
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 0.72rem 1rem;
-      border-radius: 999px;
-      background: var(--dark);
-      color: #fff;
-      font-size: 0.92rem;
-      box-shadow: var(--shadow-md);
-      flex: 0 0 auto;
-    }
-    .hero {
-      position: relative;
-      padding: 3.6rem 0 1.6rem;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.06fr) minmax(360px, 0.94fr);
-      gap: 2rem;
-      align-items: start;
-    }
-    .hero-copy h1 {
-      margin: 1.2rem 0 0;
-      font-size: clamp(3.2rem, 7vw, 6.3rem);
-      line-height: 0.9;
-      letter-spacing: -0.065em;
-      max-width: 8ch;
-    }
-    .hero-copy h1 span {
-      display: block;
-      color: var(--blue);
-    }
-    .hero-lead {
-      margin: 1.45rem 0 0;
-      font-size: clamp(1.08rem, 2vw, 1.28rem);
-      color: var(--muted);
-      max-width: 54ch;
-      line-height: 1.5;
-    }
-    .hero-sublead {
-      margin: 1rem 0 0;
-      max-width: 60ch;
-      color: var(--muted-strong);
-      font-size: 1rem;
-      line-height: 1.62;
-    }
-    .hero-tags,
-    .signal-list,
-    .workflow-tags,
-    .pricing-tags { display: flex; flex-wrap: wrap; gap: 0.7rem; }
-    .hero-tags,
-    .hero-proof { margin-top: 1.4rem; }
-    .tag,
-    .keycap,
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      min-height: 36px;
-      padding: 0.48rem 0.8rem;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.74);
-      color: var(--ink);
-      font-size: 0.82rem;
-      box-shadow: 0 6px 16px rgba(11, 16, 32, 0.05);
-    }
-    .keycap {
-      font-family: "IBM Plex Mono", ui-monospace, monospace;
-      background: var(--dark);
-      color: #f8fafc;
-      border-color: rgba(255,255,255,0.08);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-    }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.85rem;
-      margin-top: 1.7rem;
-    }
+    .nav-cta,
     .button,
     .button-secondary,
     .button-static {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.55rem;
+      gap: 0.6rem;
       min-height: 52px;
       padding: 0.92rem 1.2rem;
-      border-radius: 16px;
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+      border-radius: 999px;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease, color 180ms ease;
     }
+    .nav-cta,
     .button {
-      background: linear-gradient(135deg, var(--blue), var(--blue-deep));
-      color: #fff;
-      box-shadow: 0 18px 35px rgba(37, 99, 235, 0.24);
+      color: #07111f;
+      background: linear-gradient(135deg, var(--cyan), #b8fff8 70%);
+      box-shadow: 0 16px 34px rgba(113, 240, 223, 0.22);
+      font-weight: 700;
     }
     .button-secondary,
     .button-static {
-      background: rgba(255,255,255,0.82);
-      border: 1px solid var(--line-strong);
-      color: var(--ink);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
     }
-    .button-static {
-      color: var(--muted);
-      cursor: default;
+    .button:hover,
+    .button-secondary:hover,
+    .nav-cta:hover {
+      transform: translateY(-1px);
     }
     .lang-switch {
       display: inline-flex;
       align-items: center;
-      gap: 0.3rem;
-      padding: 0.26rem;
-      border: 1px solid var(--line-strong);
+      gap: 0.35rem;
+      padding: 0.28rem;
       border-radius: 999px;
-      background: rgba(255,255,255,0.72);
-      box-shadow: 0 8px 20px rgba(11, 16, 32, 0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
     }
     .lang-switch a,
     .lang-switch span {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 36px;
-      min-height: 32px;
-      padding: 0 0.7rem;
+      min-width: 38px;
+      min-height: 34px;
+      padding: 0 0.8rem;
       border-radius: 999px;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--muted);
+      color: rgba(226, 235, 255, 0.72);
+      letter-spacing: 0.08em;
     }
     .lang-switch .active {
-      background: var(--dark);
+      background: rgba(255,255,255,0.94);
+      color: #07111f;
+    }
+
+    .hero {
+      padding: clamp(2.4rem, 5vw, 4rem) 0 var(--space);
+      overflow: clip;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -16% 50%;
+      width: 56vw;
+      height: 56vw;
+      max-width: 820px;
+      max-height: 820px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(47, 107, 255, 0.18), transparent 68%);
+      filter: blur(24px);
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 2rem;
+      align-items: center;
+    }
+    .hero-copy { position: relative; z-index: 1; }
+    .hero h1 {
+      margin: 1.2rem 0 0;
+      max-width: 17.2ch;
+      font-size: clamp(2.45rem, 4.9vw, 4.45rem);
+      line-height: 0.88;
+      color: #eef4ff;
+      text-wrap: balance;
+    }
+    .hero h1 .hero-break {
+      display: inline;
+    }
+    .hero h1 .hero-emphasis {
+      display: inline;
+      color: #d7f7f1;
+      text-shadow: 0 0 36px rgba(113, 240, 223, 0.12);
+    }
+    .hero-lead {
+      margin: 1.35rem 0 0;
+      max-width: 30ch;
+      font-size: clamp(1.16rem, 2.4vw, 1.5rem);
+      color: #eaf2ff;
+    }
+    .hero-sublead {
+      margin: 1rem 0 0;
+      max-width: 58ch;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.7rem;
+    }
+    .hero-points,
+    .micro-list,
+    .pill-row,
+    .detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .hero-points { margin-top: 1.4rem; }
+    .pill,
+    .micro-card,
+    .tag,
+    .step-key,
+    .mini-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      min-height: 38px;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
       color: #fff;
+      font-size: 0.84rem;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.16);
     }
-    .lang-switch a:hover,
-    .lang-switch a:focus-visible {
-      color: var(--ink);
-      outline: none;
-    }
-    .button:hover,
-    .button-secondary:hover,
-    .button:focus-visible,
-    .button-secondary:focus-visible {
-      transform: translateY(-1px);
-      outline: none;
+    .step-key {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      background: rgba(255,255,255,0.94);
+      color: #07111f;
+      border-color: rgba(255,255,255,0.7);
+      min-width: 46px;
+      justify-content: center;
     }
     .hero-note {
       margin-top: 1rem;
-      color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
+      color: rgba(226, 235, 255, 0.6);
     }
-    .hero-side {
-      position: relative;
-      padding: 1.5rem;
-      border-radius: 34px;
-      background: linear-gradient(180deg, rgba(11,16,32,0.96), rgba(17,24,39,0.94));
-      box-shadow: var(--shadow-xl);
-      overflow: hidden;
-      min-height: 700px;
+    .hero-rail {
       display: grid;
-      place-items: center;
-    }
-    .hero-side::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(37,99,235,0.14), transparent 28%),
-        radial-gradient(420px 220px at 10% 0%, rgba(37,99,235,0.18), transparent 70%);
-      pointer-events: none;
-    }
-    .brand-stage,
-    .brand-stage::before,
-    .brand-stage::after,
-    .brand-badge,
-    .brand-badge img {
-      position: relative;
-    }
-    .brand-stage {
-      z-index: 1;
-      width: min(100%, 470px);
-      aspect-ratio: 1 / 1;
-      border-radius: 32px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background:
-        radial-gradient(240px 240px at 50% 28%, rgba(37,99,235,0.24), transparent 72%),
-        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 26px 70px rgba(0,0,0,0.22);
-      display: grid;
-      place-items: center;
-      padding: 2rem;
-      overflow: hidden;
-    }
-    .brand-stage::before,
-    .brand-stage::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.08);
-      inset: 14% 14%;
-      pointer-events: none;
-    }
-    .brand-stage::after {
-      inset: 5% 5%;
-      opacity: 0.6;
-    }
-    .brand-badge {
-      z-index: 1;
-      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1rem;
-      justify-items: center;
-      text-align: center;
+      margin-top: 2rem;
     }
-    .brand-badge img {
-      width: clamp(170px, 30vw, 260px);
-      height: auto;
-      border-radius: 28px;
-      box-shadow: 0 28px 60px rgba(0,0,0,0.28);
-    }
-    .brand-badge strong {
-      display: block;
-      color: #f8fafc;
-      font-size: clamp(1.55rem, 3vw, 2.15rem);
-      line-height: 1.02;
-      letter-spacing: -0.05em;
-      max-width: 10ch;
-    }
-    .brand-keyline {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.65rem;
-      margin-top: 0.2rem;
-    }
-    .hero-proof {
-      display: grid;
-      gap: 0.75rem;
-      max-width: 62ch;
-    }
-    .proof-row {
-      display: grid;
-      grid-template-columns: 168px 1fr;
-      gap: 1rem;
-      align-items: start;
-      padding: 0.95rem 1rem;
+    .rail-card {
+      padding: 1rem 1rem 1.1rem;
       border-radius: 20px;
-      background: rgba(255,255,255,0.82);
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
       box-shadow: var(--shadow-md);
     }
-    .proof-label {
-      font-family: "IBM Plex Mono", ui-monospace, monospace;
-      font-size: 0.8rem;
-      color: var(--blue);
-      text-transform: uppercase;
+    .rail-card strong {
+      display: block;
+      font-size: 0.82rem;
       letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(226, 235, 255, 0.64);
     }
-    .proof-copy {
-      color: var(--muted-strong);
-      font-size: 0.94rem;
-      line-height: 1.55;
+    .rail-card p {
+      margin: 0.6rem 0 0;
+      color: #edf4ff;
+      font-size: 0.95rem;
     }
-    .dark-band {
-      background: linear-gradient(180deg, var(--dark) 0%, #10192e 100%);
-      color: #f8fafc;
+
+    .hero-showcase {
       position: relative;
-      overflow: hidden;
+      min-height: 720px;
+      display: grid;
+      align-items: center;
+      justify-items: center;
     }
-    .dark-band::before {
+    .halo {
+      position: absolute;
+      inset: 10% 12% auto 12%;
+      height: 56%;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(113, 240, 223, 0.16), transparent 68%);
+      filter: blur(12px);
+      pointer-events: none;
+    }
+    .device-stage {
+      position: relative;
+      width: min(100%, 760px);
+      padding: 1rem;
+      border-radius: 34px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03)),
+        rgba(6, 16, 28, 0.88);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      transform: perspective(1600px) rotateY(-10deg) rotateX(7deg);
+      transform-style: preserve-3d;
+    }
+    .device-stage::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(780px 360px at 100% 0%, rgba(37,99,235,0.16), transparent 70%);
+      background:
+        linear-gradient(135deg, rgba(93, 162, 255, 0.18), transparent 40%),
+        linear-gradient(180deg, rgba(255,255,255,0.08), transparent 24%);
       pointer-events: none;
     }
-    .section-head {
-      display: grid;
-      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-      gap: 1.2rem;
-      align-items: end;
-      margin-bottom: 2.15rem;
-    }
-    .section-head h2 {
-      margin: 0.8rem 0 0;
-      font-size: clamp(2rem, 4vw, 3.7rem);
-      line-height: 0.98;
-      letter-spacing: -0.055em;
-    }
-    .section-head p { margin: 0; color: inherit; opacity: 0.84; }
-    .problem-grid,
-    .gallery-grid,
-    .pricing-grid,
-    .ai-grid,
-    .footer-grid,
-    .workflow-grid,
-    .detection-grid {
-      display: grid;
-      gap: 1.2rem;
-    }
-    .problem-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .pricing-grid { grid-template-columns: 1.18fr 0.82fr; align-items: stretch; }
-    .ai-grid { grid-template-columns: 0.9fr 1.1fr; align-items: stretch; }
-    .workflow-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .detection-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 1.5rem; }
-    .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; }
-    .card,
-    .pricing-card,
-    .legal-card,
-    .workflow-card,
-    .shot-card {
-      border-radius: 28px;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-lg);
-      overflow: hidden;
-    }
-    .dark-band .card,
-    .dark-band .workflow-card,
-    .dark-band .legal-card {
-      background: rgba(255,255,255,0.04);
-      border-color: rgba(255,255,255,0.08);
-      box-shadow: none;
-    }
-    .card-body,
-    .workflow-body,
-    .pricing-body,
-    .legal-body { padding: 1.5rem; }
-    .card h3,
-    .pricing-card h3,
-    .workflow-card h3,
-    .legal-card h3 {
-      margin: 0 0 0.55rem;
-      font-size: 1.25rem;
-      line-height: 1.15;
-    }
-    .card p,
-    .workflow-card p,
-    .legal-card p,
-    .pricing-card p { margin: 0; color: var(--muted); }
-    .dark-band p { color: rgba(248,250,252,0.76); }
-    .split-example {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
+    .device-head {
+      position: relative;
+      display: flex;
+      align-items: center;
       gap: 1rem;
-      margin-top: 1rem;
+      padding: 0.35rem 0.55rem 1rem;
+      z-index: 1;
     }
-    .code-panel {
-      border-radius: 20px;
-      background: rgba(8, 12, 22, 0.82);
-      color: #e5edf9;
-      border: 1px solid rgba(255,255,255,0.07);
-      padding: 1rem;
-      min-height: 240px;
+    .window-dots {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .window-dots span {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.26);
+    }
+    .window-dots span:nth-child(1) { background: #ff6a5f; }
+    .window-dots span:nth-child(2) { background: #ffbd44; }
+    .window-dots span:nth-child(3) { background: #00ca4e; }
+    .device-caption {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      white-space: nowrap;
+      color: rgba(226, 235, 255, 0.62);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+    .device-visual {
+      position: relative;
+      z-index: 1;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 22px 42px rgba(0,0,0,0.26);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(93, 162, 255, 0.1), transparent 52%),
+        linear-gradient(180deg, rgba(8, 18, 33, 0.98), rgba(6, 14, 26, 0.98));
+    }
+    .device-demo {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.95rem;
+      padding: 1.05rem;
+    }
+    .demo-pane {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
+        rgba(4, 10, 20, 0.82);
+      padding: 0.95rem 1rem 1rem;
+    }
+    .demo-pane::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+      opacity: 0.5;
+    }
+    .demo-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       font-family: "IBM Plex Mono", ui-monospace, monospace;
-      font-size: 0.94rem;
-      line-height: 1.45;
-      white-space: pre-wrap;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(226, 235, 255, 0.52);
+      margin-bottom: 0.75rem;
     }
-    .highlight { color: #93c5fd; }
+    .demo-label::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.26);
+    }
+    .demo-pane.before .demo-label::before { background: rgba(255, 113, 113, 0.82); }
+    .demo-pane.after .demo-label::before { background: rgba(113, 240, 223, 0.9); }
+    .demo-text {
+      margin: 0;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.92rem;
+      line-height: 1.78;
+      color: #b2c1d8;
+    }
+    .demo-text .hl-red,
+    .demo-text .hl-green {
+      display: inline-block;
+      padding: 0 0.25rem;
+      border-radius: 0.35rem;
+    }
+    .demo-text .hl-red {
+      color: #ffd8d8;
+      background: rgba(255, 106, 95, 0.18);
+      box-shadow: inset 0 0 0 1px rgba(255, 106, 95, 0.14);
+    }
+    .demo-text .hl-green {
+      color: #dffff8;
+      background: rgba(113, 240, 223, 0.18);
+      box-shadow:
+        inset 0 0 0 1px rgba(113, 240, 223, 0.18),
+        0 0 0 rgba(113, 240, 223, 0);
+      animation: placeholderPulse 4.8s ease-in-out infinite;
+    }
+    .demo-text .hl-green:nth-of-type(2) { animation-delay: 0.22s; }
+    .demo-text .hl-green:nth-of-type(3) { animation-delay: 0.44s; }
+    .demo-text .hl-green:nth-of-type(4) { animation-delay: 0.66s; }
+    .demo-text .hl-green:nth-of-type(5) { animation-delay: 0.88s; }
+    .demo-pane.before::after {
+      content: "";
+      position: absolute;
+      inset: 0 0 0 -45%;
+      background: linear-gradient(90deg, transparent, rgba(113, 240, 223, 0.16), transparent);
+      animation: heroScan 7.6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .demo-pane.after::after {
+      content: "";
+      position: absolute;
+      inset: auto -12% -34% -12%;
+      height: 72%;
+      background: radial-gradient(circle at 50% 50%, rgba(93, 162, 255, 0.1), rgba(113, 240, 223, 0.12) 42%, transparent 72%);
+      filter: blur(14px);
+      animation: afterGlow 7.6s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .demo-pane.after .demo-label,
+    .demo-pane.after .demo-text {
+      position: relative;
+      z-index: 1;
+    }
+    .demo-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+      padding: 0.1rem 0 0.2rem;
+      color: rgba(226, 235, 255, 0.66);
+      text-align: center;
+    }
+    .demo-flow-copy {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+    .demo-flow-arrow {
+      font-size: 1.05rem;
+      color: var(--cyan);
+      text-shadow: 0 0 18px rgba(113, 240, 223, 0.24);
+      animation: flowPulse 7.6s ease-in-out infinite;
+    }
+    .demo-hotkey {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.9rem 1rem 1rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.025);
+    }
+    .demo-hotkey .step-key {
+      min-width: 40px;
+      min-height: 34px;
+      font-size: 0.76rem;
+    }
+    .demo-hotkey-label {
+      margin-left: 0.45rem;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.76rem;
+      color: rgba(226, 235, 255, 0.5);
+      letter-spacing: 0.06em;
+    }
+    @keyframes heroScan {
+      0%, 18% { transform: translateX(0); opacity: 0; }
+      28%, 48% { opacity: 1; }
+      62%, 100% { transform: translateX(230%); opacity: 0; }
+    }
+    @keyframes flowPulse {
+      0%, 18%, 100% { opacity: 0.4; transform: translateY(0); }
+      36%, 50% { opacity: 1; transform: translateY(1px); }
+      64% { opacity: 0.58; }
+    }
+    @keyframes afterGlow {
+      0%, 22%, 100% {
+        opacity: 0.08;
+        transform: translateY(10px) scale(0.96);
+      }
+      36%, 56% {
+        opacity: 0.34;
+        transform: translateY(0) scale(1.02);
+      }
+      70% {
+        opacity: 0.16;
+        transform: translateY(4px) scale(1);
+      }
+    }
+    @keyframes placeholderPulse {
+      0%, 100% {
+        transform: none;
+        background: rgba(113, 240, 223, 0.18);
+        box-shadow:
+          inset 0 0 0 1px rgba(113, 240, 223, 0.18),
+          0 0 0 rgba(113, 240, 223, 0);
+      }
+      45% {
+        transform: translateY(-1px);
+        background: rgba(113, 240, 223, 0.28);
+        box-shadow:
+          inset 0 0 0 1px rgba(113, 240, 223, 0.34),
+          0 0 18px rgba(113, 240, 223, 0.18);
+      }
+      62% {
+        transform: none;
+        background: rgba(93, 162, 255, 0.22);
+        box-shadow:
+          inset 0 0 0 1px rgba(93, 162, 255, 0.24),
+          0 0 12px rgba(93, 162, 255, 0.08);
+      }
+    }
+    .floating-card {
+      position: absolute;
+      border-radius: 26px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(7, 17, 31, 0.84);
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(14px);
+    }
+    .floating-card img {
+      width: 100%;
+      height: auto;
+    }
+    .floating-card .card-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      padding: 0.9rem 1rem;
+      color: #f7faff;
+      font-size: 0.9rem;
+    }
+    .floating-card .card-label span {
+      color: rgba(226, 235, 255, 0.58);
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .floating-card.settings {
+      top: 2%;
+      right: -8%;
+      width: min(33%, 228px);
+      transform: rotate(7deg);
+    }
+    .hero-strip {
+      position: absolute;
+      left: 12%;
+      right: 6%;
+      bottom: -8%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      padding: 1rem;
+      border-radius: 22px;
+      background: rgba(7, 17, 31, 0.84);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(16px);
+    }
+    .hero-strip .mini-chip { font-size: 0.8rem; }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.84fr);
+      gap: 2rem;
+      align-items: start;
+    }
+    .manifesto {
+      display: grid;
+      gap: 1.2rem;
+    }
+    .manifesto-card {
+      padding: 1.4rem;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      box-shadow: var(--shadow-md);
+    }
+    .manifesto-card strong {
+      display: block;
+      font-family: "Sora", system-ui, sans-serif;
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+    .manifesto-card p {
+      margin: 0.85rem 0 0;
+      color: var(--muted);
+      max-width: 46ch;
+    }
+    .before-after {
+      padding: 1.5rem;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-lg);
+    }
+    .code-grid {
+      display: grid;
+      gap: 1rem;
+    }
+    .code-card {
+      padding: 1rem;
+      border-radius: 22px;
+      background: rgba(1, 7, 14, 0.5);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .code-card strong {
+      display: inline-flex;
+      margin-bottom: 0.8rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(226, 235, 255, 0.66);
+    }
+    .code-card code {
+      display: block;
+      white-space: normal;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.98rem;
+      color: #f8fbff;
+      line-height: 1.68;
+    }
+    .mark {
+      color: #121e35;
+      background: linear-gradient(135deg, #ffe5a6, #fff1cc);
+      padding: 0.12rem 0.3rem;
+      border-radius: 0.35rem;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+    .mark-blue {
+      color: #f5f9ff;
+      background: linear-gradient(135deg, rgba(93, 162, 255, 0.6), rgba(47, 107, 255, 0.85));
+      padding: 0.12rem 0.3rem;
+      border-radius: 0.35rem;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .step-card {
+      position: relative;
+      min-height: 100%;
+      display: grid;
+      align-content: start;
+      padding: 1.35rem;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(7,17,31,0.08);
+      box-shadow: 0 18px 38px rgba(11, 24, 48, 0.1);
+      color: var(--ink-dark);
+    }
     .step-no {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 38px;
-      height: 38px;
+      width: fit-content;
+      min-width: 48px;
+      min-height: 34px;
+      padding: 0 0.7rem;
       border-radius: 999px;
-      background: var(--blue-soft);
-      color: var(--blue);
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
+      background: #eef4ff;
+      border: 1px solid rgba(7,17,31,0.08);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.82rem;
+      color: #5b6e88;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
-    .dark-band .step-no {
-      background: rgba(37,99,235,0.18);
-      color: #93c5fd;
+    .step-card h3 {
+      margin: 0.85rem 0 0;
+      font-family: "Sora", system-ui, sans-serif;
+      font-size: 1.55rem;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
     }
-    .workflow-headline {
-      position: absolute;
-      inset: 0 0 auto 0;
-      display: flex;
-      align-items: center;
-      gap: 0.38rem;
+    .step-card p {
+      margin: 0.8rem 0 0;
+      color: #465570;
     }
-    .note-card .workflow-body {
-      position: relative;
-    }
-    .note-card .workflow-body .step-no {
-      position: relative;
-      z-index: 2;
-    }
-    .note-card .workflow-body .workflow-headline {
-      position: relative;
-      inset: auto;
-      margin-bottom: 0.55rem;
-    }
-    .inline-note-label {
-      font-size: 0.76rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      color: var(--blue);
-      background: rgba(37,99,235,0.08);
-      border: 1px solid rgba(37,99,235,0.14);
-      border-radius: 999px;
-      padding: 0.18rem 0.5rem;
-      cursor: help;
-      user-select: none;
-    }
-    .inline-note-panel {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: calc(100% + 0.65rem);
-      transform: translateY(4px);
-      padding: 0.72rem 0.82rem;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.98);
-      border: 1px solid var(--line-strong);
-      box-shadow: 0 18px 36px rgba(11,16,32,0.12);
-      color: var(--muted-strong);
-      font-size: 0.75rem;
+    .step-copy-brief {
+      margin-top: 0.75rem;
+      color: #1d2b42;
+      font-size: 1.02rem;
       line-height: 1.5;
-      text-align: left;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
-      z-index: 12;
     }
-    .workflow-headline:hover .inline-note-panel,
-    .workflow-headline:focus-within .inline-note-panel {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
+    .step-detail {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
     }
-    .ai-stack {
+    .step-detail .step-key,
+    .step-detail .tag,
+    .detail-tags .tag {
+      background: #f1f6ff;
+      color: #07111f;
+      border-color: rgba(7,17,31,0.08);
+      box-shadow: none;
+    }
+    .note-card {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(93, 162, 255, 0.18), transparent 38%),
+        linear-gradient(180deg, #dfeaff 0%, #f7fbff 100%);
+    }
+    .step-card.note-card .step-copy-brief {
+      font-size: 0.98rem;
+    }
+
+    .stack-layout {
       display: grid;
-      gap: 0.9rem;
+      grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.85fr);
+      gap: 1.4rem;
+      align-items: start;
+    }
+    .feature-stack,
+    .insight-card,
+    .ai-card,
+    .pricing-card,
+    .legal-card,
+    .faq-item,
+    .screen-card {
+      border-radius: 30px;
+      box-shadow: var(--shadow-lg);
+    }
+    .feature-stack {
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: grid;
+      gap: 1rem;
     }
     .stack-row {
       display: grid;
-      grid-template-columns: 150px 1fr;
+      grid-template-columns: 132px 1fr;
       gap: 1rem;
-      align-items: start;
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .stack-row:last-child { border-bottom: none; }
-    .stack-label {
-      font-family: "IBM Plex Mono", ui-monospace, monospace;
-      font-size: 0.82rem;
-      color: #93c5fd;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .shot-card {
-      background: rgba(255,255,255,0.86);
-      cursor: pointer;
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-    }
-    .shot-card:hover,
-    .shot-card:focus-within {
-      transform: translateY(-2px);
-      box-shadow: 0 20px 42px rgba(11,16,32,0.12);
-      border-color: rgba(37,99,235,0.22);
-    }
-    .shot-trigger {
-      display: block;
-      width: 100%;
-      border: 0;
-      padding: 0;
-      background: transparent;
-      text-align: left;
-      cursor: pointer;
-    }
-    .shot-thumb {
-      position: relative;
-      aspect-ratio: 0.96 / 1;
-      overflow: hidden;
-      background: #10172a;
-      border-bottom: 1px solid rgba(15,23,42,0.06);
-    }
-    .shot-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-    }
-    .shot-meta {
-      padding: 1rem 1rem 1.08rem;
-      display: grid;
-      gap: 0.4rem;
-    }
-    .shot-meta h3 { margin: 0; font-size: 0.98rem; line-height: 1.15; }
-    .shot-meta p { margin: 0; font-size: 0.9rem; color: var(--muted); }
-    .shot-link {
-      margin-top: 0.25rem;
-      font-size: 0.83rem;
-      color: var(--blue);
-      font-family: "IBM Plex Mono", ui-monospace, monospace;
-    }
-    .detection-item {
       padding: 1rem;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.82);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-md);
-      min-height: 132px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
     }
-    .dot {
-      width: 11px;
-      height: 11px;
-      border-radius: 999px;
-      margin-bottom: 0.75rem;
-    }
-    .pricing-card.primary {
-      background: linear-gradient(180deg, #0d1427, #10192e);
-      color: #f8fafc;
-      border-color: rgba(255,255,255,0.08);
-    }
-    .pricing-card.primary p,
-    .pricing-card.primary li,
-    .pricing-card.primary .tiny { color: rgba(248,250,252,0.8); }
-    .pricing-card.primary .pricing-body {
-      padding: 1.75rem;
-    }
-    .price {
-      margin: 1rem 0 0.35rem;
-      font-size: clamp(3rem, 6vw, 4.5rem);
-      line-height: 0.94;
-      letter-spacing: -0.07em;
-    }
-    .price-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.55rem;
-      margin: 1rem 0 0.35rem;
-    }
-    .price-row .price {
-      margin: 0;
-    }
-    .price-note-toggle {
-      position: relative;
-      margin-top: 0.35rem;
-      width: 22px;
-      height: 22px;
-      border: 1px solid rgba(255,255,255,0.32);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      color: rgba(248,250,252,0.92);
-      font-size: 0.78rem;
-      line-height: 1;
+    .stack-label {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      align-self: start;
+      min-height: 42px;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.9);
+      color: #07111f;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .stack-row h3,
+    .insight-card h3,
+    .pricing-card h3,
+    .legal-card h3,
+    .faq-item summary {
+      margin: 0;
+      font-family: "Sora", system-ui, sans-serif;
+      letter-spacing: -0.04em;
+    }
+    .stack-row p,
+    .insight-card p { margin: 0.55rem 0 0; color: var(--muted); }
+    .insight-grid {
+      display: grid;
+      gap: 1rem;
+    }
+    .insight-card {
+      padding: 1.4rem;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(7,17,31,0.08);
+      color: var(--ink-dark);
+      box-shadow: 0 18px 38px rgba(11, 24, 48, 0.1);
+    }
+    .insight-card p { color: #4a5972; }
+    .dot-list {
+      display: grid;
+      gap: 0.85rem;
+      margin-top: 1rem;
+    }
+    .dot-item {
+      display: grid;
+      grid-template-columns: 14px 1fr;
+      gap: 0.75rem;
+      align-items: start;
+      color: #4a5972;
+    }
+    .dot-item::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      margin-top: 0.28rem;
+      box-shadow: 0 0 0 6px rgba(93, 162, 255, 0.12);
+    }
+    .settings-poster {
+      margin-top: 1.4rem;
+      padding: 1rem;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-md);
+    }
+    .settings-poster img {
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .ai-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(340px, 0.9fr);
+      gap: 1.2rem;
+      align-items: stretch;
+    }
+    .ai-card {
+      padding: 1.45rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .ai-card p { color: var(--muted); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 1.1rem;
+    }
+    .gallery-left,
+    .gallery-right {
+      display: grid;
+      gap: 1.1rem;
+    }
+    .gallery-right {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .screen-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
+    }
+    .shot-trigger {
+      appearance: none;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      text-align: left;
+    }
+    .screen-thumb {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+    }
+    .screen-thumb::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 45%;
+      background: linear-gradient(180deg, transparent, rgba(7,17,31,0.72));
+      pointer-events: none;
+    }
+    .screen-thumb img {
+      width: 100%;
+      transition: transform 360ms ease;
+    }
+    .shot-trigger:hover .screen-thumb img { transform: scale(1.03); }
+    .screen-meta {
+      display: grid;
+      gap: 0.55rem;
+      padding: 1.2rem 1.25rem 1.3rem;
+    }
+    .screen-meta h3 {
+      margin: 0;
+      font-family: "Sora", system-ui, sans-serif;
+      font-size: 1.4rem;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+    .screen-meta p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .screen-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+    .screen-large .screen-thumb { min-height: 460px; }
+    .screen-large .screen-thumb img { min-height: 460px; object-fit: cover; object-position: top; }
+    .screen-small .screen-thumb { min-height: 250px; }
+    .screen-small .screen-thumb img { min-height: 250px; object-fit: cover; object-position: top; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.96fr) minmax(320px, 0.74fr);
+      gap: 1.2rem;
+      align-items: start;
+    }
+    .pricing-card {
+      padding: 1.7rem;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(113, 240, 223, 0.16), transparent 30%),
+        radial-gradient(circle at 0% 100%, rgba(93, 162, 255, 0.18), transparent 36%),
+        linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .pricing-copy {
+      display: grid;
+      gap: 0.9rem;
+      max-width: 58ch;
+    }
+    .pricing-overline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      width: fit-content;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #eef5ff;
+      font-size: 0.82rem;
+    }
+    .price-row {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+    .price {
+      font-family: "Sora", system-ui, sans-serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 0.92;
+      letter-spacing: -0.07em;
+    }
+    .price-note-toggle {
+      position: relative;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      color: #fff;
       cursor: help;
     }
     .price-note-toggle::after {
       content: attr(data-note);
       position: absolute;
       left: 50%;
-      top: calc(100% + 0.7rem);
-      transform: translateX(-50%) translateY(6px);
-      width: min(320px, 72vw);
-      padding: 0.72rem 0.82rem;
-      border-radius: 14px;
-      background: rgba(7, 12, 24, 0.96);
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 18px 44px rgba(2, 6, 23, 0.34);
-      color: rgba(248,250,252,0.86);
-      font-size: 0.73rem;
-      line-height: 1.45;
+      bottom: calc(100% + 12px);
+      width: min(280px, 72vw);
+      padding: 0.9rem 1rem;
+      border-radius: 16px;
+      background: rgba(6, 16, 28, 0.94);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #f3f7ff;
+      font-size: 0.84rem;
+      line-height: 1.5;
+      text-align: left;
+      box-shadow: var(--shadow-md);
+      transform: translate(-50%, 8px);
       opacity: 0;
-      visibility: hidden;
       pointer-events: none;
-      transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
-      z-index: 12;
+      transition: opacity 180ms ease, transform 180ms ease;
     }
     .price-note-toggle:hover::after,
     .price-note-toggle:focus-visible::after {
       opacity: 1;
-      visibility: visible;
-      transform: translateX(-50%) translateY(0);
+      transform: translate(-50%, 0);
     }
     .price-note-toggle:focus-visible {
-      outline: 2px solid rgba(255,255,255,0.72);
+      outline: 2px solid rgba(113, 240, 223, 0.42);
       outline-offset: 2px;
     }
     .pricing-kicker {
       display: inline-flex;
       align-items: center;
-      gap: 0.55rem;
-      margin-top: 1.1rem;
-      padding: 0.5rem 0.8rem;
+      padding: 0.55rem 0.8rem;
       border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      color: rgba(248,250,252,0.88);
-      font-size: 0.84rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.88rem;
+      color: #eef5ff;
     }
-    .feature-list {
-      list-style: none;
-      padding: 0;
-      margin: 1.2rem 0 0;
+    .pricing-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+      margin-top: 0.15rem;
+    }
+    .feature-list,
+    .shot-bullets,
+    .faq-answer ul {
       display: grid;
       gap: 0.8rem;
-    }
-    .feature-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.65rem;
-      color: var(--ink);
-    }
-    .pricing-card.primary .feature-list li { color: #f8fafc; }
-    .store-buy {
-      width: 190px;
-      min-height: 52px;
-      padding: 0 1.18rem;
-      border: 1px solid rgba(255,255,255,0.64);
-      box-shadow: 0 18px 35px rgba(37, 99, 235, 0.22);
-      font-size: 1.02rem;
-      font-weight: 700;
-    }
-    .store-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 190px;
-      min-height: 52px;
       padding: 0;
-      border: 1px solid rgba(255,255,255,0.64);
-      border-radius: 16px;
-      background: rgba(255,255,255,0.02);
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease, background 160ms ease;
+      margin: 0;
+      list-style: none;
     }
-    .store-badge:hover,
-    .store-badge:focus-visible {
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,0.82);
-      background: rgba(255,255,255,0.06);
-      box-shadow: 0 14px 28px rgba(2, 6, 23, 0.22);
-      outline: none;
+    .feature-list li,
+    .shot-bullets li,
+    .faq-answer li {
+      display: grid;
+      grid-template-columns: 16px 1fr;
+      gap: 0.8rem;
+      align-items: start;
     }
-    .store-badge img {
-      display: block;
-      height: 52px;
-      width: auto;
+    .feature-list li::before,
+    .shot-bullets li::before,
+    .faq-answer li::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      margin-top: 0.25rem;
+      box-shadow: 0 0 0 6px rgba(93, 162, 255, 0.08);
     }
     .direct-option {
-      margin-top: 1.25rem;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(255,255,255,0.14);
+      display: grid;
+      gap: 0.7rem;
+      margin-top: 1.1rem;
+      padding: 1rem 1rem 1.05rem;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(7,17,31,0.08);
+      color: #233146;
     }
-    .direct-option p {
-      color: rgba(248,250,252,0.7);
-      font-size: 0.92rem;
+    .direct-link-row {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+    .direct-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      font-weight: 600;
+      color: #1c2a40;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.16em;
+      transition: color 160ms ease, text-decoration-color 160ms ease, opacity 160ms ease;
+      cursor: pointer;
+    }
+    .direct-copy:hover,
+    .direct-copy:focus-visible {
+      color: #07111f;
+      text-decoration-color: #07111f;
+      opacity: 0.9;
+      outline: none;
     }
     .direct-link {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      margin-top: 0.5rem;
-      color: rgba(255,255,255,0.92);
+      justify-content: center;
+      gap: 0.6rem;
+      min-height: 48px;
+      padding: 0.85rem 1rem;
+      border-radius: 16px;
+      background: #0f1a2e;
+      border: 1px solid rgba(7,17,31,0.08);
+      color: #f8fbff;
       font-weight: 600;
       text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.35);
-      padding-bottom: 0.12rem;
+      box-shadow: 0 10px 22px rgba(7,17,31,0.16);
     }
     .direct-link:hover,
     .direct-link:focus-visible {
-      border-color: rgba(255,255,255,0.72);
-    }
-    .pricing-note {
-      margin-top: 0.85rem;
-      font-size: 0.74rem;
-      line-height: 1.45;
-      color: rgba(248,250,252,0.62);
-      max-width: 44ch;
-    }
-    .feature-list li::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--blue);
-      margin-top: 0.45rem;
-      flex: 0 0 auto;
-    }
-    .legal-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.84));
-    }
-    .legal-callout {
-      font-size: 1.08rem;
-      line-height: 1.35;
-      color: var(--ink);
-      margin-top: 0.4rem;
-    }
-    .footer {
-      padding: 2rem 0 2.8rem;
-      border-top: 1px solid var(--line);
-      background: rgba(255,255,255,0.58);
-      backdrop-filter: blur(12px);
-    }
-    .footer-grid {
-      grid-template-columns: 1fr auto;
-      align-items: start;
-    }
-    .footer-block { display: grid; gap: 0.25rem; }
-    .footer-title { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
-    .footer-nav {
-      display: inline-flex;
-      justify-content: flex-end;
-      gap: 1rem;
-      flex-wrap: wrap;
-      color: var(--muted);
-      align-items: center;
-    }
-    .footer-nav a:hover,
-    .footer-nav a:focus-visible,
-    .footer-link:hover,
-    .footer-link:focus-visible { color: var(--ink); outline: none; }
-    .footer-link { color: var(--ink); }
-    .footer-nav-button {
-      appearance: none;
-      border: 0;
-      padding: 0;
-      background: transparent;
-      color: inherit;
-      font: inherit;
-      cursor: pointer;
-    }
-    .footer-nav-button:hover,
-    .footer-nav-button:focus-visible {
-      color: var(--ink);
+      background: #07111f;
+      color: #ffffff;
       outline: none;
     }
-    .tiny {
-      font-size: 0.86rem;
-      color: var(--muted);
+    .direct-note {
+      width: 26px;
+      height: 26px;
+      font-size: 0.62rem;
+      border-color: rgba(7,17,31,0.14);
+      background: #ffffff;
+      color: #07111f;
+      box-shadow: none;
     }
+    .direct-note::after {
+      left: 0;
+      bottom: calc(100% + 10px);
+      transform: translate(0, 8px);
+      background: rgba(6, 16, 28, 0.96);
+    }
+    .direct-note:hover::after,
+    .direct-note:focus-visible::after {
+      transform: translate(0, 0);
+    }
+    .store-badge {
+      padding: 0;
+      min-height: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+    .store-badge img {
+      width: 182px;
+      height: auto;
+    }
+    .legal-card {
+      padding: 1.4rem;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(7,17,31,0.08);
+      color: var(--ink-dark);
+      box-shadow: 0 18px 38px rgba(11, 24, 48, 0.1);
+    }
+    .legal-card p,
+    .legal-card li { color: #495873; }
+    .legal-callout {
+      margin-top: 0.9rem;
+      padding: 1rem;
+      border-radius: 18px;
+      background: #eef4ff;
+      color: #18253a;
+      font-weight: 600;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 1rem;
+    }
+    .faq-item {
+      padding: 1.15rem 1.2rem;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(7,17,31,0.08);
+      color: var(--ink-dark);
+      box-shadow: 0 18px 38px rgba(11, 24, 48, 0.1);
+    }
+    .faq-item summary {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      cursor: pointer;
+      font-size: 1.28rem;
+      line-height: 1.05;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+";
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      background: #edf3ff;
+      color: #07111f;
+      font-size: 1.2rem;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+    }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-answer {
+      padding-top: 1rem;
+      color: #495873;
+    }
+    .faq-answer p {
+      margin: 0;
+    }
+    .faq-answer p + p { margin-top: 0.8rem; }
+    .faq-inline-link {
+      color: #244b9d;
+      text-decoration: underline;
+      text-underline-offset: 0.2rem;
+    }
+
+    .footer {
+      padding: 2rem 0 5.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(1, 6, 12, 0.28);
+    }
+    .footer-grid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-title {
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    .tiny {
+      color: rgba(226, 235, 255, 0.58);
+      font-size: 0.88rem;
+    }
+    .footer-nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      color: rgba(226, 235, 255, 0.72);
+    }
+    .footer-nav-button {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .cookie-notice {
+      position: fixed;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 70;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.1rem;
+      border-radius: 20px;
+      background: rgba(6, 16, 28, 0.92);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(18px);
+    }
+    .cookie-notice.is-hidden { display: none; }
+    .cookie-text {
+      margin: 0;
+      color: rgba(226, 235, 255, 0.78);
+      font-size: 0.92rem;
+    }
+    .cookie-ack,
+    .to-top,
+    .legal-close,
+    .updates-close,
+    .shot-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .cookie-ack {
+      min-height: 44px;
+      padding: 0.78rem 1rem;
+      border-radius: 999px;
+      border: 0;
+      background: linear-gradient(135deg, var(--cyan), #b8fff8 70%);
+      color: #07111f;
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+    .to-top {
+      position: fixed;
+      right: 1rem;
+      bottom: 6.75rem;
+      z-index: 65;
+      width: 50px;
+      height: 50px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50%;
+      background: rgba(6, 16, 28, 0.86);
+      color: #fff;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+    .to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
     .legal-modal,
     .shot-modal {
       position: fixed;
       inset: 0;
+      z-index: 90;
       display: none;
-      place-items: center;
+      align-items: center;
+      justify-content: center;
       padding: 1rem;
-      background: rgba(3,7,18,0.68);
+      background: rgba(2, 8, 16, 0.72);
       backdrop-filter: blur(12px);
-      z-index: 100;
     }
     .legal-modal.open,
-    .shot-modal.open { display: grid; }
+    .shot-modal.open { display: flex; }
     .legal-dialog,
+    .updates-dialog,
     .shot-dialog {
-      width: min(920px, 100%);
-      border-radius: 24px;
+      width: min(100%, 980px);
+      border-radius: 28px;
+      background: #f8fbff;
+      color: #07111f;
+      box-shadow: 0 32px 90px rgba(0,0,0,0.34);
       overflow: hidden;
-      background: #fff;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.32);
     }
-    .legal-dialog { height: min(82vh, 760px); }
-    .shot-dialog { max-height: min(86vh, 920px); }
-    .updates-dialog {
-      width: min(620px, 100%);
-      border-radius: 24px;
-      overflow: hidden;
-      background: #fff;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.32);
+    .legal-dialog { max-width: 900px; }
+    .updates-dialog { max-width: 760px; }
+    .shot-dialog {
+      max-width: 1120px;
+      background: #08111f;
+      color: #f4f8ff;
+      border: 1px solid rgba(255,255,255,0.08);
     }
     .legal-head,
     .shot-head {
@@ -1018,363 +1582,290 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      padding: 1rem 1.1rem;
-      border-bottom: 1px solid #e5e7eb;
-      background: #fff;
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid rgba(7,17,31,0.08);
+    }
+    .shot-head {
+      border-bottom-color: rgba(255,255,255,0.08);
     }
     .legal-head h3,
-    .shot-head h3 { margin: 0; font-size: 1rem; }
-    .legal-close,
-    .shot-close,
-    .updates-close {
-      width: 40px;
-      height: 40px;
-      border: 0;
-      border-radius: 999px;
-      background: #eef2f7;
-      cursor: pointer;
-      font: inherit;
-      font-size: 1.3rem;
-    }
-    .legal-frame { width: 100%; height: calc(100% - 62px); border: 0; }
-    .shot-body {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
-      gap: 0;
-      min-height: 560px;
-    }
-    .shot-visual {
-      background: #0b1020;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-    .shot-visual img {
-      width: 100%;
-      max-height: 70vh;
-      object-fit: contain;
-      border-radius: 18px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.26);
-    }
-    .shot-panel {
-      padding: 1.2rem 1.2rem 1.35rem;
-      display: grid;
-      grid-template-rows: auto auto 1fr;
-      gap: 1rem;
-      background: linear-gradient(180deg, #ffffff, #f8fafc);
-    }
-    .shot-tabs {
-      display: inline-flex;
-      gap: 0.55rem;
-      padding: 0.35rem;
-      background: #edf2f8;
-      border-radius: 999px;
-      width: fit-content;
-    }
-    .shot-tab {
-      border: 0;
-      border-radius: 999px;
-      background: transparent;
-      color: var(--muted);
-      padding: 0.5rem 0.85rem;
-      cursor: pointer;
-      font-size: 0.88rem;
-    }
-    .shot-tab.active {
-      background: #fff;
-      color: var(--ink);
-      box-shadow: 0 3px 10px rgba(15,23,42,0.08);
-    }
-    .shot-copy h4 {
-      margin: 0 0 0.55rem;
-      font-size: 1.3rem;
-      line-height: 1.1;
-    }
-    .shot-copy p { margin: 0; color: var(--muted); }
-    .shot-explain,
-    .shot-plain {
-      display: none;
-      align-content: start;
-      gap: 0.8rem;
-    }
-    .shot-explain.active,
-    .shot-plain.active { display: grid; }
-    .shot-bullets {
-      display: grid;
-      gap: 0.7rem;
+    .shot-head h3 {
       margin: 0;
-      padding: 0;
-      list-style: none;
+      font-family: "Sora", system-ui, sans-serif;
+      letter-spacing: -0.04em;
     }
-    .shot-bullets li {
-      display: grid;
-      grid-template-columns: 10px 1fr;
-      gap: 0.7rem;
-      color: var(--muted-strong);
+    .legal-close,
+    .updates-close,
+    .shot-close {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(7,17,31,0.08);
+      background: rgba(7,17,31,0.04);
+      color: #07111f;
+      font-size: 1.4rem;
+      line-height: 1;
     }
-    .shot-bullets li::before {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: var(--blue);
-      margin-top: 0.45rem;
-    }
-    .to-top {
-      position: fixed;
-      right: 1rem;
-      bottom: 1rem;
-      z-index: 60;
-      width: 52px;
-      height: 52px;
-      border: 0;
-      border-radius: 999px;
-      background: var(--dark);
+    .shot-close {
       color: #fff;
-      box-shadow: 0 20px 40px rgba(11,16,32,0.22);
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(8px);
-      transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.08);
     }
-    .to-top.visible {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
+    .legal-frame {
+      width: 100%;
+      min-height: min(70vh, 720px);
+      border: 0;
+      background: #fff;
     }
     .updates-body {
-      padding: 1.35rem;
       display: grid;
-      gap: 1rem;
-      background: linear-gradient(180deg, #ffffff, #f8fafc);
+      gap: 1.4rem;
+      padding: 1.3rem 1.2rem 1.4rem;
     }
     .updates-copy h4 {
       margin: 0;
-      font-size: 1.45rem;
-      line-height: 1.08;
+      font-family: "Sora", system-ui, sans-serif;
+      font-size: 1.7rem;
+      line-height: 0.98;
       letter-spacing: -0.04em;
     }
     .updates-copy p {
-      margin: 0.65rem 0 0;
-      color: var(--muted);
+      margin: 0.7rem 0 0;
+      color: #4a5972;
     }
     .updates-form {
       display: grid;
-      gap: 0.9rem;
+      gap: 1rem;
     }
     .updates-row {
       display: grid;
-      gap: 0.4rem;
+      gap: 0.45rem;
     }
     .updates-row label {
-      font-size: 0.86rem;
-      color: var(--muted-strong);
+      font-size: 0.9rem;
+      color: #4a5972;
     }
     .updates-row input {
+      width: 100%;
       min-height: 52px;
-      padding: 0.85rem 0.95rem;
-      border-radius: 14px;
-      border: 1px solid #d7e0ec;
+      padding: 0.85rem 1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(7,17,31,0.12);
       background: #fff;
-      color: var(--ink);
-    }
-    .updates-row input:focus {
-      outline: 2px solid rgba(37,99,235,0.18);
-      border-color: rgba(37,99,235,0.34);
+      color: #07111f;
     }
     .updates-actions {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       gap: 1rem;
       flex-wrap: wrap;
+    }
+    .updates-actions .button {
+      border: 0;
+      cursor: pointer;
+    }
+    .updates-actions .button:disabled {
+      opacity: 0.6;
+      cursor: wait;
     }
     .updates-status {
       min-height: 1.4rem;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
+      color: #44536b;
+    }
+    .updates-status.is-error { color: #c2344d; }
+    .updates-status.is-success { color: #17765f; }
+
+    .shot-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.82fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+    .shot-visual,
+    .shot-panel {
+      min-height: 100%;
+      background: #08111f;
+    }
+    .shot-visual {
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+    }
+    .shot-visual img {
+      max-height: min(72vh, 780px);
+      width: auto;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-md);
+    }
+    .shot-panel {
+      padding: 1rem;
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
+    .shot-tabs {
+      display: inline-flex;
+      gap: 0.5rem;
+      padding: 0.3rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .shot-tab {
+      min-height: 40px;
+      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      border: 0;
+      background: transparent;
+      color: rgba(226, 235, 255, 0.72);
+      cursor: pointer;
+    }
+    .shot-tab.active {
+      background: rgba(255,255,255,0.92);
+      color: #07111f;
+      font-weight: 700;
+    }
+    .shot-copy h4 {
+      margin: 0;
+      font-family: "Sora", system-ui, sans-serif;
+      font-size: 1.7rem;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+    .shot-copy p {
+      margin: 0.7rem 0 0;
       color: var(--muted);
     }
-    .updates-status.is-success { color: #047857; }
-    .updates-status.is-error { color: #b91c1c; }
-    .cookie-notice {
-      position: fixed;
-      left: 1rem;
-      right: 1rem;
-      bottom: 1rem;
-      z-index: 80;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 0.8rem;
-      align-items: center;
-      padding: 0.85rem 0.95rem;
-      border-radius: 16px;
-      border: 1px solid rgba(15,23,42,0.14);
-      background: rgba(255,255,255,0.96);
-      box-shadow: 0 16px 36px rgba(11,16,32,0.18);
-      transform: translateY(0);
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
-    }
-    .cookie-notice.is-hidden {
-      transform: translateY(12px);
+    .shot-plain,
+    .shot-explain { display: none; }
+    .shot-plain.active,
+    .shot-explain.active { display: block; }
+
+    [data-reveal] {
       opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
+      transform: translateY(26px);
+      transition: opacity 600ms ease, transform 600ms ease;
     }
-    .cookie-text {
-      margin: 0;
-      color: var(--muted-strong);
-      font-size: 0.87rem;
-      line-height: 1.45;
-      flex: 1 1 520px;
-    }
-    .cookie-ack {
-      appearance: none;
-      -webkit-appearance: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex: 0 0 auto;
-      width: max-content;
-      min-height: 44px;
-      padding: 0.55rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid var(--line-strong);
-      background: rgba(255,255,255,0.92);
-      color: var(--ink);
-      cursor: pointer;
-      white-space: nowrap;
-      position: relative;
-      z-index: 1;
-      box-shadow: 0 4px 14px rgba(15,23,42,0.06);
-    }
-    .cookie-ack:hover,
-    .cookie-ack:focus-visible {
-      border-color: rgba(37,99,235,0.22);
-      color: var(--ink);
-      outline: none;
-    }
-    .faq-list {
-      display: grid;
-      gap: 0.95rem;
-    }
-    .faq-item {
-      border-radius: 22px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.84);
-      box-shadow: var(--shadow-md);
-      overflow: hidden;
-    }
-    .faq-item summary {
-      list-style: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1.15rem 1.2rem;
-      font-size: 1.06rem;
-      font-weight: 700;
-      line-height: 1.2;
-    }
-    .faq-item summary::-webkit-details-marker { display: none; }
-    .faq-item summary::after {
-      content: "+";
-      flex: 0 0 auto;
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--line-strong);
-      color: var(--blue);
-      font-size: 1.35rem;
-      line-height: 1;
-      font-weight: 500;
-    }
-    .faq-item[open] summary::after { content: "−"; }
-    .faq-answer {
-      padding: 0 1.2rem 1.2rem;
-      color: var(--muted-strong);
-    }
-    .faq-answer p {
-      margin: 0;
-      line-height: 1.62;
-    }
-    .faq-answer p + p {
-      margin-top: 0.8rem;
-    }
-    .faq-inline-link {
-      color: inherit;
-      text-decoration: underline;
-      text-underline-offset: 0.16em;
-      cursor: pointer;
-    }
-    .faq-inline-link:hover,
-    .faq-inline-link:focus-visible {
-      color: inherit;
-      outline: none;
-    }
-    .faq-answer ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 0.7rem;
-    }
-    .faq-answer li {
-      display: grid;
-      grid-template-columns: 10px 1fr;
-      gap: 0.7rem;
-      line-height: 1.6;
-    }
-    .faq-answer li::before {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: var(--blue);
-      margin-top: 0.5rem;
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    @media (max-width: 1180px) {
+    @media (max-width: 1140px) {
       .hero-grid,
-      .section-head,
-      .pricing-grid,
+      .proof-grid,
+      .stack-layout,
       .ai-grid,
-      .footer-grid,
-      .problem-grid,
-      .shot-body { grid-template-columns: 1fr; }
-      .hero-side { min-height: auto; }
-      .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .detection-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .footer-nav { justify-content: flex-start; }
-    }
-    @media (max-width: 760px) {
-      :root { --nav-h: 68px; }
-      .site-nav .container { min-height: var(--nav-h); }
-      .nav-links { display: none; }
-      .nav-side { margin-left: auto; }
-      .nav-cta { display: none; }
-      .hero-copy h1 { max-width: 9ch; }
-      .workflow-grid,
+      .pricing-grid,
       .gallery-grid,
-      .split-example,
-      .detection-grid { grid-template-columns: 1fr; }
-      .proof-row { grid-template-columns: 1fr; gap: 0.45rem; }
-      .stack-row { grid-template-columns: 1fr; gap: 0.45rem; }
-      .hero-actions { display: grid; grid-template-columns: 1fr; }
-      .shot-body { min-height: auto; }
-      .shot-visual img { max-height: 44vh; }
-      .to-top { right: 0.8rem; bottom: 0.8rem; }
-      .updates-actions { align-items: stretch; }
-      .cookie-notice { align-items: stretch; }
+      .section-head,
+      .shot-body {
+        grid-template-columns: 1fr;
+      }
+      .workflow-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .gallery-right { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero-showcase { min-height: 640px; }
+      .device-stage { transform: none; }
+      .hero-strip {
+        position: static;
+        margin-top: 1rem;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav-links { display: none; }
+      .hero h1 {
+        max-width: 13ch;
+      }
+      .demo-text { font-size: 0.85rem; }
+      .hero-rail,
+      .workflow-grid,
+      .gallery-right {
+        grid-template-columns: 1fr;
+      }
+      .floating-card.settings {
+        right: 0;
+        width: min(38%, 214px);
+      }
+      .stack-row {
+        grid-template-columns: 1fr;
+      }
+      .cookie-notice,
+      .footer-grid,
+      .updates-actions {
+        align-items: stretch;
+      }
+      .cookie-notice,
+      .footer-grid {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container { width: min(var(--max), calc(100% - 1.1rem)); }
+      .site-nav .container { min-height: 76px; }
+      .nav-side { gap: 0.5rem; }
+      .nav-cta { display: none; }
+      .button,
+      .button-secondary,
+      .button-static,
+      .cookie-ack {
+        width: 100%;
+      }
+      .hero-actions { display: grid; }
+      .hero-showcase { min-height: 520px; }
+      .device-stage { padding: 0.7rem; border-radius: 26px; }
+      .device-demo { padding: 0.8rem; }
+      .demo-pane { padding: 0.8rem 0.85rem 0.9rem; }
+      .demo-text { font-size: 0.78rem; line-height: 1.7; }
+      .demo-flow { gap: 0.5rem; }
+      .demo-flow-copy { font-size: 0.66rem; }
+      .demo-hotkey-label {
+        width: 100%;
+        margin: 0.25rem 0 0;
+        text-align: center;
+      }
+      .floating-card.settings {
+        display: none;
+      }
+      .rail-card,
+      .manifesto-card,
+      .before-after,
+      .step-card,
+      .feature-stack,
+      .insight-card,
+      .ai-card,
+      .pricing-card,
+      .legal-card,
+      .faq-item {
+        border-radius: 24px;
+      }
+      .gallery-left,
+      .gallery-right {
+        gap: 0.9rem;
+      }
+      .screen-large .screen-thumb,
+      .screen-large .screen-thumb img,
+      .screen-small .screen-thumb,
+      .screen-small .screen-thumb img {
+        min-height: 220px;
+      }
+      .price { font-size: 3.4rem; }
+      .to-top { bottom: 8.9rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+      [data-reveal] {
+        opacity: 1;
+        transform: none;
+      }
     }
   </style>
 </head>
@@ -1382,7 +1873,7 @@
   <header class="site-nav">
     <div class="container">
       <a class="brand" href="#top" aria-label="KI-Anonymizer home">
-        <img src="app-icon-master.png" alt="KI-Anonymizer app icon" width="80" height="80" loading="eager" decoding="async">
+        <img src="app-icon-master.png" alt="KI-Anonymizer app icon" width="88" height="88" loading="eager" decoding="async">
         <span>KI-Anonymizer</span>
       </a>
       <nav class="nav-links" aria-label="Sections">
@@ -1394,7 +1885,7 @@
       </nav>
       <div class="nav-side">
         <a class="nav-cta" href="#pricing">Get it for macOS</a>
-        <div class="lang-switch" aria-label="Language switcher">
+        <div class="lang-switch" aria-label="Language switch">
           <a href="/">DE</a>
           <span class="active" aria-current="page">EN</span>
         </div>
@@ -1405,149 +1896,175 @@
   <main id="top">
     <section class="hero section">
       <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">Local macOS app for sensitive text</span>
-          <h1>Copy.<span>Anonymize.</span>Paste.</h1>
-          <p class="hero-lead">The real value is not the editor. It is the shortcut. KI-Anonymizer cleans up the text already sitting in your clipboard before it is pasted into AI chatbots, email, documents, or other tools.</p>
-          <p class="hero-sublead">AI chat workflows are exactly where sensitive information is still copied too quickly and checked too late. That is where the app fits: on-device, fast, no cloud, no account, no extra process. It protects the same moment in which copy and paste can otherwise turn into a privacy problem.</p>
-          <div class="hero-tags">
-            <span class="tag">On your Mac</span>
-            <span class="tag">Global shortcut</span>
-            <span class="tag">Signed for macOS</span>
-            <span class="tag">No subscription</span>
+        <div class="hero-copy" data-reveal>
+          <span class="eyebrow">Local Mac app for sensitive text</span>
+          <h1 class="display">Before data leaves your Mac,<span class="hero-break hero-emphasis"> it loses its identity.</span></h1>
+          <p class="hero-lead">KI-Anonymizer steps in at the moment sensitive text is about to leave your Mac through copy and paste into AI tools, email, documents, or other systems.</p>
+          <p class="hero-sublead">Its strength is the shortcut: a fast, local step in your clipboard workflow. It runs on your Mac, needs no account, and adds almost no friction where speed would otherwise overtake caution.</p>
+          <div class="hero-points">
+            <span class="pill">Local on your Mac</span>
+            <span class="pill">Global hotkey</span>
+            <span class="pill">Signed for macOS</span>
+            <span class="pill">No subscription</span>
           </div>
           <div class="hero-actions">
             <a class="button" href="#pricing">Buy direct for EUR 9.99</a>
             <a class="button-secondary" href="#screens">See the app</a>
           </div>
-          <div class="hero-proof" aria-label="Core use cases of KI-Anonymizer">
-            <div class="proof-row">
-              <div class="proof-label">Before the prompt</div>
-              <div class="proof-copy">If a text is about to be pasted into ChatGPT, Claude, Gemini, or another AI chatbot, the app anonymizes exactly what is currently sitting in your clipboard.</div>
-            </div>
-            <div class="proof-row">
-              <div class="proof-label">Before sending</div>
-              <div class="proof-copy">The same extra step makes sense before email, review cycles, documentation, internal sharing, or sending text to third parties. Not only for AI. But especially there.</div>
-            </div>
-            <div class="proof-row">
-              <div class="proof-label">In the same rhythm</div>
-              <div class="proof-copy">The app fits into the flow you already use: shortcut copy, shortcut anonymize, shortcut paste. That is exactly where its real value shows up.</div>
-            </div>
+          <div class="hero-note">For Mac users who want to anonymize sensitive text locally before AI use, review, sharing, or email.</div>
+          <div class="hero-rail">
+            <article class="rail-card">
+              <strong>Before the prompt</strong>
+              <p>When text is about to go into ChatGPT, Claude, Gemini, or another AI tool, the app anonymizes whatever is in your clipboard at that moment.</p>
+            </article>
+            <article class="rail-card">
+              <strong>Before sending</strong>
+              <p>The same step also helps before email, review, documentation, sharing with third parties, or internal approvals.</p>
+            </article>
+            <article class="rail-card">
+              <strong>Same flow</strong>
+              <p>Copy, anonymize, paste. The app fits the workflow instead of slowing it down.</p>
+            </article>
           </div>
-          <p class="hero-note">For Mac users who want to clean up sensitive text locally before AI use, review, sharing, or email.</p>
         </div>
-        <aside class="hero-side" aria-label="Product preview">
-          <div class="brand-stage">
-            <div class="brand-badge">
-              <img src="app-icon-master.png" alt="KI-Anonymizer app icon" width="1024" height="1024" loading="eager" decoding="async">
-              <strong>KI-Anonymizer for macOS</strong>
-              <div class="brand-keyline">
-                <span class="keycap">⌘C</span>
-                <span class="keycap">⌘⇧A</span>
-                <span class="keycap">⌘V</span>
+
+        <div class="hero-showcase" data-reveal>
+          <div class="halo"></div>
+          <div class="device-stage">
+            <div class="device-head">
+              <div class="window-dots" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="device-caption">Live demo of the clipboard moment</div>
+            </div>
+            <div class="device-visual">
+              <div class="device-demo" aria-label="Before-and-after demo of local anonymization">
+                <article class="demo-pane before">
+                  <div class="demo-label">Before the shortcut</div>
+                  <p class="demo-text">Dear <span class="hl-red">Ms. Maria Gonzales</span>,<br>born on <span class="hl-red">May 12, 1987</span>, living at <span class="hl-red">42a Berliner Street</span>, <span class="hl-red">61169 Friedberg</span>,<br>social security no. <span class="hl-red">53 270587 G 412</span> ...</p>
+                </article>
+                <div class="demo-flow" aria-hidden="true">
+                  <span class="demo-flow-copy">anonymized locally on your Mac</span>
+                  <span class="demo-flow-arrow">↓</span>
+                </div>
+                <article class="demo-pane after">
+                  <div class="demo-label">After the shortcut</div>
+                  <p class="demo-text">Dear <span class="hl-green">[Person 1]</span>,<br>born on <span class="hl-green">[Date 1]</span>, living at <span class="hl-green">[Address 1]</span>, <span class="hl-green">[Address 2]</span>,<br>social security no. <span class="hl-green">[Identifier 1]</span> ...</p>
+                </article>
+              </div>
+              <div class="demo-hotkey" aria-label="Global hotkey">
+                <span class="step-key">⌘</span>
+                <span class="step-key">⇧</span>
+                <span class="step-key">A</span>
+                <span class="demo-hotkey-label">global hotkey</span>
               </div>
             </div>
           </div>
-        </aside>
+
+          <article class="floating-card settings" aria-label="Hotkey and detection">
+            <img src="e_einstellungen_oben.png" alt="Upper settings area of KI-Anonymizer" width="1244" height="1496" loading="eager" decoding="async">
+            <div class="card-label">
+              <strong>Hotkey + detection</strong>
+              <span>Configurable</span>
+            </div>
+          </article>
+
+          <div class="hero-strip">
+            <span class="mini-chip">⌘C copy</span>
+            <span class="mini-chip">⌘⇧A anonymize</span>
+            <span class="mini-chip">⌘V paste</span>
+            <span class="mini-chip">Optional: ⌘⇧D restore</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section dark-band">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">The real problem</span>
-            <h2>Sensitive data is often already sitting in the clipboard.</h2>
+    <section class="section band">
+      <div class="container proof-grid">
+        <div class="manifesto" data-reveal>
+          <article class="manifesto-card">
+            <strong>Built for the moment mistakes happen.</strong>
+            <p>Sensitive data rarely leaks in an archive. It leaks in motion, when names, addresses, phone numbers, or identifiers are pasted into the next system too quickly.</p>
+          </article>
+          <article class="manifesto-card">
+            <strong>The point is simple: keep moving without giving up control.</strong>
+            <p>The app stays visible, fast, and local. It is not trying to become a dashboard. It is there for the moment when copy and paste would otherwise become careless.</p>
+          </article>
+        </div>
+
+        <div class="before-after" data-reveal>
+          <div class="code-grid">
+            <article class="code-card">
+              <strong>Before</strong>
+              <code>Dear <span class="mark">Ms. Maria Gonzales</span>, born on <span class="mark">May 12, 1987</span>, living at <span class="mark">42a Berliner Street</span>, <span class="mark">61169 Friedberg</span>, <span class="mark">social security no. 53 270587 G 412</span> ...</code>
+            </article>
+            <article class="code-card">
+              <strong>After</strong>
+              <code>Dear <span class="mark-blue">[Person 1]</span>, born on <span class="mark-blue">[Date 1]</span>, living at <span class="mark-blue">[Address 1]</span>, <span class="mark-blue">[Address 2]</span>, <span class="mark-blue">[Identifier 1]</span> ...</code>
+            </article>
           </div>
-          <p>Not later in the archive. Not only at the moment of sending. Right in the instant text gets copied into chatbots, email, tickets, or review threads. Names, addresses, phone numbers, and identifiers often move faster than anyone checks them.</p>
-        </div>
-        <div class="problem-grid">
-          <article class="card">
-            <div class="card-body">
-              <h3>Before AI chatbots</h3>
-              <p>Prompts are assembled fast, but sensitive details are often left untouched. KI-Anonymizer sits right before that step and reduces the risk of carrying personal data into the prompt.</p>
-              <div class="signal-list" style="margin-top:1rem;">
-                <span class="keycap">⌘C</span>
-                <span class="keycap">⌘⇧A</span>
-                <span class="keycap">⌘V</span>
-              </div>
-            </div>
-          </article>
-          <article class="card">
-            <div class="card-body">
-              <h3>Not only for chatbots</h3>
-              <p>The same workflow also makes sense for email, approvals, documentation, internal reviews, or sharing text externally. The product is positioned around AI, but it is useful in any copy-and-paste moment.</p>
-              <div class="signal-list" style="margin-top:1rem;">
-                <span class="tag">Email</span>
-                <span class="tag">Dokumente</span>
-                <span class="tag">Tickets</span>
-                <span class="tag">Abstimmung</span>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="split-example">
-          <div class="code-panel">Dear <span class="highlight">Ms. Emily Carter</span>, born on <span class="highlight">March 14, 1987</span>, living at <span class="highlight">2450 Market Street</span>, <span class="highlight">Springfield, IL 62704</span>, <span class="highlight">Reference number 48-7732/26</span> ...</div>
-          <div class="code-panel">Dear <span class="highlight">[Person 1]</span>, born on <span class="highlight">[Date 1]</span>, living at <span class="highlight">[Address 1]</span>, <span class="highlight">[Address 2]</span>, <span class="highlight">[Identifier 1]</span> ...</div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="workflow">
+    <section class="section light-section" id="workflow">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head" data-reveal>
           <div>
             <span class="eyebrow">Workflow</span>
-            <h2>Built for the fastest path, not for extra clicks.</h2>
+            <h2>Four steps. No workflow overhaul.</h2>
           </div>
-          <p>The editor is the visual control layer. The actual product core is the global shortcut. It turns an ordinary copy-and-paste routine into a safer intermediate step without forcing users into a new process.</p>
+          <p>The editor remains the visible control layer. The core is the global shortcut: one local handoff that protects your existing copy-and-paste routine instead of slowing it down.</p>
         </div>
+
         <div class="workflow-grid">
-          <article class="workflow-card">
-            <div class="workflow-body">
-              <div class="step-no">01</div>
-              <h3>Copy the text</h3>
-              <p>You copy a sensitive passage from email, a document, the browser, a note, or a draft prompt for an AI chat.</p>
+          <article class="step-card" data-reveal>
+            <div class="step-no">01</div>
+            <h3>Copy text</h3>
+            <p class="step-copy-brief">Highlight the sensitive passage and copy it as usual.</p>
+            <p>From email, a document, a browser tab, a note, or a draft for an AI chat.</p>
+            <div class="step-detail">
+              <span class="step-key">⌘</span>
+              <span class="step-key">C</span>
+              <span class="tag">Clipboard</span>
             </div>
           </article>
-          <article class="workflow-card">
-            <div class="workflow-body">
-              <div class="step-no">02</div>
-              <h3>Trigger the shortcut</h3>
-              <p>With one global shortcut, the app anonymizes the clipboard locally on your Mac. No cloud, no account, no detour.</p>
-              <div class="workflow-tags" style="margin-top:1rem;">
-                <span class="keycap">⌘</span>
-                <span class="keycap">⇧</span>
-                <span class="keycap">A</span>
-              </div>
+
+          <article class="step-card" data-reveal>
+            <div class="step-no">02</div>
+            <h3>Trigger shortcut</h3>
+            <p class="step-copy-brief">One shortcut anonymizes the clipboard locally on your Mac.</p>
+            <p>No upload, no account, no extra process.</p>
+            <div class="step-detail">
+              <span class="step-key">⌘</span>
+              <span class="step-key">⇧</span>
+              <span class="step-key">A</span>
             </div>
           </article>
-          <article class="workflow-card">
-            <div class="workflow-body">
-              <div class="step-no">03</div>
-              <h3>Paste and verify</h3>
-              <p>You paste the anonymized text where it is needed. If necessary, you verify the result in the editor before using it.</p>
+
+          <article class="step-card" data-reveal>
+            <div class="step-no">03</div>
+            <h3>Paste and review</h3>
+            <p class="step-copy-brief">Paste the anonymized version and review it if needed.</p>
+            <p>For longer passages or sensitive cases, the editor remains the calm review view.</p>
+            <div class="step-detail">
+              <span class="step-key">⌘</span>
+              <span class="step-key">V</span>
+              <span class="tag">Visual review</span>
             </div>
           </article>
-          <article class="workflow-card note-card">
-            <div class="workflow-body">
-              <div class="step-no">04</div>
-              <div class="workflow-headline">
-                <h3>Restore Mapping</h3>
-                <span class="inline-note-label" tabindex="0">Optional</span>
-                <div class="inline-note-panel">Optional restore mapping also covers the way back. A typical example: copy text from a document, anonymize it with a shortcut, paste it into an AI tool, copy the optimized result back, and restore the original context with a second shortcut.</div>
-              </div>
-              <ul class="feature-list" style="margin-top:0.95rem; gap:0.58rem;">
-                <li>Optional when needed</li>
-                <li>Limited to the most recent session</li>
-                <li>Kept in memory only</li>
-                <li>Automatically cleared after 5 minutes</li>
-              </ul>
-              <div class="workflow-tags" style="margin-top:1rem;">
-                <span class="keycap">⌘</span>
-                <span class="keycap">⇧</span>
-                <span class="keycap">D</span>
-              </div>
+
+          <article class="step-card note-card" data-reveal>
+            <div class="step-no">04</div>
+            <h3>Optional: restore mapping</h3>
+            <p class="step-copy-brief">Send anonymized text to AI, bring the answer back, restore the original references.</p>
+            <p>Limited to the most recent session, kept in memory only, and cleared automatically after five minutes.</p>
+            <div class="detail-tags">
+              <span class="tag">Most recent session only</span>
+              <span class="tag">Memory only</span>
+              <span class="tag">Deleted after 5 minutes</span>
             </div>
           </article>
         </div>
@@ -1556,216 +2073,319 @@
 
     <section class="section" id="detection">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head" data-reveal>
           <div>
             <span class="eyebrow">Detection</span>
-            <h2>Strong on rules. Extended by language. Executed locally.</h2>
+            <h2>Rule-based at the core, language-aware where it helps, local throughout.</h2>
           </div>
-          <p>The app detects classic personal data in a structured, local way. Fixed patterns such as IBANs, dates, and email addresses are handled differently from names and places. That layered approach is exactly what makes the tool reliable.</p>
+          <p>The app handles classic personally identifiable information in structured local layers. Fixed patterns such as IBANs, dates, or email addresses are treated differently from names and places, which makes detection both faster and more reliable.</p>
         </div>
-        <div class="detection-grid">
-          <article class="detection-item"><div class="dot" style="background:#fde047"></div><h3>People</h3><p>Personal names, common name contexts, and consistent placeholder mapping across repeated mentions.</p></article>
-          <article class="detection-item"><div class="dot" style="background:#60a5fa"></div><h3>Addresses</h3><p>Street lines, house numbers, ZIP codes, and location references are grouped as address information.</p></article>
-          <article class="detection-item"><div class="dot" style="background:#34d399"></div><h3>Contact details</h3><p>Email addresses plus phone and fax numbers in common formats.</p></article>
-          <article class="detection-item"><div class="dot" style="background:#fb923c"></div><h3>Identifiers</h3><p>IBANs, case references, social insurance numbers, and similar formal identifiers.</p></article>
-          <article class="detection-item"><div class="dot" style="background:#c084fc"></div><h3>Dates</h3><p>Numeric and written date formats for local pre-anonymization.</p></article>
-          <article class="detection-item"><div class="dot" style="background:#2563eb"></div><h3>Custom rules</h3><p>Terms or fixed phrases can always be anonymized even when no standard pattern applies.</p></article>
-          <article class="detection-item"><div class="dot" style="background:#0ea5a4"></div><h3>Exclusions</h3><p>Specific terms can intentionally be kept out of anonymization when they should stay visible.</p></article>
-          <article class="detection-item"><div class="dot" style="background:#111827"></div><h3>Human review</h3><p>The app supports the workflow. Final responsibility still stays with the person reviewing the output.</p></article>
+
+        <div class="stack-layout">
+          <article class="feature-stack" data-reveal>
+            <div class="stack-row">
+              <div class="stack-label">People</div>
+              <div>
+                <h3>Personal names with stable placeholder mapping</h3>
+                <p>Names, common name contexts, and repeat occurrences are mapped to consistent placeholders so the result stays readable.</p>
+              </div>
+            </div>
+            <div class="stack-row">
+              <div class="stack-label">Addresses</div>
+              <div>
+                <h3>Street addresses as connected context</h3>
+                <p>Address parts are handled as one connected structure instead of scattered isolated matches.</p>
+              </div>
+            </div>
+            <div class="stack-row">
+              <div class="stack-label">Contact details</div>
+              <div>
+                <h3>Email, phone, and fax in common formats</h3>
+                <p>The app detects common contact patterns locally and quickly without external processing.</p>
+              </div>
+            </div>
+            <div class="stack-row">
+              <div class="stack-label">Identifiers</div>
+              <div>
+                <h3>IBANs, file references, social security numbers, and similar patterns</h3>
+                <p>Formal identifiers use their own detection logic, which makes them more robust than treating them like ordinary language.</p>
+              </div>
+            </div>
+          </article>
+
+          <div class="insight-grid">
+            <article class="insight-card" data-reveal>
+              <h3>Custom rules and exclusions</h3>
+              <p>Not every sensitive term fits a standard pattern. Fixed terms can be set to always be anonymized or explicitly excluded.</p>
+              <div class="dot-list">
+                <div class="dot-item">Terms can be set to always be anonymized.</div>
+                <div class="dot-item">Other terms can be explicitly excluded.</div>
+                <div class="dot-item">That lets the app adapt to real workflows instead of demo cases.</div>
+              </div>
+            </article>
+
+            <article class="insight-card" data-reveal>
+              <h3>Control stays with the human reviewer</h3>
+              <p>The app supports the workflow. Final judgment stays with the person reviewing the text.</p>
+              <div class="dot-list">
+                <div class="dot-item">Rule-based detection can be incomplete in individual cases.</div>
+                <div class="dot-item">Apple language detection and optional Apple Intelligence only add support.</div>
+                <div class="dot-item">A review is always required before sharing or publishing.</div>
+              </div>
+            </article>
+
+            <article class="settings-poster" data-reveal>
+              <img src="e_einstellungen_unten.png" alt="Lower settings area of KI-Anonymizer" width="1244" height="1496" loading="lazy" decoding="async">
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section dark-band" id="apple-intelligence">
-      <div class="container ai-grid">
-        <div>
-          <span class="eyebrow">Apple Intelligence</span>
-          <h2 style="margin:1rem 0 0; font-size:clamp(2rem,4vw,3.7rem); line-height:0.98; letter-spacing:-0.055em;">What Apple Intelligence adds when it is available locally.</h2>
-          <p style="margin:1rem 0 0; max-width:58ch; color:rgba(248,250,252,0.78);">KI-Anonymizer works fully without Apple Intelligence. When Apple&apos;s local system models are available on the device, the app can use them as a third detection layer: not for rigid patterns, but for additional person and place references that fixed rules or classic language detection may miss.</p>
+    <section class="section band" id="apple-intelligence">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <span class="eyebrow">Apple Intelligence</span>
+            <h2>An extra local detection layer, if available on your Mac.</h2>
+          </div>
+          <p>KI-Anonymizer works fully without Apple Intelligence. If Apple’s on-device models are available, the app uses them as an extra semantic layer for people and places that fixed rules or classic language detection may miss.</p>
         </div>
-        <article class="workflow-card">
-          <div class="workflow-body ai-stack">
+
+        <div class="ai-grid">
+          <article class="ai-card" data-reveal>
             <div class="stack-row">
               <div class="stack-label">Regex</div>
               <div>
-                <h3>Sees fixed patterns</h3>
-                <p>Ideal for email addresses, dates, phone numbers, IBANs, case references, and other clearly structured patterns.</p>
+                <h3>Handles fixed patterns</h3>
+                <p>Ideal for email, dates, phone numbers, IBANs, file references, or other clearly structured patterns.</p>
               </div>
             </div>
+          </article>
+
+          <article class="ai-card" data-reveal>
             <div class="stack-row">
               <div class="stack-label">NaturalLanguage</div>
               <div>
-                <h3>Sees classic names and places</h3>
-                <p>Locally detects typical person and place entities through Apple NaturalLanguage.</p>
+                <h3>Finds names and places</h3>
+                <p>Detects typical person and place references locally through Apple NaturalLanguage.</p>
               </div>
             </div>
+          </article>
+
+          <article class="ai-card" data-reveal>
             <div class="stack-row">
               <div class="stack-label">Apple Intelligence</div>
               <div>
-                <h3>Sees semantic extra hits</h3>
-                <p>Can add local person or place references that do not fit neatly into rigid patterns. It does not replace the other layers. It only fills likely gaps.</p>
+                <h3>Adds semantic context</h3>
+                <p>Can catch additional person or place references that do not fit neatly into fixed patterns. It complements the other layers instead of replacing them.</p>
               </div>
             </div>
-          </div>
-        </article>
+          </article>
+
+          <article class="ai-card" data-reveal>
+            <div class="stack-row">
+              <div class="stack-label">Boundary</div>
+              <div>
+                <h3>Assistance, not certainty</h3>
+                <p>The app runs locally and carefully, but final human review and legal assessment still matter.</p>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
     <section class="section" id="screens">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head" data-reveal>
           <div>
-            <span class="eyebrow">Inside the app</span>
-            <h2>The editor is the control view. The shortcut is the product.</h2>
+            <span class="eyebrow">App insights</span>
+            <h2>The real app, shown as it is.</h2>
           </div>
-          <p>The screenshots stay intentionally compact. They show the real app rather than a marketing mockup: editor, settings, and the legal notice. Each view can be enlarged and explained in more detail.</p>
+          <p>These are product screens, not marketing mockups: the editor, the settings, and the in-app notice. Click any view to enlarge it and see what it does.</p>
         </div>
+
         <div class="gallery-grid">
-          <article class="shot-card">
-            <button class="shot-trigger" data-shot="editor" aria-label="Open editor screenshot">
-              <div class="shot-thumb"><img src="e_editor.png" alt="Editor view of KI-Anonymizer" width="2048" height="1536" loading="lazy" decoding="async"></div>
-              <div class="shot-meta">
-                <h3>Editor with before-and-after review</h3>
-                <p>The visible control view for longer text passages.</p>
-                <span class="shot-link">Click for full view</span>
-              </div>
-            </button>
-          </article>
-          <article class="shot-card">
-            <button class="shot-trigger" data-shot="settingsTop" aria-label="Open upper settings screenshot">
-              <div class="shot-thumb"><img src="e_einstellungen_oben.png" alt="Upper settings area of KI-Anonymizer" width="1278" height="1534" loading="lazy" decoding="async"></div>
-              <div class="shot-meta">
-                <h3>Control shortcut and detection in one place</h3>
-                <p>Shortcut, categories, and local behavior in one focused settings view.</p>
-                <span class="shot-link">Click for full view</span>
-              </div>
-            </button>
-          </article>
-          <article class="shot-card">
-            <button class="shot-trigger" data-shot="settingsBottom" aria-label="Open lower settings screenshot">
-              <div class="shot-thumb"><img src="e_einstellungen_unten.png" alt="Lower settings area of KI-Anonymizer" width="1278" height="1534" loading="lazy" decoding="async"></div>
-              <div class="shot-meta">
-                <h3>Custom rules and exclusions</h3>
-                <p>So the app can adapt to real terms, processes, and edge cases.</p>
-                <span class="shot-link">Click for full view</span>
-              </div>
-            </button>
-          </article>
-          <article class="shot-card">
-            <button class="shot-trigger" data-shot="notice" aria-label="Open legal notice screenshot">
-              <div class="shot-thumb"><img src="e_wichtiger_hinweis.png" alt="Legal notice window of KI-Anonymizer" width="1918" height="1424" loading="lazy" decoding="async"></div>
-              <div class="shot-meta">
-                <h3>Transparent legal notice</h3>
-                <p>The app helps. Human review still remains necessary.</p>
-                <span class="shot-link">Click for full view</span>
-              </div>
-            </button>
-          </article>
+          <div class="gallery-left" data-reveal>
+            <article class="screen-card screen-large">
+              <button class="shot-trigger" data-shot="editor" aria-label="Open editor screenshot">
+                <div class="screen-thumb">
+                  <img src="e_editor.png" alt="Editor view of KI-Anonymizer" width="1910" height="1456" loading="lazy" decoding="async">
+                </div>
+                <div class="screen-meta">
+                  <h3>Editor with before-and-after control</h3>
+                  <p>The visual safety layer for longer texts and deliberate review before sharing.</p>
+                  <span class="screen-link">Open large view</span>
+                </div>
+              </button>
+            </article>
+          </div>
+
+          <div class="gallery-right">
+            <article class="screen-card screen-small" data-reveal>
+              <button class="shot-trigger" data-shot="settingsTop" aria-label="Open upper settings screenshot">
+                <div class="screen-thumb">
+                  <img src="e_einstellungen_oben.png" alt="Upper settings area of KI-Anonymizer" width="1244" height="1496" loading="lazy" decoding="async">
+                </div>
+                <div class="screen-meta">
+                  <h3>Central control for shortcut and detection</h3>
+                  <p>Configure shortcuts, categories, and local processing in one place.</p>
+                  <span class="screen-link">Open large view</span>
+                </div>
+              </button>
+            </article>
+
+            <article class="screen-card screen-small" data-reveal>
+              <button class="shot-trigger" data-shot="settingsBottom" aria-label="Open lower settings screenshot">
+                <div class="screen-thumb">
+                  <img src="e_einstellungen_unten.png" alt="Lower settings area of KI-Anonymizer" width="1244" height="1496" loading="lazy" decoding="async">
+                </div>
+                <div class="screen-meta">
+                  <h3>Custom rules and exclusions</h3>
+                  <p>Adapt the app to your terminology and working environment.</p>
+                  <span class="screen-link">Open large view</span>
+                </div>
+              </button>
+            </article>
+
+            <article class="screen-card screen-small" data-reveal style="grid-column: 1 / -1;">
+              <button class="shot-trigger" data-shot="notice" aria-label="Open notice screenshot">
+                <div class="screen-thumb">
+                  <img src="e_wichtiger_hinweis.png" alt="Important notice window of KI-Anonymizer" width="1114" height="894" loading="lazy" decoding="async">
+                </div>
+                <div class="screen-meta">
+                  <h3>Transparent in-app notice</h3>
+                  <p>The app helps with cleanup. Final review stays with you.</p>
+                  <span class="screen-link">Open large view</span>
+                </div>
+              </button>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="pricing">
-      <div class="container pricing-grid">
-        <article class="pricing-card primary">
-          <div class="pricing-body">
-            <span class="eyebrow" style="color:rgba(248,250,252,0.72);">For macOS 14 and later</span>
-            <h3 style="margin-top:0.9rem; font-size:2.05rem;">Now available on the Mac App Store.</h3>
-            <div class="price-row">
-              <div class="price">9,99 €</div>
-              <button class="price-note-toggle" type="button" aria-label="Show pricing note" data-note="The displayed price is EUR 9.99. Depending on tax country, payment method, and currency conversion, the final charge may differ slightly for technical reasons.">?</button>
-            </div>
-            <p>One-time purchase. No subscription. Local text anonymization for sensitive content before AI use, email, review, or sharing.</p>
-            <div class="pricing-kicker">Copy &amp; Paste becomes Copy &amp; Anonymize &amp; Paste</div>
-            <ul class="feature-list">
-              <li>Menu bar app with a global shortcut</li>
-              <li>Local detection with no cloud processing</li>
-              <li>Editor for visible review</li>
-              <li>Custom rules, exclusions, and local stats</li>
-              <li>Signed for macOS</li>
-            </ul>
-            <div class="hero-actions" style="margin-top:1.5rem;">
-              <a class="button-static store-badge" href="https://apps.apple.com/de/app/ki-anonymisierer/id6760411603?mt=12" aria-label="View on the App Store" target="_blank" rel="noopener noreferrer">
-                <img src="e_apple.svg" alt="View on the App Store" loading="lazy" decoding="async">
-              </a>
-            </div>
-            <div class="direct-option">
-              <p>Alternatively, the app is still available as a direct purchase.</p>
-              <a class="direct-link lemonsqueezy-button" href="https://ki-fachbuecher.lemonsqueezy.com/checkout/buy/76a8cd83-9858-4888-b082-b2a51296de9f?embed=1">Direct purchase outside the App Store</a>
-            </div>
+    <section class="section light-section" id="pricing">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <span class="eyebrow">Pricing</span>
+            <h2>Pay once. No subscription. Ready right away.</h2>
           </div>
-        </article>
-        <aside class="legal-card">
-          <div class="legal-body">
-            <span class="eyebrow">Important note</span>
-            <div class="legal-callout">The app works locally and carefully. It still does not replace human review.</div>
-            <ul class="feature-list" style="margin-top:1.1rem;">
-              <li>Rule-based detection can still be incomplete in individual cases</li>
-              <li>Apple NaturalLanguage and optional Apple Intelligence only add support</li>
-              <li>The result should always be reviewed before sharing or publishing</li>
-              <li>The app does not replace legal or privacy assessment</li>
+          <p>For macOS 14.0 or newer. One payment instead of recurring fees, and local anonymization instead of a cloud detour.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="pricing-card" data-reveal>
+            <div class="pricing-copy">
+              <div class="pricing-overline">macOS 14.0+ · menu bar app · global hotkey</div>
+              <h3>Available on the Mac App Store.</h3>
+              <div class="price-row">
+                <div class="price">9,99 €</div>
+              </div>
+              <p>One local handoff exactly where sensitive text is most likely to move too fast.</p>
+              <div class="pricing-kicker">Copy, anonymize, paste. That is all the core workflow needs.</div>
+              <ul class="feature-list">
+                <li><span>Local detection without cloud processing</span></li>
+                <li><span>Global hotkey plus an editor for visible review</span></li>
+                <li><span>Custom rules, exclusions, and statistics</span></li>
+                <li><span>Optional Apple Intelligence support</span></li>
+                <li><span>Signed for macOS and ready to install</span></li>
+              </ul>
+              <div class="pricing-actions">
+                <a class="store-badge button-static" href="https://apps.apple.com/de/app/ki-anonymisierer/id6760411603?mt=12" aria-label="View on the App Store" target="_blank" rel="noopener noreferrer">
+                  <img src="e_apple.svg" alt="View on the App Store" loading="lazy" decoding="async">
+                </a>
+              </div>
+              <div class="direct-option">
+                <p>You can also buy it directly outside the App Store.</p>
+                <div class="direct-link-row">
+                  <a class="direct-copy lemonsqueezy-button" href="https://ki-fachbuecher.lemonsqueezy.com/checkout/buy/76a8cd83-9858-4888-b082-b2a51296de9f?embed=1">Direct purchase via Lemon Squeezy</a>
+                  <button class="price-note-toggle direct-note" type="button" aria-label="Show direct purchase note" data-note="Direct purchase runs securely through Lemon Squeezy outside the App Store. Depending on tax country, payment method, and currency conversion, the final charge may vary slightly.">?</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <aside class="legal-card" data-reveal>
+            <span class="eyebrow" style="color:#53637d;">Important notice</span>
+            <h3 style="margin-top: 0.95rem;">The app works locally and carefully. It still does not replace final human review.</h3>
+            <div class="legal-callout">Trust comes from clear limits, not oversized promises.</div>
+            <ul class="feature-list" style="margin-top: 1.1rem;">
+              <li><span>Rule-based detection can be incomplete in individual cases</span></li>
+              <li><span>Apple language detection and optional Apple Intelligence only add support</span></li>
+              <li><span>A review is always required before sharing or publishing</span></li>
+              <li><span>The app does not replace legal or privacy assessment</span></li>
             </ul>
-          </div>
-        </aside>
+          </aside>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="faq">
+    <section class="section light-section" id="faq">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head" data-reveal>
           <div>
             <span class="eyebrow">Questions &amp; answers</span>
-            <h2>What to know before you buy.</h2>
+            <h2>The questions that matter before you buy.</h2>
           </div>
-          <p>These answers cover the questions that almost always come up around a local Mac app for anonymization: AI chatbots, local processing, and the additional value of Apple Intelligence.</p>
+          <p>These are the questions that usually come up before buying a local Mac app for anonymization: AI tools, local processing, restore mapping, and the role of Apple Intelligence.</p>
         </div>
+
         <div class="faq-list">
-          <details class="faq-item" open>
-<summary>Is the app only for AI chatbots?</summary>
+          <details class="faq-item" open data-reveal>
+            <summary>Is the app only for AI chatbots?</summary>
             <div class="faq-answer">
-              <p>No. The most common trigger is copy and paste into AI chatbots. The same local step also makes sense before email, approvals, documentation, internal reviews, or sharing text with third parties.</p>
+              <p>No. AI tools are the obvious use case, but the same local step is just as useful before email, internal review, approvals, documentation, or sharing with third parties.</p>
             </div>
           </details>
-          <details class="faq-item">
-<summary>Does my text leave the Mac?</summary>
+
+          <details class="faq-item" data-reveal>
+            <summary>Does my text leave the Mac?</summary>
             <div class="faq-answer">
-              <p>The anonymization step itself runs locally on the device. The app is designed to clean up sensitive content before it gets pasted into other systems in the first place.</p>
+              <p>The anonymization step runs locally on your device. The app is meant to clean up text before it enters any external system.</p>
             </div>
           </details>
-          <details class="faq-item">
-<summary>What does Apple Intelligence add?</summary>
+
+          <details class="faq-item" data-reveal>
+            <summary>What does Apple Intelligence add?</summary>
             <div class="faq-answer">
-              <p>If Apple Intelligence is available locally, it adds semantic extra hits. Hard patterns like IBANs or email addresses stay rule-based; Apple Intelligence only helps where people or places are described in a less rigid way.</p>
+              <p>If Apple Intelligence is available locally, it can catch additional person or place references. Structured data such as IBANs or email addresses remain rule-based.</p>
             </div>
           </details>
-          <details class="faq-item">
-<summary>How does restore mapping work in practice?</summary>
+
+          <details class="faq-item" data-reveal>
+            <summary>How does restore mapping work in practice?</summary>
             <div class="faq-answer">
               <p>By default, KI-Anonymizer follows a fast workflow: copy, anonymize, paste. Optional restore mapping takes that workflow one step further.</p>
               <p>You can send anonymized text to an AI tool, copy the revised result back, and then restore the original references with a second shortcut. The mapping is optional, limited to the most recent session, stored in memory only, and automatically cleared after 5 minutes.</p>
             </div>
           </details>
-          <details class="faq-item">
-<summary>What’s next?</summary>
+
+          <details class="faq-item" data-reveal>
+            <summary>What’s next?</summary>
             <div class="faq-answer">
               <ul>
-                <li><span>Rule packs for common use cases such as administration, consulting, education, or HR.</span></li>
-                <li><span>A transparent review mode with a clearer hit list and a sharper control view.</span></li>
-                <li><span>Templates and team rules for saving, exporting, and reusing rule sets.</span></li>
-                <li><span>A local release report with timestamp and a summary of replacements.</span></li>
+                <li><span>Rule packs for typical use cases such as administration, consulting, education, or HR.</span></li>
+                <li><span>A transparent review mode with an additional hit list and a clearer control view.</span></li>
+                <li><span>Templates and team rules for saving, exporting, and reusing custom rule sets.</span></li>
+                <li><span>A local release report with timestamp and replacement summary.</span></li>
               </ul>
             </div>
           </details>
-          <details class="faq-item">
-<summary>Why was the app created?</summary>
+
+          <details class="faq-item" data-reveal>
+            <summary>Why was the app created?</summary>
             <div class="faq-answer">
-              <p>As an AI consultant, author, and instructor, I kept seeing the same mistake in practice: content was moved into chatbots, email, or other tools too quickly and without removing sensitive data first. KI-Anonymizer was built for exactly that problem: a small, fast tool at the copy-and-paste moment itself.</p>
+              <p>In workshops, consulting, and training, I kept seeing the same mistake: under time pressure, people paste sensitive content into chatbots, email, or other systems before anonymizing it. KI-Anonymizer was built for exactly that moment.</p>
             </div>
           </details>
-          <details class="faq-item">
-<summary>Is the app also available for other platforms?</summary>
+
+          <details class="faq-item" data-reveal>
+            <summary>Is the app also available for other platforms?</summary>
             <div class="faq-answer">
-              <p>Yes. There is also a browser-based web app that can be used offline in the browser. It does not include the global shortcuts or the Apple Intelligence enhancement of the macOS version.</p>
+              <p>Yes. There is also a browser-based web app that can run even without an active internet connection. It does not include the global shortcuts or the Apple Intelligence layer of the macOS version.</p>
               <p><a class="faq-inline-link" id="openPlatformRequest" href="#">Send an inquiry</a></p>
             </div>
           </details>
@@ -1776,22 +2396,22 @@
 
   <footer class="footer">
     <div class="container footer-grid">
-      <div class="footer-block">
-        <div style="font-weight:700;">KI-Anonymizer</div>
+      <div>
+        <div class="footer-title">KI-Anonymizer</div>
         <div class="tiny">© 2026 Robert Meyer</div>
       </div>
       <nav class="footer-nav" aria-label="Legal">
-        <a href="/">Deutsch</a>
         <a href="#" id="openImpressum">Legal notice</a>
         <a href="#" id="openDatenschutz">Privacy</a>
-        <button class="footer-nav-button" id="openUpdates" type="button">Updates / Newsletter</button>
+        <a href="/">Deutsch</a>
+        <button class="footer-nav-button" id="openUpdates" type="button">Product updates</button>
       </nav>
     </div>
   </footer>
 
   <div class="cookie-notice" id="cookieNotice" role="region" aria-label="Privacy notice" aria-hidden="false">
-    <p class="cookie-text">Privacy note: This website does not use cookies. Personal data submitted through forms is sent directly to Robert Meyer to handle your request.</p>
-    <button type="button" class="cookie-ack" id="cookieAck">Acknowledge</button>
+    <p class="cookie-text">Privacy notice: This website does not use cookies. Personal data from forms is transmitted directly to Robert Meyer solely for handling your request.</p>
+    <button type="button" class="cookie-ack" id="cookieAck">Acknowledge notice</button>
   </div>
 
   <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
@@ -1849,25 +2469,25 @@
   <div class="legal-modal" id="updatesModal" aria-hidden="true">
     <div class="updates-dialog" role="dialog" aria-modal="true" aria-labelledby="updatesTitle">
       <div class="legal-head">
-        <h3 id="updatesTitle">Updates / Newsletter</h3>
-        <button class="updates-close" id="closeUpdates" aria-label="Close updates dialog">×</button>
+        <h3 id="updatesTitle">Product updates</h3>
+        <button class="updates-close" id="closeUpdates" aria-label="Close updates">×</button>
       </div>
       <div class="updates-body">
         <div class="updates-copy">
-          <h4>Product updates without the noise.</h4>
-          <p>If there is a new release, a visible improvement, or the App Store launch goes live, we send a short email. No mass marketing, only product-related updates.</p>
+          <h4>Product updates, without the noise.</h4>
+          <p>If there is a new version, a meaningful improvement, or news about the App Store release, you will hear from us by email. No broad marketing mailings, just product updates.</p>
         </div>
         <form class="updates-form" id="updatesForm" novalidate>
           <div class="updates-row">
-<label for="updatesName">Name (optional)</label>
+            <label for="updatesName">Name (optional)</label>
             <input id="updatesName" name="name" type="text" autocomplete="name">
           </div>
           <div class="updates-row">
-<label for="updatesEmail">Email</label>
+            <label for="updatesEmail">Email</label>
             <input id="updatesEmail" name="email" type="email" autocomplete="email" required>
           </div>
           <div class="updates-actions">
-<button class="button" id="updatesSubmit" type="submit">Request updates</button>
+            <button class="button" id="updatesSubmit" type="submit">Get updates</button>
             <div class="updates-status" id="updatesStatus" aria-live="polite"></div>
           </div>
         </form>
@@ -1878,13 +2498,13 @@
   <div class="legal-modal" id="platformModal" aria-hidden="true">
     <div class="updates-dialog" role="dialog" aria-modal="true" aria-labelledby="platformTitle">
       <div class="legal-head">
-        <h3 id="platformTitle">Request other platforms</h3>
-        <button class="updates-close" id="closePlatformRequest" aria-label="Close request dialog">×</button>
+        <h3 id="platformTitle">Other platforms</h3>
+        <button class="updates-close" id="closePlatformRequest" aria-label="Close request">×</button>
       </div>
       <div class="updates-body">
         <div class="updates-copy">
           <h4>Interested in another platform?</h4>
-          <p>If you are interested in a version outside macOS or in the browser web app, you can send a short inquiry here.</p>
+          <p>If you want a version beyond macOS or the browser-based web app, send a short note here.</p>
         </div>
         <form class="updates-form" id="platformForm" novalidate>
           <div class="updates-row">
@@ -1892,15 +2512,15 @@
             <input id="platformName" name="name" type="text" autocomplete="name">
           </div>
           <div class="updates-row">
-<label for="platformEmail">Email</label>
+            <label for="platformEmail">Email</label>
             <input id="platformEmail" name="email" type="email" autocomplete="email" required>
           </div>
           <div class="updates-row">
-            <label for="platformTarget">Requested platform (optional)</label>
-            <input id="platformTarget" name="platform" type="text" placeholder="e.g. Windows, web app, team version">
+            <label for="platformTarget">Platform you're looking for (optional)</label>
+            <input id="platformTarget" name="platform" type="text" placeholder="for example Windows, web app, team version">
           </div>
           <div class="updates-actions">
-<button class="button" id="platformSubmit" type="submit">Send inquiry</button>
+            <button class="button" id="platformSubmit" type="submit">Send request</button>
             <div class="updates-status" id="platformStatus" aria-live="polite"></div>
           </div>
         </form>
@@ -1963,10 +2583,10 @@
     }
 
     bindModal(impressumModal, openImpressum, closeImpressum, impressumFrame, `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;padding:1.1rem 1rem 1.4rem;font-family:system-ui,sans-serif;color:#1f2738;line-height:1.55;background:#fff}h1{margin:0 0 .75rem;font-size:1.4rem;line-height:1.2}h2{margin:1rem 0 .35rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:#4f5a70}p{margin:.3rem 0;font-size:.94rem}a{color:#253b68;text-decoration:underline}</style></head><body><h1>Legal notice according to Section 5 TMG &amp; Section 55 RStV</h1><h2>Information according to Section 5 TMG</h2><p><strong>Robert Meyer</strong><br>Robert Meyer c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin<br>Germany</p><h2>Contact</h2><p>Email: rm@kostenmanager.net<br>Contact form: <a href="https://mein.online-impressum.de/robert-meyer/" target="_blank" rel="noopener noreferrer">https://mein.online-impressum.de/robert-meyer/</a></p><h2>Responsible for content according to Section 55 para. 2 RStV</h2><p><strong>Robert Meyer</strong><br>Robert Meyer c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin</p><h2>EU Commission platform for online dispute resolution</h2><p><a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a></p><h2>Consumer dispute resolution</h2><p>I am not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.</p></body></html>`);
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;padding:1.1rem 1rem 1.4rem;font-family:system-ui,sans-serif;color:#1f2738;line-height:1.55;background:#fff}h1{margin:0 0 .75rem;font-size:1.4rem;line-height:1.2}h2{margin:1rem 0 .35rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:#4f5a70}p{margin:.3rem 0;font-size:.94rem}a{color:#253b68;text-decoration:underline}</style></head><body><h1>Legal notice according to Section 5 TMG &amp; Section 55 RStV</h1><h2>Information according to Section 5 TMG</h2><p><strong>Robert Meyer</strong><br>Robert Meyer c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin<br>Germany</p><h2>Contact</h2><p>Email: rm@kostenmanager.net<br>Contact form: <a href="https://mein.online-impressum.de/robert-meyer/" target="_blank" rel="noopener noreferrer">https://mein.online-impressum.de/robert-meyer/</a></p><h2>Responsible for content according to Section 55 para. 2 RStV</h2><p><strong>Robert Meyer</strong><br>Robert Meyer c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin</p><h2>EU Commission platform for online dispute resolution</h2><p><a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a></p><h2>Consumer dispute resolution</h2><p>I am neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board.</p></body></html>`);
 
     bindModal(datenschutzModal, openDatenschutz, closeDatenschutz, datenschutzFrame, `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;padding:1.1rem 1rem 1.4rem;font-family:system-ui,sans-serif;color:#1f2738;line-height:1.55;background:#fff}h1{margin:0 0 .75rem;font-size:1.4rem;line-height:1.2}h2{margin:1rem 0 .35rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:#4f5a70}p{margin:.3rem 0;font-size:.94rem}a{color:#253b68;text-decoration:underline}</style></head><body><h1>Privacy policy</h1><h2>1. Privacy at a glance</h2><p><strong>General information</strong></p><p>The following notes provide a simple overview of what happens to your personal data when you visit this website. This website was built with GDPR requirements in mind.</p><h2>2. Data collection on this website</h2><p>This website does not use cookies. No user accounts are created and no marketing cookies are set. If you use the Updates / Newsletter form, the data you enter is transmitted to Robert Meyer through an external webhook service in order to process your request.</p><h2>3. External services</h2><p>Google Fonts is used to render the website. Umami is used for privacy-friendly reach measurement. If you submit the update form, the entered data is sent to an external webhook endpoint. The privacy policies of the respective providers apply in addition.</p><h2>4. Data controller</h2><p>Robert Meyer – Robert Meyer<br>c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin<br>Germany</p></body></html>`);
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;padding:1.1rem 1rem 1.4rem;font-family:system-ui,sans-serif;color:#1f2738;line-height:1.55;background:#fff}h1{margin:0 0 .75rem;font-size:1.4rem;line-height:1.2}h2{margin:1rem 0 .35rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:#4f5a70}p{margin:.3rem 0;font-size:.94rem}a{color:#253b68;text-decoration:underline}</style></head><body><h1>Privacy policy</h1><h2>1. Privacy at a glance</h2><p><strong>General information</strong></p><p>The following information provides a simple overview of what happens to your personal data when you visit this website. This website was developed in compliance with the General Data Protection Regulation (GDPR).</p><h2>2. Data collection on this website</h2><p>This website does not use cookies. No user accounts are maintained and no marketing cookies are set. If you use the “Product updates” form, the data you enter is transmitted to Robert Meyer via an external webhook service to process your request.</p><h2>3. External services</h2><p>Google Fonts is used to render the website. Umami is used for privacy-friendly reach measurement. If you submit the update form, the entered data is sent to an external webhook endpoint. The privacy policies of the respective providers apply in addition.</p><h2>4. Data controller</h2><p>Robert Meyer – Robert Meyer<br>c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin<br>Germany</p></body></html>`);
 
     function openUpdatesModal() {
       if (!updatesModal) return;
@@ -2051,23 +2671,23 @@
           return;
         }
         updatesSubmit.disabled = true;
-        updatesStatus.textContent = 'Submitting ...';
+        updatesStatus.textContent = 'Sending...';
         updatesStatus.className = 'updates-status';
         try {
           const effectiveName = name || email;
           await postPayload({
             name: effectiveName,
             email,
-            message: 'KI-Anonymizer updates / newsletter\n' + 'Name: ' + effectiveName + '\n' + 'Email: ' + email + '\nSource: KI-Anonymizer landing page\nPage: ' + window.location.href,
-            source: 'ki-anonymizer-landingpage-updates',
+            message: 'KI-Anonymizer Product updates\n' + 'Name: ' + effectiveName + '\n' + 'Email: ' + email + '\nSource: KI-Anonymizer landing page\nPage: ' + window.location.href,
+            source: 'ki-anonymisierer-landingpage-updates',
             page: window.location.href,
-            interest: 'KI-Anonymizer updates / newsletter'
+            interest: 'KI-Anonymizer Product updates'
           });
           updatesForm.reset();
-          updatesStatus.textContent = 'Thank you. Your details have been submitted.';
+          updatesStatus.textContent = 'Thanks. You are on the list.';
           updatesStatus.className = 'updates-status is-success';
         } catch (_) {
-          updatesStatus.textContent = 'Submission failed just now. Please try again later.';
+          updatesStatus.textContent = 'That did not go through. Please try again later.';
           updatesStatus.className = 'updates-status is-error';
         } finally {
           updatesSubmit.disabled = false;
@@ -2088,7 +2708,7 @@
           return;
         }
         platformSubmit.disabled = true;
-        platformStatus.textContent = 'Submitting ...';
+        platformStatus.textContent = 'Sending...';
         platformStatus.className = 'updates-status';
         try {
           const effectiveName = name || email;
@@ -2097,15 +2717,15 @@
             email,
             platform: target,
             message: 'Request for additional KI-Anonymizer platforms\n' + 'Name: ' + effectiveName + '\n' + 'Email: ' + email + '\n' + 'Platform: ' + (target || 'Not specified') + '\nSource: KI-Anonymizer landing page\nPage: ' + window.location.href,
-            source: 'ki-anonymizer-landingpage-platform-request',
+            source: 'ki-anonymisierer-landingpage-platform-request',
             page: window.location.href,
             interest: 'Request for additional KI-Anonymizer platforms'
           });
           platformForm.reset();
-          platformStatus.textContent = 'Thank you. Your request has been submitted.';
+          platformStatus.textContent = 'Thanks. Your request has been sent.';
           platformStatus.className = 'updates-status is-success';
         } catch (_) {
-          platformStatus.textContent = 'Submission failed just now. Please try again later.';
+          platformStatus.textContent = 'That did not go through. Please try again later.';
           platformStatus.className = 'updates-status is-error';
         } finally {
           platformSubmit.disabled = false;
@@ -2115,7 +2735,7 @@
 
     function installCookieNotice() {
       if (!cookieNotice || !cookieAck) return;
-      const key = 'ki-anonymisierer-cookie-hinweis';
+      const key = 'ki-anonymizer-cookie-notice';
       const hide = () => {
         cookieNotice.classList.add('is-hidden');
         cookieNotice.setAttribute('aria-hidden', 'true');
@@ -2134,66 +2754,66 @@
 
     const shotData = {
       editor: {
-        title: 'Editor with before-and-after review',
-        lead: 'The extra control view for cases where the result should be checked visually before it is pasted elsewhere.',
+        title: 'Editor with before-and-after control',
+        lead: 'The editor is there for cases where you want to review the result before pasting it elsewhere.',
         image: 'e_editor.png',
         alt: 'Editor view of KI-Anonymizer',
         plain: [
-          'Original text on the left, anonymized output on the right.',
-          'The editor stays intentionally quiet instead of turning into a cluttered dashboard.',
-          'Manual visual review stays available for longer passages at any time.'
+          'The original text is on the left, the anonymized version on the right.',
+          'The interface stays intentionally simple.',
+          'For longer texts, you can review the result visually at any time.'
         ],
         explain: [
-          'The editor is not the primary workflow. It is the visual safety layer.',
-          'It matters when the shortcut is fast enough but the output should still be checked before it is reused or shared.',
-          'That keeps the main shortcut workflow fast without removing visible control when needed.'
+          'The editor is not the main workflow. It is the visual safety layer.',
+          'It is useful when the shortcut is fast enough, but you still want to check the result before sharing.',
+          'That keeps the shortcut flow fast without giving up a visible review option.'
         ]
       },
       settingsTop: {
-        title: 'Control shortcut and detection in one place',
-        lead: 'The upper settings define the actual product core: shortcut, local behavior, and active detection.',
+        title: 'Central control for shortcut and detection',
+        lead: 'The upper settings cover the core of the product: shortcut, local processing, and active detection.',
         image: 'e_einstellungen_oben.png',
         alt: 'Upper settings area of KI-Anonymizer',
         plain: [
-          'The global shortcut can be changed.',
+          'The global hotkey can be customized.',
           'Detection categories can be enabled or disabled individually.',
-          'Die lokale Ausrichtung der App bleibt sichtbar und nachvollziehbar.'
+          'Local processing stays transparent.'
         ],
         explain: [
-          'The app should not feel like a black box. Users immediately see which categories are active.',
-          'In sensitive workflows, being able to selectively turn categories on or off matters.',
-          'The shortcut stays customizable so the app can fit into existing Mac workflows.'
+          'The app is not meant to be a black box. You can see at a glance which categories are active.',
+          'In sensitive workflows, being able to switch categories on or off matters.',
+          'The shortcut remains adjustable so the app fits into existing Mac workflows.'
         ]
       },
       settingsBottom: {
         title: 'Custom rules and exclusions',
-        lead: 'The lower half of the settings turns general detection into an adjustable tool for real terms and real processes.',
+        lead: 'The lower settings turn general detection into something you can tune to your terminology and workflow.',
         image: 'e_einstellungen_unten.png',
         alt: 'Lower settings area of KI-Anonymizer',
         plain: [
-          'Specific terms can always be anonymized.',
-          'Other terms can intentionally be excluded from anonymization.',
-          'The guidance around local processing remains visible in the same place.'
+          'Terms can be marked to always be anonymized.',
+          'Other terms can be excluded on purpose.',
+          'The local-processing notes remain visible there.'
         ],
         explain: [
-          'Not every sensitive term fits a standard pattern. That is exactly why custom rules exist.',
+          'Not every sensitive term fits a standard pattern. That is why custom rules exist.',
           'Exclusions prevent important fixed terms from being replaced unnecessarily.',
-          'So wird aus einem allgemeinen Produkt ein Werkzeug, das sich an echte Arbeitsumgebungen anpasst.'
+          'That turns a general product into a tool that adapts to real working environments.'
         ]
       },
       notice: {
-        title: 'Transparent legal notice',
-        lead: 'The app states its limit openly: it supports the clean-up step, but it does not replace human review.',
+        title: 'Transparent in-app notice',
+        lead: 'The app states its limits clearly: it helps prepare text, but final review stays with you.',
         image: 'e_wichtiger_hinweis.png',
-        alt: 'Legal notice window of KI-Anonymizer',
+        alt: 'Notice window of KI-Anonymizer',
         plain: [
-          'The notice is directly accessible inside the app.',
-          'The local working model is stated clearly.',
-          'The need for human review is stated explicitly.'
+          'The notice is available directly inside the app.',
+          'The local operating model is clearly stated.',
+          'The need for final human review is made explicit.'
         ],
         explain: [
-          'For this product, trust matters more than artificial safety language.',
-          'That is why the app does not suggest that anonymization is always complete or legally final.',
+          'For this product, trust matters more than safety theater.',
+          'That is why the app does not imply that anonymization is always complete or legally final.',
           'The notice creates clarity and protects users from false expectations.'
         ]
       }
@@ -2266,6 +2886,21 @@
     window.addEventListener('scroll', toggleToTop, { passive: true });
     toggleToTop();
     toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const revealItems = document.querySelectorAll('[data-reveal]');
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.16, rootMargin: '0px 0px -6% 0px' });
+      revealItems.forEach((item) => revealObserver.observe(item));
+    } else {
+      revealItems.forEach((item) => item.classList.add('is-visible'));
+    }
+
     installCookieNotice();
   </script>
 </body>
