@@ -968,6 +968,106 @@
     .step-card.note-card .step-copy-brief {
       font-size: 0.98rem;
     }
+    .workflow-media {
+      margin-top: 1.25rem;
+      padding: 1rem;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(7,17,31,0.08);
+      box-shadow: 0 18px 38px rgba(11, 24, 48, 0.1);
+      color: var(--ink-dark);
+    }
+    .workflow-media-inner {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.86fr) minmax(0, 1fr);
+      gap: 1rem;
+      align-items: center;
+    }
+    .workflow-media-trigger {
+      appearance: none;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      text-align: left;
+    }
+    .workflow-media-thumb {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      border: 1px solid rgba(7,17,31,0.08);
+      background: #fff;
+      box-shadow: 0 14px 30px rgba(11, 24, 48, 0.1);
+    }
+    .workflow-media-thumb img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+    .workflow-media-play {
+      position: absolute;
+      inset: auto auto 0.9rem 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-height: 42px;
+      padding: 0.58rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(7, 17, 31, 0.84);
+      color: #f8fbff;
+      font-size: 0.82rem;
+      box-shadow: 0 10px 22px rgba(7,17,31,0.22);
+      backdrop-filter: blur(10px);
+    }
+    .workflow-media-play svg {
+      width: 0.9rem;
+      height: 0.9rem;
+      flex: 0 0 auto;
+    }
+    .workflow-media-copy {
+      display: grid;
+      gap: 0.7rem;
+      align-content: center;
+    }
+    .workflow-media-copy h3 {
+      margin: 0;
+      font-family: "Sora", system-ui, sans-serif;
+      font-size: 1.6rem;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+    .workflow-media-copy p {
+      margin: 0;
+      color: #495873;
+    }
+    .workflow-media-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      align-items: center;
+    }
+    .workflow-inline-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: #244b9d;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 0.2rem;
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+    .workflow-inline-link:hover,
+    .workflow-inline-link:focus-visible {
+      color: #122b61;
+      outline: none;
+    }
 
     .stack-layout {
       display: grid;
@@ -1478,6 +1578,16 @@
       color: inherit;
       cursor: pointer;
     }
+    .footer-social {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.42rem;
+    }
+    .footer-social svg {
+      width: 0.95rem;
+      height: 0.95rem;
+      flex: 0 0 auto;
+    }
 
     .cookie-notice {
       position: fixed;
@@ -1561,7 +1671,8 @@
     .shot-modal.open { display: flex; }
     .legal-dialog,
     .updates-dialog,
-    .shot-dialog {
+    .shot-dialog,
+    .video-dialog {
       width: min(100%, 980px);
       border-radius: 28px;
       background: #f8fbff;
@@ -1573,6 +1684,12 @@
     .updates-dialog { max-width: 760px; }
     .shot-dialog {
       max-width: 1120px;
+      background: #08111f;
+      color: #f4f8ff;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .video-dialog {
+      max-width: 1080px;
       background: #08111f;
       color: #f4f8ff;
       border: 1px solid rgba(255,255,255,0.08);
@@ -1611,6 +1728,24 @@
       color: #fff;
       background: rgba(255,255,255,0.05);
       border-color: rgba(255,255,255,0.08);
+    }
+    .video-body {
+      padding: 1rem;
+      background: #08111f;
+      display: grid;
+      gap: 0.9rem;
+    }
+    .video-player {
+      width: 100%;
+      border-radius: 22px;
+      background: #050c16;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-md);
+      cursor: zoom-out;
+    }
+    .video-copy {
+      color: rgba(226, 235, 255, 0.74);
+      font-size: 0.94rem;
     }
     .legal-frame {
       width: 100%;
@@ -1769,6 +1904,7 @@
       .gallery-right { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .hero-showcase { min-height: 640px; }
       .device-stage { transform: none; }
+      .workflow-media-inner { grid-template-columns: 1fr; }
       .hero-strip {
         position: static;
         margin-top: 1rem;
@@ -2068,6 +2204,29 @@
               <span class="tag">Löschung nach 5 Minuten</span>
             </div>
           </article>
+        </div>
+
+        <!-- Optional workflow media block: easy to remove if it does not fit -->
+        <div class="workflow-media" data-reveal>
+          <div class="workflow-media-inner">
+            <button class="workflow-media-trigger" id="openWorkflowVisual" type="button" aria-label="Workflow-Schaubild öffnen">
+              <div class="workflow-media-thumb">
+                <img src="cover_v.png" alt="Vorschaubild des 6-Schritte-Workflow-Schaubilds" width="1419" height="799" loading="lazy" decoding="async">
+                <span class="workflow-media-play">
+                  <span>+</span>
+                  <span>Schaubild öffnen</span>
+                </span>
+              </div>
+            </button>
+            <div class="workflow-media-copy">
+              <span class="eyebrow" style="color:#53637d;">Workflow-Medien</span>
+              <h3>6 Schritte als kompaktes Schaubild zum sicheren KI-Workflow.</h3>
+              <p>Wenn Sie den gesamten Ablauf lieber auf einen Blick sehen möchten, lässt sich das Schaubild hier vergrößern.</p>
+              <div class="workflow-media-links">
+                <button class="workflow-inline-link" id="openWorkflowVisualInline" type="button">Schaubild vergrößern</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -2405,6 +2564,13 @@
         <a href="#" id="openImpressum">Impressum</a>
         <a href="#" id="openDatenschutz">Datenschutz</a>
         <a href="/eng/">English</a>
+        <a class="footer-social" href="https://youtube.com/@rmkipraxis?si=h2qNroeG7EqviRwE" target="_blank" rel="noopener noreferrer" aria-label="YouTube-Kanal von Robert Meyer">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill="#ff4d4d" d="M23.5 6.2a3.04 3.04 0 0 0-2.14-2.16C19.47 3.5 12 3.5 12 3.5s-7.47 0-9.36.54A3.04 3.04 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3.04 3.04 0 0 0 2.14 2.16c1.89.54 9.36.54 9.36.54s7.47 0 9.36-.54a3.04 3.04 0 0 0 2.14-2.16A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8Z"/>
+            <path fill="#fff" d="m9.75 15.5 6.25-3.5-6.25-3.5v7Z"/>
+          </svg>
+          <span>YouTube</span>
+        </a>
         <button class="footer-nav-button" id="openUpdates" type="button">Updates / Newsletter</button>
       </nav>
     </div>
@@ -2463,6 +2629,19 @@
             <ul class="shot-bullets" id="shotExplainBullets"></ul>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shot-modal" id="workflowVisualModal" aria-hidden="true">
+    <div class="video-dialog" role="dialog" aria-modal="true" aria-labelledby="workflowVisualTitle">
+      <div class="shot-head">
+        <h3 id="workflowVisualTitle">Workflow-Schaubild</h3>
+        <button class="shot-close" id="closeWorkflowVisual" aria-label="Workflow-Schaubild schließen">×</button>
+      </div>
+      <div class="video-body">
+        <img class="video-player" id="workflowVisualImage" src="cover_v.png" alt="6-Schritte-Schaubild zum sicheren KI-Workflow" width="1419" height="799" loading="lazy" decoding="async">
+        <div class="video-copy">Kompakter Überblick über den vollständigen lokalen Workflow inklusive Rückführung.</div>
       </div>
     </div>
   </div>
@@ -2821,6 +3000,11 @@
     };
 
     const shotModal = document.getElementById('shotModal');
+    const workflowVisualModal = document.getElementById('workflowVisualModal');
+    const openWorkflowVisual = document.getElementById('openWorkflowVisual');
+    const openWorkflowVisualInline = document.getElementById('openWorkflowVisualInline');
+    const closeWorkflowVisual = document.getElementById('closeWorkflowVisual');
+    const workflowVisualImage = document.getElementById('workflowVisualImage');
     const closeShot = document.getElementById('closeShot');
     const shotTitle = document.getElementById('shotTitle');
     const shotImage = document.getElementById('shotImage');
@@ -2867,6 +3051,20 @@
       document.body.style.overflow = '';
     }
 
+    function openWorkflowVisualModal() {
+      if (!workflowVisualModal) return;
+      workflowVisualModal.classList.add('open');
+      workflowVisualModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeWorkflowVisualModal() {
+      if (!workflowVisualModal) return;
+      workflowVisualModal.classList.remove('open');
+      workflowVisualModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
     document.querySelectorAll('.shot-trigger').forEach((button) => {
       button.addEventListener('click', () => openShot(button.dataset.shot));
     });
@@ -2874,9 +3072,19 @@
     shotModal.addEventListener('click', (ev) => { if (ev.target === shotModal) closeShotModal(); });
     tabPlain.addEventListener('click', () => activateShotTab('plain'));
     tabExplain.addEventListener('click', () => activateShotTab('explain'));
+    if (openWorkflowVisual) openWorkflowVisual.addEventListener('click', openWorkflowVisualModal);
+    if (openWorkflowVisualInline) openWorkflowVisualInline.addEventListener('click', openWorkflowVisualModal);
+    if (closeWorkflowVisual) closeWorkflowVisual.addEventListener('click', closeWorkflowVisualModal);
+    if (workflowVisualImage) workflowVisualImage.addEventListener('click', closeWorkflowVisualModal);
+    if (workflowVisualModal) {
+      workflowVisualModal.addEventListener('click', (ev) => {
+        if (ev.target === workflowVisualModal) closeWorkflowVisualModal();
+      });
+    }
 
     document.addEventListener('keydown', (ev) => {
       if (ev.key === 'Escape' && shotModal.classList.contains('open')) closeShotModal();
+      if (ev.key === 'Escape' && workflowVisualModal && workflowVisualModal.classList.contains('open')) closeWorkflowVisualModal();
       if (ev.key === 'Escape' && updatesModal && updatesModal.classList.contains('open')) closeUpdatesModal();
       if (ev.key === 'Escape' && platformModal && platformModal.classList.contains('open')) closePlatformModal();
     });
