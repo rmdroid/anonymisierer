@@ -1164,6 +1164,68 @@
       background: #fff;
     }
 
+    .upgrade-card {
+      margin-top: 1rem; padding: 1.15rem 1.3rem;
+      border-radius: 16px;
+      border: 1px solid rgba(16, 185, 129, 0.22);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+      display: flex; align-items: center; justify-content: space-between; gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .upgrade-card-info { display: grid; gap: 0.2rem; min-width: 0; flex: 1; }
+
+    .upgrade-card-title {
+      font-size: 0.95rem; font-weight: 700; color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .upgrade-card-desc {
+      font-size: 0.84rem; color: var(--text-secondary); line-height: 1.55;
+    }
+
+    .upgrade-card-features {
+      display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.3rem;
+    }
+
+    .upgrade-feature-tag {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.22rem 0.55rem; border-radius: 999px;
+      background: rgba(16, 185, 129, 0.1); color: #047857;
+      font-size: 0.72rem; font-weight: 700;
+    }
+
+    .upgrade-cta {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      min-height: 46px; padding: 0.75rem 1.3rem;
+      border: 0; border-radius: 12px;
+      background: linear-gradient(180deg, #12b886 0%, #0ca678 100%);
+      color: #fff; font-weight: 700; font-size: 0.92rem;
+      letter-spacing: -0.01em; white-space: nowrap;
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);
+      transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
+      text-decoration: none;
+    }
+
+    .upgrade-cta:hover, .upgrade-cta:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(16, 185, 129, 0.3);
+      filter: saturate(1.06);
+      color: #fff;
+    }
+
+    .upgrade-price {
+      font-size: 0.78rem; font-weight: 600; opacity: 0.85;
+    }
+
+    .footer-upgrade-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: #0ca678; font-weight: 700; text-decoration: none;
+      transition: color 150ms ease;
+    }
+
+    .footer-upgrade-link:hover { color: #099268; text-decoration: underline; }
+
     @media print {
       body { background: #fff; }
       .app-header, .hero, .action-column, .sample-bar, .shortcut-hint, .settings-card,
@@ -1361,6 +1423,23 @@
             <span class="stats-headline">Keine personenbezogenen Daten erkannt.</span>
           </div>
 
+          <div class="upgrade-card" id="upgradeCard">
+            <div class="upgrade-card-info">
+              <span class="upgrade-card-title">Vollversion — ohne Limits, DE + EN</span>
+              <span class="upgrade-card-desc">Unbegrenzte Textlänge, Import/Export von Regeln, englische Version inklusive. Einmalkauf, kein Abo.</span>
+              <div class="upgrade-card-features">
+                <span class="upgrade-feature-tag">&#10003; Unbegrenzt</span>
+                <span class="upgrade-feature-tag">&#10003; Import/Export</span>
+                <span class="upgrade-feature-tag">&#10003; DE + EN</span>
+                <span class="upgrade-feature-tag">&#10003; Offline nutzbar</span>
+              </div>
+            </div>
+            <a href="https://ki-fachbuecher.lemonsqueezy.com/checkout/buy/f79a5152-897a-4809-b041-e8c65b87f388?embed=1" class="lemonsqueezy-button upgrade-cta">
+              Vollversion kaufen
+              <span class="upgrade-price">6,99 €</span>
+            </a>
+          </div>
+
           <div class="ai-card">
             <div class="ai-card-info">
               <span class="ai-card-title">Lokales KI-Modell (Ollama / LM Studio)</span>
@@ -1447,6 +1526,11 @@
       <p>KI-Anonymisierer Demo &middot; GitHub-gehostete statische Web-App &middot; Eingabetexte bleiben lokal im Browser</p>
       <p>Robert Meyer &middot; <a href="https://ki-anonymisierer.de" target="_blank" rel="noopener noreferrer">ki-anonymisierer.de</a></p>
       <p style="margin-top:0.32rem">© Robert Meyer &middot; Demo nur zur lizenzierten Nutzung</p>
+      <p style="margin-top:0.5rem">
+        <a href="https://ki-fachbuecher.lemonsqueezy.com/checkout/buy/f79a5152-897a-4809-b041-e8c65b87f388?embed=1" class="lemonsqueezy-button footer-upgrade-link">
+          Vollversion kaufen — 6,99 € einmalig
+        </a>
+      </p>
       <div class="footer-links" aria-label="Weiterführende Links">
         <button class="footer-info-link" id="openInfoModal" type="button">So funktioniert's</button>
         <span class="footer-separator" aria-hidden="true">&middot;</span>
@@ -2502,5 +2586,6 @@
       init();
     })();
   </script>
+  <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
 </body>
 </html>
