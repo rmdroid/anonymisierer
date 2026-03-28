@@ -1,0 +1,2179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>AI Anonymizer</title>
+  <meta name="description" content="Local web app for privacy-compliant text anonymization. Fully local in your browser.">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:title" content="AI Anonymizer — Local Privacy Tool">
+  <meta property="og:description" content="Detect and replace personally identifiable information — fully local in your browser. No cloud, no installation.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230f172a'/><path d='M16 4 6 8.5v7c0 6.5 3.8 12.5 10 14.5 6.2-2 10-8 10-14.5v-7L16 4Z' fill='%233b82f6' opacity='0.9'/><path d='M13 16l2.5 2.5L20 13' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>">
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQUkgQW5vbnltaXplciIsInNob3J0X25hbWUiOiJBbm9ueW1pemVyIiwiZGVzY3JpcHRpb24iOiJMb2NhbCB0ZXh0IGFub255bWl6YXRpb24gZm9yIHByaXZhY3kgY29tcGxpYW5jZSIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZjhmYWZjIiwidGhlbWVfY29sb3IiOiIjMGYxNzJhIiwiaWNvbnMiOltdfQ==">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f172a;
+      --secondary: #3b82f6;
+      --accent: #10b981;
+      --warning: #ef4444;
+      --background: #f8fafc;
+      --surface: #ffffff;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --border: #e2e8f0;
+      --highlight-yellow: #fef3c7;
+      --highlight-yellow-border: #f59e0b;
+      --highlight-blue: #dbeafe;
+      --highlight-blue-border: #60a5fa;
+      --highlight-green: #d1fae5;
+      --highlight-green-border: #10b981;
+      --highlight-orange: #ffedd5;
+      --highlight-orange-border: #fb923c;
+      --highlight-violet: #ede9fe;
+      --highlight-violet-border: #8b5cf6;
+      --custom-1-bg: #fee2e2;
+      --custom-1-fg: #b91c1c;
+      --custom-1-border: rgba(239, 68, 68, 0.34);
+      --custom-2-bg: #ffedd5;
+      --custom-2-fg: #c2410c;
+      --custom-2-border: rgba(251, 146, 60, 0.34);
+      --custom-3-bg: #fef3c7;
+      --custom-3-fg: #a16207;
+      --custom-3-border: rgba(245, 158, 11, 0.34);
+      --custom-4-bg: #dcfce7;
+      --custom-4-fg: #15803d;
+      --custom-4-border: rgba(34, 197, 94, 0.34);
+      --custom-5-bg: #dbeafe;
+      --custom-5-fg: #1d4ed8;
+      --custom-5-border: rgba(59, 130, 246, 0.34);
+      --custom-neutral-bg: #e2e8f0;
+      --custom-neutral-fg: #475569;
+      --custom-neutral-border: rgba(100, 116, 139, 0.26);
+      --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.04);
+      --shadow-button: 0 8px 18px rgba(59, 130, 246, 0.22);
+      --shadow-button-hover: 0 14px 26px rgba(59, 130, 246, 0.28);
+      --radius-card: 16px;
+      --radius-field: 10px;
+      --radius-button: 10px;
+      --radius-badge: 6px;
+      --max-width: 1320px;
+      --focus-ring: 0 0 0 4px rgba(59, 130, 246, 0.18);
+      --diff-add: #dcfce7;
+      --diff-add-border: #22c55e;
+      --diff-remove: #fee2e2;
+      --diff-remove-border: #ef4444;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background:
+        radial-gradient(800px 360px at 15% -15%, rgba(59, 130, 246, 0.08), transparent 68%),
+        radial-gradient(720px 320px at 85% 0%, rgba(16, 185, 129, 0.06), transparent 72%),
+        linear-gradient(180deg, #fbfdff 0%, var(--background) 26%, #f1f5f9 100%);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; }
+    button, textarea, input { font: inherit; }
+    button { cursor: pointer; }
+
+    button:focus-visible, textarea:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .app-header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(248, 250, 252, 0.88);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner, .main-inner, .footer-inner {
+      width: min(var(--max-width), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .header-inner {
+      min-height: 74px;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+
+    .brand {
+      display: inline-flex; align-items: center; gap: 0.85rem; text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 42px; height: 42px; display: grid; place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(145deg, #16233f 0%, #0f172a 100%);
+      color: #e0f2fe;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
+    }
+
+    .brand-title { display: block; font-weight: 700; letter-spacing: -0.02em; font-size: 1.04rem; color: var(--text-primary); }
+    .brand-subtitle { display: block; color: var(--text-secondary); font-size: 0.84rem; }
+
+    .trust-badges { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.55rem; }
+
+    .trust-badge {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      min-height: 34px; padding: 0.42rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.1); color: #047857;
+      border: 1px solid rgba(16, 185, 129, 0.16);
+      font-size: 0.82rem; font-weight: 600;
+    }
+
+    .trust-badge svg { flex: 0 0 auto; }
+
+    .lang-toggle {
+      display: inline-flex; border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--border); background: rgba(248, 250, 252, 0.9);
+      flex: 0 0 auto;
+    }
+
+    .lang-toggle a, .lang-toggle span {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0.35rem 0.6rem; font-size: 0.78rem; font-weight: 700;
+      text-decoration: none; color: var(--text-secondary);
+      transition: background 150ms ease, color 150ms ease;
+      min-width: 36px;
+    }
+
+    .lang-toggle .is-active {
+      background: var(--primary); color: #fff;
+    }
+
+    .lang-toggle a:hover:not(.is-active) { background: rgba(15, 23, 42, 0.06); }
+
+    .main-inner { padding: 2rem 0 2.4rem; }
+
+    .hero {
+      margin: 0 auto 1.4rem; max-width: 680px; text-align: center;
+      padding: clamp(1.5rem, 2vw, 2.1rem) clamp(1.2rem, 2.2vw, 2.3rem);
+      border-radius: 24px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.82));
+      box-shadow: var(--shadow-card);
+      transition: opacity 200ms ease, transform 200ms ease, max-height 200ms ease, margin 200ms ease, padding 200ms ease;
+      overflow: clip;
+    }
+
+    .hero.is-hidden {
+      opacity: 0; transform: translateY(-8px); max-height: 0; margin-bottom: 0;
+      padding-top: 0; padding-bottom: 0; border-width: 0; box-shadow: none; pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.45rem 0.7rem; border-radius: 999px;
+      background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.12);
+      color: #1d4ed8; font-size: 0.79rem; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      margin: 0; font-size: clamp(2.3rem, 6vw, 4rem); line-height: 1.04;
+      letter-spacing: -0.04em; font-weight: 700; color: var(--text-primary); text-wrap: balance;
+    }
+
+    .hero p {
+      margin: 1rem auto 0; max-width: 52ch; color: var(--text-secondary);
+      font-size: clamp(1rem, 2vw, 1.12rem); text-wrap: balance;
+    }
+
+    .hero-features {
+      margin: 1.45rem 0 0; padding: 0; list-style: none;
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem;
+    }
+
+    .hero-features li {
+      display: grid; justify-items: center; gap: 0.55rem;
+      padding: 0.95rem 0.8rem; border-radius: 16px;
+      border: 1px solid var(--border); background: rgba(248, 250, 252, 0.84);
+      color: var(--text-secondary); font-size: 0.9rem; font-weight: 600;
+    }
+
+    .hero-features svg { color: var(--primary); }
+
+    .hero-cta {
+      margin-top: 1.35rem;
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+      min-height: 50px; padding: 0.88rem 1.25rem; border: 0;
+      border-radius: var(--radius-button);
+      background: linear-gradient(180deg, #4a90ff 0%, var(--secondary) 100%);
+      color: #fff; font-weight: 700; letter-spacing: -0.01em;
+      box-shadow: var(--shadow-button);
+      transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
+    }
+
+    .hero-cta:hover, .hero-cta:focus-visible {
+      transform: translateY(-1px); box-shadow: var(--shadow-button-hover); filter: saturate(1.04);
+    }
+
+    .hero-disclaimer {
+      margin: 1.2rem auto 0; max-width: 520px;
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      padding: 0.75rem 0.9rem; border-radius: 12px;
+      background: rgba(245, 158, 11, 0.07); border: 1px solid rgba(245, 158, 11, 0.18);
+      text-align: left; font-size: 0.82rem; line-height: 1.55; color: #92400e;
+    }
+
+    .hero-disclaimer svg { flex: 0 0 auto; margin-top: 0.1rem; color: #d97706; }
+
+    .hero-dismiss-hint {
+      margin: 0.7rem 0 0; padding: 0;
+      font-size: 0.74rem; color: var(--text-secondary);
+      opacity: 0.7; font-style: italic;
+    }
+
+    .workspace {
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.88));
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .workspace-head {
+      padding: 1.15rem 1.4rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(248,250,252,0.96), rgba(248,250,252,0.8));
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+
+    .workspace-head h2 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; }
+    .workspace-head p { margin: 0.1rem 0 0; font-size: 0.9rem; color: var(--text-secondary); }
+
+    .security-chip {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      padding: 0.52rem 0.8rem; border-radius: 999px;
+      background: rgba(16, 185, 129, 0.1); color: #047857;
+      border: 1px solid rgba(16, 185, 129, 0.16);
+      font-size: 0.82rem; font-weight: 700;
+    }
+
+    .workspace-body { padding: 1.3rem; }
+
+    .editor-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 132px minmax(0, 1fr);
+      gap: 1rem; align-items: stretch;
+    }
+
+    .panel { min-width: 0; }
+
+    .panel-header {
+      margin-bottom: 0.55rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap;
+    }
+
+    .panel-label {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      color: var(--text-secondary); font-size: 0.88rem; font-weight: 600; letter-spacing: 0.01em;
+    }
+
+    .panel-label strong { color: var(--text-primary); font-size: 0.93rem; font-weight: 700; letter-spacing: -0.01em; }
+
+    .panel-surface {
+      position: relative; min-height: 400px;
+      border-radius: var(--radius-field);
+      border: 1px solid var(--border); background: var(--surface);
+      box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.03);
+      transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+      overflow: hidden;
+    }
+
+    .panel-surface.drag-over {
+      border-color: var(--secondary);
+      box-shadow: inset 0 0 0 2px rgba(59, 130, 246, 0.2), var(--focus-ring);
+      background: rgba(59, 130, 246, 0.03);
+    }
+
+    .drag-overlay {
+      display: none;
+      position: absolute; inset: 0; z-index: 10;
+      background: rgba(59, 130, 246, 0.06);
+      border-radius: var(--radius-field);
+      flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem;
+      color: var(--secondary); font-weight: 700; font-size: 0.95rem;
+      pointer-events: none;
+    }
+
+    .panel-surface.drag-over .drag-overlay { display: flex; }
+
+    .sample-bar {
+      display: flex; flex-wrap: wrap; gap: 0.35rem 0.55rem; align-items: center;
+      margin-top: 0.65rem; padding: 0.15rem 0.05rem 0;
+      color: var(--text-secondary); font-size: 0.8rem;
+    }
+
+    .sample-label { font-weight: 600; }
+
+    .sample-link {
+      border: 0; background: transparent; padding: 0;
+      color: var(--secondary); font-size: 0.8rem; font-weight: 600;
+      text-decoration: none; text-underline-offset: 0.18rem;
+      transition: color 200ms ease, text-decoration-color 200ms ease;
+    }
+
+    .sample-link:hover, .sample-link:focus-visible {
+      color: #1d4ed8; text-decoration: underline; text-decoration-color: currentColor;
+    }
+
+    .panel-surface:focus-within {
+      border-color: rgba(59, 130, 246, 0.5);
+      box-shadow: inset 0 2px 6px rgba(15, 23, 42, 0.06), var(--focus-ring);
+    }
+
+    textarea.text-input, .rendered-text, .output-text {
+      width: 100%; min-height: 400px; height: 100%;
+      padding: 1rem 1rem 1.1rem; border: 0; background: transparent;
+      color: var(--text-primary);
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: 0.96rem; line-height: 1.7;
+      white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;
+    }
+
+    textarea.text-input { resize: vertical; outline: none; }
+    textarea.text-input::placeholder { color: var(--text-secondary); }
+    .rendered-text, .output-text { display: block; overflow: auto; }
+    .rendered-text[hidden], textarea.text-input[hidden] { display: none; }
+    .rendered-text { cursor: text; animation: fadeIn 300ms ease; }
+    .output-text { position: relative; animation: fadeIn 300ms ease; }
+    .output-text.is-empty { color: var(--text-secondary); }
+
+    .copy-button, .download-button {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      min-height: 34px; padding: 0.5rem 0.72rem;
+      border-radius: 9px; border: 1px solid var(--border);
+      background: rgba(248, 250, 252, 0.9);
+      color: var(--text-primary); font-size: 0.82rem; font-weight: 700;
+      transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease, background 200ms ease, color 200ms ease;
+    }
+
+    .copy-button:hover, .copy-button:focus-visible,
+    .download-button:hover, .download-button:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(59, 130, 246, 0.28);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+    }
+
+    .copy-button.is-success {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: rgba(16, 185, 129, 0.26); color: #047857;
+    }
+
+    .action-column {
+      display: grid; align-content: center; justify-items: center; gap: 0.8rem;
+    }
+
+    .action-column .anonymize-button {
+      width: 100%; min-height: 54px; border: 0; border-radius: 14px;
+      background: linear-gradient(180deg, #4a90ff 0%, var(--secondary) 100%);
+      color: #fff; font-weight: 700; letter-spacing: -0.01em;
+      box-shadow: var(--shadow-button);
+      transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
+    }
+
+    .action-column .anonymize-button:hover, .action-column .anonymize-button:focus-visible {
+      transform: translateY(-1px); box-shadow: var(--shadow-button-hover); filter: saturate(1.03);
+    }
+
+    .action-column .anonymize-button.is-processing { animation: pulse 360ms ease; }
+
+    .action-column .anonymize-button:disabled {
+      cursor: not-allowed; opacity: 0.62; box-shadow: none; transform: none; filter: none;
+    }
+
+    .action-column .reset-button {
+      border: 0; background: transparent; color: var(--text-secondary);
+      font-size: 0.88rem; font-weight: 600;
+      text-decoration: underline; text-decoration-color: rgba(100, 116, 139, 0.4);
+      text-underline-offset: 0.18rem; padding: 0.2rem 0;
+      transition: color 200ms ease, text-decoration-color 200ms ease;
+    }
+
+    .action-column .reset-button:hover, .action-column .reset-button:focus-visible {
+      color: var(--text-primary); text-decoration-color: rgba(15, 23, 42, 0.45);
+    }
+
+    .shortcut-hint {
+      color: var(--text-secondary); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.01em; text-align: center;
+    }
+
+    .view-toggle-bar {
+      display: flex; gap: 0.4rem; margin-bottom: 0.55rem;
+    }
+
+    .view-toggle-btn {
+      padding: 0.35rem 0.7rem; border-radius: 8px;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--text-secondary); font-size: 0.78rem; font-weight: 600;
+      transition: all 150ms ease;
+    }
+
+    .view-toggle-btn.is-active {
+      background: var(--secondary); color: #fff; border-color: var(--secondary);
+    }
+
+    .view-toggle-btn:hover:not(.is-active) {
+      background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);
+    }
+
+    .diff-view {
+      width: 100%; min-height: 400px; height: 100%;
+      padding: 1rem; border: 0; background: transparent;
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: 0.96rem; line-height: 1.7;
+      white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;
+      overflow: auto; display: none;
+    }
+
+    .diff-view.is-visible { display: block; }
+
+    .diff-removed {
+      background: var(--diff-remove); text-decoration: line-through;
+      border-radius: 3px; padding: 0.05rem 0.15rem;
+      color: #991b1b;
+    }
+
+    .diff-added {
+      background: var(--diff-add);
+      border-radius: 3px; padding: 0.05rem 0.15rem;
+      color: #166534; font-weight: 600;
+    }
+
+    .stats-bar {
+      margin-top: 1rem; padding: 0.9rem 1rem;
+      border-radius: 14px; border: 1px solid var(--border);
+      background: rgba(248, 250, 252, 0.88);
+      color: var(--text-secondary);
+      display: flex; flex-wrap: wrap; gap: 0.8rem 1rem; align-items: center;
+      font-size: 0.92rem;
+    }
+
+    .stats-bar.is-success {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: rgba(16, 185, 129, 0.2); color: #047857;
+    }
+
+    .stats-headline { font-weight: 700; color: var(--text-primary); }
+    .stats-bar.is-success .stats-headline { color: #047857; }
+
+    .stats-item {
+      display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 600;
+    }
+
+    .stats-dot { width: 10px; height: 10px; border-radius: 999px; flex: 0 0 auto; }
+
+    .stats-detail {
+      width: 100%; margin-top: 0.3rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .stats-detail-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.45rem 0.65rem; border-radius: 8px;
+      background: rgba(255,255,255,0.6); border: 1px solid rgba(15, 23, 42, 0.06);
+      font-size: 0.82rem; font-weight: 600;
+    }
+
+    .stats-detail-count {
+      font-size: 1.1rem; font-weight: 800; color: var(--text-primary);
+    }
+
+    .ai-card {
+      margin-top: 1rem; padding: 1rem 1.2rem;
+      border-radius: 16px;
+      border: 1px dashed rgba(139, 92, 246, 0.3);
+      background: rgba(139, 92, 246, 0.04);
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+
+    .ai-card-info { display: grid; gap: 0.15rem; }
+    .ai-card-title { font-size: 0.92rem; font-weight: 700; color: #6d28d9; }
+    .ai-card-desc { font-size: 0.82rem; color: var(--text-secondary); }
+
+    .ai-card-badge {
+      padding: 0.35rem 0.7rem; border-radius: 999px;
+      background: rgba(139, 92, 246, 0.1); color: #7c3aed;
+      font-size: 0.75rem; font-weight: 700; white-space: nowrap;
+    }
+
+    .settings-card {
+      margin-top: 1rem; border-radius: 16px;
+      border: 1px solid var(--border); background: rgba(255, 255, 255, 0.78);
+      overflow: hidden;
+    }
+
+    .settings-toggle {
+      width: 100%; border: 0; background: transparent;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding: 1rem 1.1rem; color: var(--text-primary); font-weight: 700; letter-spacing: -0.01em;
+    }
+
+    .settings-toggle span:last-child {
+      color: var(--text-secondary); transition: transform 200ms ease;
+    }
+
+    .settings-toggle[aria-expanded="true"] span:last-child { transform: rotate(180deg); }
+
+    .settings-panel {
+      padding: 0 1.1rem 1.1rem; border-top: 1px solid var(--border);
+      display: grid; gap: 1rem;
+    }
+
+    .settings-panel[hidden] { display: none; }
+
+    .settings-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem 1rem; padding-top: 1rem;
+    }
+
+    .toggle-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 0.8rem;
+      min-height: 52px; padding: 0.85rem 0.95rem; border-radius: 14px;
+      border: 1px solid rgba(15, 23, 42, 0.08); background: rgba(248, 250, 252, 0.84);
+    }
+
+    .toggle-copy { display: grid; gap: 0.08rem; min-width: 0; }
+    .toggle-copy strong { font-size: 0.92rem; letter-spacing: -0.01em; }
+    .toggle-copy span { color: var(--text-secondary); font-size: 0.8rem; }
+
+    .switch { position: relative; width: 50px; height: 30px; flex: 0 0 auto; }
+
+    .switch input {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; margin: 0; z-index: 2;
+    }
+
+    .switch-track {
+      position: absolute; inset: 0; border-radius: 999px; background: #d9e2ef;
+      transition: background 200ms ease, box-shadow 200ms ease; pointer-events: none;
+    }
+
+    .switch-track::after {
+      content: ""; position: absolute; top: 4px; left: 4px; width: 22px; height: 22px;
+      border-radius: 999px; background: #fff;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18); transition: transform 200ms ease;
+    }
+
+    .switch input:checked + .switch-track { background: var(--secondary); }
+    .switch input:checked + .switch-track::after { transform: translateX(20px); }
+    .switch input:focus-visible + .switch-track { box-shadow: var(--focus-ring); }
+
+    .custom-rules {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem;
+    }
+
+    .custom-rule-card {
+      display: grid; gap: 0.75rem; padding: 1rem; border-radius: 16px;
+      border: 1px solid rgba(15, 23, 42, 0.08); background: rgba(248, 250, 252, 0.84);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+
+    .custom-rule-copy { display: grid; gap: 0.2rem; }
+
+    .custom-rule-title {
+      display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+    }
+
+    .custom-rule-copy label { font-size: 0.92rem; font-weight: 700; letter-spacing: -0.01em; }
+    .custom-rule-copy p { margin: 0; color: var(--text-secondary); font-size: 0.85rem; }
+
+    .custom-rule-count {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 30px; min-height: 30px; padding: 0.2rem 0.55rem;
+      border-radius: 999px; background: rgba(15, 23, 42, 0.06);
+      color: var(--text-primary); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.01em;
+    }
+
+    .custom-rule-entry {
+      display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.65rem;
+    }
+
+    .custom-rule-entry input {
+      min-height: 48px; border-radius: var(--radius-field);
+      border: 1px solid var(--border); background: #fff; padding: 0.8rem 0.9rem;
+      color: var(--text-primary); transition: border-color 200ms ease, box-shadow 200ms ease;
+    }
+
+    .custom-rule-entry input:focus-visible { border-color: rgba(59, 130, 246, 0.5); }
+
+    .custom-rule-add {
+      min-height: 48px; padding: 0.78rem 0.95rem; border-radius: 10px;
+      border: 1px solid rgba(59, 130, 246, 0.16); background: rgba(59, 130, 246, 0.1);
+      color: #1d4ed8; font-weight: 700;
+      transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+    }
+
+    .custom-rule-add:hover, .custom-rule-add:focus-visible {
+      transform: translateY(-1px); box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+      background: rgba(59, 130, 246, 0.14);
+    }
+
+    .custom-rule-list { display: grid; gap: 0.55rem; }
+
+    .custom-rule-item {
+      display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 0.7rem;
+      align-items: center; min-height: 52px; padding: 0.7rem 0.8rem;
+      border-radius: 12px; border: 1px solid rgba(15, 23, 42, 0.08); background: #fff;
+      transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+    }
+
+    .custom-rule-item:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+      border-color: rgba(59, 130, 246, 0.14);
+    }
+
+    .custom-rule-term {
+      display: flex; align-items: flex-start; gap: 0.7rem; min-width: 0;
+      font-size: 0.9rem; font-weight: 600; word-break: break-word;
+    }
+
+    .custom-rule-term-copy { min-width: 0; }
+
+    .custom-rule-meta {
+      display: block; margin-top: 0.08rem; color: var(--text-secondary);
+      font-size: 0.78rem; font-weight: 500;
+    }
+
+    .custom-rule-swatch {
+      width: 14px; height: 14px; margin-top: 0.18rem; border-radius: 999px;
+      border: 1px solid var(--custom-neutral-border); background: var(--custom-neutral-bg);
+      flex: 0 0 auto;
+    }
+
+    .custom-rule-swatch.custom-slot-1 { background: var(--custom-1-bg); border-color: var(--custom-1-border); }
+    .custom-rule-swatch.custom-slot-2 { background: var(--custom-2-bg); border-color: var(--custom-2-border); }
+    .custom-rule-swatch.custom-slot-3 { background: var(--custom-3-bg); border-color: var(--custom-3-border); }
+    .custom-rule-swatch.custom-slot-4 { background: var(--custom-4-bg); border-color: var(--custom-4-border); }
+    .custom-rule-swatch.custom-slot-5 { background: var(--custom-5-bg); border-color: var(--custom-5-border); }
+
+    .custom-rule-delete {
+      min-height: 38px; padding: 0.55rem 0.72rem; border-radius: 10px;
+      border: 1px solid rgba(239, 68, 68, 0.16); background: rgba(239, 68, 68, 0.08);
+      color: #b91c1c; font-size: 0.82rem; font-weight: 700;
+      transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+    }
+
+    .custom-rule-delete:hover, .custom-rule-delete:focus-visible {
+      transform: translateY(-1px); box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+      background: rgba(239, 68, 68, 0.12);
+    }
+
+    .custom-rule-empty {
+      padding: 0.85rem 0.9rem; border-radius: 12px;
+      border: 1px dashed rgba(100, 116, 139, 0.28);
+      color: var(--text-secondary); font-size: 0.84rem; background: rgba(255, 255, 255, 0.5);
+    }
+
+    .mark {
+      position: relative; display: inline;
+      padding: 0.08rem 0.15rem; border-radius: var(--radius-badge);
+      border: 1px solid transparent;
+      box-decoration-break: clone; -webkit-box-decoration-break: clone;
+      animation: fadeIn 300ms ease;
+    }
+
+    .mark-tag {
+      display: inline-flex; align-items: center; margin-left: 0.35rem;
+      padding: 0.08rem 0.36rem; border-radius: 999px;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.02em;
+      vertical-align: middle; white-space: nowrap;
+    }
+
+    .mark-person, .badge-person { background: var(--highlight-yellow); border-color: rgba(245, 158, 11, 0.38); }
+    .mark-person .mark-tag, .badge-person { color: #92400e; }
+    .mark-address, .badge-address { background: var(--highlight-blue); border-color: rgba(59, 130, 246, 0.3); }
+    .mark-address .mark-tag, .badge-address { color: #1d4ed8; }
+    .mark-contact, .badge-contact { background: var(--highlight-green); border-color: rgba(16, 185, 129, 0.3); }
+    .mark-contact .mark-tag, .badge-contact { color: #047857; }
+    .mark-identifier, .badge-identifier { background: var(--highlight-orange); border-color: rgba(251, 146, 60, 0.35); }
+    .mark-identifier .mark-tag, .badge-identifier { color: #9a3412; }
+    .mark-date, .badge-date { background: var(--highlight-violet); border-color: rgba(139, 92, 246, 0.3); }
+    .mark-date .mark-tag, .badge-date { color: #6d28d9; }
+    .mark-custom, .badge-custom { background: var(--custom-neutral-bg); border-color: var(--custom-neutral-border); }
+    .mark-custom .mark-tag, .badge-custom { color: var(--custom-neutral-fg); }
+    .mark-custom-1, .badge-custom-1 { background: var(--custom-1-bg); border-color: var(--custom-1-border); }
+    .mark-custom-1 .mark-tag, .badge-custom-1 { color: var(--custom-1-fg); }
+    .mark-custom-2, .badge-custom-2 { background: var(--custom-2-bg); border-color: var(--custom-2-border); }
+    .mark-custom-2 .mark-tag, .badge-custom-2 { color: var(--custom-2-fg); }
+    .mark-custom-3, .badge-custom-3 { background: var(--custom-3-bg); border-color: var(--custom-3-border); }
+    .mark-custom-3 .mark-tag, .badge-custom-3 { color: var(--custom-3-fg); }
+    .mark-custom-4, .badge-custom-4 { background: var(--custom-4-bg); border-color: var(--custom-4-border); }
+    .mark-custom-4 .mark-tag, .badge-custom-4 { color: var(--custom-4-fg); }
+    .mark-custom-5, .badge-custom-5 { background: var(--custom-5-bg); border-color: var(--custom-5-border); }
+    .mark-custom-5 .mark-tag, .badge-custom-5 { color: var(--custom-5-fg); }
+
+    .placeholder-badge {
+      display: inline-flex; align-items: center;
+      padding: 0.08rem 0.34rem; margin: 0.04rem 0.08rem;
+      border-radius: var(--radius-badge); border: 1px solid transparent;
+      font-weight: 700; line-height: 1.45; vertical-align: baseline;
+    }
+
+    .shortcut-bar {
+      margin-top: 0.7rem; padding: 0.6rem 0.9rem;
+      border-radius: 10px; border: 1px solid var(--border);
+      background: rgba(248, 250, 252, 0.7);
+      display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; align-items: center;
+      font-size: 0.78rem; color: var(--text-secondary);
+    }
+
+    .shortcut-bar kbd {
+      display: inline-flex; align-items: center; gap: 0.2rem;
+      padding: 0.15rem 0.4rem; border-radius: 5px;
+      background: #fff; border: 1px solid var(--border);
+      font-family: "JetBrains Mono", monospace; font-size: 0.72rem; font-weight: 600;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .shortcut-bar span { font-weight: 600; }
+
+    .toast {
+      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(120%);
+      padding: 0.7rem 1.2rem; border-radius: 12px;
+      background: var(--primary); color: #fff;
+      font-size: 0.88rem; font-weight: 600;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+      z-index: 100; pointer-events: none;
+      opacity: 0; transition: transform 300ms ease, opacity 300ms ease;
+    }
+
+    .toast.is-visible {
+      transform: translateX(-50%) translateY(0); opacity: 1;
+    }
+
+    .footer-inner {
+      padding: 1.25rem 0 2rem; text-align: center;
+      color: var(--text-secondary); font-size: 0.85rem;
+    }
+
+    .footer-inner p { margin: 0; }
+    .footer-inner p + p { margin-top: 0.32rem; }
+
+    @keyframes pulse { 0% { transform: scale(1); } 40% { transform: scale(0.985); } 100% { transform: scale(1); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 1024px) {
+      .editor-grid { grid-template-columns: minmax(0, 1fr) 84px minmax(0, 1fr); }
+      .action-column .anonymize-button .button-text { display: none; }
+      .settings-grid { grid-template-columns: 1fr; }
+      .custom-rules { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 767px) {
+      .header-inner { padding: 0.8rem 0; align-items: flex-start; }
+      .trust-badges { justify-content: flex-start; }
+      .hero-features { grid-template-columns: 1fr; }
+      .workspace-body { padding: 1rem; }
+      .editor-grid { grid-template-columns: 1fr; }
+      .action-column { grid-auto-flow: row; }
+      .action-column .anonymize-button { max-width: none; }
+      .action-column .anonymize-button .button-text { display: inline; }
+      .panel-surface, textarea.text-input, .rendered-text, .output-text, .diff-view { min-height: 250px; }
+      .stats-bar { align-items: flex-start; flex-direction: column; }
+      .shortcut-bar { display: none; }
+    }
+
+    .info-modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 1.5rem;
+      animation: fadeIn 200ms ease;
+    }
+
+    .info-modal-overlay.is-visible { display: flex; }
+
+    .info-modal {
+      width: min(680px, 100%); max-height: calc(100vh - 3rem);
+      background: var(--surface); border-radius: 20px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+      overflow-y: auto; overscroll-behavior: contain;
+    }
+
+    .info-modal-header {
+      position: sticky; top: 0; z-index: 1;
+      padding: 1.2rem 1.4rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.92));
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+
+    .info-modal-header h2 { margin: 0; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; }
+
+    .info-modal-close {
+      width: 36px; height: 36px; border-radius: 10px;
+      border: 1px solid var(--border); background: rgba(248, 250, 252, 0.9);
+      display: grid; place-items: center; color: var(--text-secondary);
+      font-size: 1.1rem; font-weight: 700; line-height: 1;
+      transition: background 150ms ease, color 150ms ease;
+    }
+
+    .info-modal-close:hover { background: rgba(239, 68, 68, 0.08); color: #b91c1c; }
+
+    .info-modal-body { padding: 1.4rem; display: grid; gap: 1.4rem; }
+
+    .info-section h3 {
+      margin: 0 0 0.6rem; font-size: 0.95rem; font-weight: 700;
+      color: var(--secondary); letter-spacing: -0.01em;
+    }
+
+    .info-section p {
+      margin: 0; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65;
+    }
+
+    .info-categories {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.5rem; margin-top: 0.5rem;
+    }
+
+    .info-cat {
+      display: flex; align-items: center; gap: 0.55rem;
+      padding: 0.55rem 0.75rem; border-radius: 10px;
+      border: 1px solid rgba(15, 23, 42, 0.06); background: rgba(248, 250, 252, 0.8);
+      font-size: 0.84rem; font-weight: 600;
+    }
+
+    .info-cat-dot {
+      width: 10px; height: 10px; border-radius: 999px; flex: 0 0 auto;
+    }
+
+    .info-tech-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.6rem; margin-top: 0.5rem;
+    }
+
+    .info-tech-item {
+      padding: 0.75rem 0.9rem; border-radius: 12px;
+      border: 1px solid rgba(15, 23, 42, 0.06); background: rgba(248, 250, 252, 0.8);
+    }
+
+    .info-tech-item strong {
+      display: block; font-size: 0.88rem; margin-bottom: 0.15rem; color: var(--text-primary);
+    }
+
+    .info-tech-item span { font-size: 0.8rem; color: var(--text-secondary); }
+
+    .info-privacy {
+      padding: 0.85rem 1rem; border-radius: 12px;
+      background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.15);
+      display: flex; align-items: flex-start; gap: 0.7rem;
+      font-size: 0.86rem; color: #047857; line-height: 1.6;
+    }
+
+    .info-privacy svg { flex: 0 0 auto; margin-top: 0.1rem; }
+
+    .export-import-bar {
+      margin-top: 0.5rem; padding: 1rem;
+      border-radius: 14px; border: 1px solid var(--border);
+      background: rgba(248, 250, 252, 0.7);
+      display: grid; gap: 0.75rem;
+    }
+
+    .export-import-info { display: grid; gap: 0.15rem; }
+    .export-import-info strong { font-size: 0.92rem; letter-spacing: -0.01em; }
+    .export-import-info span { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.55; }
+
+    .export-import-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .export-btn, .import-btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      min-height: 40px; padding: 0.55rem 0.9rem;
+      border-radius: 10px; border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text-primary); font-size: 0.84rem; font-weight: 700;
+      cursor: pointer;
+      transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+    }
+
+    .export-btn:hover, .export-btn:focus-visible,
+    .import-btn:hover, .import-btn:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(59, 130, 246, 0.28);
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+    }
+
+    .export-btn { color: #047857; border-color: rgba(16, 185, 129, 0.2); background: rgba(16, 185, 129, 0.06); }
+    .export-btn:hover { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); }
+
+    .import-btn { color: #1d4ed8; border-color: rgba(59, 130, 246, 0.2); background: rgba(59, 130, 246, 0.06); }
+    .import-btn:hover { background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.3); }
+
+    .footer-info-link {
+      border: 0; background: transparent; padding: 0;
+      color: var(--secondary); font-size: 0.85rem; font-weight: 600;
+      text-decoration: underline; text-underline-offset: 0.18rem;
+      text-decoration-color: rgba(59, 130, 246, 0.4);
+      cursor: pointer; transition: color 150ms ease;
+    }
+
+    .footer-info-link:hover { color: #1d4ed8; }
+
+    @media print {
+      body { background: #fff; }
+      .app-header, .hero, .action-column, .sample-bar, .shortcut-hint, .settings-card,
+      .copy-button, .download-button, .shortcut-bar, .ai-card, .view-toggle-bar, .toast, .info-modal-overlay { display: none !important; }
+      .main-inner, .footer-inner { width: 100%; padding: 0; }
+      .workspace { box-shadow: none; border: 0; }
+      .workspace-body, .workspace-head { padding: 0; }
+      .editor-grid { grid-template-columns: 1fr; }
+      .panel-surface { border: 1px solid #bbb; box-shadow: none; min-height: auto; }
+      textarea.text-input, .rendered-text, .output-text { min-height: auto; padding: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand" aria-label="AI Anonymizer">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" role="presentation">
+            <path d="M12 2.5 4.75 5.75v5.05c0 5.09 2.94 9.85 7.25 11.66 4.31-1.81 7.25-6.57 7.25-11.66V5.75L12 2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="m8.55 12.2 2.22 2.23 4.67-4.86" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-title">AI Anonymizer</span>
+          <span class="brand-subtitle">Local, secure text anonymization — platform- and user-independent</span>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;justify-content:flex-end">
+      <div class="lang-toggle" aria-label="Choose language">
+        <a href="app.html">DE</a>
+        <span class="is-active">EN</span>
+      </div>
+      <div class="trust-badges" aria-label="Security features">
+        <span class="trust-badge">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10 4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Offline
+        </span>
+        <span class="trust-badge">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10 4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Local
+        </span>
+        <span class="trust-badge">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10 4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Secure
+        </span>
+      </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="main-inner">
+      <section class="hero" id="hero">
+        <div class="eyebrow">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M10 1.8 3.7 4.6v4.39c0 4.41 2.55 8.54 6.3 10.11 3.75-1.57 6.3-5.7 6.3-10.1V4.6L10 1.8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+          Local Privacy Tool
+        </div>
+        <h1>Anonymize text. One click.</h1>
+        <p>Automatically detect and replace personally identifiable information — fully local in your browser. Regex-based pattern matching and name databases, no cloud, no risk.</p>
+        <ul class="hero-features" aria-label="Product features">
+          <li>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2.5 4.75 5.75v5.05c0 5.09 2.94 9.85 7.25 11.66 4.31-1.81 7.25-6.57 7.25-11.66V5.75L12 2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+            No Cloud
+          </li>
+          <li>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="5" y="10" width="14" height="10" rx="2.4" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 10V7.9A4 4 0 0 1 12 4a4 4 0 0 1 4 3.9V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            No Installation
+          </li>
+          <li>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M12 7.2v4.9l3.2 1.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Done in Seconds
+          </li>
+        </ul>
+        <div class="hero-disclaimer">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6.5v4M10 13.5v.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span>Automated detection does not replace manual review. Please verify the result before sharing. No guarantee of completeness — especially with unusual spellings, abbreviations, or foreign names.</span>
+        </div>
+        <button class="hero-cta" id="startButton" type="button" aria-label="Acknowledge notice and go to workspace">
+          Got it
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="m4 10 4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <p class="hero-dismiss-hint">This notice will be hidden after acknowledgment.</p>
+      </section>
+
+      <section class="workspace" id="workspace" aria-labelledby="workspaceHeading">
+        <div class="workspace-head">
+          <div>
+            <h2 id="workspaceHeading">Workspace</h2>
+            <p>Analyze texts fully locally and sanitize them for privacy compliance before AI usage.</p>
+          </div>
+          <div class="security-chip">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="m4 10 4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            No Data Transmission
+          </div>
+        </div>
+
+        <div class="workspace-body">
+          <div class="editor-grid">
+            <section class="panel" aria-labelledby="originalLabel">
+              <div class="panel-header">
+                <div class="panel-label" id="originalLabel">
+                  <span aria-hidden="true">&#9702;</span>
+                  <strong>Original Text</strong>
+                </div>
+              </div>
+              <div class="panel-surface" id="inputSurface">
+                <div class="drag-overlay" id="dragOverlay">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Drop text file here
+                </div>
+                <textarea id="originalInput" class="text-input" spellcheck="false" aria-label="Original text" placeholder="Enter, paste, or drag a text file here..."></textarea>
+                <div id="originalRendered" class="rendered-text" tabindex="0" aria-label="Original text with highlights" hidden></div>
+              </div>
+              <div class="sample-bar" aria-label="Load sample texts">
+                <span class="sample-label">Load sample:</span>
+                <button class="sample-link" type="button" data-sample="standard">Gov. Notice</button>
+                <span aria-hidden="true">&middot;</span>
+                <button class="sample-link" type="button" data-sample="social">Social Services</button>
+                <span aria-hidden="true">&middot;</span>
+                <button class="sample-link" type="button" data-sample="administration">County Office</button>
+                <span aria-hidden="true">&middot;</span>
+                <button class="sample-link" type="button" data-sample="police">Police Report</button>
+                <span aria-hidden="true">&middot;</span>
+                <button class="sample-link" type="button" data-sample="jobcenter">Benefits Office</button>
+                <span aria-hidden="true">&middot;</span>
+                <button class="sample-link" type="button" data-sample="neutral">Neutral</button>
+              </div>
+            </section>
+
+            <div class="action-column" aria-label="Actions">
+              <button id="anonymizeButton" class="anonymize-button" type="button" aria-label="Anonymize text">
+                <span class="button-icon" aria-hidden="true">&#x1f6e1;&#xfe0f;</span>
+                <span class="button-text">Anonymize &rarr;</span>
+              </button>
+              <div class="shortcut-hint" aria-hidden="true">&#8984;&#8629; / Ctrl+Enter</div>
+              <button id="resetButton" class="reset-button" type="button" aria-label="Reset original and result fields">Reset</button>
+            </div>
+
+            <section class="panel" aria-labelledby="resultLabel">
+              <div class="panel-header">
+                <div class="panel-label" id="resultLabel">
+                  <span aria-hidden="true">&#9702;</span>
+                  <strong>Anonymized Text</strong>
+                </div>
+                <div style="display:flex;gap:0.4rem">
+                  <button id="copyButton" class="copy-button" type="button" aria-label="Copy anonymized text">
+                    <svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <rect x="7" y="3" width="9" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                      <path d="M5 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Copy</span>
+                  </button>
+                  <button id="downloadButton" class="download-button" type="button" aria-label="Download anonymized text">
+                    <svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <path d="M10 3v10m0 0-3.5-3.5M10 13l3.5-3.5M3 15v1a2 2 0 002 2h10a2 2 0 002-2v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>.txt</span>
+                  </button>
+                </div>
+              </div>
+              <div class="view-toggle-bar" id="viewToggleBar">
+                <button class="view-toggle-btn is-active" type="button" data-view="result">Result</button>
+                <button class="view-toggle-btn" type="button" data-view="diff">Diff View</button>
+              </div>
+              <div class="panel-surface">
+                <div id="outputText" class="output-text is-empty" aria-live="polite">The anonymized text will appear here after analysis.</div>
+                <div id="diffView" class="diff-view" aria-label="Diff view: Original vs. Anonymized"></div>
+              </div>
+            </section>
+          </div>
+
+          <div id="statsBar" class="stats-bar is-success" role="status" aria-live="polite">
+            <span class="stats-headline">No personally identifiable information detected.</span>
+          </div>
+
+          <div class="ai-card">
+            <div class="ai-card-info">
+              <span class="ai-card-title">Local AI Model (Ollama / LM Studio)</span>
+              <span class="ai-card-desc">Context-based detection via local language model — no cloud. Available in a future version.</span>
+            </div>
+            <span class="ai-card-badge">Coming Soon</span>
+          </div>
+
+          <div class="shortcut-bar" id="shortcutBar">
+            <span>Shortcuts:</span>
+            <span><kbd>&#8984;/Ctrl</kbd> + <kbd>&#8629;</kbd> Anonymize</span>
+            <span><kbd>&#8984;/Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> Copy</span>
+            <span><kbd>&#8984;/Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> Download</span>
+            <span><kbd>Esc</kbd> Reset</span>
+          </div>
+
+          <section class="settings-card" aria-labelledby="settingsHeading">
+            <button id="settingsToggle" class="settings-toggle" type="button" aria-expanded="false" aria-controls="settingsPanel">
+              <span id="settingsHeading">Detection Rules</span>
+              <span aria-hidden="true">&#x25BC;</span>
+            </button>
+
+            <div id="settingsPanel" class="settings-panel" hidden>
+              <div class="settings-grid" id="settingsGrid"></div>
+              <div class="custom-rules">
+                <section class="custom-rule-card" aria-labelledby="customIncludeHeading">
+                  <div class="custom-rule-copy">
+                    <div class="custom-rule-title">
+                      <label id="customIncludeHeading" for="customIncludeInput">Add Custom Terms</label>
+                      <span id="customIncludeCount" class="custom-rule-count" aria-label="Number of custom terms">0</span>
+                    </div>
+                    <p>Terms in this list will always be anonymized as additional detections. Each entry can be individually toggled.</p>
+                  </div>
+                  <div class="custom-rule-entry">
+                    <input id="customIncludeInput" type="text" autocomplete="off" placeholder="e.g. John Doe, Project Alpha">
+                    <button id="customIncludeAdd" class="custom-rule-add" type="button">Add</button>
+                  </div>
+                  <div id="customIncludeList" class="custom-rule-list" aria-live="polite"></div>
+                </section>
+
+                <section class="custom-rule-card" aria-labelledby="customExcludeHeading">
+                  <div class="custom-rule-copy">
+                    <div class="custom-rule-title">
+                      <label id="customExcludeHeading" for="customExcludeInput">Exclude Custom Terms</label>
+                      <span id="customExcludeCount" class="custom-rule-count" aria-label="Number of excluded terms">0</span>
+                    </div>
+                    <p>Active exclusions will not be anonymized despite matching. Useful for agency names, product names, or intentionally allowed terms.</p>
+                  </div>
+                  <div class="custom-rule-entry">
+                    <input id="customExcludeInput" type="text" autocomplete="off" placeholder="e.g. City of New York, ChatGPT">
+                    <button id="customExcludeAdd" class="custom-rule-add" type="button">Add</button>
+                  </div>
+                  <div id="customExcludeList" class="custom-rule-list" aria-live="polite"></div>
+                </section>
+              </div>
+
+              <div class="export-import-bar">
+                <div class="export-import-info">
+                  <strong>Backup &amp; Transfer Rules</strong>
+                  <span>Export your settings and custom terms as a JSON file. This way you can restore them in another browser, on another device, or after clearing browser data.</span>
+                </div>
+                <div class="export-import-actions">
+                  <button id="exportRulesBtn" class="export-btn" type="button">
+                    <svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3v10m0 0-3.5-3.5M10 13l3.5-3.5M3 15v1a2 2 0 002 2h10a2 2 0 002-2v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Export (.json)
+                  </button>
+                  <label class="import-btn" tabindex="0">
+                    <svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 13V3m0 0L6.5 6.5M10 3l3.5 3.5M3 15v1a2 2 0 002 2h10a2 2 0 002-2v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Import (.json)
+                    <input id="importRulesInput" type="file" accept=".json,application/json" hidden>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>AI Anonymizer &middot; All data stays local in your browser &middot; No guarantee of complete detection</p>
+      <p>Robert Meyer &middot; ki-anonymisierer.de</p>
+      <p style="margin-top:0.5rem"><button class="footer-info-link" id="openInfoModal" type="button">How it works</button></p>
+    </div>
+  </footer>
+
+  <div class="info-modal-overlay" id="infoModal">
+    <div class="info-modal" role="dialog" aria-labelledby="infoModalTitle" aria-modal="true">
+      <div class="info-modal-header">
+        <h2 id="infoModalTitle">How the AI Anonymizer Works</h2>
+        <button class="info-modal-close" id="closeInfoModal" type="button" aria-label="Close">&times;</button>
+      </div>
+      <div class="info-modal-body">
+        <section class="info-section">
+          <h3>What is detected?</h3>
+          <p>The app detects and replaces personally identifiable information in 9 categories:</p>
+          <div class="info-categories">
+            <div class="info-cat"><span class="info-cat-dot" style="background:var(--highlight-yellow-border)"></span>Person Names</div>
+            <div class="info-cat"><span class="info-cat-dot" style="background:var(--highlight-blue-border)"></span>Addresses &amp; ZIP Codes</div>
+            <div class="info-cat"><span class="info-cat-dot" style="background:var(--highlight-green-border)"></span>Email &amp; Phone</div>
+            <div class="info-cat"><span class="info-cat-dot" style="background:var(--highlight-orange-border)"></span>SSN &amp; Case Numbers</div>
+            <div class="info-cat"><span class="info-cat-dot" style="background:var(--highlight-violet-border)"></span>Dates</div>
+            <div class="info-cat"><span class="info-cat-dot" style="background:var(--custom-neutral-fg)"></span>Custom Terms</div>
+          </div>
+        </section>
+
+        <section class="info-section">
+          <h3>How does the detection work?</h3>
+          <div class="info-tech-grid">
+            <div class="info-tech-item">
+              <strong>Regex Engine</strong>
+              <span>Over 20 specialized regular expressions for US/UK government and administrative texts. Detects patterns like ZIP+City, Street+No, SSN, case numbers, and more.</span>
+            </div>
+            <div class="info-tech-item">
+              <strong>Name Database</strong>
+              <span>200+ common US/UK first names and 150+ last names. Two-word combinations of first and last name are automatically detected as persons.</span>
+            </div>
+            <div class="info-tech-item">
+              <strong>Context Analysis</strong>
+              <span>Honorifics (Mr./Mrs./Ms.), role titles (Case Worker, Judge), signatures (Signed:, By:) and inquiry patterns are used as context triggers.</span>
+            </div>
+            <div class="info-tech-item">
+              <strong>Local AI Model (planned)</strong>
+              <span>Future: Integration with Ollama or LM Studio for context-based NER detection. Fully local, no cloud API.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="info-section">
+          <h3>Custom Rules</h3>
+          <p>Under "Detection Rules" you can toggle each category individually, add custom terms for detection, or intentionally exclude certain terms (e.g. agency names). All settings are stored locally in your browser.</p>
+        </section>
+
+        <section class="info-section">
+          <h3>Keyboard Shortcuts</h3>
+          <div class="info-tech-grid">
+            <div class="info-tech-item"><strong>Cmd/Ctrl + Enter</strong><span>Anonymize text</span></div>
+            <div class="info-tech-item"><strong>Cmd/Ctrl + Shift + C</strong><span>Copy result</span></div>
+            <div class="info-tech-item"><strong>Cmd/Ctrl + Shift + D</strong><span>Download as .txt</span></div>
+            <div class="info-tech-item"><strong>Escape</strong><span>Reset</span></div>
+          </div>
+        </section>
+
+        <section class="info-section">
+          <h3>Privacy &amp; Security</h3>
+          <div class="info-privacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2.5 4.75 5.75v5.05c0 5.09 2.94 9.85 7.25 11.66 4.31-1.81 7.25-6.57 7.25-11.66V5.75L12 2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m8.55 12.2 2.22 2.23 4.67-4.86" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Your texts never leave the browser. No data is sent to servers, cloud services, or third parties. All processing happens locally on your device. Settings and custom rules are stored exclusively in your browser's localStorage — not synced, not exported, not shared.</span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    (() => {
+      const STORAGE_KEYS = {
+        heroHidden: "ki-anonymizer-en.hero-hidden",
+        settings: "ki-anonymizer-en.settings",
+        customTerms: "ki-anonymizer-en.custom-terms",
+        customIncludeTerms: "ki-anonymizer-en.custom-include-terms",
+        customExcludeTerms: "ki-anonymizer-en.custom-exclude-terms"
+      };
+
+      const defaultSettings = {
+        personNames: true,
+        streetAddress: true,
+        postalLocation: true,
+        email: true,
+        phoneFax: true,
+        ssn: true,
+        caseNumber: true,
+        date: true,
+        nationalInsurance: true
+      };
+
+      const settingMeta = [
+        { key: "personNames", title: "Person Names", description: "Mr./Mrs./Ms. + Name, titles, name patterns" },
+        { key: "streetAddress", title: "Street Addresses", description: "Streets, avenues, roads, drives with house numbers" },
+        { key: "postalLocation", title: "ZIP/Postal Codes & Cities", description: "US ZIP+City and UK postcode combinations" },
+        { key: "email", title: "Email Addresses", description: "Personal and institutional email addresses" },
+        { key: "phoneFax", title: "Phone & Fax Numbers", description: "US/UK phone formats, mobile, fax, toll-free" },
+        { key: "ssn", title: "Social Security Numbers", description: "US SSN (XXX-XX-XXXX) and UK NI number patterns" },
+        { key: "caseNumber", title: "Case & Reference Numbers", description: "Case No., Docket No., File Ref., claim numbers" },
+        { key: "date", title: "Dates", description: "US/UK and ISO date formats" },
+        { key: "nationalInsurance", title: "National Insurance Numbers", description: "UK NI number patterns (AB 12 34 56 C)" }
+      ];
+
+      const SAMPLE_TEXTS = {
+        standard: `Dear Mr. John Smith,\nYour application dated 03/14/2026 (Case No. 48-7732/26) has been reviewed. Please send the missing documents to: Department of Social Services, 1450 Western Ave, Suite 200, Albany, NY 12203.\nFor questions contact Mrs. Sarah Johnson, Tel. (518) 473-7793, Email: s.johnson@dss.ny.gov.\nSSN: 078-05-1120\nSincerely,\nSigned: Thomas Williams`,
+        social: `Ms. Maria Garcia, born 05/12/1987, residing at 42 Baker Street, London NW1 6XE, NI Number AB 12 34 56 C, has applied for Universal Credit. She can be reached at 07700-900123.`,
+        neutral: `The administrative directive governs the use of AI systems in case processing. It is based on Executive Order 14110 on AI Safety.`,
+        administration: `County Office of Health & Human Services\nDivision of Family Assistance\nProcessed by Mrs. Claudia Werner\nRoom 2.14 \u00b7 Direct Line (555) 483-2145 \u00b7 Fax (555) 483-9145\nEmail: claudia.werner@county.gov\nCase Number: 2026-004512/FAS\nPO Box 100123, Springfield, IL 62701\n\nFor inquiries please contact Dr. James Hoffman or Case Worker Maria Keller.\nThis decision was issued on March 3, 2026.`,
+        police: `Metropolitan Police Department\nIncident Report No. MPD-12/4507-2026\nContact: Detective Stefan Jung, Tel. +1 (555) 700-2345\nAddress: 300 Indiana Ave NW, Washington, DC 20001\nPlease respond by 03/21/2026 to stefan.jung@mpd.dc.gov.`,
+        jobcenter: `Department of Labor — Unemployment Benefits\nClaim Number 34567/2026\nClaimant: Ms. Yasmin Albrecht\nHome Address: 14 Oak Ridge Drive, Austin, TX 78701\nPhone: (512) 234-5678\nDetermination dated 04/07/2026.`
+      };
+
+      const FIRST_NAMES = ["James","John","Robert","Michael","David","William","Richard","Joseph","Thomas","Christopher","Charles","Daniel","Matthew","Anthony","Mark","Donald","Steven","Andrew","Paul","Joshua","Kenneth","Kevin","Brian","George","Timothy","Ronald","Jason","Edward","Jeffrey","Ryan","Jacob","Gary","Nicholas","Eric","Jonathan","Stephen","Larry","Justin","Scott","Brandon","Benjamin","Samuel","Patrick","Alexander","Jack","Dennis","Jerry","Tyler","Aaron","Nathan","Henry","Peter","Adam","Zachary","Douglas","Harold","Arthur","Carl","Albert","Mary","Patricia","Jennifer","Linda","Barbara","Elizabeth","Susan","Jessica","Sarah","Karen","Lisa","Nancy","Betty","Margaret","Sandra","Ashley","Dorothy","Kimberly","Emily","Donna","Michelle","Carol","Amanda","Melissa","Deborah","Stephanie","Rebecca","Sharon","Laura","Cynthia","Kathleen","Amy","Angela","Shirley","Anna","Brenda","Pamela","Emma","Nicole","Helen","Samantha","Katherine","Christine","Debra","Rachel","Carolyn","Janet","Catherine","Maria","Heather","Diane","Ruth","Julie","Olivia","Joyce","Virginia","Victoria","Kelly","Lauren","Christina","Joan","Evelyn","Judith","Megan","Andrea","Cheryl","Hannah","Jacqueline","Martha","Gloria","Teresa","Ann","Sara","Madison","Frances","Kathryn","Janice","Jean","Abigail","Alice","Judy","Sophia","Grace","Denise","Amber","Doris","Marilyn","Danielle","Beverly","Isabella","Theresa","Diana","Natalie","Brittany","Charlotte","Marie","Kayla","Alexis","Lori"];
+      const LAST_NAMES = ["Smith","Johnson","Williams","Brown","Jones","Garcia","Miller","Davis","Rodriguez","Martinez","Hernandez","Lopez","Gonzalez","Wilson","Anderson","Thomas","Taylor","Moore","Jackson","Martin","Lee","Perez","Thompson","White","Harris","Sanchez","Clark","Ramirez","Lewis","Robinson","Walker","Young","Allen","King","Wright","Scott","Torres","Nguyen","Hill","Flores","Green","Adams","Nelson","Baker","Hall","Rivera","Campbell","Mitchell","Carter","Roberts","Gomez","Phillips","Evans","Turner","Diaz","Parker","Cruz","Edwards","Collins","Reyes","Stewart","Morris","Morales","Murphy","Cook","Rogers","Gutierrez","Ortiz","Morgan","Cooper","Peterson","Bailey","Reed","Kelly","Howard","Ramos","Kim","Cox","Ward","Richardson","Watson","Brooks","Chavez","Wood","James","Bennett","Gray","Mendoza","Ruiz","Hughes","Price","Alvarez","Castillo","Sanders","Patel","Myers","Long","Ross","Foster","Jimenez","Powell","Jenkins","Perry","Russell","Sullivan","Bell","Coleman","Butler","Henderson","Barnes","Gonzales","Fisher","Vasquez","Simmons","Marshall","Stokes","Malone","Watts","Barker","Bishop","Hudson","Armstrong","Spencer","Weaver","Freeman","Webb","Tucker","Harrison","Hicks","Crawford","Dixon","Hunt","Palmer","Robertson","Black","Stone","Chapman","Graham","Grant","Hawkins","Hayes"];
+
+      const monthsPattern = "(?:January|February|March|April|May|June|July|August|September|October|November|December)";
+      const capitalWordPattern = "[A-Z][A-Za-z''\\-]+";
+      const titlePattern = "(?:(?:Dr\\.|Prof\\.|Rev\\.|Hon\\.|Sgt\\.|Det\\.|Lt\\.|Capt\\.|Col\\.|Gen\\.|Esq\\.)\\s+)*";
+      const honorificPattern = "(?:(?:Mr\\.|Mrs\\.|Ms\\.|Miss|Mx\\.)\\s+)?";
+      const personConnectorPattern = "(?:van|von|de|del|di|du|la|le|mc|mac|o')";
+      const placeConnectorPattern = "(?:on|upon|under|by|the|of|in|at)";
+      const personNamePattern = `${capitalWordPattern}(?:[ \\t]+(?:${capitalWordPattern}|${personConnectorPattern})){0,4}`;
+      const placeNamePattern = `${capitalWordPattern}(?:[ \\t-]+(?:${capitalWordPattern}|${placeConnectorPattern})){0,5}`;
+      const streetSuffixPattern = "(?:Street|St\\.?|Avenue|Ave\\.?|Boulevard|Blvd\\.?|Drive|Dr\\.?|Road|Rd\\.?|Lane|Ln\\.?|Court|Ct\\.?|Place|Pl\\.?|Way|Circle|Cir\\.?|Terrace|Ter\\.?|Trail|Trl\\.?|Parkway|Pkwy\\.?|Highway|Hwy\\.?|Crescent|Close|Mews|Gardens|Grove|Rise|Row|Square|Park|Walk|Green)";
+      const roleLeadPattern = "(?:Name|Applicant|Complainant|Guardian|Case\\s+Worker|Caseworker|Processor|Department\\s+Head|Division\\s+Chief|Contact\\s+Person|Processed\\s+by|Handled\\s+by|Assigned\\s+to|Signed\\s+by|Claimant|Beneficiary|Team\\s+Leader|Director|Judge|Magistrate|Attorney|Officer|Detective|Investigator|Inspector|Supervisor|Examiner)";
+      const identifierLeadPattern = "(?:Case\\s+No\\.?|Docket\\s+No\\.?|File\\s+(?:Ref\\.?|No\\.?|Number)|Reference\\s+No\\.?|Claim\\s+(?:No\\.?|Number)|Account\\s+No\\.?|Report\\s+No\\.?|Incident\\s+(?:No\\.?|Report)|Complaint\\s+No\\.?|Badge\\s+No\\.?|Policy\\s+No\\.?|Certificate\\s+No\\.?)";
+      const firstNameSet = new Set(FIRST_NAMES.map((n) => n.toLowerCase()));
+      const lastNameSet = new Set(LAST_NAMES.map((n) => n.toLowerCase()));
+
+      const els = {
+        hero: document.getElementById("hero"),
+        startButton: document.getElementById("startButton"),
+        originalInput: document.getElementById("originalInput"),
+        originalRendered: document.getElementById("originalRendered"),
+        inputSurface: document.getElementById("inputSurface"),
+        dragOverlay: document.getElementById("dragOverlay"),
+        outputText: document.getElementById("outputText"),
+        diffView: document.getElementById("diffView"),
+        viewToggleBar: document.getElementById("viewToggleBar"),
+        anonymizeButton: document.getElementById("anonymizeButton"),
+        resetButton: document.getElementById("resetButton"),
+        copyButton: document.getElementById("copyButton"),
+        downloadButton: document.getElementById("downloadButton"),
+        statsBar: document.getElementById("statsBar"),
+        settingsToggle: document.getElementById("settingsToggle"),
+        settingsPanel: document.getElementById("settingsPanel"),
+        settingsGrid: document.getElementById("settingsGrid"),
+        customIncludeInput: document.getElementById("customIncludeInput"),
+        customIncludeAdd: document.getElementById("customIncludeAdd"),
+        customIncludeCount: document.getElementById("customIncludeCount"),
+        customIncludeList: document.getElementById("customIncludeList"),
+        customExcludeInput: document.getElementById("customExcludeInput"),
+        customExcludeAdd: document.getElementById("customExcludeAdd"),
+        customExcludeCount: document.getElementById("customExcludeCount"),
+        customExcludeList: document.getElementById("customExcludeList"),
+        workspace: document.getElementById("workspace"),
+        toast: document.getElementById("toast")
+      };
+
+      const state = {
+        settings: loadSettings(),
+        customIncludeTerms: loadCustomRuleList(STORAGE_KEYS.customIncludeTerms, STORAGE_KEYS.customTerms),
+        customExcludeTerms: loadCustomRuleList(STORAGE_KEYS.customExcludeTerms),
+        analyzed: null,
+        lastOriginalText: "",
+        currentView: "result",
+        undoStack: []
+      };
+
+      function showToast(message, duration = 2000) {
+        els.toast.textContent = message;
+        els.toast.classList.add("is-visible");
+        clearTimeout(showToast._timer);
+        showToast._timer = setTimeout(() => els.toast.classList.remove("is-visible"), duration);
+      }
+
+      function loadSettings() {
+        try {
+          return { ...defaultSettings, ...JSON.parse(localStorage.getItem(STORAGE_KEYS.settings) || "{}") };
+        } catch { return { ...defaultSettings }; }
+      }
+
+      function saveSettings() {
+        localStorage.setItem(STORAGE_KEYS.settings, JSON.stringify(state.settings));
+      }
+
+      function createCustomRule(term, enabled = true) {
+        return { id: `rule-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`, term: normalizeWhitespace(term), enabled };
+      }
+
+      function normalizeRuleList(rawRules) {
+        if (!Array.isArray(rawRules)) return [];
+        const seen = new Set();
+        const normalized = [];
+        for (const entry of rawRules) {
+          const term = normalizeWhitespace(typeof entry === "string" ? entry : entry?.term || "");
+          if (!term) continue;
+          const key = term.toLowerCase();
+          if (seen.has(key)) continue;
+          seen.add(key);
+          normalized.push({
+            id: typeof entry === "object" && entry?.id ? String(entry.id) : createCustomRule(term).id,
+            term,
+            enabled: typeof entry === "object" && typeof entry?.enabled === "boolean" ? entry.enabled : true
+          });
+        }
+        return normalized;
+      }
+
+      function parseLegacyCustomTerms(rawValue) {
+        return normalizeRuleList(String(rawValue || "").split(",").map((t) => t.trim()).filter(Boolean));
+      }
+
+      function loadCustomRuleList(storageKey, legacyKey) {
+        try {
+          const raw = localStorage.getItem(storageKey);
+          if (raw) return normalizeRuleList(JSON.parse(raw));
+        } catch {}
+        if (legacyKey) {
+          const legacyRaw = localStorage.getItem(legacyKey);
+          if (legacyRaw) {
+            const migrated = parseLegacyCustomTerms(legacyRaw);
+            if (migrated.length) localStorage.setItem(storageKey, JSON.stringify(migrated));
+            return migrated;
+          }
+        }
+        return [];
+      }
+
+      function saveCustomRuleList(storageKey, rules) {
+        localStorage.setItem(storageKey, JSON.stringify(normalizeRuleList(rules)));
+      }
+
+      function isHeroHidden() { return localStorage.getItem(STORAGE_KEYS.heroHidden) === "1"; }
+
+      function hideHero(persist = false) {
+        els.hero.classList.add("is-hidden");
+        if (persist) localStorage.setItem(STORAGE_KEYS.heroHidden, "1");
+      }
+
+      function buildSettingsUi() {
+        els.settingsGrid.innerHTML = settingMeta.map((item) => `
+          <label class="toggle-row">
+            <span class="toggle-copy">
+              <strong>${escapeHtml(item.title)}</strong>
+              <span>${escapeHtml(item.description)}</span>
+            </span>
+            <span class="switch">
+              <input type="checkbox" data-setting="${item.key}" ${state.settings[item.key] ? "checked" : ""}>
+              <span class="switch-track" aria-hidden="true"></span>
+            </span>
+          </label>
+        `).join("");
+        els.settingsGrid.querySelectorAll("input[data-setting]").forEach((input) => {
+          input.addEventListener("change", () => { state.settings[input.dataset.setting] = input.checked; saveSettings(); });
+        });
+        renderCustomRuleLists();
+      }
+
+      function renderRuleItems(kind, rules) {
+        if (!rules.length) return `<div class="custom-rule-empty">${kind === "include" ? "No additional terms added yet." : "No excluded terms added yet."}</div>`;
+        return rules.map((rule) => `
+          <div class="custom-rule-item">
+            <div class="custom-rule-term">
+              <span class="custom-rule-swatch ${kind === "include" ? getCustomSlotClass(rule.colorSlot) : ""}" aria-hidden="true"></span>
+              <span class="custom-rule-term-copy">
+                ${escapeHtml(rule.term)}
+                <span class="custom-rule-meta">${kind === "include" ? getIncludeMetaText(rule) : "will not be anonymized when rule is active"}</span>
+              </span>
+            </div>
+            <span class="switch">
+              <input type="checkbox" data-custom-kind="${kind}" data-custom-toggle="${escapeHtml(rule.id)}" ${rule.enabled ? "checked" : ""} aria-label="${escapeHtml(rule.term)} ${kind === "include" ? "enable or disable" : "enable or disable as exclusion"}">
+              <span class="switch-track" aria-hidden="true"></span>
+            </span>
+            <button class="custom-rule-delete" type="button" data-custom-kind="${kind}" data-custom-delete="${escapeHtml(rule.id)}" aria-label="Delete ${escapeHtml(rule.term)}">Delete</button>
+          </div>
+        `).join("");
+      }
+
+      function renderCustomRuleLists() {
+        const includeRules = assignCustomColorSlots(state.customIncludeTerms);
+        els.customIncludeList.innerHTML = renderRuleItems("include", includeRules);
+        els.customExcludeList.innerHTML = renderRuleItems("exclude", state.customExcludeTerms);
+        els.customIncludeCount.textContent = String(state.customIncludeTerms.length);
+        els.customExcludeCount.textContent = String(state.customExcludeTerms.length);
+        document.querySelectorAll("input[data-custom-toggle]").forEach((input) => {
+          input.addEventListener("change", () => toggleCustomRule(input.dataset.customKind, input.dataset.customToggle));
+        });
+        document.querySelectorAll("button[data-custom-delete]").forEach((button) => {
+          button.addEventListener("click", () => removeCustomRule(button.dataset.customKind, button.dataset.customDelete));
+        });
+      }
+
+      function assignCustomColorSlots(rules) {
+        return rules.map((rule, i) => ({ ...rule, colorSlot: i < 5 ? i + 1 : 0 }));
+      }
+
+      function getCustomSlotClass(slot) { return slot > 0 ? `custom-slot-${slot}` : ""; }
+      function getCustomMatchGroup(slot) { return slot > 0 ? `custom-${slot}` : "custom"; }
+
+      function getIncludeMetaText(rule) {
+        return !rule.colorSlot ? "will be anonymized, neutral display from rule 6 onward" : `will be anonymized, color key ${rule.colorSlot}`;
+      }
+
+      function escapeHtml(v) {
+        return v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+      }
+
+      function escapeRegExp(v) { return v.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+      function normalizeWhitespace(v) { return v.replace(/\s+/g, " ").trim(); }
+
+      function normalizePersonName(value) {
+        return value
+          .replace(/\b(?:dear|mr\.?|mrs\.?|ms\.?|miss|mx\.?|dr\.?|prof\.?|rev\.?|hon\.?|sgt\.?|det\.?|lt\.?|capt\.?|col\.?|gen\.?|esq\.?|name|applicant|complainant|guardian|case\s+worker|caseworker|processor|contact\s+person|processed\s+by|handled\s+by|assigned\s+to|signed\s+by|claimant|beneficiary|team\s+leader|director|judge|magistrate|attorney|officer|detective|investigator|inspector|supervisor|examiner|inquiries?\s+(?:to|contact)|contact)\b/giu, " ")
+          .replace(/\b(?:van|von|de|del|di|du|la|le|mc|mac|o')\b/giu, " ")
+          .replace(/[,:;()]/g, " ").replace(/\s+/g, " ").trim().toLowerCase();
+      }
+
+      function getCustomRuleState(kind) { return kind === "include" ? state.customIncludeTerms : state.customExcludeTerms; }
+
+      function setCustomRuleState(kind, rules) {
+        const normalized = normalizeRuleList(rules);
+        if (kind === "include") { state.customIncludeTerms = normalized; saveCustomRuleList(STORAGE_KEYS.customIncludeTerms, normalized); }
+        else { state.customExcludeTerms = normalized; saveCustomRuleList(STORAGE_KEYS.customExcludeTerms, normalized); }
+        renderCustomRuleLists();
+      }
+
+      function addCustomRule(kind) {
+        const input = kind === "include" ? els.customIncludeInput : els.customExcludeInput;
+        const term = normalizeWhitespace(input.value);
+        if (!term) return;
+        const rules = [...getCustomRuleState(kind)];
+        const existing = rules.find((r) => r.term.toLowerCase() === term.toLowerCase());
+        if (existing) existing.enabled = true;
+        else rules.push(createCustomRule(term));
+        setCustomRuleState(kind, rules);
+        input.value = "";
+        input.focus();
+      }
+
+      function toggleCustomRule(kind, id) {
+        setCustomRuleState(kind, getCustomRuleState(kind).map((r) => r.id === id ? { ...r, enabled: !r.enabled } : r));
+      }
+
+      function removeCustomRule(kind, id) {
+        setCustomRuleState(kind, getCustomRuleState(kind).filter((r) => r.id !== id));
+      }
+
+      function getActiveCustomTerms(kind) {
+        return assignCustomColorSlots(getCustomRuleState(kind)).filter((r) => r.enabled);
+      }
+
+      function buildExcludeSets() {
+        const exactTerms = new Set();
+        const personTerms = new Set();
+        for (const term of getActiveCustomTerms("exclude")) {
+          const generic = normalizeWhitespace(term.term).toLowerCase();
+          if (generic) exactTerms.add(generic);
+          const person = normalizePersonName(term.term);
+          if (person) personTerms.add(person);
+        }
+        return { exactTerms, personTerms };
+      }
+
+      function clearResultState() {
+        els.outputText.classList.add("is-empty");
+        els.outputText.textContent = "The anonymized text will appear here after analysis.";
+        els.diffView.innerHTML = "";
+        els.statsBar.className = "stats-bar is-success";
+        els.statsBar.innerHTML = `<span class="stats-headline">No personally identifiable information detected.</span>`;
+        els.originalRendered.innerHTML = "";
+        switchView("result");
+      }
+
+      function loadSampleText(sampleKey) {
+        if (!Object.prototype.hasOwnProperty.call(SAMPLE_TEXTS, sampleKey)) return;
+        pushUndo();
+        els.originalInput.value = SAMPLE_TEXTS[sampleKey];
+        clearResultState();
+        resetEditorMode();
+      }
+
+      function isExcludedCandidate(candidate, excludeSets) {
+        const exact = normalizeWhitespace(candidate.raw).toLowerCase();
+        if (excludeSets.exactTerms.has(exact)) return true;
+        if (candidate.type === "person" && excludeSets.personTerms.has(normalizePersonName(candidate.raw))) return true;
+        return false;
+      }
+
+      function collectCandidates(text) {
+        const candidates = [];
+        const pushCandidate = (c) => {
+          if (!c || c.start < 0 || c.end <= c.start) return;
+          c.raw = text.slice(c.start, c.end);
+          candidates.push(c);
+        };
+        const runRegex = (regex, builder) => {
+          regex.lastIndex = 0;
+          for (const match of text.matchAll(regex)) {
+            const c = builder(match);
+            if (c) pushCandidate(c);
+          }
+        };
+
+        if (state.settings.ssn) {
+          runRegex(/\b\d{3}-\d{2}-\d{4}\b/gu, (m) => ({ start: m.index, end: m.index + m[0].length, type: "ssn", group: "identifier", label: "ID", replacement: "[SSN]", priority: 1 }));
+        }
+        if (state.settings.nationalInsurance) {
+          runRegex(/\b[A-CEGHJ-PR-TW-Z]{2}\s?\d{2}\s?\d{2}\s?\d{2}\s?[A-D]\b/giu, (m) => ({ start: m.index, end: m.index + m[0].length, type: "nino", group: "identifier", label: "ID", replacement: "[NI Number]", priority: 2 }));
+        }
+        if (state.settings.email) {
+          runRegex(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/giu, (m) => ({ start: m.index, end: m.index + m[0].length, type: "email", group: "contact", label: "Contact", replacement: "[Email]", priority: 3 }));
+        }
+        if (state.settings.phoneFax) {
+          runRegex(/(?:\b(?:Tel\.?|Phone|Fax|Mobile|Cell|Direct|Hotline)\s*:?\s*)?(?:(?:\+1|1)?[\s.-]*\(?\d{3}\)?[\s.-]*\d{3}[\s.-]*\d{4}|\+44\s?\d{4}\s?\d{6}|\b0\d{3,4}\s?\d{3}\s?\d{3,4}\b)/gu, (m) => {
+            const digits = m[0].replace(/\D/g, "");
+            if (digits.length < 7) return null;
+            return { start: m.index, end: m.index + m[0].length, type: "phone", group: "contact", label: "Contact", replacement: "[Phone]", priority: 4 };
+          });
+        }
+        if (state.settings.caseNumber) {
+          runRegex(new RegExp(`(?:\\b${identifierLeadPattern}\\s*:?\\s*[A-Za-z0-9./-]{3,}|\\b(?:[A-Z]{1,8}|[IVX]{1,6}|\\d{1,4})[-\u2013][A-Za-z0-9]{1,12}(?:[./-][A-Za-z0-9]{1,14})+\\b|\\b\\d{2,8}[-/][A-Za-z0-9]{1,10}[-/][A-Za-z0-9]{1,10}\\b)`, "gu"), (m) => ({ start: m.index, end: m.index + m[0].length, type: "casenum", group: "identifier", label: "ID", replacement: "[Case No.]", priority: 5 }));
+        }
+        if (state.settings.date) {
+          runRegex(new RegExp(`\\b(?:\\d{1,2}/\\d{1,2}/\\d{2,4}|\\d{1,2}-\\d{1,2}-\\d{2,4}|\\d{4}-\\d{2}-\\d{2}|${monthsPattern}\\s+\\d{1,2},?\\s+\\d{4}|\\d{1,2}\\s+${monthsPattern}\\s+\\d{4}|${monthsPattern}\\s+\\d{4})\\b`, "giu"), (m) => ({ start: m.index, end: m.index + m[0].length, type: "date", group: "date", label: "Date", replacement: "[Date]", priority: 6 }));
+        }
+        if (state.settings.postalLocation) {
+          runRegex(/\b[A-Z][a-zA-Z\s]+,\s*[A-Z]{2}\s+\d{5}(?:-\d{4})?\b/gu, (m) => ({ start: m.index, end: m.index + m[0].length, type: "postal", group: "address", label: "Address", replacement: "[City, State ZIP]", priority: 7 }));
+          runRegex(/\b[A-Z]{1,2}\d{1,2}\s?\d[A-Z]{2}\b/gu, (m) => ({ start: m.index, end: m.index + m[0].length, type: "postal", group: "address", label: "Address", replacement: "[Postcode]", priority: 7 }));
+        }
+        if (state.settings.streetAddress) {
+          runRegex(new RegExp(`\\b\\d{1,5}\\s+(?:(?:N\\.?|S\\.?|E\\.?|W\\.?|North|South|East|West|NE|NW|SE|SW)\\s+)?${capitalWordPattern}(?:\\s+${capitalWordPattern}){0,3}\\s+${streetSuffixPattern}(?:\\s*,?\\s*(?:Suite|Ste\\.?|Apt\\.?|Unit|Fl\\.?|Floor|Room|Rm\\.?|#)\\s*\\d{1,5}[A-Za-z]?)?\\b`, "gu"), (m) => ({ start: m.index, end: m.index + m[0].length, type: "street", group: "address", label: "Address", replacement: "[Address]", priority: 8 }));
+          runRegex(/\bP\.?\s?O\.?\s+Box\s+\d{1,6}\b/giu, (m) => ({ start: m.index, end: m.index + m[0].length, type: "street", group: "address", label: "Address", replacement: "[Address]", priority: 8 }));
+        }
+        if (state.settings.personNames) {
+          runRegex(new RegExp(`\\b(?:Mr\\.|Mrs\\.|Ms\\.|Miss|Mx\\.)\\s+${titlePattern}${personNamePattern}`, "gu"), (m) => ({ start: m.index, end: m.index + m[0].length, type: "person", group: "person", label: "Person", priority: 9 }));
+          runRegex(new RegExp(`\\b(?:Signed\\s*:|By\\s*:|Prepared\\s+by\\s*:?)\\s+${titlePattern}${personNamePattern}`, "giu"), (m) => ({ start: m.index, end: m.index + m[0].length, type: "person", group: "person", label: "Person", priority: 10 }));
+          runRegex(new RegExp(`\\b${roleLeadPattern}\\s*:?\\s+(${honorificPattern}${titlePattern}${personNamePattern})`, "gu"), (m) => {
+            const rawName = m[1]; const start = m.index + m[0].length - rawName.length;
+            return { start, end: start + rawName.length, type: "person", group: "person", label: "Person", priority: 11 };
+          });
+          runRegex(new RegExp(`\\b(?:(?:please\\s+)?contact|inquiries?\\s+(?:to|contact)|reach(?:ed)?\\s+at|assigned\\s+to|handled\\s+by|processed\\s+by)\\s+(${honorificPattern}${titlePattern}${personNamePattern})`, "giu"), (m) => {
+            const rawName = m[1]; const start = m.index + m[0].length - rawName.length;
+            return { start, end: start + rawName.length, type: "person", group: "person", label: "Person", priority: 11 };
+          });
+          runRegex(new RegExp(`\\b${capitalWordPattern}\\s+${capitalWordPattern}\\b`, "gu"), (m) => {
+            const [first, last] = m[0].split(/\s+/);
+            if (!firstNameSet.has(first.toLowerCase()) || !lastNameSet.has(last.toLowerCase())) return null;
+            return { start: m.index, end: m.index + m[0].length, type: "person", group: "person", label: "Person", priority: 12 };
+          });
+          for (const term of getActiveCustomTerms("include")) {
+            runRegex(new RegExp(escapeRegExp(term.term), "giu"), (m) => {
+              const start = m.index; const end = start + m[0].length;
+              if (/\w/u.test(text[start - 1] || "") || /\w/u.test(text[end] || "")) return null;
+              return { start, end, type: "custom", group: getCustomMatchGroup(term.colorSlot), label: term.colorSlot ? `Term ${term.colorSlot}` : "Custom Term", replacement: term.colorSlot ? `[Term ${term.colorSlot}]` : "[Term]", customRuleId: term.id, priority: 0 };
+            });
+          }
+        }
+        return candidates;
+      }
+
+      function resolveOverlaps(candidates) {
+        const sorted = [...candidates].sort((a, b) => {
+          const ld = (b.end - b.start) - (a.end - a.start);
+          if (ld !== 0) return ld;
+          if (a.priority !== b.priority) return a.priority - b.priority;
+          return a.start - b.start;
+        });
+        const accepted = [];
+        for (const c of sorted) {
+          if (!accepted.some((e) => c.start < e.end && c.end > e.start)) accepted.push(c);
+        }
+        return accepted.sort((a, b) => a.start - b.start);
+      }
+
+      function assignReplacements(matches) {
+        const personRegistry = new Map();
+        const surnameAlias = new Map();
+        const customRegistry = new Map();
+        let personCounter = 0;
+        return matches.map((match) => {
+          if (match.type === "custom") {
+            const key = match.customRuleId || normalizeWhitespace(match.raw).toLowerCase();
+            if (!customRegistry.has(key)) customRegistry.set(key, match.replacement || "[Term]");
+            return { ...match, replacement: customRegistry.get(key) };
+          }
+          if (match.type !== "person") return match;
+          const canonical = normalizePersonName(match.raw);
+          const tokens = canonical.split(" ").filter(Boolean);
+          let id = personRegistry.get(canonical);
+          if (!id && tokens.length === 1 && surnameAlias.has(tokens[0])) id = surnameAlias.get(tokens[0]);
+          if (!id) {
+            personCounter += 1; id = personCounter;
+            personRegistry.set(canonical, id);
+            if (tokens.length > 1) { const lt = tokens[tokens.length - 1]; if (lt && !surnameAlias.has(lt)) surnameAlias.set(lt, id); }
+          }
+          return { ...match, replacement: `[Person ${id}]` };
+        });
+      }
+
+      function anonymize(text) {
+        const excludeSets = buildExcludeSets();
+        const filtered = collectCandidates(text).filter((c) => !isExcludedCandidate(c, excludeSets));
+        const resolved = assignReplacements(resolveOverlaps(filtered));
+        const stats = {
+          total: resolved.length,
+          person: resolved.filter((i) => i.group === "person").length,
+          address: resolved.filter((i) => i.group === "address").length,
+          contact: resolved.filter((i) => i.group === "contact").length,
+          identifier: resolved.filter((i) => i.group === "identifier").length,
+          date: resolved.filter((i) => i.group === "date").length,
+          custom: resolved.filter((i) => i.type === "custom").length
+        };
+        return { matches: resolved, stats, anonymizedText: buildPlainOutput(text, resolved) };
+      }
+
+      function buildPlainOutput(text, matches) {
+        let cursor = 0, result = "";
+        for (const m of matches) { result += text.slice(cursor, m.start) + m.replacement; cursor = m.end; }
+        return result + text.slice(cursor);
+      }
+
+      function renderOriginal(text, matches) {
+        let cursor = 0;
+        const parts = [];
+        for (const m of matches) {
+          parts.push(escapeHtml(text.slice(cursor, m.start)));
+          parts.push(`<span class="mark mark-${m.group}">${escapeHtml(text.slice(m.start, m.end))}<span class="mark-tag">${escapeHtml(m.label)}</span></span>`);
+          cursor = m.end;
+        }
+        parts.push(escapeHtml(text.slice(cursor)));
+        els.originalRendered.innerHTML = parts.join("");
+      }
+
+      function renderOutput(text, matches) {
+        if (!matches.length) {
+          els.outputText.classList.add("is-empty");
+          els.outputText.textContent = text || "The anonymized text will appear here after analysis.";
+          return;
+        }
+        let cursor = 0;
+        const parts = [];
+        for (const m of matches) {
+          parts.push(escapeHtml(text.slice(cursor, m.start)));
+          parts.push(`<span class="placeholder-badge badge-${m.group}">${escapeHtml(m.replacement)}</span>`);
+          cursor = m.end;
+        }
+        parts.push(escapeHtml(text.slice(cursor)));
+        els.outputText.classList.remove("is-empty");
+        els.outputText.innerHTML = parts.join("");
+      }
+
+      function renderDiff(text, matches) {
+        if (!matches.length) { els.diffView.innerHTML = `<span style="color:var(--text-secondary)">No changes.</span>`; return; }
+        let cursor = 0;
+        const parts = [];
+        for (const m of matches) {
+          parts.push(escapeHtml(text.slice(cursor, m.start)));
+          parts.push(`<span class="diff-removed">${escapeHtml(text.slice(m.start, m.end))}</span>`);
+          parts.push(`<span class="diff-added">${escapeHtml(m.replacement)}</span>`);
+          cursor = m.end;
+        }
+        parts.push(escapeHtml(text.slice(cursor)));
+        els.diffView.innerHTML = parts.join("");
+      }
+
+      function renderStats(stats) {
+        if (!stats.total) {
+          els.statsBar.className = "stats-bar is-success";
+          els.statsBar.innerHTML = `<span class="stats-headline">No personally identifiable information detected.</span>`;
+          return;
+        }
+        const items = [
+          { key: "person", label: stats.person === 1 ? "Person" : "Persons", color: "var(--highlight-yellow-border)", icon: "\ud83d\udc64" },
+          { key: "address", label: stats.address === 1 ? "Address" : "Addresses", color: "var(--highlight-blue-border)", icon: "\ud83c\udfe0" },
+          { key: "contact", label: "Contact Data", color: "var(--highlight-green-border)", icon: "\ud83d\udcde" },
+          { key: "identifier", label: stats.identifier === 1 ? "Identifier" : "Identifiers", color: "var(--highlight-orange-border)", icon: "\ud83d\udcce" },
+          { key: "date", label: stats.date === 1 ? "Date" : "Dates", color: "var(--highlight-violet-border)", icon: "\ud83d\udcc5" },
+          { key: "custom", label: stats.custom === 1 ? "Custom Term" : "Custom Terms", color: "var(--custom-neutral-fg)", icon: "\ud83c\udff7\ufe0f" }
+        ].filter((i) => stats[i.key] > 0);
+
+        els.statsBar.className = "stats-bar";
+        els.statsBar.innerHTML = `
+          <span class="stats-headline">${stats.total} replacement${stats.total !== 1 ? "s" : ""}</span>
+          ${items.map((i) => `<span class="stats-item"><span class="stats-dot" style="background:${i.color}"></span>${stats[i.key]} ${i.label}</span>`).join("")}
+          <div class="stats-detail">
+            ${items.map((i) => `<div class="stats-detail-item"><span class="stats-detail-count">${stats[i.key]}</span>${i.label}</div>`).join("")}
+          </div>
+        `;
+      }
+
+      function switchView(view) {
+        state.currentView = view;
+        els.viewToggleBar.querySelectorAll(".view-toggle-btn").forEach((btn) => {
+          btn.classList.toggle("is-active", btn.dataset.view === view);
+        });
+        els.outputText.style.display = view === "result" ? "block" : "none";
+        els.diffView.style.display = view === "diff" ? "block" : "none";
+        els.diffView.classList.toggle("is-visible", view === "diff");
+      }
+
+      function showAnalyzedState(text, result) {
+        renderOriginal(text, result.matches);
+        renderOutput(text, result.matches);
+        renderDiff(text, result.matches);
+        renderStats(result.stats);
+        els.originalInput.hidden = true;
+        els.originalRendered.hidden = false;
+        state.analyzed = result;
+      }
+
+      function resetEditorMode() {
+        els.originalRendered.hidden = true;
+        els.originalInput.hidden = false;
+        els.originalInput.focus({ preventScroll: true });
+        state.analyzed = null;
+      }
+
+      function pushUndo() {
+        state.undoStack.push({
+          text: els.originalInput.value,
+          analyzed: state.analyzed,
+          lastOriginalText: state.lastOriginalText
+        });
+        if (state.undoStack.length > 20) state.undoStack.shift();
+      }
+
+      function handleAnalyze() {
+        const text = els.originalInput.value.trim();
+        els.anonymizeButton.classList.remove("is-processing");
+        void els.anonymizeButton.offsetWidth;
+        els.anonymizeButton.classList.add("is-processing");
+
+        if (!text) {
+          els.outputText.classList.add("is-empty");
+          els.outputText.textContent = "Please enter a text first.";
+          els.diffView.innerHTML = "";
+          els.statsBar.className = "stats-bar";
+          els.statsBar.innerHTML = `<span class="stats-headline">No text provided.</span>`;
+          return;
+        }
+
+        pushUndo();
+        const start = performance.now();
+        state.lastOriginalText = els.originalInput.value;
+        const result = anonymize(els.originalInput.value);
+        const runtime = performance.now() - start;
+        showAnalyzedState(els.originalInput.value, result);
+
+        if (!result.stats.total) {
+          els.statsBar.innerHTML = `<span class="stats-headline">No personally identifiable information detected.</span><span class="stats-item">Analysis time: ${Math.round(runtime)} ms</span>`;
+          els.statsBar.classList.add("is-success");
+        } else {
+          els.statsBar.insertAdjacentHTML("beforeend", `<span class="stats-item">Analysis time: ${Math.round(runtime)} ms</span>`);
+        }
+      }
+
+      async function copyOutput() {
+        const value = state.analyzed ? state.analyzed.anonymizedText : "";
+        if (!value) return;
+        try {
+          await navigator.clipboard.writeText(value);
+        } catch {
+          const fb = document.createElement("textarea");
+          fb.value = value; fb.style.cssText = "position:fixed;opacity:0";
+          document.body.appendChild(fb); fb.select(); document.execCommand("copy"); fb.remove();
+        }
+        flashCopySuccess();
+        showToast("Copied to clipboard");
+      }
+
+      function flashCopySuccess() {
+        els.copyButton.classList.add("is-success");
+        els.copyButton.innerHTML = `<svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10 4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Copied</span>`;
+        clearTimeout(flashCopySuccess._t);
+        flashCopySuccess._t = setTimeout(() => {
+          els.copyButton.classList.remove("is-success");
+          els.copyButton.innerHTML = `<svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="7" y="3" width="9" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Copy</span>`;
+        }, 2000);
+      }
+
+      function downloadOutput() {
+        const value = state.analyzed ? state.analyzed.anonymizedText : "";
+        if (!value) return;
+        const blob = new Blob([value], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `anonymized_${new Date().toISOString().slice(0,10)}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast("File downloaded");
+      }
+
+      function resetAll() {
+        if (state.analyzed && state.lastOriginalText) {
+          els.originalInput.value = state.lastOriginalText;
+          clearResultState();
+          resetEditorMode();
+          return;
+        }
+        els.originalInput.value = "";
+        clearResultState();
+        resetEditorMode();
+      }
+
+      function undoLast() {
+        if (!state.undoStack.length) return;
+        const prev = state.undoStack.pop();
+        els.originalInput.value = prev.text;
+        state.lastOriginalText = prev.lastOriginalText;
+        if (prev.analyzed) {
+          showAnalyzedState(prev.text, prev.analyzed);
+        } else {
+          clearResultState();
+          resetEditorMode();
+        }
+        showToast("Undone");
+      }
+
+      function maybeDismissHero() {
+        hideHero(true);
+        els.workspace.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function setupDragDrop() {
+        const surface = els.inputSurface;
+        let dragCounter = 0;
+
+        surface.addEventListener("dragenter", (e) => {
+          e.preventDefault();
+          dragCounter++;
+          surface.classList.add("drag-over");
+        });
+
+        surface.addEventListener("dragleave", (e) => {
+          e.preventDefault();
+          dragCounter--;
+          if (dragCounter <= 0) { dragCounter = 0; surface.classList.remove("drag-over"); }
+        });
+
+        surface.addEventListener("dragover", (e) => e.preventDefault());
+
+        surface.addEventListener("drop", (e) => {
+          e.preventDefault();
+          dragCounter = 0;
+          surface.classList.remove("drag-over");
+
+          const files = e.dataTransfer.files;
+          if (!files.length) return;
+
+          const file = files[0];
+          const allowedTypes = ["text/plain", "text/csv", "text/tab-separated-values", "text/markdown", "application/json"];
+          const allowedExtensions = [".txt", ".csv", ".tsv", ".md", ".json", ".log", ".xml", ".html"];
+          const ext = "." + file.name.split(".").pop().toLowerCase();
+
+          if (!allowedTypes.includes(file.type) && !allowedExtensions.includes(ext)) {
+            showToast("Only text files are supported");
+            return;
+          }
+
+          if (file.size > 5 * 1024 * 1024) {
+            showToast("File too large (max. 5 MB)");
+            return;
+          }
+
+          const reader = new FileReader();
+          reader.onload = () => {
+            pushUndo();
+            els.originalInput.value = reader.result;
+            clearResultState();
+            resetEditorMode();
+            showToast(`${file.name} loaded`);
+          };
+          reader.readAsText(file, "utf-8");
+        });
+      }
+
+      function initEvents() {
+        els.startButton.addEventListener("click", maybeDismissHero);
+        els.anonymizeButton.addEventListener("click", handleAnalyze);
+        els.resetButton.addEventListener("click", resetAll);
+        els.copyButton.addEventListener("click", copyOutput);
+        els.downloadButton.addEventListener("click", downloadOutput);
+        els.originalRendered.addEventListener("click", resetEditorMode);
+        els.originalRendered.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); resetEditorMode(); }
+        });
+
+        els.settingsToggle.addEventListener("click", () => {
+          const expanded = els.settingsToggle.getAttribute("aria-expanded") === "true";
+          els.settingsToggle.setAttribute("aria-expanded", String(!expanded));
+          els.settingsPanel.hidden = expanded;
+        });
+
+        document.querySelectorAll("[data-sample]").forEach((btn) => {
+          btn.addEventListener("click", () => loadSampleText(btn.dataset.sample));
+        });
+
+        els.customIncludeAdd.addEventListener("click", () => addCustomRule("include"));
+        els.customExcludeAdd.addEventListener("click", () => addCustomRule("exclude"));
+        els.customIncludeInput.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); addCustomRule("include"); } });
+        els.customExcludeInput.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); addCustomRule("exclude"); } });
+
+        els.viewToggleBar.addEventListener("click", (e) => {
+          const btn = e.target.closest("[data-view]");
+          if (btn) switchView(btn.dataset.view);
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (e.defaultPrevented) return;
+          const mod = e.metaKey || e.ctrlKey;
+
+          if (mod && e.key === "Enter") {
+            e.preventDefault();
+            handleAnalyze();
+            return;
+          }
+
+          if (mod && e.shiftKey && e.key.toLowerCase() === "c") {
+            e.preventDefault();
+            copyOutput();
+            return;
+          }
+
+          if (mod && e.shiftKey && e.key.toLowerCase() === "d") {
+            e.preventDefault();
+            downloadOutput();
+            return;
+          }
+
+          if (mod && e.key.toLowerCase() === "z" && !e.shiftKey) {
+            if (document.activeElement === els.originalInput) return;
+            e.preventDefault();
+            undoLast();
+            return;
+          }
+
+          if (e.key === "Escape") {
+            if (state.analyzed) {
+              e.preventDefault();
+              resetAll();
+            }
+            return;
+          }
+        });
+
+        setupDragDrop();
+      }
+
+      function registerServiceWorker() {
+        if ("serviceWorker" in navigator) {
+          const swCode = `self.addEventListener("install",()=>self.skipWaiting());self.addEventListener("activate",e=>e.waitUntil(self.clients.claim()));self.addEventListener("fetch",e=>{if(e.request.url.startsWith("chrome-extension://"))return;e.respondWith(caches.open("ai-anon-en-v1").then(c=>c.match(e.request).then(r=>r||fetch(e.request).then(resp=>{if(resp.ok&&resp.type==="basic"){c.put(e.request,resp.clone())}return resp}).catch(()=>r))))});`;
+          const swBlob = new Blob([swCode], { type: "application/javascript" });
+          const swUrl = URL.createObjectURL(swBlob);
+          navigator.serviceWorker.register(swUrl).catch(() => {});
+        }
+      }
+
+      function exportRules() {
+        const data = {
+          version: 1,
+          exportedAt: new Date().toISOString(),
+          settings: { ...state.settings },
+          customIncludeTerms: state.customIncludeTerms.map((r) => ({ term: r.term, enabled: r.enabled })),
+          customExcludeTerms: state.customExcludeTerms.map((r) => ({ term: r.term, enabled: r.enabled }))
+        };
+        const json = JSON.stringify(data, null, 2);
+        const blob = new Blob([json], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `ai-anonymizer-rules_${new Date().toISOString().slice(0,10)}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast("Rules exported");
+      }
+
+      function importRules(file) {
+        if (!file) return;
+        if (file.size > 1024 * 1024) { showToast("File too large (max. 1 MB)"); return; }
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            const data = JSON.parse(reader.result);
+            if (!data || typeof data !== "object") throw new Error("Invalid");
+
+            if (data.settings && typeof data.settings === "object") {
+              for (const key of Object.keys(defaultSettings)) {
+                if (typeof data.settings[key] === "boolean") {
+                  state.settings[key] = data.settings[key];
+                }
+              }
+              saveSettings();
+            }
+
+            if (Array.isArray(data.customIncludeTerms)) {
+              const terms = data.customIncludeTerms
+                .filter((r) => r && typeof r.term === "string" && r.term.trim())
+                .map((r) => createCustomRule(r.term, r.enabled !== false));
+              state.customIncludeTerms = normalizeRuleList(terms);
+              saveCustomRuleList(STORAGE_KEYS.customIncludeTerms, state.customIncludeTerms);
+            }
+
+            if (Array.isArray(data.customExcludeTerms)) {
+              const terms = data.customExcludeTerms
+                .filter((r) => r && typeof r.term === "string" && r.term.trim())
+                .map((r) => createCustomRule(r.term, r.enabled !== false));
+              state.customExcludeTerms = normalizeRuleList(terms);
+              saveCustomRuleList(STORAGE_KEYS.customExcludeTerms, state.customExcludeTerms);
+            }
+
+            buildSettingsUi();
+            const incCount = state.customIncludeTerms.length;
+            const excCount = state.customExcludeTerms.length;
+            showToast(`Import successful: ${incCount} terms, ${excCount} exclusions`);
+          } catch {
+            showToast("Error: Invalid JSON file");
+          }
+        };
+        reader.readAsText(file, "utf-8");
+      }
+
+      function setupExportImport() {
+        document.getElementById("exportRulesBtn").addEventListener("click", exportRules);
+        document.getElementById("importRulesInput").addEventListener("change", (e) => {
+          importRules(e.target.files[0]);
+          e.target.value = "";
+        });
+      }
+
+      function setupInfoModal() {
+        const overlay = document.getElementById("infoModal");
+        const openBtn = document.getElementById("openInfoModal");
+        const closeBtn = document.getElementById("closeInfoModal");
+        function openModal() { overlay.classList.add("is-visible"); document.body.style.overflow = "hidden"; }
+        function closeModal() { overlay.classList.remove("is-visible"); document.body.style.overflow = ""; }
+
+        openBtn.addEventListener("click", openModal);
+        closeBtn.addEventListener("click", closeModal);
+        overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModal(); });
+        document.addEventListener("keydown", (e) => { if (e.key === "Escape" && overlay.classList.contains("is-visible")) { e.preventDefault(); e.stopPropagation(); closeModal(); } }, true);
+      }
+
+      function init() {
+        buildSettingsUi();
+        initEvents();
+        setupExportImport();
+        registerServiceWorker();
+        setupInfoModal();
+        if (isHeroHidden()) hideHero(false);
+      }
+
+      init();
+    })();
+  </script>
+</body></html>
