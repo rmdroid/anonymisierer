@@ -1432,6 +1432,7 @@
                 <span class="upgrade-feature-tag">&#10003; Import/Export</span>
                 <span class="upgrade-feature-tag">&#10003; DE + EN</span>
                 <span class="upgrade-feature-tag">&#10003; Offline nutzbar</span>
+                <span class="upgrade-feature-tag">&#10003; Compliance-Protokoll</span>
               </div>
             </div>
             <a href="https://ki-fachbuecher.lemonsqueezy.com/checkout/buy/f79a5152-897a-4809-b041-e8c65b87f388?embed=1" class="lemonsqueezy-button upgrade-cta">
@@ -1533,6 +1534,8 @@
       </p>
       <div class="footer-links" aria-label="Weiterführende Links">
         <button class="footer-info-link" id="openInfoModal" type="button">So funktioniert's</button>
+        <span class="footer-separator" aria-hidden="true">&middot;</span>
+        <button class="footer-info-link" id="openComplianceTeaser" type="button">📋 Compliance-Protokoll</button>
         <span class="footer-separator" aria-hidden="true">&middot;</span>
         <button class="footer-info-link" id="openImpressum" type="button">Impressum</button>
         <span class="footer-separator" aria-hidden="true">&middot;</span>
@@ -2537,6 +2540,12 @@
         });
       }
 
+      function setupComplianceTeaser() {
+        document.getElementById("openComplianceTeaser").addEventListener("click", () => {
+          showToast(`Compliance-Protokoll mit SHA-256-Hashkette, PDF-Export und Audit-Trail ist in der Vollversion verfügbar. → ${FULL_VERSION_URL}`, 4000);
+        });
+      }
+
       function setupInfoModal() {
         const overlay = document.getElementById("infoModal");
         const openBtn = document.getElementById("openInfoModal");
@@ -2578,6 +2587,7 @@
         setupExportImport();
         registerServiceWorker();
         setupInfoModal();
+        setupComplianceTeaser();
         setupLegalModals();
         setupCookieNotice();
         if (isHeroHidden()) hideHero(false);
