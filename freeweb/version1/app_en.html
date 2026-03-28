@@ -799,6 +799,96 @@
       .shortcut-bar { display: none; }
     }
 
+    .compliance-modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 1rem;
+    }
+    .compliance-modal-overlay.is-visible { display: flex; }
+    .compliance-modal {
+      width: min(820px, 100%); max-height: calc(100vh - 3rem);
+      background: var(--surface); border-radius: 20px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.18); overflow-y: auto;
+    }
+    .compliance-header {
+      position: sticky; top: 0; z-index: 1;
+      padding: 1.2rem 1.4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--border); background: var(--surface);
+    }
+    .compliance-header h2 { margin: 0; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; }
+    .compliance-actions { display: flex; gap: 0.5rem; align-items: center; }
+    .compliance-btn {
+      padding: 0.4rem 0.75rem; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--surface); font-size: 0.78rem; font-weight: 600;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem;
+      transition: background 150ms, border-color 150ms;
+    }
+    .compliance-btn:hover { background: #f1f5f9; border-color: #cbd5e1; }
+    .compliance-btn.is-validate { border-color: rgba(16, 185, 129, 0.3); color: #047857; }
+    .compliance-btn.is-validate:hover { background: rgba(16, 185, 129, 0.08); }
+    .compliance-btn.is-danger { border-color: rgba(239, 68, 68, 0.3); color: #dc2626; }
+    .compliance-btn.is-danger:hover { background: rgba(239, 68, 68, 0.08); }
+    .compliance-body { padding: 1.2rem 1.4rem; }
+    .compliance-empty { text-align: center; padding: 2.5rem 1rem; color: var(--text-secondary); }
+    .compliance-empty svg { margin-bottom: 0.8rem; opacity: 0.4; }
+    .compliance-operator-row {
+      display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem;
+      padding: 0.6rem 0.8rem; border-radius: 10px; background: rgba(59, 130, 246, 0.05);
+      border: 1px solid rgba(59, 130, 246, 0.1);
+    }
+    .compliance-operator-row label { font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); white-space: nowrap; }
+    .compliance-operator-input {
+      padding: 0.3rem 0.5rem; border: 1px solid var(--border); border-radius: 6px;
+      font-size: 0.82rem; font-weight: 600; width: 80px; text-transform: uppercase;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .compliance-operator-input:focus { outline: none; border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12); }
+    .compliance-status {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      padding: 0.35rem 0.65rem; border-radius: 999px;
+      font-size: 0.75rem; font-weight: 700; margin-bottom: 1rem;
+    }
+    .compliance-status.is-valid { background: rgba(16, 185, 129, 0.1); color: #047857; border: 1px solid rgba(16, 185, 129, 0.2); }
+    .compliance-status.is-invalid { background: rgba(239, 68, 68, 0.1); color: #dc2626; border: 1px solid rgba(239, 68, 68, 0.2); }
+    .compliance-status.is-neutral { background: rgba(100, 116, 139, 0.1); color: #475569; border: 1px solid rgba(100, 116, 139, 0.2); }
+    .compliance-table {
+      width: 100%; border-collapse: collapse; font-size: 0.78rem;
+    }
+    .compliance-table th {
+      text-align: left; padding: 0.5rem 0.6rem; font-weight: 700;
+      border-bottom: 2px solid var(--border); color: var(--text-secondary);
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .compliance-table td {
+      padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .compliance-table tr:last-child td { border-bottom: none; }
+    .compliance-table tr:hover td { background: rgba(59, 130, 246, 0.03); }
+    .compliance-hash {
+      font-family: "JetBrains Mono", monospace; font-size: 0.68rem;
+      color: var(--text-secondary); word-break: break-all;
+    }
+    .compliance-findings { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+    .compliance-finding-badge {
+      display: inline-flex; align-items: center; gap: 0.2rem;
+      padding: 0.15rem 0.4rem; border-radius: 4px;
+      font-size: 0.7rem; font-weight: 600;
+    }
+    .compliance-finding-badge.person { background: var(--highlight-yellow); color: #92400e; }
+    .compliance-finding-badge.address { background: var(--highlight-blue); color: #1e40af; }
+    .compliance-finding-badge.contact { background: var(--highlight-green); color: #065f46; }
+    .compliance-finding-badge.identifier { background: var(--highlight-violet); color: #5b21b6; }
+    .compliance-finding-badge.date { background: var(--highlight-orange); color: #9a3412; }
+    .compliance-pdf-btn {
+      padding: 0.2rem 0.4rem; border-radius: 4px; border: 1px solid var(--border);
+      background: transparent; font-size: 0.68rem; font-weight: 600;
+      cursor: pointer; color: var(--text-secondary);
+    }
+    .compliance-pdf-btn:hover { background: #f1f5f9; color: var(--text-primary); }
+    @media print { .compliance-modal-overlay { display: none !important; } }
+
     .info-modal-overlay {
       display: none; position: fixed; inset: 0; z-index: 200;
       background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(6px);
@@ -1211,9 +1301,37 @@
     <div class="footer-inner">
       <p>AI Anonymizer &middot; All data stays local in your browser &middot; No guarantee of complete detection</p>
       <p>Robert Meyer &middot; ki-anonymisierer.de</p>
-      <p style="margin-top:0.5rem"><button class="footer-info-link" id="openInfoModal" type="button">How it works</button></p>
+      <p style="margin-top:0.5rem"><button class="footer-info-link" id="openInfoModal" type="button">How it works</button> &middot; <button class="footer-info-link" id="openComplianceModal" type="button">Compliance log</button></p>
     </div>
   </footer>
+
+  <div class="compliance-modal-overlay" id="complianceModal">
+    <div class="compliance-modal" role="dialog" aria-labelledby="complianceModalTitle" aria-modal="true">
+      <div class="compliance-header">
+        <h2 id="complianceModalTitle">Compliance Log</h2>
+        <div class="compliance-actions">
+          <button class="compliance-btn is-validate" id="complianceValidateBtn" type="button">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="m4 10 4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Verify chain
+          </button>
+          <button class="compliance-btn" id="complianceCsvBtn" type="button">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M10 3v10m0 0-3.5-3.5M10 13l3.5-3.5M3 15v1a2 2 0 002 2h10a2 2 0 002-2v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            CSV
+          </button>
+          <button class="compliance-btn is-danger" id="complianceClearBtn" type="button">Clear</button>
+          <button class="info-modal-close" id="closeComplianceModal" type="button" aria-label="Close">&times;</button>
+        </div>
+      </div>
+      <div class="compliance-body">
+        <div class="compliance-operator-row">
+          <label for="complianceOperator">Operator ID:</label>
+          <input type="text" class="compliance-operator-input" id="complianceOperator" maxlength="8" placeholder="e.g. CW">
+        </div>
+        <div id="complianceStatus"></div>
+        <div id="complianceContent"></div>
+      </div>
+    </div>
+  </div>
 
   <div class="info-modal-overlay" id="infoModal">
     <div class="info-modal" role="dialog" aria-labelledby="infoModalTitle" aria-modal="true">
@@ -1871,6 +1989,10 @@
         } else {
           els.statsBar.insertAdjacentHTML("beforeend", `<span class="stats-item">Analysis time: ${Math.round(runtime)} ms</span>`);
         }
+
+        if (result.stats.total > 0) {
+          logCompliance(els.originalInput.value, result.anonymizedText, result.stats);
+        }
       }
 
       async function copyOutput() {
@@ -2151,6 +2273,314 @@
         });
       }
 
+      const COMPLIANCE_STORAGE = "ki-anonymizer-en.compliance-log";
+      const COMPLIANCE_OPERATOR = "ki-anonymizer-en.compliance-operator";
+
+      async function sha256(text) {
+        const data = new TextEncoder().encode(text);
+        const hash = await crypto.subtle.digest("SHA-256", data);
+        return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, "0")).join("");
+      }
+
+      function loadComplianceLog() {
+        try { return JSON.parse(localStorage.getItem(COMPLIANCE_STORAGE) || "[]"); } catch { return []; }
+      }
+
+      function saveComplianceLog(log) {
+        localStorage.setItem(COMPLIANCE_STORAGE, JSON.stringify(log));
+      }
+
+      function getComplianceOperator() {
+        return localStorage.getItem(COMPLIANCE_OPERATOR) || "";
+      }
+
+      function setComplianceOperator(val) {
+        localStorage.setItem(COMPLIANCE_OPERATOR, val.trim().toUpperCase().slice(0, 8));
+      }
+
+      async function logCompliance(inputText, outputText, stats) {
+        const log = loadComplianceLog();
+        const previousHash = log.length ? log[log.length - 1].entryHash : "0000000000000000000000000000000000000000000000000000000000000000";
+        const inputHash = await sha256(inputText);
+        const outputHash = await sha256(outputText);
+        const entry = {
+          id: new Date().toISOString().replace(/[:.]/g, "-") + "-" + Math.random().toString(36).slice(2, 6),
+          timestamp: new Date().toISOString(),
+          operator: getComplianceOperator(),
+          appVersion: "1.1.0",
+          inputLength: inputText.length,
+          outputLength: outputText.length,
+          inputHash: inputHash,
+          outputHash: outputHash,
+          anonymizedText: outputText,
+          findings: {
+            person: stats.person || 0,
+            address: stats.address || 0,
+            contact: stats.contact || 0,
+            identifier: stats.identifier || 0,
+            date: stats.date || 0,
+            custom: stats.custom || 0,
+            total: stats.total || 0
+          },
+          categories: { ...state.settings },
+          previousHash: previousHash
+        };
+        entry.entryHash = await sha256(JSON.stringify({
+          id: entry.id, timestamp: entry.timestamp, inputHash: entry.inputHash,
+          outputHash: entry.outputHash, findings: entry.findings, previousHash: entry.previousHash
+        }));
+        log.push(entry);
+        saveComplianceLog(log);
+      }
+
+      async function validateComplianceChain() {
+        const log = loadComplianceLog();
+        if (!log.length) return { valid: true, count: 0, broken: -1 };
+        let prevHash = "0000000000000000000000000000000000000000000000000000000000000000";
+        for (let i = 0; i < log.length; i++) {
+          const entry = log[i];
+          if (entry.previousHash !== prevHash) return { valid: false, count: log.length, broken: i };
+          const check = await sha256(JSON.stringify({
+            id: entry.id, timestamp: entry.timestamp, inputHash: entry.inputHash,
+            outputHash: entry.outputHash, findings: entry.findings, previousHash: entry.previousHash
+          }));
+          if (check !== entry.entryHash) return { valid: false, count: log.length, broken: i };
+          prevHash = entry.entryHash;
+        }
+        return { valid: true, count: log.length, broken: -1 };
+      }
+
+      function formatComplianceTimestamp(iso) {
+        try {
+          const d = new Date(iso);
+          return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+            + " " + d.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
+        } catch { return iso; }
+      }
+
+      function renderComplianceLog() {
+        const log = loadComplianceLog();
+        const container = document.getElementById("complianceContent");
+        const operatorInput = document.getElementById("complianceOperator");
+        operatorInput.value = getComplianceOperator();
+
+        if (!log.length) {
+          container.innerHTML = `<div class="compliance-empty">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <p><strong>No entries yet</strong></p>
+            <p>Once you anonymize a text, the operation will be logged here.</p>
+          </div>`;
+          return;
+        }
+
+        const reversed = [...log].reverse();
+        container.innerHTML = `
+          <table class="compliance-table">
+            <thead><tr>
+              <th>#</th><th>Timestamp</th><th>Operator</th><th>Findings</th><th>Input hash</th><th>Report</th>
+            </tr></thead>
+            <tbody>${reversed.map((entry, ri) => {
+              const idx = log.length - ri;
+              const f = entry.findings;
+              const badges = [];
+              if (f.person) badges.push(`<span class="compliance-finding-badge person">${f.person} Pers.</span>`);
+              if (f.address) badges.push(`<span class="compliance-finding-badge address">${f.address} Addr.</span>`);
+              if (f.contact) badges.push(`<span class="compliance-finding-badge contact">${f.contact} Cont.</span>`);
+              if (f.identifier) badges.push(`<span class="compliance-finding-badge identifier">${f.identifier} ID</span>`);
+              if (f.date) badges.push(`<span class="compliance-finding-badge date">${f.date} Date</span>`);
+              const hasText = !!entry.anonymizedText;
+              return `<tr>
+                <td>${idx}</td>
+                <td>${formatComplianceTimestamp(entry.timestamp)}</td>
+                <td>${escapeHtml(entry.operator || "\u2013")}</td>
+                <td><div class="compliance-findings">${badges.length ? badges.join("") : `<span style="color:var(--text-secondary)">0</span>`}</div></td>
+                <td><span class="compliance-hash">${entry.inputHash.slice(0, 16)}\u2026</span></td>
+                <td><button class="compliance-pdf-btn" data-compliance-idx="${log.length - ri - 1}" type="button">PDF</button></td>
+              </tr>
+              ${hasText ? `<tr class="compliance-text-row" style="display:none" data-text-for="${log.length - ri - 1}"><td colspan="6"><div style="background:var(--bg-secondary);border-radius:8px;padding:0.75rem 1rem;font-family:monospace;font-size:0.8rem;white-space:pre-wrap;max-height:200px;overflow-y:auto;color:var(--text-primary)">${escapeHtml(entry.anonymizedText)}</div></td></tr>` : ""}`;
+            }).join("")}</tbody>
+          </table>
+        `;
+
+        container.querySelectorAll(".compliance-pdf-btn").forEach(btn => {
+          btn.addEventListener("click", () => exportCompliancePDF(parseInt(btn.dataset.complianceIdx, 10)));
+        });
+
+        container.querySelectorAll("tbody tr:not(.compliance-text-row)").forEach(row => {
+          const idx = row.querySelector(".compliance-pdf-btn")?.dataset.complianceIdx;
+          if (!idx) return;
+          const textRow = container.querySelector(`[data-text-for="${idx}"]`);
+          if (!textRow) return;
+          row.style.cursor = "pointer";
+          row.addEventListener("click", (e) => {
+            if (e.target.closest(".compliance-pdf-btn")) return;
+            textRow.style.display = textRow.style.display === "none" ? "" : "none";
+          });
+        });
+      }
+
+      function exportComplianceCSV() {
+        const log = loadComplianceLog();
+        if (!log.length) return;
+        const header = "No,Timestamp,Operator,Total,Persons,Addresses,Contacts,IDs,Dates,Input Hash,Output Hash,Chain Hash,Anonymized Text";
+        const rows = log.map((e, i) => [
+          i + 1, e.timestamp, e.operator || "",
+          e.findings.total, e.findings.person, e.findings.address,
+          e.findings.contact, e.findings.identifier, e.findings.date,
+          e.inputHash, e.outputHash, e.entryHash,
+          `"${(e.anonymizedText || "").replace(/"/g, '""')}"`
+        ].join(","));
+        const csv = header + "\n" + rows.join("\n");
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `compliance-log_${new Date().toISOString().slice(0, 10)}.csv`;
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast("CSV exported");
+      }
+
+      function exportCompliancePDF(index) {
+        const log = loadComplianceLog();
+        const entry = log[index];
+        if (!entry) return;
+        const f = entry.findings;
+        const findings = [];
+        if (f.person) findings.push(`Persons: ${f.person}`);
+        if (f.address) findings.push(`Addresses: ${f.address}`);
+        if (f.contact) findings.push(`Contacts: ${f.contact}`);
+        if (f.identifier) findings.push(`Identifiers: ${f.identifier}`);
+        if (f.date) findings.push(`Dates: ${f.date}`);
+        if (f.custom) findings.push(`Custom terms: ${f.custom}`);
+
+        const pdfHtml = `<!doctype html><html><head><meta charset="utf-8"><title>Compliance Report</title>
+        <style>
+          body{font-family:system-ui,-apple-system,sans-serif;margin:2cm;color:#0f172a;font-size:11pt;line-height:1.6}
+          h1{font-size:16pt;margin:0 0 0.2rem;color:#0f172a}
+          .subtitle{color:#64748b;font-size:10pt;margin-bottom:1.5rem}
+          table{width:100%;border-collapse:collapse;margin:1rem 0}
+          th,td{text-align:left;padding:0.4rem 0.6rem;border-bottom:1px solid #e2e8f0;font-size:10pt}
+          th{font-weight:700;color:#64748b;font-size:9pt;text-transform:uppercase;letter-spacing:0.04em;border-bottom:2px solid #cbd5e1}
+          .hash{font-family:monospace;font-size:8pt;color:#64748b;word-break:break-all}
+          .section{margin-top:1.2rem}
+          .section h2{font-size:11pt;margin:0 0 0.5rem;color:#3b82f6}
+          .badge{display:inline-block;padding:0.15rem 0.5rem;border-radius:4px;font-size:9pt;font-weight:600;margin-right:0.3rem}
+          .badge-person{background:#fef3c7;color:#92400e}
+          .badge-address{background:#dbeafe;color:#1e40af}
+          .badge-contact{background:#d1fae5;color:#065f46}
+          .badge-identifier{background:#ede9fe;color:#5b21b6}
+          .badge-date{background:#ffedd5;color:#9a3412}
+          .footer{margin-top:2rem;padding-top:1rem;border-top:1px solid #e2e8f0;font-size:8pt;color:#94a3b8;text-align:center}
+          .verification{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin-top:1.2rem}
+          .verification h2{margin-top:0}
+        </style></head><body>
+        <h1>Compliance Report</h1>
+        <p class="subtitle">Anonymization record \u2014 AI Anonymizer v${entry.appVersion}</p>
+        <table>
+          <tr><th style="width:35%">Property</th><th>Value</th></tr>
+          <tr><td>Entry No.</td><td>#${index + 1}</td></tr>
+          <tr><td>Timestamp</td><td>${formatComplianceTimestamp(entry.timestamp)}</td></tr>
+          <tr><td>Operator</td><td>${escapeHtml(entry.operator || "\u2013")}</td></tr>
+          <tr><td>Text length (chars)</td><td>Input: ${entry.inputLength} \u2192 Output: ${entry.outputLength}</td></tr>
+          <tr><td>Total anonymizations</td><td><strong>${f.total}</strong></td></tr>
+        </table>
+        <div class="section">
+          <h2>Detected Categories</h2>
+          <p>${findings.length ? findings.map(fi => {
+            const cat = fi.split(":")[0].trim().toLowerCase();
+            let cls = "";
+            if (cat.includes("person")) cls = "person";
+            else if (cat.includes("address")) cls = "address";
+            else if (cat.includes("contact")) cls = "contact";
+            else if (cat.includes("identifier")) cls = "identifier";
+            else if (cat.includes("date")) cls = "date";
+            return `<span class="badge badge-${cls}">${escapeHtml(fi)}</span>`;
+          }).join(" ") : "No findings"}</p>
+        </div>
+        ${entry.anonymizedText ? `<div class="section">
+          <h2>Anonymized Result</h2>
+          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:0.8rem 1rem;font-family:monospace;font-size:9pt;white-space:pre-wrap;line-height:1.5">${escapeHtml(entry.anonymizedText)}</div>
+        </div>` : ""}
+        <div class="verification">
+          <h2>Cryptographic Verification</h2>
+          <table>
+            <tr><td style="width:35%">SHA-256 input text</td><td class="hash">${entry.inputHash}</td></tr>
+            <tr><td>SHA-256 output text</td><td class="hash">${entry.outputHash}</td></tr>
+            <tr><td>Chain hash (previous)</td><td class="hash">${entry.previousHash}</td></tr>
+            <tr><td>Entry hash</td><td class="hash">${entry.entryHash}</td></tr>
+          </table>
+          <p style="font-size:8pt;color:#94a3b8;margin:0.5rem 0 0">The hash chain ensures no entry can be modified or removed without breaking the chain.</p>
+        </div>
+        <div class="footer">
+          Generated by AI Anonymizer v${entry.appVersion} \u2014 All data processed locally \u2014 Only anonymized output stored, no original text<br>
+          &copy; ${new Date().getFullYear()} Robert Meyer &middot; ki-anonymisierer.de
+        </div>
+        </body></html>`;
+
+        const printWindow = window.open("", "_blank", "width=800,height=900");
+        printWindow.document.write(pdfHtml);
+        printWindow.document.close();
+        printWindow.onload = () => { printWindow.print(); };
+      }
+
+      function clearComplianceLog() {
+        if (!confirm("Permanently delete the entire compliance log?")) return;
+        saveComplianceLog([]);
+        document.getElementById("complianceStatus").innerHTML = "";
+        renderComplianceLog();
+        showToast("Log cleared");
+      }
+
+      function setupComplianceModal() {
+        const overlay = document.getElementById("complianceModal");
+        const openBtn = document.getElementById("openComplianceModal");
+        const closeBtn = document.getElementById("closeComplianceModal");
+        const validateBtn = document.getElementById("complianceValidateBtn");
+        const csvBtn = document.getElementById("complianceCsvBtn");
+        const clearBtn = document.getElementById("complianceClearBtn");
+        const operatorInput = document.getElementById("complianceOperator");
+
+        function openModal() {
+          overlay.classList.add("is-visible");
+          document.body.style.overflow = "hidden";
+          renderComplianceLog();
+        }
+        function closeModal() {
+          overlay.classList.remove("is-visible");
+          document.body.style.overflow = "";
+        }
+
+        openBtn.addEventListener("click", openModal);
+        closeBtn.addEventListener("click", closeModal);
+        overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModal(); });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && overlay.classList.contains("is-visible")) { e.preventDefault(); e.stopPropagation(); closeModal(); }
+        }, true);
+
+        validateBtn.addEventListener("click", async () => {
+          const result = await validateComplianceChain();
+          const statusEl = document.getElementById("complianceStatus");
+          if (!result.count) {
+            statusEl.innerHTML = `<span class="compliance-status is-neutral">No entries</span>`;
+          } else if (result.valid) {
+            statusEl.innerHTML = `<span class="compliance-status is-valid">
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="m4 10 4 4 8-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Chain intact \u2014 ${result.count} entries verified
+            </span>`;
+          } else {
+            statusEl.innerHTML = `<span class="compliance-status is-invalid">
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="m6 6 8 8M14 6l-8 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+              Chain broken at entry #${result.broken + 1} \u2014 possible tampering
+            </span>`;
+          }
+        });
+
+        csvBtn.addEventListener("click", exportComplianceCSV);
+        clearBtn.addEventListener("click", () => { clearComplianceLog(); });
+        operatorInput.addEventListener("input", () => { setComplianceOperator(operatorInput.value); });
+      }
+
       function setupInfoModal() {
         const overlay = document.getElementById("infoModal");
         const openBtn = document.getElementById("openInfoModal");
@@ -2170,6 +2600,7 @@
         setupExportImport();
         registerServiceWorker();
         setupInfoModal();
+        setupComplianceModal();
         if (isHeroHidden()) hideHero(false);
       }
 
