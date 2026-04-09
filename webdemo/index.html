@@ -136,7 +136,17 @@
     .brand-title { display: block; font-weight: 700; letter-spacing: -0.02em; font-size: 1.04rem; color: var(--text-primary); }
     .brand-subtitle { display: block; color: var(--text-secondary); font-size: 0.84rem; }
 
-    .trust-badges { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.55rem; }
+    .trust-badges { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.55rem; position: relative; }
+
+    .chrome-badge-tooltip {
+      display: none; position: absolute; top: calc(100% + 8px); right: 0;
+      padding: 0.45rem 0.75rem; border-radius: 6px;
+      background: var(--primary); color: #fff;
+      font-size: 0.75rem; font-weight: 500; white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+      pointer-events: none; z-index: 30;
+    }
+    .chrome-badge:hover + .chrome-badge-tooltip { display: block; }
 
     .header-actions {
       display: flex;
@@ -1030,6 +1040,18 @@
       box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
     }
 
+    .chrome-badge {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      min-height: 34px; padding: 0.42rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.1); color: #1d4ed8;
+      border: 1px solid rgba(59, 130, 246, 0.16);
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.01em;
+      text-decoration: none; transition: all 150ms ease; cursor: pointer;
+    }
+    .chrome-badge:hover { background: rgba(59, 130, 246, 0.18); color: #1e40af; }
+    .chrome-badge svg { flex: 0 0 auto; }
+
     .footer-info-link {
       border: 0; background: transparent; padding: 0;
       color: var(--secondary); font-size: 0.85rem; font-weight: 600;
@@ -1273,6 +1295,11 @@
             <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10 4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Sicher
           </span>
+          <a href="https://chromewebstore.google.com/detail/jaoallgfipnfnibbnjeflecgfmbhefoa?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer" class="chrome-badge" aria-label="Chrome-Extension im Web Store">
+            <svg width="14" height="14" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#fff"/><path d="M24 2A22 22 0 0 0 4.3 33l11.4-19.7A12 12 0 0 1 24 12h20.5A22 22 0 0 0 24 2Z" fill="#EA4335"/><path d="M35.7 15H24a12 12 0 0 0-10.4 6L2.3 33a22 22 0 0 0 43.4 0l-10-17.3Z" fill="#4285F4"/><path d="M13.6 21A12 12 0 0 0 24 36a12 12 0 0 0 10.4-6l11.3 3A22 22 0 0 1 2.3 33L13.6 21Z" fill="#34A853"/><path d="M15.7 33A12 12 0 0 1 12 24a12 12 0 0 1 1.6-6L2.3 15a22 22 0 0 0 0 18l13.4 0Z" fill="#FBBC05"/><circle cx="24" cy="24" r="8" fill="#fff"/><circle cx="24" cy="24" r="5.5" fill="#4285F4"/></svg>
+            Chrome
+          </a>
+          <span class="chrome-badge-tooltip">Kostenlose Chrome-Extension — direkt in Textfeldern anonymisieren</span>
         </div>
       </div>
     </div>
@@ -1533,6 +1560,8 @@
         </a>
       </p>
       <div class="footer-links" aria-label="Weiterführende Links">
+        <a href="https://chromewebstore.google.com/detail/jaoallgfipnfnibbnjeflecgfmbhefoa?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer" class="footer-info-link" style="text-decoration:underline">Chrome-Extension</a>
+        <span class="footer-separator" aria-hidden="true">&middot;</span>
         <button class="footer-info-link" id="openInfoModal" type="button">So funktioniert's</button>
         <span class="footer-separator" aria-hidden="true">&middot;</span>
         <button class="footer-info-link" id="openComplianceTeaser" type="button">📋 Compliance-Protokoll</button>
