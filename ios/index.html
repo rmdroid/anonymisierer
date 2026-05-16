@@ -1121,6 +1121,75 @@
       border: 0;
       background: #fff;
     }
+    .updates-dialog {
+      max-width: 760px;
+    }
+    .updates-body {
+      display: grid;
+      grid-template-columns: minmax(0, 0.78fr) minmax(280px, 1fr);
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .updates-copy {
+      padding: 1rem;
+      border-radius: 22px;
+      background: rgba(7,17,31,0.04);
+      border: 1px solid rgba(7,17,31,0.06);
+    }
+    .updates-copy h4 {
+      margin: 0;
+      font-family: "Sora", system-ui, sans-serif;
+      font-size: 1.65rem;
+      letter-spacing: -0.04em;
+      line-height: 1.02;
+    }
+    .updates-copy p {
+      margin: 0.65rem 0 0;
+      color: var(--muted-dark);
+    }
+    .updates-form {
+      display: grid;
+      align-content: start;
+      gap: 0.85rem;
+    }
+    .updates-row {
+      display: grid;
+      gap: 0.35rem;
+    }
+    .updates-row label {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #344158;
+    }
+    .updates-row input {
+      width: 100%;
+      min-height: 48px;
+      padding: 0.75rem 0.85rem;
+      border-radius: 16px;
+      border: 1px solid rgba(7,17,31,0.12);
+      background: #fff;
+      color: var(--ink-dark);
+      font: inherit;
+    }
+    .updates-actions {
+      display: grid;
+      gap: 0.55rem;
+    }
+    .updates-actions .button {
+      border: 0;
+      cursor: pointer;
+    }
+    .updates-actions .button:disabled {
+      opacity: 0.62;
+      cursor: wait;
+    }
+    .updates-status {
+      min-height: 1.35rem;
+      color: var(--muted-dark);
+      font-size: 0.9rem;
+    }
+    .updates-status.is-error { color: #c2344d; }
+    .updates-status.is-success { color: #17765f; }
     .shot-body {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(280px, 0.54fr);
@@ -1725,6 +1794,16 @@
       .shot-copy-panel h4 {
         font-size: 1.25rem;
       }
+      .updates-body {
+        grid-template-columns: 1fr;
+        padding: 0.85rem;
+      }
+      .updates-copy {
+        padding: 0.85rem;
+      }
+      .updates-copy h4 {
+        font-size: 1.25rem;
+      }
     }
 
     @media (max-width: 390px) {
@@ -1746,24 +1825,62 @@
     }
 
     @media (max-width: 1024px) {
+      main .hero .hero-actions,
       main .hero .price-note,
       main .hero .hero-points {
         width: 100% !important;
         max-width: 660px !important;
         display: grid !important;
         grid-template-columns: 1fr !important;
+        gap: 0.72rem !important;
         overflow: visible !important;
+        align-items: stretch !important;
+        justify-items: stretch !important;
       }
+      main .hero .hero-actions {
+        margin-top: 1.3rem !important;
+      }
+      main .hero .price-note,
+      main .hero .hero-points {
+        margin-top: 0.72rem !important;
+      }
+      main .hero .hero-actions > *,
       main .hero .price-note span,
       main .hero .point {
         width: 100% !important;
         max-width: 100% !important;
         min-width: 0 !important;
+        flex: none !important;
+        justify-self: stretch !important;
+        box-sizing: border-box !important;
+        min-height: 64px !important;
+        height: auto !important;
+        padding: 0.92rem 1rem !important;
+        border-radius: 22px !important;
+        border: 1px solid rgba(255,255,255,0.095) !important;
+        background: rgba(255,255,255,0.045) !important;
+        box-shadow: none !important;
+        align-items: center !important;
+        color: rgba(226, 235, 255, 0.82) !important;
+        font-size: 1rem !important;
+        line-height: 1.35 !important;
       }
+      main .hero .hero-actions > *,
       main .hero .price-note span {
         justify-content: center !important;
         white-space: normal !important;
         text-align: center !important;
+      }
+      main .hero .point {
+        justify-content: flex-start !important;
+        text-align: left !important;
+      }
+      main .hero .point span {
+        display: block !important;
+        width: 100% !important;
+      }
+      main .hero .point svg {
+        margin-top: 0 !important;
       }
     }
   </style>
@@ -2145,6 +2262,7 @@
           </svg>
           <span>LinkedIn</span>
         </a>
+        <button class="footer-nav-button" id="openUpdates" type="button">Updates / Newsletter</button>
       </nav>
     </div>
   </footer>
@@ -2176,6 +2294,35 @@
     </div>
   </div>
 
+  <div class="legal-modal" id="updatesModal" aria-hidden="true">
+    <div class="legal-dialog updates-dialog" role="dialog" aria-modal="true" aria-labelledby="updatesTitle">
+      <div class="legal-head">
+        <h3 id="updatesTitle">Updates / Newsletter</h3>
+        <button class="legal-close" id="closeUpdates" aria-label="Updates schließen">×</button>
+      </div>
+      <div class="updates-body">
+        <div class="updates-copy">
+          <h4>Produktupdates ohne Rauschen.</h4>
+          <p>Wenn die iOS-App freigegeben wird, ein wichtiges Update erscheint oder neue Funktionen dazukommen, informieren wir per E-Mail. Keine Massenmailings, nur relevante Produktupdates.</p>
+        </div>
+        <form class="updates-form" id="updatesForm" novalidate>
+          <div class="updates-row">
+            <label for="updatesName">Name (optional)</label>
+            <input id="updatesName" name="name" type="text" autocomplete="name">
+          </div>
+          <div class="updates-row">
+            <label for="updatesEmail">E-Mail</label>
+            <input id="updatesEmail" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="updates-actions">
+            <button class="button" id="updatesSubmit" type="submit">Updates anfordern</button>
+            <div class="updates-status" id="updatesStatus" aria-live="polite"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <div class="shot-modal" id="shotModal" aria-hidden="true">
     <div class="shot-dialog" role="dialog" aria-modal="true" aria-labelledby="shotTitle">
       <div class="shot-head">
@@ -2196,12 +2343,16 @@
   </div>
 
   <script>
+    const endpoint = 'https://n8n.top-beraternetzwerk.de/webhook/termine';
     const impressumModal = document.getElementById('impressumModal');
     const datenschutzModal = document.getElementById('datenschutzModal');
+    const updatesModal = document.getElementById('updatesModal');
     const openImpressum = document.getElementById('openImpressum');
     const openDatenschutz = document.getElementById('openDatenschutz');
+    const openUpdates = document.getElementById('openUpdates');
     const closeImpressum = document.getElementById('closeImpressum');
     const closeDatenschutz = document.getElementById('closeDatenschutz');
+    const closeUpdates = document.getElementById('closeUpdates');
     const impressumFrame = document.getElementById('impressumFrame');
     const datenschutzFrame = document.getElementById('datenschutzFrame');
     const cookieNotice = document.getElementById('cookieNotice');
@@ -2209,6 +2360,11 @@
     const toTop = document.getElementById('toTop');
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
+    const updatesForm = document.getElementById('updatesForm');
+    const updatesName = document.getElementById('updatesName');
+    const updatesEmail = document.getElementById('updatesEmail');
+    const updatesSubmit = document.getElementById('updatesSubmit');
+    const updatesStatus = document.getElementById('updatesStatus');
 
     function closeMobileMenu() {
       if (!menuToggle || !mobileMenu) return;
@@ -2267,7 +2423,78 @@
 <html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;padding:1.1rem 1rem 1.4rem;font-family:system-ui,sans-serif;color:#1f2738;line-height:1.55;background:#fff}h1{margin:0 0 .75rem;font-size:1.4rem;line-height:1.2}h2{margin:1rem 0 .35rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:#4f5a70}p{margin:.3rem 0;font-size:.94rem}a{color:#253b68;text-decoration:underline}</style></head><body><h1>Impressum gemäß § 5 TMG &amp; § 55 RStV</h1><h2>Angaben gemäß § 5 TMG</h2><p><strong>Robert Meyer</strong><br>Robert Meyer c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin<br>Deutschland</p><h2>Kontakt</h2><p>E-Mail: rm@kostenmanager.net<br>Kontaktformular: <a href="https://mein.online-impressum.de/robert-meyer/" target="_blank" rel="noopener noreferrer">https://mein.online-impressum.de/robert-meyer/</a></p><h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2><p><strong>Robert Meyer</strong><br>Robert Meyer c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin</p><h2>Plattform der EU-Kommission zur Online-Streitbeilegung</h2><p><a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a></p><h2>Verbraucherstreitbeilegung</h2><p>Ich bin nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p></body></html>`);
 
     bindModal(datenschutzModal, openDatenschutz, closeDatenschutz, datenschutzFrame, `<!doctype html>
-<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;padding:1.1rem 1rem 1.4rem;font-family:system-ui,sans-serif;color:#1f2738;line-height:1.55;background:#fff}h1{margin:0 0 .75rem;font-size:1.4rem;line-height:1.2}h2{margin:1rem 0 .35rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:#4f5a70}p{margin:.3rem 0;font-size:.94rem}ul{margin:.35rem 0 .6rem;padding-left:1.2rem}li{margin:.22rem 0;font-size:.94rem}a{color:#253b68;text-decoration:underline}</style></head><body><h1>Datenschutzerklärung</h1><h2>1. Datenschutz auf einen Blick</h2><p><strong>Allgemeine Hinweise</strong></p><p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen oder die App Anonymisierer für iPhone und iPad verwenden. Diese Website wurde unter Beachtung der Datenschutz-Grundverordnung (DSGVO) entwickelt.</p><h2>2. App-Datenschutz</h2><p>Anonymisierer verarbeitet unterstützte Inhalte lokal auf iPhone oder iPad. Texte, Bilder, Screenshots, Fotos und Dateien werden für die Anonymisierung nicht an externe Dritte übertragen.</p><ul><li>Keine Cloud-Verarbeitung für die Anonymisierung.</li><li>Keine Registrierung und kein Nutzerkonto.</li><li>Kein Tracking, keine Werbung und keine Nutzerprofile in der App.</li><li>Kein Abonnement; der Verkauf erfolgt als einmaliger Kauf über den Apple App Store.</li><li>Apple Intelligence wird nur optional genutzt, wenn sie lokal auf dem Gerät verfügbar ist.</li></ul><p>Die App unterstützt die Anonymisierung sensibler Inhalte, ersetzt aber keine menschliche Endkontrolle. Ergebnisse sollten vor Veröffentlichung, Weitergabe oder Nutzung in sensiblen Kontexten geprüft werden.</p><h2>3. PDF, Bilder und Share Sheet</h2><p>PDF-Inhalte werden als Text verarbeitet. Die anonymisierte Ausgabe ist reiner Text ohne ursprüngliche PDF-Formatierung. Bei Screenshots und Fotos werden erkannte Bereiche lokal bearbeitet; manuelle Markierungen bleiben ebenfalls lokal auf dem Gerät. Inhalte, die über das iOS Share Sheet an die App übergeben werden, werden nur für den jeweiligen Anonymisierungsvorgang verarbeitet.</p><h2>4. Datenerfassung auf dieser Website</h2><p>Diese Website verwendet keine Cookies. Es werden keine Nutzerkonten geführt und keine Marketing-Cookies gesetzt. Wenn Sie externe Kontaktwege nutzen, werden die von Ihnen übermittelten Daten ausschließlich zur Bearbeitung Ihres Anliegens genutzt.</p><h2>5. Externe Dienste</h2><p>Für die Darstellung der Website werden Google Fonts geladen. Zur anonymisierten Reichweitenmessung wird Umami eingesetzt. Wenn Sie Links zu externen Diensten wie Apple App Store, LinkedIn oder Kontaktformularen nutzen, gelten ergänzend die Datenschutzbestimmungen der jeweiligen Anbieter.</p><h2>6. Verantwortliche Stelle</h2><p>Robert Meyer – Robert Meyer<br>c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin<br>Deutschland</p></body></html>`);
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;padding:1.1rem 1rem 1.4rem;font-family:system-ui,sans-serif;color:#1f2738;line-height:1.55;background:#fff}h1{margin:0 0 .75rem;font-size:1.4rem;line-height:1.2}h2{margin:1rem 0 .35rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:#4f5a70}p{margin:.3rem 0;font-size:.94rem}ul{margin:.35rem 0 .6rem;padding-left:1.2rem}li{margin:.22rem 0;font-size:.94rem}a{color:#253b68;text-decoration:underline}</style></head><body><h1>Datenschutzerklärung</h1><h2>1. Datenschutz auf einen Blick</h2><p><strong>Allgemeine Hinweise</strong></p><p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen oder die App Anonymisierer für iPhone und iPad verwenden. Diese Website wurde unter Beachtung der Datenschutz-Grundverordnung (DSGVO) entwickelt.</p><h2>2. App-Datenschutz</h2><p>Anonymisierer verarbeitet unterstützte Inhalte lokal auf iPhone oder iPad. Texte, Bilder, Screenshots, Fotos und Dateien werden für die Anonymisierung nicht an externe Dritte übertragen.</p><ul><li>Keine Cloud-Verarbeitung für die Anonymisierung.</li><li>Keine Registrierung und kein Nutzerkonto.</li><li>Kein Tracking, keine Werbung und keine Nutzerprofile in der App.</li><li>Kein Abonnement; der Verkauf erfolgt als einmaliger Kauf über den Apple App Store.</li><li>Apple Intelligence wird nur optional genutzt, wenn sie lokal auf dem Gerät verfügbar ist.</li></ul><p>Die App unterstützt die Anonymisierung sensibler Inhalte, ersetzt aber keine menschliche Endkontrolle. Ergebnisse sollten vor Veröffentlichung, Weitergabe oder Nutzung in sensiblen Kontexten geprüft werden.</p><h2>3. PDF, Bilder und Share Sheet</h2><p>PDF-Inhalte werden als Text verarbeitet. Die anonymisierte Ausgabe ist reiner Text ohne ursprüngliche PDF-Formatierung. Bei Screenshots und Fotos werden erkannte Bereiche lokal bearbeitet; manuelle Markierungen bleiben ebenfalls lokal auf dem Gerät. Inhalte, die über das iOS Share Sheet an die App übergeben werden, werden nur für den jeweiligen Anonymisierungsvorgang verarbeitet.</p><h2>4. Datenerfassung auf dieser Website</h2><p>Diese Website verwendet keine Cookies. Es werden keine Nutzerkonten geführt und keine Marketing-Cookies gesetzt. Wenn Sie das Formular „Updates / Newsletter“ nutzen, werden die von Ihnen eingegebenen Daten über einen externen Webhook-Dienst an Robert Meyer zur Bearbeitung des Anliegens übermittelt. Andere Kontaktwege werden ebenfalls ausschließlich zur Bearbeitung Ihres Anliegens genutzt.</p><h2>5. Externe Dienste</h2><p>Für die Darstellung der Website werden Google Fonts geladen. Zur anonymisierten Reichweitenmessung wird Umami eingesetzt. Wenn Sie das Update-Formular absenden, werden die eingegebenen Daten an einen externen Webhook-Endpunkt übermittelt. Wenn Sie Links zu externen Diensten wie Apple App Store, LinkedIn oder Kontaktformularen nutzen, gelten ergänzend die Datenschutzbestimmungen der jeweiligen Anbieter.</p><h2>6. Verantwortliche Stelle</h2><p>Robert Meyer – Robert Meyer<br>c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin<br>Deutschland</p></body></html>`);
+
+    function openUpdatesModal() {
+      if (!updatesModal) return;
+      if (updatesStatus) {
+        updatesStatus.textContent = '';
+        updatesStatus.className = 'updates-status';
+      }
+      updatesModal.classList.add('open');
+      updatesModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeUpdatesModal() {
+      if (!updatesModal) return;
+      updatesModal.classList.remove('open');
+      updatesModal.setAttribute('aria-hidden', 'true');
+      if (updatesForm) updatesForm.reset();
+      if (updatesStatus) {
+        updatesStatus.textContent = '';
+        updatesStatus.className = 'updates-status';
+      }
+      document.body.style.overflow = '';
+    }
+
+    if (openUpdates && closeUpdates && updatesModal) {
+      openUpdates.addEventListener('click', openUpdatesModal);
+      closeUpdates.addEventListener('click', closeUpdatesModal);
+      updatesModal.addEventListener('click', (event) => {
+        if (event.target === updatesModal) closeUpdatesModal();
+      });
+    }
+
+    if (updatesForm && updatesEmail && updatesSubmit && updatesStatus) {
+      updatesForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const name = updatesName ? updatesName.value.trim() : '';
+        const email = updatesEmail.value.trim();
+        if (!email || !updatesEmail.checkValidity()) {
+          updatesStatus.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
+          updatesStatus.className = 'updates-status is-error';
+          updatesEmail.focus();
+          return;
+        }
+        updatesSubmit.disabled = true;
+        updatesStatus.textContent = 'Wird übermittelt ...';
+        updatesStatus.className = 'updates-status';
+        try {
+          const effectiveName = name || 'Ohne Namen';
+          await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: effectiveName,
+              email,
+              message: 'Anonymisierer iOS Updates / Newsletter\n' + 'Name: ' + effectiveName + '\n' + 'E-Mail: ' + email + '\nQuelle: iOS Landingpage\nSeite: ' + window.location.href,
+              source: 'anonymisierer-ios-landingpage-updates',
+              page: window.location.href,
+              interest: 'Anonymisierer iOS Updates / Newsletter'
+            })
+          });
+          updatesForm.reset();
+          updatesStatus.textContent = 'Vielen Dank. Ihre Angaben wurden übermittelt.';
+          updatesStatus.className = 'updates-status is-success';
+        } catch (error) {
+          updatesStatus.textContent = 'Die Übermittlung hat gerade nicht funktioniert. Bitte versuchen Sie es später erneut.';
+          updatesStatus.className = 'updates-status is-error';
+        } finally {
+          updatesSubmit.disabled = false;
+        }
+      });
+    }
 
     function installCookieNotice() {
       if (!cookieNotice || !cookieAck) return;
@@ -2370,6 +2597,7 @@
 
     document.addEventListener('keydown', (ev) => {
       if (ev.key === 'Escape' && shotModal && shotModal.classList.contains('open')) closeShotModal();
+      if (ev.key === 'Escape' && updatesModal && updatesModal.classList.contains('open')) closeUpdatesModal();
       if (ev.key === 'Escape') closeMobileMenu();
     });
 
