@@ -1956,9 +1956,45 @@
 
     @media (max-width: 620px) {
       .container { width: min(var(--max), calc(100% - 1.1rem)); }
-      .site-nav .container { min-height: 76px; }
-      .nav-side { gap: 0.5rem; }
+      .site-nav .container {
+        min-height: 76px;
+        gap: 0.55rem;
+      }
+      .brand {
+        min-width: 0;
+        gap: 0.55rem;
+      }
+      .brand span {
+        max-width: 128px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .nav-side {
+        gap: 0.45rem;
+        flex-wrap: nowrap;
+        margin-left: auto;
+      }
       .nav-cta { display: none; }
+      .nav-ios-cta {
+        display: inline-flex;
+        min-height: 38px;
+        padding: 0 0.72rem;
+        font-size: 0.78rem;
+        white-space: nowrap;
+      }
+      .lang-switch {
+        flex: 0 0 auto;
+        gap: 0.2rem;
+        padding: 0.18rem;
+      }
+      .lang-switch a,
+      .lang-switch span {
+        min-width: 32px;
+        min-height: 30px;
+        padding: 0 0.5rem;
+        font-size: 0.75rem;
+      }
       .button,
       .button-secondary,
       .button-static,
