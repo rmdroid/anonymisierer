@@ -1,0 +1,139 @@
+# KI-Anonymisierer
+
+KI-Anonymisierer is a privacy-first product family for local anonymization before content is shared, stored, published, or pasted into AI tools.
+
+Primary website: https://ki-anonymisierer.de/
+
+## Core positioning
+
+KI-Anonymisierer helps users remove sensitive information before data leaves their control. The main use case is practical prevention: anonymize text, screenshots, photos, or PDF-derived text before using it in AI chatbots, email, documents, support tickets, presentations, or other workflows.
+
+The product family is designed for people who use tools such as ChatGPT, Claude, Gemini, Copilot, email, office documents, CRM systems, ticket systems, or mobile sharing workflows and want to reduce the risk of exposing personal or confidential data.
+
+The products do not replace human review. They provide a fast local safety step before forwarding, copying, sharing, or processing sensitive content.
+
+## Product family
+
+### KI-Anonymisierer for macOS
+
+URL: https://ki-anonymisierer.de/
+
+The macOS app is the main desktop product. It is built around the copy-and-paste moment: copy text, anonymize it locally, then paste the cleaned version into another tool.
+
+Key features:
+
+- Local text anonymization on the Mac
+- Menu bar app with global shortcut
+- Clipboard-based workflow
+- Clipboard Safeguard that can detect sensitive data after copying
+- Rule-based recognition and Natural Language support
+- Optional Apple Intelligence support when locally available
+- Detection of names, addresses, email addresses, phone numbers, IBANs, IDs, dates, and other sensitive patterns
+- Custom rules for individual workflows
+- Optional restore mapping for pseudonymized AI workflows
+- No account requirement
+- No cloud anonymization for the anonymization step
+
+Typical use cases:
+
+- Remove personal data before pasting text into AI tools
+- Clean customer, client, applicant, patient, mandate, project, or internal data
+- Prepare text before sending email or sharing documents
+- Build a practical privacy step into everyday Mac workflows
+
+### Anonymisierer for iPhone and iPad
+
+German URL: https://ki-anonymisierer.de/ios/
+English URL: https://ki-anonymisierer.de/ios/index_eng.html
+App Store Germany: https://apps.apple.com/de/app/anonymisierer/id6769850811
+App Store US: https://apps.apple.com/us/app/anonymisierer/id6769850811
+
+The iOS and iPadOS app brings the same privacy idea to mobile workflows. It is not just a smaller copy of the Mac app. It is designed for text, screenshots, photos, the iOS Share Sheet, and PDF-derived text.
+
+Key features:
+
+- Text anonymization directly on iPhone and iPad
+- Screenshot and photo anonymization with OCR-based detection
+- Blur or black redaction for detected sensitive areas
+- Manual selection for areas that should be blurred or blacked out
+- Share Sheet workflow from apps such as Mail, Photos, Files, Safari, and Notes
+- PDF text extraction and anonymization as plain text
+- iPad-optimized layout with sidebar and larger review surface
+- German and English interface
+- Optional Apple Intelligence support when locally available
+- No account requirement
+- No tracking logic in the app
+- No cloud anonymization for the anonymization step
+
+Important PDF note:
+
+PDF content is processed as text. The anonymized result is plain text without the original PDF layout or formatting.
+
+Typical use cases:
+
+- Clean a screenshot before sharing it
+- Redact photos of documents, letters, forms, or whiteboards
+- Anonymize mobile email or note text before forwarding
+- Review and clean content received through the iOS Share Sheet
+- Prepare mobile content before using it in AI tools
+
+### KI-Anonymisierer Chrome extension
+
+Chrome Web Store URL: https://chromewebstore.google.com/detail/jaoallgfipnfnibbnjeflecgfmbhefoa
+
+The Chrome extension is a free browser-based entry point into the product family. It is useful for people who work with web AI tools and want a fast anonymization step directly in the browser context.
+
+Key features:
+
+- Free Chrome extension
+- Browser-focused anonymization workflow
+- Useful before writing or pasting prompts into web AI tools
+- Low-friction way to test the anonymization use case
+- Complements the paid macOS app for system-wide workflows
+
+## Privacy principles
+
+- Local-first anonymization
+- No user account required for the native anonymization workflows
+- No cloud anonymization as the core processing model
+- No tracking or advertising profiles in the apps
+- Users remain responsible for final review before publishing, sharing, or using results in sensitive contexts
+
+## Target audiences
+
+- AI users who paste work content into ChatGPT, Claude, Gemini, Copilot, or similar tools
+- Consultants, agencies, coaches, and service providers working with client data
+- Legal, tax, finance, HR, recruiting, education, administration, and healthcare-adjacent workflows
+- Teams that handle names, addresses, documents, screenshots, case descriptions, project details, or internal information
+- Users who need a fast privacy step without introducing a heavy enterprise DLP system
+
+## Primary keywords and topics
+
+- KI-Anonymisierer
+- Anonymisierer
+- AI anonymizer
+- local anonymization
+- local text redaction
+- privacy before AI
+- anonymize before ChatGPT
+- anonymize before Claude
+- anonymize screenshots
+- anonymize photos
+- anonymize PDF text
+- clipboard anonymizer
+- Apple Intelligence privacy
+- macOS privacy app
+- iPhone privacy app
+- iPad privacy app
+- Chrome anonymizer extension
+- GDPR-aware workflow
+
+## Important URLs
+
+- German macOS landing page: https://ki-anonymisierer.de/
+- English macOS landing page: https://ki-anonymisierer.de/eng/
+- German iOS landing page: https://ki-anonymisierer.de/ios/
+- English iOS landing page: https://ki-anonymisierer.de/ios/index_eng.html
+- Sitemap: https://ki-anonymisierer.de/sitemap.xml
+- LLM context file: https://ki-anonymisierer.de/llms.txt
+
