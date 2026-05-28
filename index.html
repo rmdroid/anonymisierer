@@ -4,27 +4,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>KI-Anonymisierer · Copy. Anonymisieren. Paste.</title>
-  <meta name="description" content="KI-Anonymisierer anonymisiert sensible Texte lokal auf dem Mac. Ideal vor Copy & Paste in KI-Chatbots, E-Mails, Dokumente und Abstimmungen.">
+  <meta name="description" content="KI-Anonymisierer anonymisiert sensible Texte, Screenshots und Bilder lokal auf dem Mac. Mit macOS-App, iOS-App und kostenloser Chrome-Erweiterung.">
   <meta name="keywords" content="KI-Anonymisierer, Texte anonymisieren, macOS App, lokal anonymisieren, KI Chatbot Datenschutz, Copy Paste anonymisieren, personenbezogene Daten anonymisieren, Apple Intelligence, Datenschutz App Mac, DSGVO, lokale Anonymisierung">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="author" content="Robert Meyer">
   <meta name="theme-color" content="#0b1020">
   <link rel="canonical" href="https://ki-anonymisierer.de/">
   <link rel="alternate" hreflang="de-DE" href="https://ki-anonymisierer.de/">
-  <link rel="alternate" hreflang="en" href="https://ki-anonymisierer.de/eng/">
+  <link rel="alternate" hreflang="en" href="https://ki-anonymisierer.de/index_eng.html">
   <link rel="alternate" hreflang="x-default" href="https://ki-anonymisierer.de/">
   <meta name="application-name" content="KI-Anonymisierer">
   <meta name="apple-mobile-web-app-title" content="KI-Anonymisierer">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_DE">
   <meta property="og:title" content="KI-Anonymisierer · Copy. Anonymisieren. Paste.">
-  <meta property="og:description" content="Lokale Text-Anonymisierung für macOS. Sensible Inhalte vor KI-Nutzung, E-Mail, Weitergabe oder Abstimmung bereinigen.">
+  <meta property="og:description" content="Lokale Anonymisierung für Mac, iPhone, iPad und Chrome. Sensible Inhalte vor KI-Nutzung, E-Mail, Weitergabe oder Abstimmung bereinigen.">
   <meta property="og:image" content="https://ki-anonymisierer.de/neues_b1.png">
   <meta property="og:url" content="https://ki-anonymisierer.de/">
   <meta property="og:site_name" content="KI-Anonymisierer">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="KI-Anonymisierer · Copy. Anonymisieren. Paste.">
-  <meta name="twitter:description" content="Sensible Texte lokal anonymisieren, bevor sie in KI-Chatbots, E-Mails oder andere Systeme wandern.">
+  <meta name="twitter:description" content="Sensible Texte, Screenshots und Bilder lokal anonymisieren, bevor sie in KI-Tools, E-Mails oder andere Systeme wandern.">
   <meta name="twitter:image" content="https://ki-anonymisierer.de/neues_b1.png">
   <link rel="icon" type="image/png" href="app-icon-master.png">
   <script defer src="https://cv.rm-on.de/script.js" data-website-id="e43f01c8-6df2-4fc7-837a-ad0cf4dca91d"></script>
@@ -34,7 +34,7 @@
       "@type": "SoftwareApplication",
       "name": "KI-Anonymisierer",
       "applicationCategory": "BusinessApplication",
-      "operatingSystem": "macOS",
+      "operatingSystem": "macOS, iOS, Chrome",
       "description": "Lokale macOS-App zum Anonymisieren sensibler Texte vor Copy & Paste in KI-Chatbots, E-Mails, Dokumente und andere Systeme.",
       "image": "https://ki-anonymisierer.de/app-icon-master.png",
       "url": "https://ki-anonymisierer.de/",
@@ -54,6 +54,8 @@
       },
       "featureList": [
         "Lokale Text-Anonymisierung auf dem Mac",
+        "Bild- und Screenshot-Anonymisierung auf dem Mac",
+        "Kostenlose Chrome-Erweiterung für Browser-Workflows",
         "Globaler Hotkey für die Zwischenablage",
         "Regelbasierte Erkennung für Namen, Adressen, Kontaktdaten und Kennungen",
         "Optional ergänzende lokale Apple-Spracherkennung und Apple Intelligence",
@@ -111,7 +113,7 @@
           "name": "Was kommt als Nächstes?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Geplant sind Regelpakete für typische Einsatzfelder, ein transparenter Prüfmodus, speicherbare Vorlagen und Team-Regeln sowie ein lokaler Freigabebericht."
+            "text": "Als Nächstes ist eine native Windows-Version geplant. Die Mac-Version wird außerdem um PDF-Dokumenten-Anonymisierung erweitert."
           }
         },
         {
@@ -127,7 +129,7 @@
           "name": "Gibt es die App auch für andere Plattformen?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ja. Für iPhone und iPad gibt es die eigenständige App Anonymisierer unter ki-anonymisierer.de/ios/. Zusätzlich funktioniert die Web-Version auf jedem Gerät mit einem modernen Browser — Windows, Linux, Mac oder Tablet. Es gibt eine kostenlose Demo zum Testen und eine Vollversion (DE + EN) zum Einmalkauf unter ki-anonymisierer.de/webdemo/"
+            "text": "Ja. Für iPhone und iPad gibt es die eigenständige App Anonymisierer unter ki-anonymisierer.de/ios/. Zusätzlich gibt es eine kostenlose Chrome-Erweiterung für Browser-Workflows unter ki-anonymisierer.de/chrome/."
           }
         }
       ]
@@ -289,6 +291,48 @@
       height: 44px;
       border-radius: 14px;
       box-shadow: 0 14px 34px rgba(47, 107, 255, 0.28);
+    }
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .nav-toggle-lines,
+    .nav-toggle-lines::before,
+    .nav-toggle-lines::after {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+    .nav-toggle-lines {
+      position: relative;
+    }
+    .nav-toggle-lines::before,
+    .nav-toggle-lines::after {
+      content: "";
+      position: absolute;
+      left: 0;
+    }
+    .nav-toggle-lines::before { top: -6px; }
+    .nav-toggle-lines::after { top: 6px; }
+    .site-nav.nav-open .nav-toggle-lines {
+      transform: rotate(45deg);
+    }
+    .site-nav.nav-open .nav-toggle-lines::before {
+      transform: translateY(6px) rotate(90deg);
+    }
+    .site-nav.nav-open .nav-toggle-lines::after {
+      opacity: 0;
     }
     .nav-links {
       display: inline-flex;
@@ -1486,7 +1530,7 @@
       box-shadow: none;
     }
     .store-badge img {
-      width: 182px;
+      width: 220px;
       height: auto;
     }
     .legal-card {
@@ -1701,12 +1745,18 @@
       background: #08111f;
       color: #f4f8ff;
       border: 1px solid rgba(255,255,255,0.08);
+      max-height: calc(100dvh - 2rem);
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
     }
     .video-dialog {
       max-width: 1080px;
       background: #08111f;
       color: #f4f8ff;
       border: 1px solid rgba(255,255,255,0.08);
+      max-height: calc(100dvh - 2rem);
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
     }
     .legal-head,
     .shot-head {
@@ -1831,6 +1881,7 @@
       grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.82fr);
       gap: 1px;
       background: rgba(255,255,255,0.08);
+      overflow: auto;
     }
     .shot-visual,
     .shot-panel {
@@ -1926,7 +1977,31 @@
     }
 
     @media (max-width: 820px) {
-      .nav-links { display: none; }
+      .nav-toggle { display: inline-flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 0.85rem;
+        right: 0.85rem;
+        top: calc(100% + 0.65rem);
+        padding: 0.85rem;
+        border-radius: 22px;
+        border: 1px solid rgba(255,255,255,0.1);
+        background: rgba(4, 11, 21, 0.96);
+        box-shadow: var(--shadow-lg);
+        backdrop-filter: blur(22px);
+      }
+      .site-nav.nav-open .nav-links {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.45rem;
+      }
+      .nav-links a {
+        min-height: 42px;
+        padding: 0.65rem 0.75rem;
+        border-radius: 14px;
+        background: rgba(255,255,255,0.04);
+      }
       .hero h1 {
         max-width: 13ch;
       }
@@ -2002,6 +2077,14 @@
         width: 100%;
       }
       .hero-actions { display: grid; }
+      .platform-switch {
+        gap: 0.55rem;
+      }
+      .platform-badge {
+        min-height: 42px;
+        padding: 0.62rem 0.8rem;
+        font-size: 0.9rem;
+      }
       .hero-showcase { min-height: 520px; }
       .device-stage { padding: 0.7rem; border-radius: 26px; }
       .device-demo { padding: 0.8rem; }
@@ -2041,6 +2124,44 @@
       }
       .price { font-size: 3.4rem; }
       .to-top { bottom: 8.9rem; }
+      .shot-modal {
+        padding: 0.45rem;
+        align-items: stretch;
+      }
+      .shot-dialog,
+      .video-dialog {
+        width: 100%;
+        max-height: calc(100dvh - 0.9rem);
+        border-radius: 20px;
+      }
+      .shot-head {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: #08111f;
+      }
+      .shot-body {
+        grid-template-columns: 1fr;
+      }
+      .shot-visual {
+        padding: 0.7rem;
+      }
+      .shot-visual img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: none;
+        border-radius: 16px;
+      }
+      .shot-panel {
+        padding: 0.9rem;
+      }
+      .shot-tabs {
+        width: 100%;
+      }
+      .shot-tab {
+        flex: 1;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -2054,6 +2175,172 @@
         transform: none;
       }
     }
+
+
+    /* Platform hub update */
+    .platform-switch {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin: 1.25rem 0 0;
+    }
+    .platform-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-height: 38px;
+      padding: 0.48rem 0.78rem;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      background: rgba(255,255,255,0.07);
+      color: var(--ink);
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .platform-badge.is-primary {
+      background: linear-gradient(135deg, rgba(93,162,255,0.22), rgba(113,240,223,0.13));
+      border-color: rgba(113,240,223,0.36);
+    }
+    .platform-badge.is-free {
+      color: #051225;
+      background: var(--cyan);
+      border-color: transparent;
+    }
+    .platform-badge.is-muted { color: var(--muted); }
+    .product-shot-frame {
+      position: relative;
+      overflow: hidden;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-xl);
+      transform: rotate(1.2deg);
+    }
+    .product-shot-frame img {
+      width: 100%;
+      height: auto;
+      border-radius: inherit;
+    }
+    .product-shot-note {
+      position: absolute;
+      left: clamp(1rem, 3vw, 2rem);
+      bottom: clamp(1rem, 3vw, 2rem);
+      max-width: 320px;
+      padding: 0.85rem 1rem;
+      border-radius: 18px;
+      background: rgba(5, 13, 27, 0.86);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(14px);
+    }
+    .product-shot-note strong { display:block; line-height: 1.15; }
+    .product-shot-note span { display:block; margin-top:0.2rem; color: var(--muted); font-size:0.88rem; }
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .platform-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 300px;
+      padding: 1.15rem;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.055);
+      box-shadow: var(--shadow-md);
+    }
+    .platform-card.is-main {
+      background: linear-gradient(180deg, rgba(93,162,255,0.15), rgba(255,255,255,0.05));
+      border-color: rgba(93,162,255,0.32);
+    }
+    .platform-card h3 { margin: 0.8rem 0 0.45rem; font-size: 1.25rem; line-height: 1.16; }
+    .platform-card p { margin: 0; color: var(--muted); font-size: 0.96rem; }
+    .platform-status {
+      display: inline-flex;
+      width: fit-content;
+      padding: 0.32rem 0.58rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.09);
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .platform-link {
+      margin-top: auto;
+      padding-top: 1rem;
+      color: var(--cyan);
+      font-weight: 800;
+    }
+    .platform-button-link {
+      margin-top: auto;
+      padding-top: 1rem;
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--cyan);
+      text-align: left;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .screens-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .store-shot-card {
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.055);
+      box-shadow: var(--shadow-lg);
+    }
+    .store-shot-card .screen-thumb { border-radius: 0; }
+    .store-shot-card .screen-thumb img { width:100%; }
+    .chrome-hero-shot {
+      display: grid;
+      gap: 1rem;
+      align-content: center;
+    }
+    .chrome-hero-shot img {
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: var(--shadow-xl);
+    }
+    .browser-extension-card {
+      padding: 1rem;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+    }
+    .chrome-shot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .chrome-shot-card img {
+      width: 100%;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-lg);
+    }
+    @media (max-width: 980px) {
+      .platform-grid,
+      .screens-row,
+      .chrome-shot-grid { grid-template-columns: 1fr 1fr; }
+      .product-shot-frame { transform: none; }
+    }
+    @media (max-width: 620px) {
+      .platform-grid,
+      .screens-row,
+      .chrome-shot-grid { grid-template-columns: 1fr; }
+      .product-shot-note { position: static; margin: 0.75rem; max-width: none; }
+    }
+
   </style>
 </head>
 <body>
@@ -2063,20 +2350,23 @@
         <img src="app-icon-master.png" alt="App-Icon KI-Anonymisierer" width="88" height="88" loading="eager" decoding="async">
         <span>KI-Anonymisierer</span>
       </a>
-      <nav class="nav-links" aria-label="Abschnitte">
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Menü öffnen" aria-controls="primaryNav" aria-expanded="false">
+        <span class="nav-toggle-lines" aria-hidden="true"></span>
+      </button>
+      <nav class="nav-links" id="primaryNav" aria-label="Abschnitte">
+        <a href="#plattformen">Plattformen</a>
         <a href="#workflow">Workflow</a>
         <a href="#erkennung">Erkennung</a>
-        <a href="#apple-intelligence">Apple Intelligence</a>
         <a href="#screens">Screens</a>
-        <a href="/ios/">iPhone &amp; iPad</a>
+        <a href="/chrome/">Chrome</a>
         <a href="#preis">Preis</a>
       </nav>
       <div class="nav-side">
-        <a class="nav-cta nav-ios-cta" href="/ios/">Für iOS</a>
-        <a class="nav-cta" href="#preis">Jetzt für macOS</a>
+        <a class="nav-cta nav-ios-cta" href="/ios/">iOS kaufen</a>
+        <a class="nav-cta" href="#preis">macOS kaufen</a>
         <div class="lang-switch" aria-label="Sprachauswahl">
           <span class="active" aria-current="page">DE</span>
-          <a href="/eng/">EN</a>
+          <a href="index_eng.html">EN</a>
         </div>
       </div>
     </div>
@@ -2090,29 +2380,25 @@
           <h1 class="display">Bevor Daten Ihren Mac verlassen,<span class="hero-break hero-emphasis"> verlieren sie ihre Identität.</span></h1>
           <p class="hero-lead">KI-Anonymisierer greift genau in dem Moment ein, in dem sensible Inhalte per Copy &amp; Paste in KI-Chatbots, E-Mails, Dokumente oder andere Systeme wandern sollen.</p>
           <p class="hero-sublead">Der Shortcut ist der Kern des Produkts: ein schneller, lokaler Zwischenschritt in Ihrer Zwischenablage. Ohne Cloud, ohne Registrierung und mit kaum Reibung dort, wo aus Tempo sonst schnell ein Datenschutzproblem wird.</p>
-          <div class="hero-points">
-            <span class="pill">Lokal auf dem Mac</span>
-            <span class="pill">Globaler Hotkey</span>
-            <span class="pill">Für macOS signiert</span>
-            <span class="pill">Kein Abo</span>
+          <div class="platform-switch" aria-label="Verfügbare Plattformen">
+            <a class="platform-badge is-primary" href="#preis">macOS App</a>
+            <a class="platform-badge" href="/ios/">iPhone &amp; iPad</a>
+            <a class="platform-badge" href="/chrome/">Chrome kostenlos</a>
+            <a class="platform-badge is-muted" href="#plattformen">Windows demnächst</a>
           </div>
-          <div class="hero-actions">
-            <a class="button" href="#preis">Direkt für 9,99 € kaufen</a>
-            <a class="button-secondary" href="#screens">App ansehen</a>
-          </div>
-          <div class="hero-note">Für Mac-Nutzer, die sensible Texte vor KI-Nutzung, Abstimmung, Weitergabe oder E-Mail lokal bereinigen wollen.</div>
+          <div class="hero-note">Für alle, die sensible Inhalte vor KI-Nutzung, Weitergabe, E-Mail oder Veröffentlichung lokal prüfen wollen.</div>
           <div class="hero-rail">
             <article class="rail-card">
               <strong>Vor dem Prompt</strong>
-              <p>Wenn ein Text in ChatGPT, Claude, Gemini oder ein anderes KI-Tool soll, anonymisiert die App genau das, was gerade in Ihrer Zwischenablage liegt.</p>
+              <p>Texte werden anonymisiert, bevor sie in ChatGPT, Claude, Gemini oder andere KI-Tools gehen.</p>
             </article>
             <article class="rail-card">
-              <strong>Vor dem Versand</strong>
-              <p>Der gleiche Schritt hilft auch vor E-Mail, Abstimmung, Dokumentation, Weitergabe an Dritte oder internen Freigaben.</p>
+              <strong>Vor dem Screenshot</strong>
+              <p>Bilder und Screenshots lassen sich automatisch erkennen und anschließend manuell nachbearbeiten.</p>
             </article>
             <article class="rail-card">
               <strong>Im gleichen Takt</strong>
-              <p>Kopieren, anonymisieren, einfügen. Die App ändert den Prozess nicht. Sie schützt ihn.</p>
+              <p>Kopieren, anonymisieren, prüfen, einfügen. Der Workflow bleibt schnell.</p>
             </article>
           </div>
         </div>
@@ -2151,21 +2437,50 @@
               </div>
             </div>
           </div>
-
-          <article class="floating-card settings" aria-label="Hotkey und Erkennung">
-            <img src="einstellungen_oben.png" alt="Oberer Bereich der Einstellungen von KI-Anonymisierer" width="1244" height="1496" loading="eager" decoding="async">
-            <div class="card-label">
-              <strong>Hotkey + Erkennung</strong>
-              <span>Konfigurierbar</span>
-            </div>
-          </article>
-
           <div class="hero-strip">
             <span class="mini-chip">⌘C kopieren</span>
             <span class="mini-chip">⌘⇧A anonymisieren</span>
             <span class="mini-chip">⌘V einfügen</span>
             <span class="mini-chip">Optional: ⌘⇧D rückführen</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band" id="plattformen">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <span class="eyebrow">Plattformen</span>
+            <h2>Ein Produktgedanke. Mehrere Arbeitsorte.</h2>
+          </div>
+          <p>Nutzen Sie KI-Anonymisierer dort, wo sensible Inhalte entstehen: als native Mac-App, mobil auf iPhone und iPad oder kostenlos direkt im Chrome-Browser.</p>
+        </div>
+        <div class="platform-grid">
+          <article class="platform-card is-main" data-reveal>
+            <span class="platform-status">Kauf-App</span>
+            <h3>macOS</h3>
+            <p>Menubar-App mit globalem Hotkey, Editor, Bildanonymisierung, Nachbearbeitung und lokaler Verarbeitung.</p>
+            <a class="platform-link" href="#preis">Mac-App ansehen →</a>
+          </article>
+          <article class="platform-card" data-reveal>
+            <span class="platform-status">Mobil</span>
+            <h3>iPhone &amp; iPad</h3>
+            <p>Für mobile Texte, Screenshots, Fotos, Share-Sheet-Workflows und PDF-Inhalte als reiner Text.</p>
+            <a class="platform-link" href="/ios/">iOS-Seite öffnen →</a>
+          </article>
+          <article class="platform-card" data-reveal>
+            <span class="platform-status">Kostenlos</span>
+            <h3>Chrome</h3>
+            <p>Browser-Erweiterung für schnelle Text-Anonymisierung direkt im Web, ohne die Mac-App kaufen zu müssen.</p>
+            <a class="platform-link" href="/chrome/">Chrome-Erweiterung ansehen →</a>
+          </article>
+          <article class="platform-card" data-reveal>
+            <span class="platform-status">Demnächst</span>
+            <h3>Windows</h3>
+            <p>Geplant für Nutzer, die denselben lokalen Schutz außerhalb des Apple-Ökosystems brauchen.</p>
+            <button class="platform-button-link" id="openPlatformRequest" type="button">Interesse vormerken →</button>
+          </article>
         </div>
       </div>
     </section>
@@ -2205,7 +2520,7 @@
             <span class="eyebrow">Workflow</span>
             <h2>Vier Handgriffe. Kein Umbau Ihres Prozesses.</h2>
           </div>
-          <p>Der Editor bleibt die sichtbare Kontrolle. Der Kern ist der globale Hotkey: ein lokaler Zwischenschritt, der den bestehenden Copy-&amp;-Paste-Ablauf schützt statt ihn auszubremsen.</p>
+          <p>Der Editor bleibt die sichtbare Kontrolle. Der Kern ist der globale Hotkey: ein lokaler Zwischenschritt, der Text und inzwischen auch Screenshots in den bestehenden Copy-&amp;-Paste-Ablauf einfügt.</p>
         </div>
 
         <div class="workflow-grid">
@@ -2263,7 +2578,7 @@
           <div class="workflow-media-inner">
             <button class="workflow-media-trigger" id="openWorkflowVisual" type="button" aria-label="Workflow-Schaubild öffnen">
               <div class="workflow-media-thumb">
-                <img src="cover_v.png" alt="Vorschaubild des 6-Schritte-Workflow-Schaubilds" width="1419" height="799" loading="lazy" decoding="async">
+                <img src="cover_v.png" alt="Vorschaubild des 6-Schritte-Workflow-Schaubilds" width="2864" height="1548" loading="lazy" decoding="async">
                 <span class="workflow-media-play">
                   <span>+</span>
                   <span>Schaubild öffnen</span>
@@ -2347,7 +2662,7 @@
             </article>
 
             <article class="settings-poster" data-reveal>
-              <img src="einstellungen_unten.png" alt="Unterer Bereich der Einstellungen von KI-Anonymisierer" width="1244" height="1496" loading="lazy" decoding="async">
+              <img src="04_einstellungen_bild.png" alt="Unterer Bereich der Einstellungen von KI-Anonymisierer" width="2880" height="1800" loading="lazy" decoding="async">
             </article>
           </div>
         </div>
@@ -2418,62 +2733,43 @@
           <p>Die Screens zeigen nicht irgendeine generische Oberfläche, sondern das reale Produkt: Editor, Einstellungen und den rechtlichen Hinweis. Per Klick lässt sich jede Ansicht vergrößern und genauer erklären.</p>
         </div>
 
-        <div class="gallery-grid">
-          <div class="gallery-left" data-reveal>
-            <article class="screen-card screen-large">
-              <button class="shot-trigger" data-shot="editor" aria-label="Editoransicht vergrößern">
-                <div class="screen-thumb">
-                  <img src="editor.png" alt="Editoransicht von KI-Anonymisierer" width="1910" height="1456" loading="lazy" decoding="async">
-                </div>
-                <div class="screen-meta">
-                  <h3>Editor mit Vorher-Nachher-Kontrolle</h3>
-                  <p>Die visuelle Sicherheitsstufe für längere Texte und bewusste Prüfung vor der Weitergabe.</p>
-                  <span class="screen-link">Große Ansicht öffnen</span>
-                </div>
-              </button>
-            </article>
-          </div>
-
-          <div class="gallery-right">
-            <article class="screen-card screen-small" data-reveal>
-              <button class="shot-trigger" data-shot="settingsTop" aria-label="Einstellungen oben vergrößern">
-                <div class="screen-thumb">
-                  <img src="einstellungen_oben.png" alt="Oberer Bereich der Einstellungen von KI-Anonymisierer" width="1244" height="1496" loading="lazy" decoding="async">
-                </div>
-                <div class="screen-meta">
-                  <h3>Hotkey und Erkennung zentral steuern</h3>
-                  <p>Shortcut, Kategorien und lokale Ausrichtung an einem Ort.</p>
-                  <span class="screen-link">Große Ansicht öffnen</span>
-                </div>
-              </button>
-            </article>
-
-            <article class="screen-card screen-small" data-reveal>
-              <button class="shot-trigger" data-shot="settingsBottom" aria-label="Einstellungen unten vergrößern">
-                <div class="screen-thumb">
-                  <img src="einstellungen_unten.png" alt="Unterer Bereich der Einstellungen von KI-Anonymisierer" width="1244" height="1496" loading="lazy" decoding="async">
-                </div>
-                <div class="screen-meta">
-                  <h3>Eigene Regeln und Ausschlüsse</h3>
-                  <p>Damit sich die App an reale Begriffe und Prozesse anpasst.</p>
-                  <span class="screen-link">Große Ansicht öffnen</span>
-                </div>
-              </button>
-            </article>
-
-            <article class="screen-card screen-small" data-reveal style="grid-column: 1 / -1;">
-              <button class="shot-trigger" data-shot="notice" aria-label="Hinweisfenster vergrößern">
-                <div class="screen-thumb">
-                  <img src="wichtiger_hinweis.png" alt="Hinweisfenster von KI-Anonymisierer" width="1114" height="894" loading="lazy" decoding="async">
-                </div>
-                <div class="screen-meta">
-                  <h3>Transparenter rechtlicher Hinweis</h3>
-                  <p>Die App hilft. Die menschliche Prüfung bleibt erforderlich.</p>
-                  <span class="screen-link">Große Ansicht öffnen</span>
-                </div>
-              </button>
-            </article>
-          </div>
+        <div class="screens-row">
+          <article class="store-shot-card" data-reveal>
+            <button class="shot-trigger" data-shot="textEditor" aria-label="Textanonymisierung vergrößern">
+              <div class="screen-thumb"><img src="01_text_anonymisieren.png" alt="Text anonymisieren in der macOS-App" width="2880" height="1800" loading="lazy" decoding="async"></div>
+              <div class="screen-meta"><h3>Text lokal anonymisieren</h3><p>Editor und Hotkey-Workflow für sensible Texte vor KI, E-Mail oder Weitergabe.</p><span class="screen-link">Große Ansicht öffnen</span></div>
+            </button>
+          </article>
+          <article class="store-shot-card" data-reveal>
+            <button class="shot-trigger" data-shot="imageEditor" aria-label="Bildanonymisierung vergrößern">
+              <div class="screen-thumb"><img src="02_bild_anonymisieren.png" alt="Bild anonymisieren in der macOS-App" width="2880" height="1800" loading="lazy" decoding="async"></div>
+              <div class="screen-meta"><h3>Bilder und Screenshots bereinigen</h3><p>Automatische Erkennung für OCR-Text, Gesichter und Barcodes mit manueller Prüfung.</p><span class="screen-link">Große Ansicht öffnen</span></div>
+            </button>
+          </article>
+          <article class="store-shot-card" data-reveal>
+            <button class="shot-trigger" data-shot="retouch" aria-label="Nachbearbeitung vergrößern">
+              <div class="screen-thumb"><img src="03_bild_nachbearbeitung.png" alt="Bild nachbearbeiten mit Radierfunktion" width="2880" height="1800" loading="lazy" decoding="async"></div>
+              <div class="screen-meta"><h3>Nachbearbeitung als Sicherheitsanker</h3><p>Automatische Erkennung ist der erste Schritt. Fehlende Bereiche lassen sich manuell nachziehen.</p><span class="screen-link">Große Ansicht öffnen</span></div>
+            </button>
+          </article>
+          <article class="store-shot-card" data-reveal>
+            <button class="shot-trigger" data-shot="imageSettings" aria-label="Bildeinstellungen vergrößern">
+              <div class="screen-thumb"><img src="04_einstellungen_bild.png" alt="Einstellungen für Bildanonymisierung" width="2880" height="1800" loading="lazy" decoding="async"></div>
+              <div class="screen-meta"><h3>Bild-Erkennung gezielt steuern</h3><p>OCR-Text, Gesichter und Barcodes können einzeln aktiviert oder deaktiviert werden.</p><span class="screen-link">Große Ansicht öffnen</span></div>
+            </button>
+          </article>
+          <article class="store-shot-card" data-reveal>
+            <button class="shot-trigger" data-shot="localMac" aria-label="Lokale Verarbeitung vergrößern">
+              <div class="screen-thumb"><img src="05_lokal_auf_dem_mac.png" alt="Lokale Verarbeitung auf dem Mac" width="2880" height="1800" loading="lazy" decoding="async"></div>
+              <div class="screen-meta"><h3>Alles bleibt lokal</h3><p>Die App ist für lokale Workflows gebaut, nicht für eine Cloud-Pipeline.</p><span class="screen-link">Große Ansicht öffnen</span></div>
+            </button>
+          </article>
+          <article class="store-shot-card" data-reveal>
+            <button class="shot-trigger" data-shot="menubar" aria-label="Menubar und Hotkey vergrößern">
+              <div class="screen-thumb"><img src="07_menubar_hotkey.png" alt="Menubar und Hotkey Workflow" width="2880" height="1800" loading="lazy" decoding="async"></div>
+              <div class="screen-meta"><h3>Menubar und Hotkey</h3><p>Der schnelle Moment bleibt im Vordergrund: kopieren, anonymisieren, weiterarbeiten.</p><span class="screen-link">Große Ansicht öffnen</span></div>
+            </button>
+          </article>
         </div>
       </div>
     </section>
@@ -2499,9 +2795,10 @@
               <p>Ein lokaler Zwischenschritt genau dort, wo sensible Inhalte sonst zu schnell weitergereicht würden.</p>
               <div class="pricing-kicker">Copy, anonymisieren, einfügen. Mehr braucht der Kern-Workflow nicht.</div>
               <ul class="feature-list">
-                <li><span>Neu ab Version 1.2: Safeguard prüft die Zwischenablage proaktiv auf sensible Daten</span></li>
+                <li><span>Text- und Bildanonymisierung inklusive OCR, Gesichter, Barcodes und Nachbearbeitung</span></li>
                 <li><span>Lokale Erkennung ohne Cloud-Verarbeitung</span></li>
                 <li><span>Globaler Hotkey plus Editor für sichtbare Kontrolle</span></li>
+                <li><span>Bild-Erkennungskategorien in den Einstellungen steuerbar</span></li>
                 <li><span>Eigene Regeln, Ausschlüsse und Statistik</span></li>
                 <li><span>Optional ergänzende Apple Intelligence</span></li>
                 <li><span>Für macOS signiert, sofort installierbar</span></li>
@@ -2587,12 +2884,7 @@
           <details class="faq-item" data-reveal>
             <summary>Was kommt als Nächstes?</summary>
             <div class="faq-answer">
-              <ul>
-                <li><span>Regelpakete für typische Einsatzfelder wie Verwaltung, Beratung, Bildung oder Personal.</span></li>
-                <li><span>Ein transparenter Prüfmodus mit zusätzlicher Trefferliste und klarerer Kontrollansicht.</span></li>
-                <li><span>Vorlagen und Team-Regeln zum Speichern, Exportieren und Wiederverwenden eigener Regelsets.</span></li>
-                <li><span>Ein lokaler Freigabebericht mit Zeitstempel und Zusammenfassung der Ersetzungen.</span></li>
-              </ul>
+              <p>Als Nächstes kommt eine native Windows-Version. Parallel wird die Mac-Version um PDF-Dokumenten-Anonymisierung erweitert.</p>
             </div>
           </details>
 
@@ -2608,8 +2900,10 @@
             <div class="faq-answer">
               <p>Ja. Für iPhone und iPad gibt es die eigenständige App Anonymisierer. Sie ist auf mobile Workflows ausgelegt: Text anonymisieren, Screenshots und Fotos bereinigen, Inhalte über das Share Sheet übernehmen und PDF-Inhalte als reinen Text anonymisieren.</p>
               <p><a class="faq-inline-link" href="/ios/">iPhone &amp; iPad-Version ansehen &rarr;</a></p>
-              <p>Zusätzlich funktioniert die Web-Version auf jedem Gerät mit einem modernen Browser — Windows, Linux, Mac oder Tablet. Kein App Store, keine Installation. Einfach im Browser öffnen. Es gibt eine kostenlose Demo zum Testen und eine Vollversion (DE + EN) zum Einmalkauf.</p>
-              <p><a class="faq-inline-link" href="https://ki-anonymisierer.de/webdemo/" target="_blank" rel="noopener noreferrer">Kostenlose Web-Demo testen &rarr;</a></p>
+              <p>Zusätzlich gibt es eine kostenlose Chrome-Erweiterung für Browser-Workflows. Sie ist der einfachste Einstieg, wenn Texte direkt im Browser anonymisiert werden sollen.</p>
+              <p><a class="faq-inline-link" href="/chrome/">Chrome-Erweiterung ansehen &rarr;</a></p>
+              <p>Die Web-Testversion bleibt als Demo verfügbar, steht aber nicht im Mittelpunkt der Produktfamilie.</p>
+              <p><a class="faq-inline-link" href="https://ki-anonymisierer.de/webdemo/" target="_blank" rel="noopener noreferrer">Web-Demo optional testen &rarr;</a></p>
             </div>
           </details>
         </div>
@@ -2622,12 +2916,11 @@
       <div>
         <div class="footer-title">KI-Anonymisierer</div>
         <div class="tiny">© 2026 Robert Meyer</div>
-        <div class="tiny" style="margin-top:0.35rem"><a href="https://ki-anonymisierer.de/webdemo/" target="_blank" rel="noopener noreferrer" style="color:#64748b;text-decoration:none;transition:color 150ms ease" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#64748b'">Kein Mac? → Web-Version testen</a></div>
       </div>
       <nav class="footer-nav" aria-label="Rechtliches">
         <a href="#" id="openImpressum">Impressum</a>
         <a href="#" id="openDatenschutz">Datenschutz</a>
-        <a href="/eng/">English</a>
+        <a href="index_eng.html">English</a>
         <a class="footer-social" href="https://youtube.com/@rmkipraxis?si=h2qNroeG7EqviRwE" target="_blank" rel="noopener noreferrer" aria-label="YouTube-Kanal von Robert Meyer">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path fill="#ff4d4d" d="M23.5 6.2a3.04 3.04 0 0 0-2.14-2.16C19.47 3.5 12 3.5 12 3.5s-7.47 0-9.36.54A3.04 3.04 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3.04 3.04 0 0 0 2.14 2.16c1.89.54 9.36.54 9.36.54s7.47 0 9.36-.54a3.04 3.04 0 0 0 2.14-2.16A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8Z"/>
@@ -2704,7 +2997,7 @@
         <button class="shot-close" id="closeWorkflowVisual" aria-label="Workflow-Schaubild schließen">×</button>
       </div>
       <div class="video-body">
-        <img class="video-player" id="workflowVisualImage" src="cover_v.png" alt="6-Schritte-Schaubild zum sicheren KI-Workflow" width="1419" height="799" loading="lazy" decoding="async">
+        <img class="video-player" id="workflowVisualImage" src="cover_v.png" alt="6-Schritte-Schaubild zum sicheren KI-Workflow" width="2864" height="1548" loading="lazy" decoding="async">
         <div class="video-copy">Kompakter Überblick über den vollständigen lokalen Workflow inklusive Rückführung.</div>
       </div>
     </div>
@@ -2802,7 +3095,30 @@
     const platformStatus = document.getElementById('platformStatus');
     const cookieNotice = document.getElementById('cookieNotice');
     const cookieAck = document.getElementById('cookieAck');
+    const siteNav = document.querySelector('.site-nav');
+    const navToggle = document.getElementById('navToggle');
     const toTop = document.getElementById('toTop');
+
+    if (siteNav && navToggle) {
+      const closeNav = () => {
+        siteNav.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Menü öffnen');
+      };
+      navToggle.addEventListener('click', () => {
+        const willOpen = !siteNav.classList.contains('nav-open');
+        siteNav.classList.toggle('nav-open', willOpen);
+        navToggle.setAttribute('aria-expanded', String(willOpen));
+        navToggle.setAttribute('aria-label', willOpen ? 'Menü schließen' : 'Menü öffnen');
+      });
+      document.querySelectorAll('#primaryNav a').forEach((link) => {
+        link.addEventListener('click', closeNav);
+      });
+      document.addEventListener('click', (ev) => {
+        if (!siteNav.classList.contains('nav-open')) return;
+        if (!siteNav.contains(ev.target)) closeNav();
+      });
+    }
 
     function bindModal(modal, opener, closer, frame, doc) {
       if (!modal || !opener || !closer || !frame) return;
@@ -2997,69 +3313,53 @@
     }
 
     const shotData = {
-      editor: {
-        title: 'Editor mit Vorher-Nachher-Kontrolle',
-        lead: 'Die zusätzliche Kontrollansicht für Fälle, in denen das Ergebnis vor dem Einfügen sichtbar geprüft werden soll.',
-        image: 'editor.png',
-        alt: 'Editoransicht von KI-Anonymisierer',
-        plain: [
-          'Links der Ausgangstext, rechts die anonymisierte Fassung.',
-          'Der Editor ist bewusst schlicht gehalten und kein überladenes Dashboard.',
-          'Für längere Texte bleibt die manuelle Sichtkontrolle jederzeit möglich.'
-        ],
-        explain: [
-          'Der Editor ist nicht der Hauptworkflow, sondern die visuelle Sicherheitsstufe.',
-          'Er ist dann sinnvoll, wenn der Hotkey zwar schnell genug ist, das Ergebnis aber vor der Weitergabe noch bewusst gelesen werden soll.',
-          'So bleibt der eigentliche Shortcut-Workflow schnell, ohne auf eine sichtbare Kontrollmöglichkeit zu verzichten.'
-        ]
+      textEditor: {
+        title: 'Text lokal anonymisieren',
+        lead: 'Der Editor zeigt Ausgangstext und anonymisierte Fassung nebeneinander und bleibt die sichtbare Kontrollansicht.',
+        image: '01_text_anonymisieren.png',
+        alt: 'Text anonymisieren in der macOS-App',
+        plain: ['Vorher-Nachher-Ansicht für sensible Texte.', 'Platzhalter bleiben pro Entität konsistent.', 'Hotkey und Editor decken schnelle und bewusste Workflows ab.'],
+        explain: ['Die App ist nicht als großes Dashboard gedacht, sondern als lokaler Zwischenschritt.', 'Der Editor gibt Sicherheit, wenn ein Ergebnis vor der Weitergabe geprüft werden soll.', 'Der eigentliche Alltag bleibt: kopieren, anonymisieren, einfügen.']
       },
-      settingsTop: {
-        title: 'Hotkey und Erkennung zentral steuern',
-        lead: 'Die oberen Einstellungen definieren den eigentlichen Produktkern: Shortcut, lokale Ausrichtung und aktivierte Erkennung.',
-        image: 'einstellungen_oben.png',
-        alt: 'Oberer Bereich der Einstellungen von KI-Anonymisierer',
-        plain: [
-          'Der globale Hotkey lässt sich anpassen.',
-          'Erkennungskategorien können einzeln aktiviert oder deaktiviert werden.',
-          'Die lokale Ausrichtung der App bleibt sichtbar und nachvollziehbar.'
-        ],
-        explain: [
-          'Die App soll kein Blackbox-Tool sein. Nutzer sehen sofort, welche Kategorien gerade erkannt werden.',
-          'Gerade bei sensiblen Workflows ist die Möglichkeit wichtig, Kategorien gezielt aus- oder einzuschalten.',
-          'Der Shortcut bleibt veränderbar, damit sich die App in bestehende Mac-Workflows einfügt.'
-        ]
+      imageEditor: {
+        title: 'Bilder und Screenshots bereinigen',
+        lead: 'Die Bildansicht verarbeitet Screenshots und Fotos lokal und zeigt Original und Ergebnis nebeneinander.',
+        image: '02_bild_anonymisieren.png',
+        alt: 'Bild anonymisieren in der macOS-App',
+        plain: ['OCR-Text, Gesichter und Barcodes werden als Bereiche vorgeschlagen.', 'Pixeln und Schwärzen nutzen dieselben erkannten Bereiche.', 'Manuelle Prüfung bleibt sichtbar als Pflichtschritt eingebaut.'],
+        explain: ['Bildanonymisierung ist bewusst als Vorprüfung formuliert.', 'Automatische Erkennung beschleunigt den Prozess, ersetzt aber nicht die Endkontrolle.', 'Damit ist die Funktion ehrlich und in sensiblen Workflows besser nutzbar.']
       },
-      settingsBottom: {
-        title: 'Eigene Regeln und Ausschlüsse',
-        lead: 'Die untere Hälfte der Einstellungen macht aus einer allgemeinen Erkennung ein anpassbares Werkzeug für reale Begriffe und Abläufe.',
-        image: 'einstellungen_unten.png',
-        alt: 'Unterer Bereich der Einstellungen von KI-Anonymisierer',
-        plain: [
-          'Begriffe können gezielt immer anonymisiert werden.',
-          'Andere Begriffe lassen sich bewusst vom Anonymisieren ausnehmen.',
-          'Die Hinweise zur lokalen Verarbeitung bleiben dort sichtbar verankert.'
-        ],
-        explain: [
-          'Nicht jeder sensible Begriff passt in ein Standardmuster. Genau dafür gibt es eigene Regeln.',
-          'Ausschlüsse verhindern, dass wichtige feste Begriffe unnötig ersetzt werden.',
-          'So wird aus einem allgemeinen Produkt ein Werkzeug, das sich an echte Arbeitsumgebungen anpasst.'
-        ]
+      retouch: {
+        title: 'Nachbearbeitung als Sicherheitsanker',
+        lead: 'Nach der automatischen Erkennung können fehlende Stellen manuell überarbeitet werden.',
+        image: '03_bild_nachbearbeitung.png',
+        alt: 'Bild nachbearbeiten mit Radierfunktion',
+        plain: ['Separates Nachbearbeitungsfenster für das anonymisierte Bild.', 'Bereiche können nachträglich übermalt oder weichgezeichnet werden.', 'Der Export passiert erst nach manueller Prüfung.'],
+        explain: ['Der wichtigste Sicherheitsanker ist nicht der perfekte Algorithmus, sondern die Kombination aus Automatik und Kontrolle.', 'Das Produkt vermeidet falsche Vollständigkeitsversprechen.', 'Der Nutzer behält die letzte Entscheidung vor dem Kopieren oder Speichern.']
       },
-      notice: {
-        title: 'Transparenter rechtlicher Hinweis',
-        lead: 'Die App benennt offen ihre Grenze: Sie unterstützt die Bereinigung, ersetzt aber keine menschliche Prüfung.',
-        image: 'wichtiger_hinweis.png',
-        alt: 'Hinweisfenster von KI-Anonymisierer',
-        plain: [
-          'Die Hinweise sind direkt in der App erreichbar.',
-          'Die lokale Arbeitsweise wird klar benannt.',
-          'Die Pflicht zur menschlichen Endkontrolle wird ausdrücklich hervorgehoben.'
-        ],
-        explain: [
-          'Für dieses Produkt ist Vertrauen wichtiger als künstliche Sicherheitssprache.',
-          'Deshalb wird nicht suggeriert, dass Anonymisierung immer vollständig oder rechtlich abschließend sei.',
-          'Der Hinweis schafft Klarheit und schützt Nutzer vor falschen Erwartungen.'
-        ]
+      imageSettings: {
+        title: 'Bild-Erkennung gezielt steuern',
+        lead: 'OCR-Text, Gesichter sowie Barcodes und QR-Codes können in den Einstellungen einzeln aktiviert werden.',
+        image: '04_einstellungen_bild.png',
+        alt: 'Einstellungen für Bildanonymisierung',
+        plain: ['Drei Erkennungskategorien sind standardmäßig aktiv.', 'Die Empfindlichkeit lässt sich zusätzlich anpassen.', 'Die Einstellungen gelten für Editor und Shortcut.'],
+        explain: ['Nicht jeder Screenshot braucht jede Erkennungsart.', 'Die Schalter reduzieren False Positives, ohne den Standard unsicher zu machen.', 'Standard bleibt: alles an, manuelle Prüfung unerlässlich.']
+      },
+      localMac: {
+        title: 'Alles bleibt lokal',
+        lead: 'Die macOS-App ist auf lokale Verarbeitung und nachvollziehbare Kontrolle ausgelegt.',
+        image: '05_lokal_auf_dem_mac.png',
+        alt: 'Lokale Verarbeitung auf dem Mac',
+        plain: ['Keine Cloud-Pipeline für die Anonymisierung.', 'Der Nutzer arbeitet weiter im bestehenden Mac-Workflow.', 'Hinweise und Grenzen bleiben in der App sichtbar.'],
+        explain: ['Der Datenschutzvorteil entsteht vor allem vor dem Einfügen in fremde Systeme.', 'Die App schützt den riskanten Moment, nicht erst ein Archiv.', 'Lokale Verarbeitung ist deshalb kein Nebensatz, sondern Kern des Produkts.']
+      },
+      menubar: {
+        title: 'Menubar und Hotkey',
+        lead: 'KI-Anonymisierer sitzt dort, wo Copy & Paste passiert: schnell erreichbar und ohne Prozessbruch.',
+        image: '07_menubar_hotkey.png',
+        alt: 'Menubar und Hotkey Workflow',
+        plain: ['Menubar-App mit globalem Shortcut.', 'Schnelle Rückmeldung über die kompakte Pillenansicht.', 'Editor und Einstellungen bleiben bei Bedarf erreichbar.'],
+        explain: ['Der Hotkey macht die App alltagstauglich.', 'Der Nutzer muss sensible Inhalte nicht erst in ein neues Tool übertragen.', 'Dadurch entsteht Schutz genau dort, wo Daten sonst zu schnell weitergereicht werden.']
       }
     };
 
@@ -3151,6 +3451,11 @@
       if (ev.key === 'Escape' && workflowVisualModal && workflowVisualModal.classList.contains('open')) closeWorkflowVisualModal();
       if (ev.key === 'Escape' && updatesModal && updatesModal.classList.contains('open')) closeUpdatesModal();
       if (ev.key === 'Escape' && platformModal && platformModal.classList.contains('open')) closePlatformModal();
+      if (ev.key === 'Escape' && siteNav && siteNav.classList.contains('nav-open') && navToggle) {
+        siteNav.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Menü öffnen');
+      }
     });
 
     function toggleToTop() {
