@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Anonymisierer für iPhone &amp; iPad · Lokale Daten-Anonymisierung</title>
-  <meta name="description" content="Anonymisierer für iPhone und iPad entfernt sensible Daten aus Texten, Screenshots, Fotos und PDF-Inhalten lokal auf dem Gerät. Ohne Cloud, ohne Konto, ohne Tracking.">
+  <title>Anonymisierer für iPhone &amp; iPad · Lokal vor dem Teilen</title>
+  <meta name="description" content="Anonymisierer für iPhone und iPad entfernt sensible Daten aus Texten, Screenshots, Fotos und PDF-Inhalten lokal. Ohne Cloud, Konto oder Tracking.">
   <meta name="keywords" content="Anonymisierer, iPhone App, iPad App, Datenschutz, Texte anonymisieren, Screenshots anonymisieren, Fotos anonymisieren, PDF anonymisieren, OCR, Apple Intelligence, lokale Anonymisierung">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="author" content="Robert Meyer">
@@ -20,12 +20,16 @@
   <meta property="og:title" content="Anonymisierer für iPhone &amp; iPad">
   <meta property="og:description" content="Texte, Screenshots, Fotos und PDF-Inhalte lokal anonymisieren. Für iPhone und iPad im App Store.">
   <meta property="og:image" content="https://ki-anonymisierer.de/ios/ipad_screenshot.png">
+  <meta property="og:image:width" content="2752">
+  <meta property="og:image:height" content="2064">
+  <meta property="og:image:alt" content="Anonymisierer Screenshot-Modus auf dem iPad">
   <meta property="og:url" content="https://ki-anonymisierer.de/ios/">
   <meta property="og:site_name" content="KI-Anonymisierer">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Anonymisierer für iPhone &amp; iPad">
   <meta name="twitter:description" content="Sensible Daten lokal entfernen, bevor Inhalte geteilt oder in KI-Tools übernommen werden.">
   <meta name="twitter:image" content="https://ki-anonymisierer.de/ios/ipad_screenshot.png">
+  <meta name="twitter:image:alt" content="Anonymisierer Screenshot-Modus auf dem iPad">
   <link rel="icon" type="image/png" href="app-icon.png">
   <script defer src="https://cv.rm-on.de/script.js" data-website-id="e43f01c8-6df2-4fc7-837a-ad0cf4dca91d"></script>
   <script type="application/ld+json">
@@ -98,6 +102,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "PDF-Inhalte werden als Text verarbeitet. Die anonymisierte Ausgabe ist reiner Text ohne ursprüngliche PDF-Formatierung."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Ersetzt die App eine manuelle Prüfung?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nein. Die App unterstützt die lokale Erkennung und Bearbeitung sensibler Inhalte. Eine manuelle Prüfung vor Weitergabe, Veröffentlichung oder Nutzung in sensiblen Kontexten bleibt unerlässlich."
           }
         }
       ]
@@ -327,6 +339,7 @@
     .button-secondary,
     .button-static,
     .nav-cta,
+    .app-store-cta,
     .disabled-store {
       min-height: 52px;
       display: inline-flex;
@@ -340,7 +353,8 @@
       transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
     }
     .button,
-    .nav-cta {
+    .nav-cta,
+    .app-store-cta {
       color: var(--ink-dark);
       background: linear-gradient(135deg, var(--accent), #b8fff8 72%);
       box-shadow: 0 18px 38px rgba(113, 240, 223, 0.22);
@@ -359,6 +373,7 @@
     }
     .button:hover,
     .button-secondary:hover,
+    .app-store-cta:hover,
     .disabled-store:hover,
     .nav-cta:hover {
       transform: translateY(-1px);
@@ -854,10 +869,12 @@
       display: grid;
       gap: 0.45rem;
     }
+    .store-soon .app-store-cta,
     .store-soon .disabled-store {
       color: var(--ink-dark);
-      background: #edf3fb;
+      background: linear-gradient(135deg, var(--accent), #b8fff8 72%);
       border-color: rgba(7,17,31,0.08);
+      box-shadow: 0 18px 34px rgba(113, 240, 223, 0.22);
     }
 
     .gallery-grid {
@@ -1569,11 +1586,13 @@
       .button,
       .button-secondary,
       .button-static,
+      .app-store-cta,
       .disabled-store,
       .cookie-ack {
         width: 100%;
       }
       .disabled-store,
+      .app-store-cta,
       .button-secondary {
         min-height: 48px;
       }
@@ -1870,10 +1889,17 @@
         line-height: 1.35 !important;
       }
       main .hero .hero-actions > a,
+      main .hero a.app-store-cta,
       main .hero a.disabled-store {
         pointer-events: auto !important;
         position: relative !important;
         z-index: 4 !important;
+      }
+      main .hero .hero-actions > .app-store-cta {
+        color: var(--ink-dark) !important;
+        background: linear-gradient(135deg, var(--accent), #b8fff8 72%) !important;
+        border-color: transparent !important;
+        box-shadow: 0 16px 34px rgba(113, 240, 223, 0.22) !important;
       }
       main .hero .hero-actions > *,
       main .hero .price-note span {
@@ -1899,7 +1925,7 @@
   <header class="site-nav">
     <div class="container">
       <a class="brand" href="#top" aria-label="Startseite Anonymisierer">
-        <img class="brand-mark" src="app-icon.png" alt="" width="84" height="84" loading="eager" decoding="async">
+        <img class="brand-mark" src="app-icon.png" alt="Anonymisierer App-Icon" width="84" height="84" loading="eager" decoding="async">
         <span>Anonymisierer</span>
       </a>
       <nav class="nav-links" aria-label="Abschnitte">
@@ -1944,10 +1970,10 @@
       <div class="container hero-grid">
         <div data-reveal>
           <span class="eyebrow">Für iPhone und iPad</span>
-          <h1>Sensible Daten <span class="hero-emphasis">mobil entfernen.</span></h1>
-          <p class="hero-lead">Anonymisierer bereinigt Texte, Screenshots, Fotos und PDF-Inhalte lokal auf dem Gerät, bevor sie geteilt, gespeichert oder in KI-Tools übernommen werden.</p>
+          <h1>Sensible Daten <span class="hero-emphasis">vor dem Teilen entfernen.</span></h1>
+          <p class="hero-lead">Anonymisierer bereinigt Texte, Screenshots, Fotos und PDF-Inhalte lokal auf dem Gerät, bevor sie geteilt, weitergeleitet oder in KI-Tools übernommen werden. Automatische Erkennung hilft, die manuelle Prüfung bleibt unerlässlich.</p>
           <div class="hero-actions">
-            <a class="disabled-store" href="https://apps.apple.com/de/app/anonymisierer/id6769850811" target="_blank" rel="noopener noreferrer" aria-label="Anonymisierer im App Store ansehen">
+            <a class="app-store-cta" href="https://apps.apple.com/de/app/anonymisierer/id6769850811" target="_blank" rel="noopener noreferrer" aria-label="Anonymisierer im App Store ansehen">
               <svg width="18" height="22" viewBox="0 0 18 22" aria-hidden="true"><path fill="currentColor" d="M14.7 11.5c0-2 1.6-3 1.7-3.1-1-.1-1.9-.6-2.5-1.4-1.1-1.3-2.7-1.1-3.3-1.1-.7.1-1.4.4-2.1.4s-1.8-.4-2.9-.4c-1.5 0-2.9.9-3.7 2.2-1.6 2.8-.4 7 1.1 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.2-2.5 1.2-2.6-.1 0-2.2-.9-2.2-3.3ZM11.1 4.6c.6-.7 1-1.7.9-2.6-.9 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.5 1 .1 1.9-.5 2.5-1.2Z"/></svg>
               App Store
             </a>
@@ -1986,8 +2012,8 @@
             <img src="iphone_anonymisieren.png" width="1320" height="2868" alt="Anonymisierer Textmodus auf dem iPhone" loading="eager" decoding="async">
           </div>
           <div class="floating-note">
-            <strong>Automatisch erkennen. Manuell nacharbeiten.</strong>
-            <span>Für die Stellen, die wirklich nicht sichtbar bleiben dürfen.</span>
+            <strong>Automatisch erkennen. Unbedingt prüfen.</strong>
+            <span>Manuelle Nachbearbeitung bleibt der Sicherheitsanker vor jeder Weitergabe.</span>
           </div>
         </div>
       </div>
@@ -2040,7 +2066,7 @@
             </div>
             <div class="workflow-copy">
               <h3>Screenshots bereinigen</h3>
-              <p>OCR erkennt sensible Textstellen. Falls etwas fehlt, markieren Sie Bereiche selbst und bluren oder schwärzen nach.</p>
+              <p>OCR erkennt sensible Textstellen. Falls etwas fehlt, markieren Sie Bereiche selbst und bluren oder schwärzen nach. Vor dem Teilen bleibt eine Prüfung unerlässlich.</p>
               <div class="tag-row">
                 <span class="tag">OCR</span>
                 <span class="tag">Blur</span>
@@ -2142,7 +2168,7 @@
           </article>
         </div>
         <div class="privacy-note" data-reveal>
-          <strong>Transparente Grenze:</strong> PDF-Inhalte werden als Text anonymisiert. Layout und Formatierungen werden dabei nicht übernommen. Die App unterstützt die Bereinigung sensibler Daten, ersetzt aber keine menschliche Endkontrolle vor Veröffentlichung oder Weitergabe.
+          <strong>Transparente Grenze:</strong> PDF-Inhalte werden als Text anonymisiert. Layout und Formatierungen werden dabei nicht übernommen. Die App unterstützt die Bereinigung sensibler Daten; eine menschliche Endkontrolle vor Veröffentlichung oder Weitergabe bleibt unerlässlich.
         </div>
       </div>
     </section>
@@ -2198,7 +2224,7 @@
             <div class="price">9,99 €</div>
             <small>Einmaliger Kauf im App Store</small>
             <div class="store-soon">
-              <a class="disabled-store" href="https://apps.apple.com/de/app/anonymisierer/id6769850811" target="_blank" rel="noopener noreferrer" aria-label="Anonymisierer im App Store ansehen">
+              <a class="app-store-cta" href="https://apps.apple.com/de/app/anonymisierer/id6769850811" target="_blank" rel="noopener noreferrer" aria-label="Anonymisierer im App Store ansehen">
                 <svg width="18" height="22" viewBox="0 0 18 22" aria-hidden="true"><path fill="currentColor" d="M14.7 11.5c0-2 1.6-3 1.7-3.1-1-.1-1.9-.6-2.5-1.4-1.1-1.3-2.7-1.1-3.3-1.1-.7.1-1.4.4-2.1.4s-1.8-.4-2.9-.4c-1.5 0-2.9.9-3.7 2.2-1.6 2.8-.4 7 1.1 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.2-2.5 1.2-2.6-.1 0-2.2-.9-2.2-3.3ZM11.1 4.6c.6-.7 1-1.7.9-2.6-.9 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.5 1 .1 1.9-.5 2.5-1.2Z"/></svg>
                 App Store
               </a>
@@ -2216,7 +2242,7 @@
             <span class="eyebrow">FAQ</span>
             <h2>Die wichtigsten Fragen vor dem Kauf.</h2>
           </div>
-          <p>Die App ist bewusst einfach gehalten. Die Grenzen sind genauso wichtig wie die Funktionen: lokale Unterstützung, aber keine automatische Garantie, dass jeder sensible Inhalt vollständig erkannt wurde.</p>
+          <p>Die App ist bewusst einfach gehalten. Die Grenzen sind genauso wichtig wie die Funktionen: lokale Unterstützung, aber keine automatische Garantie. Vor jeder Weitergabe ist eine manuelle Prüfung unerlässlich.</p>
         </div>
 
         <div class="faq-list">
@@ -2235,7 +2261,13 @@
           <details class="faq-item" data-reveal>
             <summary>Kann ich Screenshots manuell anonymisieren?</summary>
             <div class="faq-answer">
-              <p>Ja. Erkannte Bereiche können automatisch angewendet werden. Zusätzlich können Sie eigene Bereiche markieren und bluren oder schwärzen, wenn die automatische Erkennung nicht alles gefunden hat.</p>
+              <p>Ja. Erkannte Bereiche können automatisch angewendet werden. Zusätzlich können Sie eigene Bereiche markieren und bluren oder schwärzen, wenn die automatische Erkennung nicht alles gefunden hat. Genau diese Nachbearbeitung ist der Sicherheitsanker vor dem Teilen.</p>
+            </div>
+          </details>
+          <details class="faq-item" data-reveal>
+            <summary>Ersetzt die App die manuelle Prüfung?</summary>
+            <div class="faq-answer">
+              <p>Nein. Die App unterstützt die lokale Erkennung und Bearbeitung sensibler Inhalte. Eine manuelle Prüfung vor Weitergabe, Veröffentlichung oder Nutzung in sensiblen Kontexten bleibt unerlässlich.</p>
             </div>
           </details>
           <details class="faq-item" data-reveal>
@@ -2247,7 +2279,7 @@
           <details class="faq-item" data-reveal>
             <summary>Ist die Mac-App enthalten?</summary>
             <div class="faq-answer">
-              <p>Nein. Die iPhone/iPad-App und die macOS-App sind getrennte Apps. Die Mac-Version finden Sie auf der <a class="inline-link" href="../">KI-Anonymisierer Hauptseite</a>.</p>
+              <p>Nein. Die iPhone/iPad-App und die macOS-App sind getrennte Apps. Die Mac-Version finden Sie auf der <a class="inline-link" href="../">KI-Anonymisierer Hauptseite</a>. Für Browser-Workflows gibt es zusätzlich die kostenlose <a class="inline-link" href="../chrome/">Chrome-Erweiterung</a>.</p>
             </div>
           </details>
         </div>
@@ -2266,6 +2298,7 @@
         <a href="#" id="openDatenschutz">Datenschutz</a>
         <a href="index_eng.html">English</a>
         <a href="../">macOS-App</a>
+        <a href="../chrome/">Chrome kostenlos</a>
         <a class="footer-social" href="https://www.linkedin.com/in/robert-meyer-666b39315" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profil von Robert Meyer">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.54V9H7.1v11.45ZM22.23 0H1.76C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.76 24h20.47c.97 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0Z"/>
@@ -2341,7 +2374,7 @@
       </div>
       <div class="shot-body">
         <div class="shot-visual">
-          <img id="shotImage" src="" alt="">
+          <img id="shotImage" src="" alt="Vergrößerte App-Ansicht">
         </div>
         <div class="shot-copy-panel">
           <h4 id="shotCopyTitle"></h4>
@@ -2433,7 +2466,7 @@
 <html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;padding:1.1rem 1rem 1.4rem;font-family:system-ui,sans-serif;color:#1f2738;line-height:1.55;background:#fff}h1{margin:0 0 .75rem;font-size:1.4rem;line-height:1.2}h2{margin:1rem 0 .35rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:#4f5a70}p{margin:.3rem 0;font-size:.94rem}a{color:#253b68;text-decoration:underline}</style></head><body><h1>Impressum gemäß § 5 TMG &amp; § 55 RStV</h1><h2>Angaben gemäß § 5 TMG</h2><p><strong>Robert Meyer</strong><br>Robert Meyer c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin<br>Deutschland</p><h2>Kontakt</h2><p>E-Mail: rm@kostenmanager.net<br>Kontaktformular: <a href="https://mein.online-impressum.de/robert-meyer/" target="_blank" rel="noopener noreferrer">https://mein.online-impressum.de/robert-meyer/</a></p><h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2><p><strong>Robert Meyer</strong><br>Robert Meyer c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin</p><h2>Plattform der EU-Kommission zur Online-Streitbeilegung</h2><p><a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a></p><h2>Verbraucherstreitbeilegung</h2><p>Ich bin nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p></body></html>`);
 
     bindModal(datenschutzModal, openDatenschutz, closeDatenschutz, datenschutzFrame, `<!doctype html>
-<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;padding:1.1rem 1rem 1.4rem;font-family:system-ui,sans-serif;color:#1f2738;line-height:1.55;background:#fff}h1{margin:0 0 .75rem;font-size:1.4rem;line-height:1.2}h2{margin:1rem 0 .35rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:#4f5a70}p{margin:.3rem 0;font-size:.94rem}ul{margin:.35rem 0 .6rem;padding-left:1.2rem}li{margin:.22rem 0;font-size:.94rem}a{color:#253b68;text-decoration:underline}</style></head><body><h1>Datenschutzerklärung</h1><h2>1. Datenschutz auf einen Blick</h2><p><strong>Allgemeine Hinweise</strong></p><p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen oder die App Anonymisierer für iPhone und iPad verwenden. Diese Website wurde unter Beachtung der Datenschutz-Grundverordnung (DSGVO) entwickelt.</p><h2>2. App-Datenschutz</h2><p>Anonymisierer verarbeitet unterstützte Inhalte lokal auf iPhone oder iPad. Texte, Bilder, Screenshots, Fotos und Dateien werden für die Anonymisierung nicht an externe Dritte übertragen.</p><ul><li>Keine Cloud-Verarbeitung für die Anonymisierung.</li><li>Keine Registrierung und kein Nutzerkonto.</li><li>Kein Tracking, keine Werbung und keine Nutzerprofile in der App.</li><li>Kein Abonnement; der Verkauf erfolgt als einmaliger Kauf über den Apple App Store.</li><li>Apple Intelligence wird nur optional genutzt, wenn sie lokal auf dem Gerät verfügbar ist.</li></ul><p>Die App unterstützt die Anonymisierung sensibler Inhalte, ersetzt aber keine menschliche Endkontrolle. Ergebnisse sollten vor Veröffentlichung, Weitergabe oder Nutzung in sensiblen Kontexten geprüft werden.</p><h2>3. PDF, Bilder und Share Sheet</h2><p>PDF-Inhalte werden als Text verarbeitet. Die anonymisierte Ausgabe ist reiner Text ohne ursprüngliche PDF-Formatierung. Bei Screenshots und Fotos werden erkannte Bereiche lokal bearbeitet; manuelle Markierungen bleiben ebenfalls lokal auf dem Gerät. Inhalte, die über das iOS Share Sheet an die App übergeben werden, werden nur für den jeweiligen Anonymisierungsvorgang verarbeitet.</p><h2>4. Datenerfassung auf dieser Website</h2><p>Diese Website verwendet keine Cookies. Es werden keine Nutzerkonten geführt und keine Marketing-Cookies gesetzt. Wenn Sie das Formular „Updates / Newsletter“ nutzen, werden die von Ihnen eingegebenen Daten über einen externen Webhook-Dienst an Robert Meyer zur Bearbeitung des Anliegens übermittelt. Andere Kontaktwege werden ebenfalls ausschließlich zur Bearbeitung Ihres Anliegens genutzt.</p><h2>5. Externe Dienste</h2><p>Für die Darstellung der Website werden Google Fonts geladen. Zur anonymisierten Reichweitenmessung wird Umami eingesetzt. Wenn Sie das Update-Formular absenden, werden die eingegebenen Daten an einen externen Webhook-Endpunkt übermittelt. Wenn Sie Links zu externen Diensten wie Apple App Store, LinkedIn oder Kontaktformularen nutzen, gelten ergänzend die Datenschutzbestimmungen der jeweiligen Anbieter.</p><h2>6. Verantwortliche Stelle</h2><p>Robert Meyer – Robert Meyer<br>c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin<br>Deutschland</p></body></html>`);
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;padding:1.1rem 1rem 1.4rem;font-family:system-ui,sans-serif;color:#1f2738;line-height:1.55;background:#fff}h1{margin:0 0 .75rem;font-size:1.4rem;line-height:1.2}h2{margin:1rem 0 .35rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:#4f5a70}p{margin:.3rem 0;font-size:.94rem}ul{margin:.35rem 0 .6rem;padding-left:1.2rem}li{margin:.22rem 0;font-size:.94rem}a{color:#253b68;text-decoration:underline}</style></head><body><h1>Datenschutzerklärung</h1><h2>1. Datenschutz auf einen Blick</h2><p><strong>Allgemeine Hinweise</strong></p><p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen oder die App Anonymisierer für iPhone und iPad verwenden. Diese Website wurde unter Beachtung der Datenschutz-Grundverordnung (DSGVO) entwickelt.</p><h2>2. App-Datenschutz</h2><p>Anonymisierer verarbeitet unterstützte Inhalte lokal auf iPhone oder iPad. Texte, Bilder, Screenshots, Fotos und Dateien werden für die Anonymisierung nicht an externe Dritte übertragen.</p><ul><li>Keine Cloud-Verarbeitung für die Anonymisierung.</li><li>Keine Registrierung und kein Nutzerkonto.</li><li>Kein Tracking, keine Werbung und keine Nutzerprofile in der App.</li><li>Kein Abonnement; der Verkauf erfolgt als einmaliger Kauf über den Apple App Store.</li><li>Apple Intelligence wird nur optional genutzt, wenn sie lokal auf dem Gerät verfügbar ist.</li></ul><p>Die App unterstützt die Anonymisierung sensibler Inhalte. Eine menschliche Endkontrolle vor Veröffentlichung, Weitergabe oder Nutzung in sensiblen Kontexten bleibt unerlässlich.</p><h2>3. PDF, Bilder und Share Sheet</h2><p>PDF-Inhalte werden als Text verarbeitet. Die anonymisierte Ausgabe ist reiner Text ohne ursprüngliche PDF-Formatierung. Bei Screenshots und Fotos werden erkannte Bereiche lokal bearbeitet; manuelle Markierungen bleiben ebenfalls lokal auf dem Gerät. Inhalte, die über das iOS Share Sheet an die App übergeben werden, werden nur für den jeweiligen Anonymisierungsvorgang verarbeitet.</p><h2>4. Datenerfassung auf dieser Website</h2><p>Diese Website verwendet keine Cookies. Es werden keine Nutzerkonten geführt und keine Marketing-Cookies gesetzt. Wenn Sie das Formular „Updates / Newsletter“ nutzen, werden die von Ihnen eingegebenen Daten über einen externen Webhook-Dienst an Robert Meyer zur Bearbeitung des Anliegens übermittelt. Andere Kontaktwege werden ebenfalls ausschließlich zur Bearbeitung Ihres Anliegens genutzt.</p><h2>5. Externe Dienste</h2><p>Für die Darstellung der Website werden Google Fonts geladen. Zur anonymisierten Reichweitenmessung wird Umami eingesetzt. Wenn Sie das Update-Formular absenden, werden die eingegebenen Daten an einen externen Webhook-Endpunkt übermittelt. Wenn Sie Links zu externen Diensten wie Apple App Store, LinkedIn oder Kontaktformularen nutzen, gelten ergänzend die Datenschutzbestimmungen der jeweiligen Anbieter.</p><h2>6. Verantwortliche Stelle</h2><p>Robert Meyer – Robert Meyer<br>c/o Online-Impressum.de #4759<br>Europaring 90<br>53757 Sankt Augustin<br>Deutschland</p></body></html>`);
 
     function openUpdatesModal() {
       if (!updatesModal) return;
