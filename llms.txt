@@ -3,6 +3,7 @@
 KI-Anonymisierer is a privacy-first product family for local anonymization before content is shared, stored, published, or pasted into AI tools.
 
 Primary website: https://ki-anonymisierer.de/
+English macOS page: https://ki-anonymisierer.de/index_eng.html
 
 ## Core positioning
 
@@ -23,12 +24,15 @@ The macOS app is the main desktop product. It is built around the copy-and-paste
 Key features:
 
 - Local text anonymization on the Mac
+- Local screenshot and image anonymization on the Mac
 - Menu bar app with global shortcut
 - Clipboard-based workflow
 - Clipboard Safeguard that can detect sensitive data after copying
 - Rule-based recognition and Natural Language support
 - Optional Apple Intelligence support when locally available
 - Detection of names, addresses, email addresses, phone numbers, IBANs, IDs, dates, and other sensitive patterns
+- Image detection for OCR text, faces, and barcodes
+- Manual image retouching for areas that automated detection missed
 - Custom rules for individual workflows
 - Optional restore mapping for pseudonymized AI workflows
 - No account requirement
@@ -37,6 +41,7 @@ Key features:
 Typical use cases:
 
 - Remove personal data before pasting text into AI tools
+- Clean screenshots or images before sharing them
 - Clean customer, client, applicant, patient, mandate, project, or internal data
 - Prepare text before sending email or sharing documents
 - Build a practical privacy step into everyday Mac workflows
@@ -79,6 +84,8 @@ Typical use cases:
 
 ### KI-Anonymisierer Chrome extension
 
+German URL: https://ki-anonymisierer.de/chrome/
+English URL: https://ki-anonymisierer.de/chrome/index_eng.html
 Chrome Web Store URL: https://chromewebstore.google.com/detail/jaoallgfipnfnibbnjeflecgfmbhefoa
 
 The Chrome extension is a free browser-based entry point into the product family. It is useful for people who work with web AI tools and want a fast anonymization step directly in the browser context.
@@ -88,6 +95,9 @@ Key features:
 - Free Chrome extension
 - Browser-focused anonymization workflow
 - Useful before writing or pasting prompts into web AI tools
+- Local rule-based detection in the browser
+- Optional second detection layer through Chrome's built-in local AI with Gemini Nano when supported by the user's hardware and browser
+- Gemini Nano support can be enabled or disabled in the extension settings
 - Low-friction way to test the anonymization use case
 - Complements the paid macOS app for system-wide workflows
 
@@ -131,9 +141,11 @@ Key features:
 ## Important URLs
 
 - German macOS landing page: https://ki-anonymisierer.de/
-- English macOS landing page: https://ki-anonymisierer.de/eng/
+- English macOS landing page: https://ki-anonymisierer.de/index_eng.html
 - German iOS landing page: https://ki-anonymisierer.de/ios/
 - English iOS landing page: https://ki-anonymisierer.de/ios/index_eng.html
+- German Chrome landing page: https://ki-anonymisierer.de/chrome/
+- English Chrome landing page: https://ki-anonymisierer.de/chrome/index_eng.html
+- Chrome Web Store listing: https://chromewebstore.google.com/detail/jaoallgfipnfnibbnjeflecgfmbhefoa
 - Sitemap: https://ki-anonymisierer.de/sitemap.xml
 - LLM context file: https://ki-anonymisierer.de/llms.txt
-
