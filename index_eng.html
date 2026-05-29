@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>KI-Anonymisierer · Copy. Anonymize. Paste.</title>
-  <meta name="description" content="KI-Anonymisierer anonymizes sensitive text, screenshots, and images locally on your Mac. Also available for iOS and as a free Chrome extension.">
-  <meta name="keywords" content="KI-Anonymisierer, text anonymization, macOS app, local anonymization, AI chatbot privacy, copy paste anonymization, personal data anonymization, Apple Intelligence, privacy app for Mac, GDPR, local anonymization">
+  <title>KI-Anonymisierer · Anonymize data for ChatGPT &amp; co. – local &amp; reversible</title>
+  <meta name="description" content="KI-Anonymisierer anonymizes sensitive text and images locally on your Mac – and restores the AI's answer to the real names with a shortcut. With macOS app, iOS app, and a free Chrome extension.">
+  <meta name="keywords" content="KI-Anonymisierer, anonymize data for ChatGPT, ChatGPT privacy, anonymize client data, text anonymization, restore real names, macOS app, local anonymization, personal data anonymization, GDPR ChatGPT, anonymization for law firms and tax advisors, Apple Intelligence">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="author" content="Robert Meyer">
   <meta name="theme-color" content="#0b1020">
@@ -17,8 +17,8 @@
   <meta name="apple-mobile-web-app-title" content="KI-Anonymisierer">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
-  <meta property="og:title" content="KI-Anonymisierer · Copy. Anonymize. Paste.">
-  <meta property="og:description" content="Local anonymization for Mac, iPhone, iPad, and Chrome. Clean sensitive content before AI use, email, review, or sharing.">
+  <meta property="og:title" content="KI-Anonymisierer · Anonymous to the AI, real names back">
+  <meta property="og:description" content="Local anonymization for Mac, iPhone, iPad, and Chrome – and the only one with restore: the AI's answer is brought back to the real names with a shortcut. Mapping stays in memory only, max. 5 minutes.">
   <meta property="og:image" content="https://ki-anonymisierer.de/neues_b1.png">
   <meta property="og:image:width" content="1600">
   <meta property="og:image:height" content="900">
@@ -26,8 +26,8 @@
   <meta property="og:url" content="https://ki-anonymisierer.de/index_eng.html">
   <meta property="og:site_name" content="KI-Anonymisierer">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="KI-Anonymisierer · Copy. Anonymize. Paste.">
-  <meta name="twitter:description" content="Anonymize sensitive text, screenshots, and images locally before they go into AI tools, email, or other systems.">
+  <meta name="twitter:title" content="KI-Anonymisierer · Anonymous to the AI, real names back">
+  <meta name="twitter:description" content="Anonymize sensitive text and images locally, send to the AI – and restore the real names in the answer with a shortcut. Mapping kept in memory only.">
   <meta name="twitter:image" content="https://ki-anonymisierer.de/neues_b1.png">
   <meta name="twitter:image:alt" content="KI-Anonymisierer workflow and app interface">
   <link rel="icon" type="image/png" href="app-icon-master.png">
@@ -39,7 +39,7 @@
       "name": "KI-Anonymisierer",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "macOS, iOS, Chrome",
-      "description": "Local macOS app for anonymizing sensitive text before copy and paste into AI chatbots, email, documents, and other systems.",
+      "description": "Local macOS app for anonymizing sensitive text before copy and paste into AI chatbots, email, and documents – including restoring the AI's answer to the real names. Mapping stays in memory only, deleted automatically after 5 minutes.",
       "image": "https://ki-anonymisierer.de/app-icon-master.png",
       "url": "https://ki-anonymisierer.de/index_eng.html",
       "offers": {
@@ -63,7 +63,7 @@
         "Global clipboard hotkey",
         "Rule-based detection for names, addresses, contact details, and identifiers",
         "Optional local Apple language detection and Apple Intelligence support",
-        "Optional restore mapping for the most recent session only, kept in memory and deleted automatically after 5 minutes"
+        "Restore the AI's answer to the real names – mapping kept in memory only, deleted automatically after 5 minutes"
       ]
     }
   </script>
@@ -456,7 +456,8 @@
       margin: 1.2rem 0 0;
       max-width: 17.2ch;
       font-size: clamp(2.45rem, 4.9vw, 4.45rem);
-      line-height: 0.88;
+      line-height: 0.94;
+      letter-spacing: -0.005em;
       color: #eef4ff;
       text-wrap: balance;
     }
@@ -859,12 +860,12 @@
       transform: rotate(7deg);
     }
     .hero-strip {
-      position: absolute;
-      left: 12%;
-      right: 6%;
-      bottom: -8%;
+      position: relative;
+      width: min(100%, 600px);
+      margin-top: 1.4rem;
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 0.85rem;
       padding: 1rem;
       border-radius: 22px;
@@ -2380,7 +2381,7 @@
       <div class="container hero-grid">
         <div class="hero-copy" data-reveal>
           <span class="eyebrow">Local macOS app for sensitive text</span>
-          <h1 class="display">Before data leaves your Mac,<span class="hero-break hero-emphasis"> it loses its identity.</span></h1>
+          <h1 class="display">Before data leaves your Mac, it loses its identity.<span class="hero-break hero-emphasis"> Once the AI has answered, it gets it back.</span></h1>
           <p class="hero-lead">KI-Anonymizer steps in at the moment sensitive text is about to leave your Mac through copy and paste into AI tools, email, documents, or other systems.</p>
           <p class="hero-sublead">Its strength is the shortcut: a fast, local step in your clipboard workflow. It runs on your Mac, needs no account, and adds almost no friction where speed would otherwise overtake caution.</p>
           <div class="platform-switch" aria-label="Available platforms">
@@ -2389,7 +2390,7 @@
             <a class="platform-badge" href="/chrome/" target="_blank" rel="noopener noreferrer">Free Chrome extension</a>
             <a class="platform-badge is-muted" href="#platforms">Windows coming soon</a>
           </div>
-          <div class="hero-note">For anyone who wants to check sensitive content locally before AI use, sharing, email, or publication.</div>
+          <div class="hero-note">For anyone – in law firms, medical practices, tax advisory, HR, or public administration – who wants to check sensitive content locally before AI use, sharing, email, or publication. The mapping table for the restore lives in memory only: max. 5 minutes, then it is gone.</div>
           <div class="hero-rail">
             <article class="rail-card">
               <strong>Before the prompt</strong>
@@ -2400,8 +2401,8 @@
               <p>The same step also helps before email, review, documentation, sharing with third parties, or internal approvals.</p>
             </article>
             <article class="rail-card">
-              <strong>Same flow</strong>
-              <p>Copy, anonymize, paste. The app fits the workflow instead of slowing it down.</p>
+              <strong>And back again</strong>
+              <p>The AI replies with placeholders – a second shortcut restores the real names locally. No other tool closes this loop.</p>
             </article>
           </div>
         </div>
@@ -2418,18 +2419,26 @@
               <div class="device-caption">Live demo of the clipboard moment</div>
             </div>
             <div class="device-visual">
-              <div class="device-demo" aria-label="Before-and-after demo of local anonymization">
+              <div class="device-demo" aria-label="Loop demo: anonymize, send to the AI, and restore real names locally">
                 <article class="demo-pane before">
-                  <div class="demo-label">Before the shortcut</div>
+                  <div class="demo-label">1 · Your original</div>
                   <p class="demo-text">Dear <span class="hl-red">Ms. Maria Gonzales</span>,<br>born on <span class="hl-red">12.05.1987</span>, resident at <span class="hl-red">Berliner Str. 42a</span>, <span class="hl-red">61169 Friedberg</span>,<br>SVN <span class="hl-red">53 270587 G 412</span> ...</p>
                 </article>
                 <div class="demo-flow" aria-hidden="true">
-                  <span class="demo-flow-copy">anonymized locally on the Mac</span>
+                  <span class="demo-flow-copy">⌘⇧A · anonymized locally on the Mac</span>
                   <span class="demo-flow-arrow">↓</span>
                 </div>
                 <article class="demo-pane after">
-                  <div class="demo-label">After the shortcut</div>
+                  <div class="demo-label">2 · To the AI</div>
                   <p class="demo-text">Dear <span class="hl-green">[Person 1]</span>,<br>born on <span class="hl-green">[Date 1]</span>, resident at <span class="hl-green">[Address 1]</span>, <span class="hl-green">[Address 2]</span>,<br>SVN <span class="hl-green">[Identifier 1]</span> ...</p>
+                </article>
+                <div class="demo-flow" aria-hidden="true">
+                  <span class="demo-flow-copy">AI replies · placeholders stay · ⌘⇧D restores</span>
+                  <span class="demo-flow-arrow">↺</span>
+                </div>
+                <article class="demo-pane after">
+                  <div class="demo-label">3 · Back with you</div>
+                  <p class="demo-text">Dear <span class="hl-green">Ms. Maria Gonzales</span>,<br>please find the revised draft attached.<br>Real names restored locally – mapping in memory only.</p>
                 </article>
               </div>
               <div class="demo-hotkey" aria-label="Global hotkey">
@@ -2444,7 +2453,7 @@
             <span class="mini-chip">⌘C copy</span>
             <span class="mini-chip">⌘⇧A anonymize</span>
             <span class="mini-chip">⌘V paste</span>
-            <span class="mini-chip">Optional: ⌘⇧D restore</span>
+            <span class="mini-chip">⌘⇧D real names back</span>
           </div>
         </div>
       </div>
@@ -2565,9 +2574,9 @@
 
           <article class="step-card note-card" data-reveal>
             <div class="step-no">04</div>
-            <h3>Optional: restore mapping</h3>
-            <p class="step-copy-brief">Send anonymized text to AI, bring the answer back, restore the original references.</p>
-            <p>Limited to the most recent session, kept in memory only, and cleared automatically after five minutes.</p>
+            <h3>Restore the real names</h3>
+            <p class="step-copy-brief">Send anonymized text to the AI, bring the answer back, restore the real names with a shortcut – no other tool closes this loop.</p>
+            <p>The mapping is limited to the most recent session, kept in memory only, and cleared automatically after five minutes.</p>
             <div class="detail-tags">
               <span class="tag">Most recent session only</span>
               <span class="tag">Memory only</span>

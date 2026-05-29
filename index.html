@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>KI-Anonymisierer · Copy. Anonymisieren. Paste.</title>
-  <meta name="description" content="KI-Anonymisierer anonymisiert sensible Texte, Screenshots und Bilder lokal auf dem Mac. Mit macOS-App, iOS-App und kostenloser Chrome-Erweiterung.">
-  <meta name="keywords" content="KI-Anonymisierer, Texte anonymisieren, macOS App, lokal anonymisieren, KI Chatbot Datenschutz, Copy Paste anonymisieren, personenbezogene Daten anonymisieren, Apple Intelligence, Datenschutz App Mac, DSGVO, lokale Anonymisierung">
+  <title>KI-Anonymisierer · Daten für ChatGPT &amp; Co. anonymisieren – lokal &amp; rückführbar</title>
+  <meta name="description" content="KI-Anonymisierer anonymisiert sensible Texte und Bilder lokal auf dem Mac – und führt die KI-Antwort per Shortcut wieder auf die echten Namen zurück. Mit macOS-App, iOS-App und kostenloser Chrome-Erweiterung.">
+  <meta name="keywords" content="KI-Anonymisierer, Daten anonymisieren für ChatGPT, ChatGPT Datenschutz, Mandantendaten anonymisieren, Texte anonymisieren, Rückführung Klarnamen, macOS App, lokal anonymisieren, personenbezogene Daten anonymisieren, DSGVO ChatGPT, Anonymisierung Kanzlei Steuerberater, Apple Intelligence, lokale Anonymisierung">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="author" content="Robert Meyer">
   <meta name="theme-color" content="#0b1020">
@@ -17,8 +17,8 @@
   <meta name="apple-mobile-web-app-title" content="KI-Anonymisierer">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="KI-Anonymisierer · Copy. Anonymisieren. Paste.">
-  <meta property="og:description" content="Lokale Anonymisierung für Mac, iPhone, iPad und Chrome. Sensible Inhalte vor KI-Nutzung, E-Mail, Weitergabe oder Abstimmung bereinigen.">
+  <meta property="og:title" content="KI-Anonymisierer · Anonym zur KI, mit Klarnamen zurück">
+  <meta property="og:description" content="Lokale Anonymisierung für Mac, iPhone, iPad und Chrome – und als Einzige mit Rückführung: die KI-Antwort wird per Shortcut wieder auf die echten Namen gebracht. Zuordnung nur im RAM, max. 5 Minuten.">
   <meta property="og:image" content="https://ki-anonymisierer.de/neues_b1.png">
   <meta property="og:image:width" content="1600">
   <meta property="og:image:height" content="900">
@@ -26,8 +26,8 @@
   <meta property="og:url" content="https://ki-anonymisierer.de/">
   <meta property="og:site_name" content="KI-Anonymisierer">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="KI-Anonymisierer · Copy. Anonymisieren. Paste.">
-  <meta name="twitter:description" content="Sensible Texte, Screenshots und Bilder lokal anonymisieren, bevor sie in KI-Tools, E-Mails oder andere Systeme wandern.">
+  <meta name="twitter:title" content="KI-Anonymisierer · Anonym zur KI, mit Klarnamen zurück">
+  <meta name="twitter:description" content="Sensible Texte und Bilder lokal anonymisieren, an die KI geben – und die Antwort per Shortcut wieder auf die echten Namen zurückführen. Zuordnung nur im RAM.">
   <meta name="twitter:image" content="https://ki-anonymisierer.de/neues_b1.png">
   <meta name="twitter:image:alt" content="KI-Anonymisierer Workflow und App-Oberfläche">
   <link rel="icon" type="image/png" href="app-icon-master.png">
@@ -39,7 +39,7 @@
       "name": "KI-Anonymisierer",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "macOS, iOS, Chrome",
-      "description": "Lokale macOS-App zum Anonymisieren sensibler Texte vor Copy & Paste in KI-Chatbots, E-Mails, Dokumente und andere Systeme.",
+      "description": "Lokale macOS-App zum Anonymisieren sensibler Texte vor Copy & Paste in KI-Chatbots, E-Mails und Dokumente – inklusive Rückführung der KI-Antwort auf die echten Namen. Zuordnung nur im RAM, automatisch nach 5 Minuten gelöscht.",
       "image": "https://ki-anonymisierer.de/app-icon-master.png",
       "url": "https://ki-anonymisierer.de/",
       "offers": {
@@ -63,7 +63,7 @@
         "Globaler Hotkey für die Zwischenablage",
         "Regelbasierte Erkennung für Namen, Adressen, Kontaktdaten und Kennungen",
         "Optional ergänzende lokale Apple-Spracherkennung und Apple Intelligence",
-        "Optionale Rückführung der letzten Sitzung nur im RAM und automatisch nach 5 Minuten gelöscht"
+        "Rückführung der KI-Antwort auf die echten Namen – Zuordnung nur im RAM, automatisch nach 5 Minuten gelöscht"
       ]
     }
   </script>
@@ -456,7 +456,8 @@
       margin: 1.2rem 0 0;
       max-width: 17.2ch;
       font-size: clamp(2.45rem, 4.9vw, 4.45rem);
-      line-height: 0.88;
+      line-height: 0.94;
+      letter-spacing: -0.005em;
       color: #eef4ff;
       text-wrap: balance;
     }
@@ -859,12 +860,12 @@
       transform: rotate(7deg);
     }
     .hero-strip {
-      position: absolute;
-      left: 12%;
-      right: 6%;
-      bottom: -8%;
+      position: relative;
+      width: min(100%, 600px);
+      margin-top: 1.4rem;
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 0.85rem;
       padding: 1rem;
       border-radius: 22px;
@@ -2380,7 +2381,7 @@
       <div class="container hero-grid">
         <div class="hero-copy" data-reveal>
           <span class="eyebrow">Lokale macOS-App für sensible Texte</span>
-          <h1 class="display">Bevor Daten Ihren Mac verlassen,<span class="hero-break hero-emphasis"> verlieren sie ihre Identität.</span></h1>
+          <h1 class="display">Bevor Daten Ihren Mac verlassen, verlieren sie ihre Identität.<span class="hero-break hero-emphasis"> Sobald die KI geantwortet hat, bekommen sie sie zurück.</span></h1>
           <p class="hero-lead">KI-Anonymisierer greift genau in dem Moment ein, in dem sensible Inhalte per Copy &amp; Paste in KI-Chatbots, E-Mails, Dokumente oder andere Systeme wandern sollen.</p>
           <p class="hero-sublead">Der Shortcut ist der Kern des Produkts: ein schneller, lokaler Zwischenschritt in Ihrer Zwischenablage. Ohne Cloud, ohne Registrierung und mit kaum Reibung dort, wo aus Tempo sonst schnell ein Datenschutzproblem wird.</p>
           <div class="platform-switch" aria-label="Verfügbare Plattformen">
@@ -2389,7 +2390,7 @@
             <a class="platform-badge" href="/chrome/" target="_blank" rel="noopener noreferrer">Chrome kostenlos</a>
             <a class="platform-badge is-muted" href="#plattformen">Windows demnächst</a>
           </div>
-          <div class="hero-note">Für alle, die sensible Inhalte vor KI-Nutzung, Weitergabe, E-Mail oder Veröffentlichung lokal prüfen wollen.</div>
+          <div class="hero-note">Für alle, die sensible Inhalte – ob in Kanzlei, Praxis, Steuerberatung, HR oder Verwaltung – vor KI-Nutzung, Weitergabe, E-Mail oder Veröffentlichung lokal prüfen wollen. Die Zuordnungstabelle für die Rückführung lebt nur im Arbeitsspeicher: maximal 5 Minuten, dann ist sie weg.</div>
           <div class="hero-rail">
             <article class="rail-card">
               <strong>Vor dem Prompt</strong>
@@ -2400,8 +2401,8 @@
               <p>Bilder und Screenshots lassen sich automatisch erkennen und anschließend manuell nachbearbeiten.</p>
             </article>
             <article class="rail-card">
-              <strong>Im gleichen Takt</strong>
-              <p>Kopieren, anonymisieren, prüfen, einfügen. Der Workflow bleibt schnell.</p>
+              <strong>Und wieder zurück</strong>
+              <p>Die KI antwortet mit Platzhaltern – ein zweiter Shortcut setzt lokal die echten Namen wieder ein. Diesen Kreis schließt sonst kein Tool.</p>
             </article>
           </div>
         </div>
@@ -2418,18 +2419,26 @@
               <div class="device-caption">Live-Demo des Clipboard-Moments</div>
             </div>
             <div class="device-visual">
-              <div class="device-demo" aria-label="Vorher-Nachher-Demo der lokalen Anonymisierung">
+              <div class="device-demo" aria-label="Loop-Demo: anonymisieren, an die KI geben und Klarnamen lokal zurückführen">
                 <article class="demo-pane before">
-                  <div class="demo-label">Vor dem Shortcut</div>
+                  <div class="demo-label">1 · Ihr Original</div>
                   <p class="demo-text">Sehr geehrte <span class="hl-red">Frau Maria Gonzales</span>,<br>geb. am <span class="hl-red">12.05.1987</span>, wohnhaft <span class="hl-red">Berliner Str. 42a</span>, <span class="hl-red">61169 Friedberg</span>,<br>SVN <span class="hl-red">53 270587 G 412</span> ...</p>
                 </article>
                 <div class="demo-flow" aria-hidden="true">
-                  <span class="demo-flow-copy">anonymisiert lokal auf dem Mac</span>
+                  <span class="demo-flow-copy">⌘⇧A · anonymisiert lokal auf dem Mac</span>
                   <span class="demo-flow-arrow">↓</span>
                 </div>
                 <article class="demo-pane after">
-                  <div class="demo-label">Nach dem Shortcut</div>
+                  <div class="demo-label">2 · An die KI</div>
                   <p class="demo-text">Sehr geehrte <span class="hl-green">[Person 1]</span>,<br>geb. am <span class="hl-green">[Datum 1]</span>, wohnhaft <span class="hl-green">[Adresse 1]</span>, <span class="hl-green">[Adresse 2]</span>,<br>SVN <span class="hl-green">[Kennung 1]</span> ...</p>
+                </article>
+                <div class="demo-flow" aria-hidden="true">
+                  <span class="demo-flow-copy">KI antwortet · Platzhalter bleiben · ⌘⇧D führt zurück</span>
+                  <span class="demo-flow-arrow">↺</span>
+                </div>
+                <article class="demo-pane after">
+                  <div class="demo-label">3 · Zurück bei Ihnen</div>
+                  <p class="demo-text">Sehr geehrte <span class="hl-green">Frau Maria Gonzales</span>,<br>anbei der überarbeitete Entwurf.<br>Klarnamen lokal wiederhergestellt – Zuordnung nur im RAM.</p>
                 </article>
               </div>
               <div class="demo-hotkey" aria-label="Globaler Hotkey">
@@ -2444,7 +2453,7 @@
             <span class="mini-chip">⌘C kopieren</span>
             <span class="mini-chip">⌘⇧A anonymisieren</span>
             <span class="mini-chip">⌘V einfügen</span>
-            <span class="mini-chip">Optional: ⌘⇧D rückführen</span>
+            <span class="mini-chip">⌘⇧D Klarnamen zurück</span>
           </div>
         </div>
       </div>
@@ -2565,9 +2574,9 @@
 
           <article class="step-card note-card" data-reveal>
             <div class="step-no">04</div>
-            <h3>Optional: Rückführung</h3>
-            <p class="step-copy-brief">Anonymisiert an KI geben, Antwort zurückholen, Platzhalter wieder einsetzen.</p>
-            <p>Nur für die letzte Sitzung, nur im RAM und automatisch nach spätestens fünf Minuten gelöscht.</p>
+            <h3>Klarnamen zurückführen</h3>
+            <p class="step-copy-brief">Anonymisiert an die KI geben, Antwort zurückholen, echte Namen per Shortcut wieder einsetzen – diesen Kreis schließt sonst kein Tool.</p>
+            <p>Die Zuordnung bleibt nur für die letzte Sitzung, ausschließlich im RAM und wird nach spätestens fünf Minuten automatisch gelöscht.</p>
             <div class="detail-tags">
               <span class="tag">Nur letzte Sitzung</span>
               <span class="tag">Ausschließlich RAM</span>
