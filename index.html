@@ -1424,6 +1424,12 @@
       align-items: center;
       margin-top: 0.15rem;
     }
+    .store-purchase-note {
+      margin: 0.1rem 0 -0.25rem;
+      color: #eef5ff;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
     .feature-list,
     .shot-bullets,
     .faq-answer ul {
@@ -1508,6 +1514,73 @@
       color: #ffffff;
       outline: none;
     }
+    .license-options {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 0.2rem;
+    }
+    .license-option {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.85rem;
+      align-items: center;
+      padding: 0.85rem;
+      border: 1px solid rgba(7,17,31,0.08);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.68);
+    }
+    .license-option-title {
+      display: block;
+      color: #172236;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .license-option-meta {
+      display: block;
+      margin-top: 0.18rem;
+      color: #5b687c;
+      font-size: 0.84rem;
+      line-height: 1.35;
+    }
+    .license-option-action {
+      justify-self: end;
+      white-space: nowrap;
+      min-height: 42px;
+      padding: 0.72rem 0.85rem;
+      border-radius: 14px;
+      border: 1px solid rgba(7,17,31,0.08);
+      background: #0f1a2e;
+      color: #f8fbff;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(7,17,31,0.14);
+    }
+    .license-option-action:hover,
+    .license-option-action:focus-visible {
+      background: #07111f;
+      color: #ffffff;
+      outline: none;
+    }
+    .license-option-action.is-pending {
+      background: rgba(15,26,46,0.08);
+      color: #657185;
+      box-shadow: none;
+      cursor: default;
+      pointer-events: none;
+    }
+    .purchase-legal-note {
+      margin: 0.1rem 0 0;
+      color: #5b687c;
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+    .purchase-legal-note a {
+      color: #172236;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 0.16em;
+    }
     .direct-note {
       width: 26px;
       height: 26px;
@@ -1534,7 +1607,13 @@
       border: 0;
       box-shadow: none;
     }
+    .store-badge:hover,
+    .store-badge:focus-visible {
+      outline: none;
+      opacity: 0.9;
+    }
     .store-badge img {
+      display: block;
       width: 220px;
       height: auto;
     }
@@ -2074,6 +2153,14 @@
         min-height: 30px;
         padding: 0 0.5rem;
         font-size: 0.75rem;
+      }
+      .license-option {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+      }
+      .license-option-action {
+        justify-self: stretch;
+        text-align: center;
       }
       .button,
       .button-secondary,
@@ -2815,15 +2902,39 @@
                 <li><span>Optional ergänzende Apple Intelligence</span></li>
                 <li><span>Für macOS signiert, sofort installierbar</span></li>
               </ul>
+              <p class="store-purchase-note">Einzellizenz im Mac App Store kaufen:</p>
               <div class="pricing-actions">
                 <a class="store-badge button-static" href="https://apps.apple.com/de/app/ki-anonymisierer/id6760411603?mt=12" aria-label="Im App Store ansehen" target="_blank" rel="noopener noreferrer">
                   <img src="apple.svg" alt="Im App Store ansehen" loading="lazy" decoding="async">
                 </a>
               </div>
               <div class="direct-option">
-                <p>Alternativ ist die App auch direkt außerhalb des App Store erhältlich.</p>
+                <p>Alternativ ist die App direkt außerhalb des App Store erhältlich, auch als Teamlizenz.</p>
+                <div class="license-options" aria-label="Direktkauf über Lemon Squeezy">
+                  <div class="license-option">
+                    <div>
+                      <span class="license-option-title">1 Lizenz</span>
+                      <span class="license-option-meta">Für eine natürliche Person · 9,99 €</span>
+                    </div>
+                    <a class="license-option-action lemonsqueezy-button" href="https://ki-fachbuecher.lemonsqueezy.com/checkout/buy/e8c17f14-daf8-4dd8-a0bf-7b8970f471d8?embed=1">Kaufen</a>
+                  </div>
+                  <div class="license-option">
+                    <div>
+                      <span class="license-option-title">10 Lizenzen</span>
+                      <span class="license-option-meta">Für Teams · 79,90 €</span>
+                    </div>
+                    <a class="license-option-action lemonsqueezy-button" href="https://ki-fachbuecher.lemonsqueezy.com/checkout/buy/f69f289c-85a2-440d-85bd-d532d741baf9?embed=1">Kaufen</a>
+                  </div>
+                  <div class="license-option">
+                    <div>
+                      <span class="license-option-title">25+ Lizenzen</span>
+                      <span class="license-option-meta">Für Organisationen, Kanzleien und Behörden</span>
+                    </div>
+                    <button class="license-option-action" type="button" data-license-request="Volumenlizenz 25+ Lizenzen">Anfragen</button>
+                  </div>
+                </div>
+                <p class="purchase-legal-note">Mit dem Kauf akzeptieren Sie die <a href="eula.html">EULA</a>. Für Käufe über den Mac App Store gelten ergänzend die Apple-Bedingungen.</p>
                 <div class="direct-link-row">
-                  <a class="direct-copy lemonsqueezy-button" href="https://ki-fachbuecher.lemonsqueezy.com/checkout/buy/e8c17f14-daf8-4dd8-a0bf-7b8970f471d8?embed=1">Direktkauf über Lemon Squeezy</a>
                   <button class="price-note-toggle direct-note" type="button" aria-label="Hinweis zum Direktkauf anzeigen" data-note="Der Direktkauf läuft sicher über Lemon Squeezy außerhalb des App Store. Je nach Steuerland, Zahlungsart und Währungsumrechnung kann die endgültige Belastung technisch leicht abweichen.">?</button>
                 </div>
               </div>
@@ -3048,13 +3159,13 @@
   <div class="legal-modal" id="platformModal" aria-hidden="true">
     <div class="updates-dialog" role="dialog" aria-modal="true" aria-labelledby="platformTitle">
       <div class="legal-head">
-        <h3 id="platformTitle">Anfrage zu weiteren Plattformen</h3>
+        <h3 id="platformTitle">Anfrage zu Plattformen oder Volumenlizenzen</h3>
         <button class="updates-close" id="closePlatformRequest" aria-label="Anfrage schließen">×</button>
       </div>
       <div class="updates-body">
         <div class="updates-copy">
-          <h4>Interesse an einer weiteren Plattform?</h4>
-          <p>Wenn Sie Interesse an einer Variante außerhalb von macOS oder an der Browser-Webapp haben, können Sie hier kurz eine Anfrage senden.</p>
+          <h4>Interesse an einer weiteren Plattform oder 25+ Lizenzen?</h4>
+          <p>Wenn Sie Interesse an einer Variante außerhalb von macOS, an der Browser-Webapp oder an einer größeren Teamlizenz haben, können Sie hier kurz eine Anfrage senden.</p>
         </div>
         <form class="updates-form" id="platformForm" novalidate>
           <div class="updates-row">
@@ -3066,8 +3177,8 @@
             <input id="platformEmail" name="email" type="email" autocomplete="email" required>
           </div>
           <div class="updates-row">
-            <label for="platformTarget">Gewünschte Plattform (optional)</label>
-            <input id="platformTarget" name="platform" type="text" placeholder="z. B. Windows, Webapp, Team-Version">
+            <label for="platformTarget">Wunsch oder Bedarf (optional)</label>
+            <input id="platformTarget" name="platform" type="text" placeholder="z. B. 25 Lizenzen, 100 Lizenzen, Windows, Webapp">
           </div>
           <div class="updates-actions">
             <button class="button" id="platformSubmit" type="submit">Anfrage senden</button>
@@ -3089,6 +3200,7 @@
     const openDatenschutz = document.getElementById('openDatenschutz');
     const openUpdates = document.getElementById('openUpdates');
     const openPlatformRequest = document.getElementById('openPlatformRequest');
+    const licenseRequestTriggers = document.querySelectorAll('[data-license-request]');
     const closeImpressum = document.getElementById('closeImpressum');
     const closeDatenschutz = document.getElementById('closeDatenschutz');
     const closeUpdates = document.getElementById('closeUpdates');
@@ -3201,12 +3313,14 @@
       });
     }
 
-    function openPlatformModal() {
+    function openPlatformModal(preset = '') {
       if (!platformModal) return;
+      const requestedValue = typeof preset === 'string' ? preset : '';
       if (platformStatus) {
         platformStatus.textContent = '';
         platformStatus.className = 'updates-status';
       }
+      if (platformTarget && requestedValue) platformTarget.value = requestedValue;
       platformModal.classList.add('open');
       platformModal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
@@ -3225,12 +3339,16 @@
     }
 
     if (openPlatformRequest && closePlatformRequest && platformModal) {
-      openPlatformRequest.addEventListener('click', openPlatformModal);
+      openPlatformRequest.addEventListener('click', () => openPlatformModal());
       closePlatformRequest.addEventListener('click', closePlatformModal);
       platformModal.addEventListener('click', (ev) => {
         if (ev.target === platformModal) closePlatformModal();
       });
     }
+
+    licenseRequestTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => openPlatformModal(trigger.dataset.licenseRequest || 'Volumenlizenz'));
+    });
 
     if (updatesForm && updatesEmail && updatesSubmit && updatesStatus) {
       updatesForm.addEventListener('submit', async (event) => {
@@ -3289,10 +3407,10 @@
             name: effectiveName,
             email,
             platform: target,
-            message: 'Anfrage weitere Plattformen KI-Anonymisierer\n' + 'Name: ' + effectiveName + '\n' + 'E-Mail: ' + email + '\n' + 'Plattform: ' + (target || 'Nicht angegeben') + '\nQuelle: KI-Anonymisierer Landingpage\nSeite: ' + window.location.href,
-            source: 'ki-anonymisierer-landingpage-platform-request',
+            message: 'Anfrage KI-Anonymisierer\n' + 'Name: ' + effectiveName + '\n' + 'E-Mail: ' + email + '\n' + 'Wunsch/Bedarf: ' + (target || 'Nicht angegeben') + '\nQuelle: KI-Anonymisierer Landingpage\nSeite: ' + window.location.href,
+            source: 'ki-anonymisierer-landingpage-request',
             page: window.location.href,
-            interest: 'Anfrage weitere Plattformen KI-Anonymisierer'
+            interest: 'Anfrage KI-Anonymisierer'
           });
           platformForm.reset();
           platformStatus.textContent = 'Vielen Dank. Ihre Anfrage wurde übermittelt.';
