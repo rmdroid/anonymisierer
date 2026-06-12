@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>EULA · KI-Anonymisierer for macOS</title>
+  <meta name="description" content="End User License Agreement (EULA) for KI-Anonymisierer for macOS. Date: June 11, 2026.">
+  <meta name="robots" content="index,follow">
+  <meta name="author" content="Robert Meyer">
+  <meta name="theme-color" content="#0b1020">
+  <link rel="canonical" href="https://ki-anonymisierer.de/eula_eng.html">
+  <link rel="alternate" hreflang="de-DE" href="https://ki-anonymisierer.de/eula.html">
+  <link rel="alternate" hreflang="en" href="https://ki-anonymisierer.de/eula_eng.html">
+  <link rel="alternate" hreflang="x-default" href="https://ki-anonymisierer.de/eula.html">
+  <link rel="icon" type="image/png" href="app-icon-master.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #06101c;
+      --ink: #f3f7ff;
+      --ink-dark: #07111f;
+      --muted: rgba(226, 235, 255, 0.72);
+      --muted-dark: #44536b;
+      --line: rgba(175, 203, 255, 0.15);
+      --cyan: #71f0df;
+      --blue: #5da2ff;
+      --shadow-xl: 0 40px 120px rgba(0, 0, 0, 0.42);
+      --shadow-lg: 0 22px 52px rgba(0, 0, 0, 0.28);
+      --nav-h: 82px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "IBM Plex Sans", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(93, 162, 255, 0.22), transparent 28%),
+        radial-gradient(circle at 88% 8%, rgba(113, 240, 223, 0.14), transparent 26%),
+        radial-gradient(circle at 50% 100%, rgba(47, 107, 255, 0.12), transparent 34%),
+        linear-gradient(180deg, #040b15 0%, #07111f 38%, #091528 100%);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      line-height: 1.58;
+      overflow-x: hidden;
+      padding-top: var(--nav-h);
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 120px 120px;
+      mask-image: radial-gradient(circle at 50% 24%, #000 35%, transparent 82%);
+      opacity: 0.45;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+
+    .site-nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 60;
+      backdrop-filter: blur(24px);
+      background: rgba(4, 11, 21, 0.64);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .site-nav .container {
+      min-height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      flex: 0 0 auto;
+    }
+    .brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      box-shadow: 0 14px 34px rgba(47, 107, 255, 0.28);
+    }
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .nav-toggle-lines,
+    .nav-toggle-lines::before,
+    .nav-toggle-lines::after {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+    .nav-toggle-lines { position: relative; }
+    .nav-toggle-lines::before,
+    .nav-toggle-lines::after {
+      content: "";
+      position: absolute;
+      left: 0;
+    }
+    .nav-toggle-lines::before { top: -6px; }
+    .nav-toggle-lines::after { top: 6px; }
+    .site-nav.nav-open .nav-toggle-lines { transform: rotate(45deg); }
+    .site-nav.nav-open .nav-toggle-lines::before { transform: translateY(6px) rotate(90deg); }
+    .site-nav.nav-open .nav-toggle-lines::after { opacity: 0; }
+    .nav-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.15rem;
+      flex-wrap: wrap;
+      color: rgba(226, 235, 255, 0.74);
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible,
+    .lang-switch a:hover,
+    .lang-switch a:focus-visible,
+    .footer-nav a:hover,
+    .footer-nav a:focus-visible {
+      color: #fff;
+      outline: none;
+    }
+    .nav-side {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      flex: 0 0 auto;
+    }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0.92rem 1.2rem;
+      border-radius: 999px;
+      color: #07111f;
+      background: linear-gradient(135deg, var(--cyan), #b8fff8 70%);
+      box-shadow: 0 16px 34px rgba(113, 240, 223, 0.22);
+      font-weight: 700;
+      transition: transform 180ms ease;
+    }
+    .nav-cta:hover { transform: translateY(-1px); }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.28rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+    .lang-switch a,
+    .lang-switch span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 38px;
+      min-height: 34px;
+      padding: 0 0.8rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: rgba(226, 235, 255, 0.72);
+      letter-spacing: 0.08em;
+    }
+    .lang-switch .active {
+      background: rgba(255,255,255,0.94);
+      color: #07111f;
+    }
+
+    .legal-hero {
+      padding: clamp(3rem, 7vw, 6rem) 0 clamp(1.6rem, 4vw, 3rem);
+      position: relative;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(226, 235, 255, 0.68);
+    }
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.45;
+    }
+    h1 {
+      margin: 1.1rem 0 1rem;
+      max-width: 820px;
+      font-family: "Sora", "IBM Plex Sans", system-ui, sans-serif;
+      font-size: clamp(2.25rem, 6vw, 5.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+    }
+    .hero-lead {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 2vw, 1.28rem);
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.45rem;
+    }
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: rgba(226, 235, 255, 0.74);
+      font-size: 0.88rem;
+    }
+    .legal-section {
+      padding: 0 0 clamp(4rem, 8vw, 7rem);
+      position: relative;
+    }
+    .legal-document {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(93, 162, 255, 0.1), transparent 26%),
+        linear-gradient(180deg, #f7fbff 0%, #eef4ff 100%);
+      color: var(--ink-dark);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 8px;
+      box-shadow: var(--shadow-xl);
+      padding: clamp(1.4rem, 4vw, 3.2rem);
+    }
+    .legal-document h2 {
+      margin: 2.2rem 0 0.7rem;
+      font-family: "Sora", "IBM Plex Sans", system-ui, sans-serif;
+      font-size: clamp(1.24rem, 2vw, 1.7rem);
+      line-height: 1.18;
+      letter-spacing: -0.035em;
+    }
+    .legal-document h2:first-child { margin-top: 0; }
+    .legal-document h3 {
+      margin: 1.35rem 0 0.35rem;
+      font-size: 1.02rem;
+      line-height: 1.35;
+      color: #20304d;
+    }
+    .legal-document p {
+      margin: 0.55rem 0;
+      color: #34435c;
+      font-size: 1rem;
+    }
+    .legal-document .document-title {
+      margin: 0 0 0.35rem;
+      font-family: "Sora", "IBM Plex Sans", system-ui, sans-serif;
+      font-size: clamp(1.7rem, 3.4vw, 2.7rem);
+      letter-spacing: -0.045em;
+      color: #07111f;
+    }
+    .legal-document .document-subtitle {
+      margin: 0 0 1rem;
+      color: #44536b;
+      font-size: 1.08rem;
+    }
+    .clause-list {
+      display: grid;
+      gap: 0.5rem;
+      margin: 0.65rem 0 1rem;
+    }
+    .clause-list p {
+      margin: 0;
+      padding-left: 1.6rem;
+      text-indent: -1.6rem;
+    }
+    .closing {
+      margin-top: 2.2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(7, 17, 31, 0.12);
+      font-weight: 700;
+      color: #07111f;
+    }
+    .footer {
+      padding: 2rem 0 5.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(1, 6, 12, 0.28);
+    }
+    .footer-grid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-title {
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    .tiny {
+      color: rgba(226, 235, 255, 0.58);
+      font-size: 0.88rem;
+    }
+    .footer-nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      color: rgba(226, 235, 255, 0.72);
+    }
+
+    @media (max-width: 820px) {
+      .nav-toggle { display: inline-flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 0.85rem;
+        right: 0.85rem;
+        top: calc(100% + 0.65rem);
+        padding: 0.85rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255,255,255,0.1);
+        background: rgba(4, 11, 21, 0.96);
+        box-shadow: var(--shadow-lg);
+        backdrop-filter: blur(22px);
+      }
+      .site-nav.nav-open .nav-links {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.45rem;
+      }
+      .nav-links a {
+        min-height: 42px;
+        padding: 0.65rem 0.75rem;
+        border-radius: 8px;
+        background: rgba(255,255,255,0.04);
+      }
+      .footer-grid {
+        align-items: stretch;
+        flex-direction: column;
+      }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(var(--max), calc(100% - 1.1rem)); }
+      .site-nav .container {
+        min-height: 76px;
+        gap: 0.55rem;
+      }
+      .brand { min-width: 0; gap: 0.55rem; }
+      .brand span {
+        max-width: 128px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .nav-side {
+        gap: 0.45rem;
+        flex-wrap: nowrap;
+        margin-left: auto;
+      }
+      .nav-cta { display: none; }
+      .lang-switch {
+        flex: 0 0 auto;
+        gap: 0.2rem;
+        padding: 0.18rem;
+      }
+      .lang-switch a,
+      .lang-switch span {
+        min-width: 32px;
+        min-height: 30px;
+        padding: 0 0.5rem;
+        font-size: 0.75rem;
+      }
+      h1 { max-width: 13ch; }
+      .legal-document { padding: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-nav">
+    <div class="container">
+      <a class="brand" href="index_eng.html" aria-label="KI-Anonymisierer home page">
+        <img src="app-icon-master.png" alt="KI-Anonymisierer app icon" width="88" height="88" loading="eager" decoding="async">
+        <span>KI-Anonymisierer</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">
+        <span class="nav-toggle-lines" aria-hidden="true"></span>
+      </button>
+      <nav class="nav-links" id="primaryNav" aria-label="Sections">
+        <a href="index_eng.html#platforms">Platforms</a>
+        <a href="index_eng.html#workflow">Workflow</a>
+        <a href="index_eng.html#detection">Detection</a>
+        <a href="index_eng.html#pricing">Pricing</a>
+      </nav>
+      <div class="nav-side">
+        <a class="nav-cta" href="index_eng.html#pricing">Buy macOS</a>
+        <div class="lang-switch" aria-label="Language selection">
+          <a href="eula.html">DE</a>
+          <span class="active" aria-current="page">EN</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="legal-hero">
+      <div class="container">
+        <div class="eyebrow">Legal</div>
+        <h1>End User License Agreement</h1>
+        <p class="hero-lead">The license terms for using KI-Anonymisierer for macOS.</p>
+        <div class="meta-row" aria-label="Document information">
+          <span class="meta-pill">EULA</span>
+          <span class="meta-pill">KI-Anonymisierer for macOS</span>
+          <span class="meta-pill">Date: June 11, 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="legal-section" aria-labelledby="eula-title">
+      <div class="container">
+        <article class="legal-document">
+          <p class="document-title" id="eula-title">End User License Agreement (EULA)</p>
+          <p class="document-subtitle">KI-Anonymisierer for macOS</p>
+          <p>Licensor: Robert Meyer, c/o Online-Impressum.de #4759, Europaring 90, 53757 Sankt Augustin, Germany, email: rm@kostenmanager.net (hereinafter "Licensor")</p>
+          <p>Date: June 11, 2026</p>
+
+          <h2>1. Scope and Subject Matter of the Agreement</h2>
+          <p>1.1 This End User License Agreement (hereinafter "EULA") governs the use of the "KI-Anonymisierer" software for macOS, including all related updates, upgrades, and documentation (hereinafter "Software"), by the purchaser (hereinafter "Licensee").</p>
+          <p>1.2 The Software is used for the local anonymization of text, images, and files on the Licensee's device. Processing takes place entirely locally; the Software does not transmit any content, usage data, or telemetry data to the Licensor or third parties.</p>
+          <p>1.3 This EULA applies to purchases through the Apple Mac App Store as well as to direct purchases (e.g. through Lemon Squeezy). For purchases through the Apple Mac App Store, the provisions in Section 10 apply additionally.</p>
+
+          <h2>2. License Types and License Scope</h2>
+          <h3>2.1 Single License</h3>
+          <p>By purchasing a single license, the Licensee receives the non-exclusive, perpetual, non-transferable right to use the Software by one natural person. Installation is permitted on all devices that are predominantly used by that person (e.g. workplace Mac and private MacBook of the same person).</p>
+          <h3>2.2 Multi-Seat License (Team/Volume License)</h3>
+          <p>By purchasing a multi-seat license, the Licensee (company, law firm, public authority, or other organization) receives the non-exclusive, perpetual right to use the Software on the number of workstations within its organization specified in the license certificate. The decisive factor is the number of natural persons who use the Software, not the number of installations. A change of the assigned persons (e.g. in the event of employee turnover) is permitted, provided that the licensed total number of simultaneous users is not exceeded.</p>
+          <h3>2.3 Proof of License</h3>
+          <p>For direct purchases, the purchase confirmation or invoice and the issued license certificate serve as proof of license. The Licensee is obliged to keep these records for the duration of use.</p>
+          <h3>2.4 Trust-Based License Model</h3>
+          <p>The Software deliberately contains no technical license control, no activation requirement, and no online connection to a license server. This is part of the Software's data protection concept. In return, the Licensee undertakes to use the Software exclusively within the scope of the purchased license. Any use beyond the licensed scope requires the purchase of additional licenses.</p>
+
+          <h2>3. Restrictions</h2>
+          <p>The Licensee is not permitted to:</p>
+          <div class="clause-list">
+            <p>a) rent, lease, lend, sublicense, or make the Software publicly available;</p>
+            <p>b) decompile, disassemble, or reverse engineer the Software, unless this is expressly permitted by mandatory law (Sections 69d, 69e German Copyright Act);</p>
+            <p>c) remove or alter copyright notices, markings, or notices in the Software;</p>
+            <p>d) make the Software available for use by third parties outside the Licensee's own organization.</p>
+          </div>
+          <p>The resale of a purchased license to a third party is governed by the statutory provisions (principle of exhaustion); in this case, the Licensee must delete all of its own copies and transfer the proof of license along with the license.</p>
+
+          <h2>4. Updates and Further Development</h2>
+          <p>4.1 The Licensor provides updates and bug fixes for the purchased major version at its own discretion. There is no entitlement to specific future functions, further developments, or permanent provision of updates.</p>
+          <p>4.2 The Licensor reserves the right to offer substantially expanded future versions as paid upgrades or as independent products.</p>
+
+          <h2>5. Important Functional Notice - Limits of Anonymization</h2>
+          <p>5.1 The Software works with rule-based detection, local language recognition (Apple NaturalLanguage), and, where available on the device, optional supplementary Apple Intelligence. Automated detection may be incomplete or incorrect in individual cases.</p>
+          <p>5.2 The Software is a supporting tool. It does not replace human final review of anonymized content before it is passed on, published, or transmitted to third parties (including AI services).</p>
+          <p>5.3 The Software does not replace legal or data protection advice or assessment. Responsibility for compliance with legal requirements (in particular GDPR, German Federal Data Protection Act, professional rules, confidentiality obligations) remains entirely with the Licensee.</p>
+          <p>5.4 The Licensee is obliged to check anonymized results for completeness of anonymization before any transfer.</p>
+
+          <h2>6. Warranty</h2>
+          <p>6.1 Statutory warranty rights for digital products (Sections 327 et seq. German Civil Code) apply without restriction vis-à-vis consumers.</p>
+          <p>6.2 Vis-à-vis entrepreneurs (Section 14 German Civil Code), the following applies: The warranty period is twelve months from provision. The Licensor shall initially provide supplementary performance at its own discretion by remedying the defect (e.g. update) or by replacement delivery. Insignificant deviations from the product description do not give rise to defect claims. Section 377 German Commercial Code remains unaffected.</p>
+          <p>6.3 No guarantee in the legal sense is assumed. In particular, it is not guaranteed that the Software will fully detect all personal or sensitive data in every individual case (see Section 5).</p>
+
+          <h2>7. Liability</h2>
+          <p>7.1 The Licensor is liable without limitation for intent and gross negligence, for damages arising from injury to life, body, or health, and under the German Product Liability Act.</p>
+          <p>7.2 In the case of ordinary negligence, the Licensor is liable only for the breach of essential contractual obligations (cardinal obligations), i.e. obligations whose fulfillment is essential for the proper performance of the contract and on whose compliance the Licensee may regularly rely. In this case, liability is limited to the foreseeable damage typical for the contract.</p>
+          <p>7.3 Liability is otherwise excluded. This applies in particular to damages arising from the fact that automatically anonymized content was passed on without the human final review owed under Section 5.4.</p>
+          <p>7.4 The foregoing limitations of liability also apply for the benefit of the Licensor's vicarious agents.</p>
+
+          <h2>8. Data Protection</h2>
+          <p>8.1 The Software processes all content exclusively locally on the Licensee's device. No content, metadata, usage statistics, or telemetry data is transmitted to the Licensor or third parties.</p>
+          <p>8.2 When the restore function is activated, the assignment table is held exclusively in working memory and is automatically deleted after five minutes at the latest.</p>
+          <p>8.3 Personal data of the Licensee is collected only in connection with the purchase process (through the Apple App Store or the payment service provider for direct distribution). Details are governed by the privacy policy at [Link to privacy policy].</p>
+
+          <h2>9. Term and Termination</h2>
+          <p>9.1 The license is granted for an indefinite period.</p>
+          <p>9.2 The Licensor may revoke the license for good cause, in particular in the event of a serious or repeated breach of Section 2 or 3, if the Licensee does not remedy the breach within a reasonable period despite a warning. In the event of revocation, the Licensee must cease use and delete all copies.</p>
+
+          <h2>10. Purchase through the Apple Mac App Store</h2>
+          <p>When purchasing the Software through the Apple Mac App Store, the following applies additionally:</p>
+          <div class="clause-list">
+            <p>a) This agreement exists exclusively between the Licensor and the Licensee, not with Apple Inc. ("Apple"). Apple has no obligation whatsoever to maintain or support the Software.</p>
+            <p>b) In the event of non-fulfillment of a warranty obligation, the Licensee may notify Apple; in this case, Apple may refund the purchase price. Beyond this, Apple assumes no warranty whatsoever for the Software.</p>
+            <p>c) Apple is not responsible for handling claims by the Licensee or third parties in connection with the Software, including product liability claims, claims for failure to comply with legal or regulatory requirements, and claims under consumer protection law.</p>
+            <p>d) Apple and its subsidiaries are third-party beneficiaries of this EULA and are entitled, after acceptance of this EULA, to enforce it against the Licensee.</p>
+            <p>e) The Licensee represents that they are not located in a country subject to an embargo by the U.S. government and are not listed on any U.S. government list of prohibited or restricted parties.</p>
+          </div>
+
+          <h2>11. Final Provisions</h2>
+          <p>11.1 The law of the Federal Republic of Germany applies, excluding the UN Convention on Contracts for the International Sale of Goods (CISG). Vis-à-vis consumers, this choice of law applies only insofar as it does not deprive them of the protection of mandatory provisions of the law of their country of habitual residence.</p>
+          <p>11.2 If the Licensee is a merchant, a legal entity under public law, or a special fund under public law, the exclusive place of jurisdiction is the registered office of the Licensor.</p>
+          <p>11.3 Should individual provisions of this EULA be or become invalid, the validity of the remaining provisions shall remain unaffected.</p>
+          <p>11.4 Amendments and additions to this EULA must be made in text form.</p>
+
+          <p class="closing">KI-Anonymisierer · © Robert Meyer, June 2026</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-title">KI-Anonymisierer</div>
+        <div class="tiny">© 2026 Robert Meyer</div>
+      </div>
+      <nav class="footer-nav" aria-label="Legal">
+        <a href="index_eng.html">Home</a>
+        <a href="eula_eng.html" aria-current="page">EULA</a>
+        <a href="eula.html">Deutsch</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const siteNav = document.querySelector('.site-nav');
+    const navToggle = document.getElementById('navToggle');
+    const primaryNav = document.getElementById('primaryNav');
+
+    function closeNav() {
+      if (!siteNav || !navToggle) return;
+      siteNav.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    if (navToggle && siteNav) {
+      navToggle.addEventListener('click', () => {
+        const willOpen = !siteNav.classList.contains('nav-open');
+        siteNav.classList.toggle('nav-open', willOpen);
+        navToggle.setAttribute('aria-expanded', String(willOpen));
+      });
+    }
+
+    if (primaryNav) {
+      primaryNav.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeNav);
+      });
+    }
+
+    document.addEventListener('keydown', (ev) => {
+      if (ev.key === 'Escape') closeNav();
+    });
+  </script>
+</body>
+</html>
