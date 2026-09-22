@@ -122,7 +122,7 @@
           "name": "What comes next?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Next up is a native Windows version. The Mac version will also be expanded with PDF document anonymization."
+            "text": "The native Windows app is now available on the Microsoft Store. Next, the Mac version will add PDF document anonymization."
           }
         },
         {
@@ -138,7 +138,7 @@
           "name": "Is the app available for other platforms?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. There is a dedicated Anonymisierer app for iPhone and iPad at ki-anonymisierer.de/ios/. There is also a free Chrome extension for browser workflows at ki-anonymisierer.de/chrome/."
+            "text": "Yes. There is a dedicated Anonymisierer app for iPhone and iPad at ki-anonymisierer.de/ios/. There is also a free Chrome extension for browser workflows at ki-anonymisierer.de/chrome/ and a native Windows app for text at ki-anonymisierer.de/windows/index_eng.html."
           }
         }
       ]
@@ -2480,7 +2480,7 @@
             <a class="platform-badge is-primary" href="#pricing">macOS app</a>
             <a class="platform-badge" href="/ios/" target="_blank" rel="noopener noreferrer">iPhone &amp; iPad</a>
             <a class="platform-badge" href="/chrome/" target="_blank" rel="noopener noreferrer">Free Chrome extension</a>
-            <a class="platform-badge is-muted" href="#platforms">Windows coming soon</a>
+            <a class="platform-badge" href="/windows/index_eng.html" target="_blank" rel="noopener noreferrer" data-rybbit-event="hero_windows_click">Windows new</a>
           </div>
           <div class="hero-note">For anyone – in law firms, medical practices, tax advisory, HR, or public administration – who wants to check sensitive content locally before AI use, sharing, email, or publication. The mapping table for the restore lives in memory only: max. 5 minutes, then it is gone.</div>
           <div class="hero-rail">
@@ -2558,7 +2558,7 @@
             <span class="eyebrow">Platforms</span>
             <h2>One product idea. Multiple places to work.</h2>
           </div>
-          <p>Use KI-Anonymisierer wherever sensitive content appears: as a native Mac app, on iPhone and iPad, or directly in Chrome for free.</p>
+          <p>Use KI-Anonymisierer wherever sensitive content appears: as a native Mac app, on iPhone and iPad, as a native Windows app, or directly in Chrome for free.</p>
         </div>
         <div class="platform-grid">
           <article class="platform-card is-main" data-reveal>
@@ -2580,10 +2580,10 @@
             <a class="platform-link" href="/chrome/" target="_blank" rel="noopener noreferrer">View Chrome extension →</a>
           </article>
           <article class="platform-card" data-reveal>
-            <span class="platform-status">Coming soon</span>
+            <span class="platform-status">New · €14.99</span>
             <h3>Windows</h3>
-            <p>Planned for users who need the same local protection outside the Apple ecosystem.</p>
-            <button class="platform-button-link" id="openPlatformRequest" type="button">Register interest →</button>
+            <p>Tray app with Ctrl + Shift + A, editor, regex, built-in NER and optional local AI. For text, right on your own PC. German interface.</p>
+            <a class="platform-link" href="/windows/index_eng.html" target="_blank" rel="noopener noreferrer" data-rybbit-event="platform_windows_click">View Windows app →</a>
           </article>
         </div>
       </div>
@@ -3012,7 +3012,8 @@
           <details class="faq-item" data-reveal>
             <summary>What comes next?</summary>
             <div class="faq-answer">
-              <p>Next up is a native Windows version. In parallel, the Mac version will add PDF document anonymization.</p>
+              <p>The native Windows app is now available on the Microsoft Store. Next, the Mac version will add PDF document anonymization.</p>
+              <p><a class="faq-inline-link" href="/windows/index_eng.html" target="_blank" rel="noopener noreferrer">View Windows app &rarr;</a></p>
             </div>
           </details>
 
@@ -3030,6 +3031,8 @@
               <p><a class="faq-inline-link" href="/ios/" target="_blank" rel="noopener noreferrer">View iPhone &amp; iPad version &rarr;</a></p>
               <p>There is also a free Chrome extension for browser workflows. It is the easiest entry point when text should be anonymized directly in the browser.</p>
               <p><a class="faq-inline-link" href="/chrome/" target="_blank" rel="noopener noreferrer">View Chrome extension &rarr;</a></p>
+              <p>For Windows, there is a native app on the Microsoft Store (one-time purchase, €14.99). It anonymizes text locally with regex, built-in NER and optional local AI, available from the tray icon and Ctrl + Shift + A. The app interface is German only.</p>
+              <p><a class="faq-inline-link" href="/windows/index_eng.html" target="_blank" rel="noopener noreferrer">View Windows app &rarr;</a></p>
               <p>The web test version remains available as a demo, but it is not the focus of the product family.</p>
               <p><a class="faq-inline-link" href="https://ki-anonymisierer.de/webdemo/" target="_blank" rel="noopener noreferrer">Try optional web demo &rarr;</a></p>
             </div>
@@ -3183,7 +3186,7 @@
           </div>
           <div class="updates-row">
             <label for="platformTarget">Request or need (optional)</label>
-            <input id="platformTarget" name="platform" type="text" placeholder="e.g. 25 licenses, 100 licenses, Windows, web app">
+            <input id="platformTarget" name="platform" type="text" placeholder="e.g. 25 licenses, 100 licenses, web app">
           </div>
           <div class="updates-actions">
             <button class="button" id="platformSubmit" type="submit">Send request</button>
@@ -3343,8 +3346,8 @@
       document.body.style.overflow = '';
     }
 
-    if (openPlatformRequest && closePlatformRequest && platformModal) {
-      openPlatformRequest.addEventListener('click', () => openPlatformModal());
+    if (closePlatformRequest && platformModal) {
+      if (openPlatformRequest) openPlatformRequest.addEventListener('click', () => openPlatformModal());
       closePlatformRequest.addEventListener('click', closePlatformModal);
       platformModal.addEventListener('click', (ev) => {
         if (ev.target === platformModal) closePlatformModal();

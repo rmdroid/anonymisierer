@@ -101,6 +101,26 @@ Key features:
 - Low-friction way to test the anonymization use case
 - Complements the paid macOS app for system-wide workflows
 
+### KI-Anonymisierer for Windows
+
+German URL: https://ki-anonymisierer.de/windows/
+English URL: https://ki-anonymisierer.de/windows/index_eng.html
+Microsoft Store URL: https://apps.microsoft.com/detail/9N229VW00Z01
+
+Native Windows app for local text anonymization. One-time purchase, €14.99 on the Microsoft Store. The app interface is German only.
+
+Key features:
+
+- Local text processing without an anonymization server
+- Regex and built-in named entity recognition (NER) for people, places and organizations
+- Optional additional local AI check: set up a small model in the app or connect Ollama or LM Studio
+- Editor, tray icon in the Windows notification area and global shortcut Ctrl + Shift + A
+- Local clipboard Safeguard that flags sensitive details
+- Optional restoration of placeholders from the last session, held in RAM for at most five minutes
+- Builds for x64 and ARM64
+
+Limits: text only, no image or screenshot processing. The optional small AI is experimental and does not guarantee complete detection. Setup downloads require an internet connection.
+
 ## Privacy principles
 
 - Local-first anonymization
@@ -146,6 +166,9 @@ Key features:
 - English iOS landing page: https://ki-anonymisierer.de/ios/index_eng.html
 - German Chrome landing page: https://ki-anonymisierer.de/chrome/
 - English Chrome landing page: https://ki-anonymisierer.de/chrome/index_eng.html
+- German Windows landing page: https://ki-anonymisierer.de/windows/
+- English Windows landing page: https://ki-anonymisierer.de/windows/index_eng.html
+- Microsoft Store listing: https://apps.microsoft.com/detail/9N229VW00Z01
 - Chrome Web Store listing: https://chromewebstore.google.com/detail/jaoallgfipnfnibbnjeflecgfmbhefoa
 - Sitemap: https://ki-anonymisierer.de/sitemap.xml
 - LLM context file: https://ki-anonymisierer.de/llms.txt

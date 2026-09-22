@@ -122,7 +122,7 @@
           "name": "Was kommt als Nächstes?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Als Nächstes ist eine native Windows-Version geplant. Die Mac-Version wird außerdem um PDF-Dokumenten-Anonymisierung erweitert."
+            "text": "Die native Windows-App ist jetzt im Microsoft Store erhältlich. Als Nächstes wird die Mac-Version um PDF-Dokumenten-Anonymisierung erweitert."
           }
         },
         {
@@ -138,7 +138,7 @@
           "name": "Gibt es die App auch für andere Plattformen?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ja. Für iPhone und iPad gibt es die eigenständige App Anonymisierer unter ki-anonymisierer.de/ios/. Zusätzlich gibt es eine kostenlose Chrome-Erweiterung für Browser-Workflows unter ki-anonymisierer.de/chrome/."
+            "text": "Ja. Für iPhone und iPad gibt es die eigenständige App Anonymisierer unter ki-anonymisierer.de/ios/. Zusätzlich gibt es eine kostenlose Chrome-Erweiterung für Browser-Workflows unter ki-anonymisierer.de/chrome/ und eine native Windows-App für Texte unter ki-anonymisierer.de/windows/."
           }
         }
       ]
@@ -2480,7 +2480,7 @@
             <a class="platform-badge is-primary" href="#preis">macOS App</a>
             <a class="platform-badge" href="/ios/" target="_blank" rel="noopener noreferrer" data-rybbit-event="hero_ios_click">iPhone &amp; iPad</a>
             <a class="platform-badge" href="/chrome/" target="_blank" rel="noopener noreferrer" data-rybbit-event="hero_chrome_click">Chrome kostenlos</a>
-            <a class="platform-badge is-muted" href="#plattformen">Windows demnächst</a>
+            <a class="platform-badge" href="/windows/" target="_blank" rel="noopener noreferrer" data-rybbit-event="hero_windows_click">Windows neu</a>
           </div>
           <div class="hero-note">Für alle, die sensible Inhalte – ob in Kanzlei, Praxis, Steuerberatung, HR oder Verwaltung – vor KI-Nutzung, Weitergabe, E-Mail oder Veröffentlichung lokal prüfen wollen. Die Zuordnungstabelle für die Rückführung lebt nur im Arbeitsspeicher: maximal 5 Minuten, dann ist sie weg.</div>
           <div class="hero-rail">
@@ -2558,7 +2558,7 @@
             <span class="eyebrow">Plattformen</span>
             <h2>Ein Produktgedanke. Mehrere Arbeitsorte.</h2>
           </div>
-          <p>Nutzen Sie KI-Anonymisierer dort, wo sensible Inhalte entstehen: als native Mac-App, mobil auf iPhone und iPad oder kostenlos direkt im Chrome-Browser.</p>
+          <p>Nutzen Sie KI-Anonymisierer dort, wo sensible Inhalte entstehen: als native Mac-App, mobil auf iPhone und iPad, als native Windows-App oder kostenlos direkt im Chrome-Browser.</p>
         </div>
         <div class="platform-grid">
           <article class="platform-card is-main" data-reveal>
@@ -2580,10 +2580,10 @@
             <a class="platform-link" href="/chrome/" target="_blank" rel="noopener noreferrer">Chrome-Erweiterung ansehen →</a>
           </article>
           <article class="platform-card" data-reveal>
-            <span class="platform-status">Demnächst</span>
+            <span class="platform-status">Neu · 14,99 €</span>
             <h3>Windows</h3>
-            <p>Geplant für Nutzer, die denselben lokalen Schutz außerhalb des Apple-Ökosystems brauchen.</p>
-            <button class="platform-button-link" id="openPlatformRequest" type="button">Interesse vormerken →</button>
+            <p>Tray-App mit Strg + Umschalt + A, Editor, Regex, integrierter NER und optionaler lokaler KI. Für Texte, direkt auf dem eigenen PC.</p>
+            <a class="platform-link" href="/windows/" target="_blank" rel="noopener noreferrer" data-rybbit-event="platform_windows_click">Windows-App ansehen →</a>
           </article>
         </div>
       </div>
@@ -3012,7 +3012,8 @@
           <details class="faq-item" data-reveal>
             <summary>Was kommt als Nächstes?</summary>
             <div class="faq-answer">
-              <p>Als Nächstes kommt eine native Windows-Version. Parallel wird die Mac-Version um PDF-Dokumenten-Anonymisierung erweitert.</p>
+              <p>Die native Windows-App ist jetzt im Microsoft Store erhältlich. Als Nächstes wird die Mac-Version um PDF-Dokumenten-Anonymisierung erweitert.</p>
+              <p><a class="faq-inline-link" href="/windows/" target="_blank" rel="noopener noreferrer">Windows-App ansehen &rarr;</a></p>
             </div>
           </details>
 
@@ -3030,6 +3031,8 @@
               <p><a class="faq-inline-link" href="/ios/" target="_blank" rel="noopener noreferrer">iPhone &amp; iPad-Version ansehen &rarr;</a></p>
               <p>Zusätzlich gibt es eine kostenlose Chrome-Erweiterung für Browser-Workflows. Sie ist der einfachste Einstieg, wenn Texte direkt im Browser anonymisiert werden sollen.</p>
               <p><a class="faq-inline-link" href="/chrome/" target="_blank" rel="noopener noreferrer">Chrome-Erweiterung ansehen &rarr;</a></p>
+              <p>Für Windows gibt es eine native App im Microsoft Store (Einmalkauf 14,99 €). Sie anonymisiert Texte lokal mit Regex, integrierter NER und optionaler lokaler KI und ist über Tray-Symbol und Strg + Umschalt + A erreichbar.</p>
+              <p><a class="faq-inline-link" href="/windows/" target="_blank" rel="noopener noreferrer">Windows-App ansehen &rarr;</a></p>
               <p>Die Web-Testversion bleibt als Demo verfügbar, steht aber nicht im Mittelpunkt der Produktfamilie.</p>
               <p><a class="faq-inline-link" href="https://ki-anonymisierer.de/webdemo/" target="_blank" rel="noopener noreferrer">Web-Demo optional testen &rarr;</a></p>
             </div>
@@ -3183,7 +3186,7 @@
           </div>
           <div class="updates-row">
             <label for="platformTarget">Wunsch oder Bedarf (optional)</label>
-            <input id="platformTarget" name="platform" type="text" placeholder="z. B. 25 Lizenzen, 100 Lizenzen, Windows, Webapp">
+            <input id="platformTarget" name="platform" type="text" placeholder="z. B. 25 Lizenzen, 100 Lizenzen, Webapp">
           </div>
           <div class="updates-actions">
             <button class="button" id="platformSubmit" type="submit">Anfrage senden</button>
@@ -3343,8 +3346,8 @@
       document.body.style.overflow = '';
     }
 
-    if (openPlatformRequest && closePlatformRequest && platformModal) {
-      openPlatformRequest.addEventListener('click', () => openPlatformModal());
+    if (closePlatformRequest && platformModal) {
+      if (openPlatformRequest) openPlatformRequest.addEventListener('click', () => openPlatformModal());
       closePlatformRequest.addEventListener('click', closePlatformModal);
       platformModal.addEventListener('click', (ev) => {
         if (ev.target === platformModal) closePlatformModal();
